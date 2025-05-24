@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRYSMI Agency | Marketing That Works Like a Product</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Libre+Franklin:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles for the body and headings */
+        body {
+            font-family: 'Inter', sans-serif; /* Changed to Inter as per instructions */
+            background-color: #0A0A0A;
+            color: #E0E0E0;
+            overflow-x: hidden;
+            margin: 0; /* Ensure canvas takes full screen */
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Libre Franklin', sans-serif;
+            font-weight: 800;
+            color: #FFFFFF;
+        }
+        .text-emphasis-italic {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+        }
+        .nav-link.active {
+            font-weight: 600;
+            color: white;
+            position: relative;
+            /* Added white glow effect for active links */
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            background-color: #FF53AC;
+            border-radius: 2px;
+            animation: underline-grow 0.3s forwards;
+        }
+        .nav-link:hover {
+            color: #FF53AC;
+            transition: color 0.2s ease-in-out;
+        }
+        @keyframes underline-grow {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+        .button-glow-pink {
+            box-shadow: 0 0 10px rgba(255, 83, 172, 0.6), 0 0 20px rgba(255, 83, 172, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+        .button-glow-pink:hover {
+            box-shadow: 0 0 15px rgba(255, 83, 172, 0.8), 0 0 25px rgba(255, 83, 172, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* New style for the "Next Steps" button when its section is active */
+        .nav-link.next-steps-active-style {
+            background-color: #EEFF41 !important; /* Brighter background */
+            color: #1A1A1A !important; /* Darker text */
+            box-shadow: 0 0 15px rgba(238, 255, 65, 0.8), 0 0 25px rgba(238, 255, 65, 0.6) !important; /* Stronger glow */
+            transform: scale(1.05); /* Slightly larger */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding: 0 1rem;
+        }
+        .accordion-content.open {
+            max-height: 1000px;
+            padding: 1rem;
+        }
+        .accordion-button:hover {
+            background-color: #1A1A1A;
+        }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+         /* Staggered animation delays */
+        .fade-in-up.is-visible.delay-200ms {
+            transition-delay: 0.2s;
+        }
+        .fade-in-up.is-visible.delay-400ms {
+            transition-delay: 0.4s;
+        }
+
+        /* 3D Waving Dots Background Animation Canvas */
+        #waving-dots-3d-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: auto;
+            background-color: #0A0A0A;
+            display: block;
+        }
+        header, main, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* New Hero Title Glow Animation */
+        @keyframes pulseGlow {
+            0%, 100% {
+                text-shadow: 0 0 7px rgba(255, 255, 255, 0.7),
+                             0 0 14px rgba(255, 255, 255, 0.5),
+                             0 0 20px rgba(255, 83, 172, 0.3),
+                             0 0 30px rgba(255, 83, 172, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 14px rgba(255, 255, 255, 0.9),
+                             0 0 20px rgba(255, 255, 255, 0.7),
+                             0 0 30px rgba(255, 83, 172, 0.5),
+                             0 0 45px rgba(255, 83, 172, 0.3);
+            }
+        }
+        .hero-title-glow {
+            animation: pulseGlow 3.5s infinite ease-in-out;
+             /* Base shadow for non-animated state or fallback */
+            text-shadow: 0 0 7px rgba(255, 255, 255, 0.7), 0 0 14px rgba(255, 255, 255, 0.5);
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <canvas id="waving-dots-3d-background"></canvas>
+
+    <header class="bg-[#0A0A0A]/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-800">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#hero" class="text-xl font-black text-[#FF53AC] hover:text-white transition-colors duration-200">PRYSMI Agency</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#about" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</a>
+                        <a href="#challenges" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Challenges</a>
+                        <a href="#process" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Our Process</a>
+                        <a href="#impact-outcomes" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Our Impact</a>
+                        <a href="#next-steps" class="nav-link bg-[#F53196] text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-sm button-glow-pink">Get Started</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-[#FF53AC] focus:outline-none transition-colors duration-200">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden bg-[#0A0A0A] shadow-lg border-t border-gray-800">
+            <a href="#about" class="block nav-link text-gray-300 hover:text-white px-4 py-2 text-base font-medium transition-colors duration-200">About</a>
+            <a href="#challenges" class="block nav-link text-gray-300 hover:text-white px-4 py-2 text-base font-medium transition-colors duration-200">Challenges</a>
+            <a href="#process" class="block nav-link text-gray-300 hover:text-white px-4 py-2 text-base font-medium transition-colors duration-200">Our Process</a>
+            <a href="#impact-outcomes" class="block nav-link text-gray-300 hover:text-white px-4 py-2 text-base font-medium transition-colors duration-200">Our Impact</a>
+            <a href="#next-steps" class="block nav-link bg-[#F53196] text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-base button-glow-pink">Get Started</a>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="hero" class="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center text-center py-16 md:py-24 bg-gradient-to-br from-[#FF53AC] to-[#1A1A1A] rounded-xl my-8 shadow-2xl transform hover:scale-[1.005] transition-transform duration-300">
+            <div class="max-w-4xl">
+                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white hero-title-glow fade-in-up">
+                    PRYSMI: Marketing That Works Like a Product
+                </h1>
+                <p class="text-lg sm:text-xl md:text-2xl text-white text-emphasis-italic opacity-90 fade-in-up delay-200ms mb-0 mt-4 md:mt-6">
+                    Fast, Aligned, and Revenue-Ready.
+                </p>
+                <p class="text-md sm:text-lg md:text-xl font-medium text-white text-emphasis-italic opacity-80 fade-in-up delay-400ms mt-2 md:mt-3">
+                    — A 5-phase system for founders.
+                </p>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 md:py-24 bg-[#1A1A1A] rounded-xl shadow-2xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-black text-white fade-in-up">About PRYSMI</h2>
+                <p class="mt-4 text-lg text-gray-300 fade-in-up">Your partner in transforming marketing into a sales asset.</p>
+            </div>
+            <div class="max-w-3xl mx-auto bg-[#0A0A0A] p-8 sm:p-10 rounded-xl shadow-xl border border-gray-800 fade-in-up">
+                <blockquote class="text-center text-xl sm:text-2xl text-emphasis-italic text-gray-200 border-l-4 border-[#FF53AC] pl-6 py-4">
+                    “We work with Salesforce consultancies, SI partners, and founder-led tech firms who’ve outgrown scattered messaging and siloed content. This is how we turn your marketing into a sales asset in 120 days.”
+                </blockquote>
+                <div class="mt-8 text-left">
+                    <p class="text-lg text-gray-200 mb-4">At PRYSMI, we believe marketing should be as efficient and effective as your product development. Our unique methodology is designed to deliver clear, measurable results, ensuring your marketing efforts directly contribute to revenue growth.</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Specializing in Message-Market Fit, High-Intent Search, and Conversion-Optimized Content.</li>
+                        <li>Focused on building repeatable systems for scalable content execution.</li>
+                        <li>Committed to continuous iteration and optimization for sustained performance.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="challenges" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-black text-white fade-in-up">The Challenges We Solve</h2>
+                <p class="mt-4 text-lg text-gray-300 fade-in-up">Many founder-led tech firms and consultancies grapple with marketing that doesn't deliver predictable revenue. If you've outgrown scattered messaging and siloed content, these challenges might resonate:</p>
+            </div>
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="bg-[#1A1A1A] p-6 rounded-xl shadow-lg border border-gray-800 fade-in-up">
+                    <h3 class="text-xl font-semibold text-[#EEFF41] mb-2">Inconsistent Messaging</h3>
+                    <p class="text-lg text-gray-200">Your team struggles to articulate your unique value proposition clearly and consistently across all channels.</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 rounded-xl shadow-lg border border-gray-800 fade-in-up delay-200ms">
+                    <h3 class="text-xl font-semibold text-[#EEFF41] mb-2">Low-Intent Traffic</h3>
+                    <p class="text-lg text-gray-200">You're getting website visitors, but they're not converting into qualified leads or sales conversations.</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 rounded-xl shadow-lg border border-gray-800 fade-in-up delay-400ms">
+                    <h3 class="text-xl font-semibold text-[#EEFF41] mb-2">Siloed Content</h3>
+                    <p class="text-lg text-gray-200">Your marketing content isn't aligned with your sales process, leading to missed opportunities and inefficient efforts.</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 rounded-xl shadow-lg border border-gray-800 flex items-start space-x-4 fade-in-up delay-200ms">
+                    <h3 class="text-xl font-semibold text-[#EEFF41] mb-2">Marketing Burnout</h3>
+                    <p class="text-lg text-gray-200">Producing content and managing campaigns feels like a constant struggle, with little time for strategic thinking.</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 rounded-xl shadow-lg border border-gray-800 flex items-start space-x-4 fade-in-up delay-400ms">
+                    <h3 class="text-xl font-semibold text-[#EEFF41] mb-2">Unclear ROI</h3>
+                    <p class="text-lg text-gray-200">You're investing in marketing, but the direct impact on revenue and business growth is hard to quantify.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="py-16 md:py-24 bg-[#1A1A1A] rounded-xl shadow-2xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-black text-white fade-in-up">The PRYSMI Process</h2>
+                <p class="mt-4 text-lg text-gray-300 fade-in-up">A 5-phase system for founders who want their marketing to work like a product.</p>
+            </div>
+
+            <div class="mb-16">
+                <div id="accordion-container" class="max-w-3xl mx-auto space-y-3 fade-in-up">
+                    </div>
+            </div>
+        </section>
+
+        <section id="impact-outcomes" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-black text-white fade-in-up">Our Impact & Your Outcomes</h2>
+                <p class="mt-4 text-lg text-gray-300 fade-in-up">Our 5-phase system isn't just a process; it's a pathway to tangible results and a marketing engine that truly works for you. Here's what you walk away with:</p>
+            </div>
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="bg-[#1A1A1A] p-6 rounded-xl shadow-lg border border-gray-800 flex items-start space-x-4 fade-in-up">
+                    <span class="text-green-400 text-2xl">✅</span>
+                    <p class="text-lg text-gray-200">A messaging system your team actually uses</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 rounded-xl shadow-lg border border-gray-800 flex items-start space-x-4 fade-in-up delay-200ms">
+                    <span class="text-green-400 text-2xl">✅</span>
+                    <p class="text-lg text-gray-200">A content engine that scales across teams and formats</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 rounded-xl shadow-lg border border-gray-800 flex items-start space-x-4 fade-in-up delay-400ms">
+                    <span class="text-green-400 text-2xl">✅</span>
+                    <p class="text-lg text-gray-200">A site built for conversion, not just design</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 rounded-xl shadow-lg border border-gray-800 flex items-start space-x-4 fade-in-up delay-200ms">
+                    <span class="text-green-400 text-2xl">✅</span>
+                    <p class="text-lg text-gray-200">A founder-led content rhythm that doesn’t burn you out</p>
+                </div>
+                <div class="bg-[#1A1A1A] p-6 rounded-xl shadow-lg border border-gray-800 flex items-start space-x-4 fade-in-up delay-400ms">
+                    <span class="text-green-400 text-2xl">✅</span>
+                    <p class="text-lg text-gray-200">Revenue-aligned marketing in motion</p>
+                </div>
+
+                <div class="mt-12 text-center bg-[#0A0A0A] p-8 rounded-xl shadow-xl border border-gray-700 fade-in-up">
+                    <h3 class="text-2xl font-bold text-white mb-4">Meet Prabhjot Singh: Our Expertise & Proven Track Record</h3>
+                    <p class="text-lg text-gray-300 mb-4">
+                        Hi, I’m Prabhjot Singh. With 7 years leading 150Cr+ IT & SaaS campaigns, I specialize in SEO, brand positioning, emails, video & collaborative expert-driven content.
+                    </p>
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQGzLyOnqhP9vQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724507651197?e=1753315200&v=beta&t=fn7hlCX30CoDZLU5MFxqBi5LPu65ELiuZ0751BUClr4" alt="Prabhjot Singh professional photo" class="w-48 h-48 object-cover rounded-full mx-auto shadow-md mb-6" onerror="this.onerror=null;this.src='https://placehold.co/200x200/0A0A0A/E0E0E0?text=Prabhjot+Singh';">
+
+                    <blockquote class="text-center text-xl sm:text-2xl text-emphasis-italic text-gray-200 border-l-4 border-[#FF53AC] pl-6 py-4 mb-8">
+                        “Unbore your B2B Content with absolute clarity. Get full‑throated, experienced answers to any questions on modern B2B marketing.”
+                    </blockquote>
+
+                    <h4 class="text-xl font-bold text-white mb-6">Some of Our Valued Clients</h4>
+                    <p class="text-lg text-gray-300 mb-8 max-w-xl mx-auto">Trusted by leading B2B IT consultancies for marketing their key products and services.</p>
+                    <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 mb-12">
+                        <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-48 h-28">
+                            <img src="https://media.licdn.com/dms/image/v2/C4D0BAQHZeGy8nZo-Cg/company-logo_200_200/company-logo_200_200/0/1641207446773/360_degree_cloud_logo?e=1753315200&v=beta&t=FwAsbuFvtiySc2Xc83siTb38YR9aCf05qNcxgAwldiU" alt="360 Degree Cloud Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+Cloud';">
+                        </div>
+                        <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-48 h-28">
+                            <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_6c343127ad65ae2f4ee07181588dd3f0/360-sms-app.png" alt="360 SMS App Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+SMS';">
+                        </div>
+                        <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-48 h-28">
+                            <img src="https://media.licdn.com/dms/image/v2/D560BAQFScfQaUVPagw/company-logo_200_200/company-logo_200_200/0/1719921844217/head_in_cloud_inc_logo?e=1753315200&v=beta&t=q5eNxsvNsyQq9SYsqvQMHFeCQ4QZmx7SIODSW6pxqI0" alt="Head In Cloud Inc Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=HeadInCloud';">
+                        </div>
+                        <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-48 h-28">
+                            <img src="https://media.licdn.com/dms/image/v2/D5633AQF_PlP3Skwalw/productpage-logo-image_200_200/productpage-logo-image_200_200/0/1720596314363/head_in_cloud_inc_shopify_made_easy_logo?e=1748570400&v=beta&t=nsQCqvufTtsFlmMRbW0j1YpmX7UtYGgmXt05Q" alt="Head In Cloud Inc Shopify Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=HIC+Shopify';">
+                        </div>
+                        <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-48 h-28">
+                            <img src="https://media.licdn.com/dms/image/v2/D5633AQEkQyeBvMAv4w/productpage-logo-image_200_200/productpage-logo-image_200_200/0/1732515920673/360_degree_cloud_360_cti_logo?e=1748570400&v=beta&t=1VJanOuReVeb-Rx7DGUtpgUY0E5ho6EH2hHgHLPpJUI" alt="360 Degree Cloud 360 CTI Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+CTI';">
+                        </div>
+                        <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-48 h-28">
+                            <img src="https://media.licdn.com/dms/image/v2/D5633AQHZlj6KfV_I2Q/productpage-logo-image_200_200/productpage-logo-image_200_200/0/1732516668951/360_degree_cloud_360_verify_the_email_logo?e=1748570400&v=beta&t=YQXqFvhYyaGPHNJwojZ58849T1FTYCqKM6s7X1Mmc_8" alt="360 Degree Cloud 360 Verify The Email Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+Verify';">
+                        </div>
+                        <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-48 h-28">
+                            <img src="https://media.licdn.com/dms/image/v2/D5633AQGk5ZqnJGr4WQ/productpage-logo-image_200_200/productpage-logo-image_200_200/0/1732516027278/360_degree_cloud_textolic_logo?e=1748570400&v=beta&t=eGz_2DbJ1WoEUIPiyrcO_6pV9OncuoGF2o7lcwLgxv8" alt="360 Degree Cloud Textolic Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=Textolic';">
+                        </div>
+                    </div>
+
+                    <h4 class="text-xl font-bold text-white mb-6">Strategic Wins Across B2B SaaS</h4>
+                    <p class="text-lg text-gray-300 mb-8 max-w-xl mx-auto">Demonstrated success in diverse B2B SaaS environments.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                        <div class="bg-[#1A1A1A] p-5 rounded-lg shadow-md border border-gray-800 flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300">
+                            <h5 class="text-lg font-semibold text-white mb-2">Product Listings</h5>
+                            <p class="text-gray-300 text-sm">12 listings ranked #1 on AppExchange</p>
+                        </div>
+                        <div class="bg-[#1A1A1A] p-5 rounded-lg shadow-md border border-gray-800 flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300">
+                            <h5 class="text-lg font-semibold text-white mb-2">Cold Email Campaigns</h5>
+                            <p class="text-gray-300 text-sm">Activated Staff Augmentation + New Client Pipelines</p>
+                        </div>
+                        <div class="bg-[#1A1A1A] p-5 rounded-lg shadow-md border border-gray-800 flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300">
+                            <h5 class="text-lg font-semibold text-white mb-2">BoFu Sales Enablement</h5>
+                            <p class="text-gray-300 text-sm">Boosted enterprise trust + conversions</p>
+                        </div>
+                        <div class="bg-[#1A1A1A] p-5 rounded-lg shadow-md border border-gray-800 flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300">
+                            <h5 class="text-lg font-semibold text-white mb-2">USA Organic Traffic</h5>
+                            <p class="text-gray-300 text-sm">+437% in 12 months</p>
+                        </div>
+                        <div class="bg-[#1A1A1A] p-5 rounded-lg shadow-md border border-gray-800 flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300">
+                            <h5 class="text-lg font-semibold text-white mb-2">Qualified Leads</h5>
+                            <p class="text-gray-300 text-sm">+1,100% increase</p>
+                        </div>
+                        <div class="bg-[#1A1A1A] p-5 rounded-lg shadow-md border border-gray-800 flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300">
+                            <h5 class="text-lg font-semibold text-white mb-2">Search Appearance</h5>
+                            <p class="text-gray-300 text-sm">+275% increase</p>
+                        </div>
+                        <div class="bg-[#1A1A1A] p-5 rounded-lg shadow-md border border-gray-800 flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300">
+                            <h5 class="text-lg font-semibold text-white mb-2">Organic Traffic</h5>
+                            <p class="text-gray-300 text-sm">+103% increase overall</p>
+                        </div>
+                        <div class="bg-[#1A1A1A] p-5 rounded-lg shadow-md border border-gray-800 flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300">
+                            <h5 class="text-lg font-semibold text-white mb-2">Competitive Search Ranking</h5>
+                            <p class="text-gray-300 text-sm">46× more page 1 keyword wins</p>
+                        </div>
+                        <div class="bg-[#1A1A1A] p-5 rounded-lg shadow-md border border-gray-800 flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300">
+                            <h5 class="text-lg font-semibold text-white mb-2">Keyword Footprint</h5>
+                            <p class="text-300 text-sm">8× more organic-driving keywords</p>
+                        </div>
+                        <div class="bg-[#1A1A1A] p-5 rounded-lg shadow-md border border-gray-800 flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300">
+                            <h5 class="text-lg font-semibold text-white mb-2">International SEO Visibility</h5>
+                            <p class="text-gray-300 text-sm">3.1× US, 5.8× UK, 3.4× AU search appearance</p>
+                        </div>
+                    </div>
+                    <p class="mt-12 text-lg text-gray-300 text-center max-w-2xl mx-auto text-emphasis-italic">
+                        Results from fractional leadership + in-house enablement—exactly what we’d bring to your business.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="next-steps" class="py-16 md:py-24 bg-[#1A1A1A] rounded-xl shadow-2xl">
+            <div class="max-w-3xl mx-auto text-center bg-[#0A0A0A] p-8 sm:p-12 rounded-xl shadow-2xl border border-gray-800 fade-in-up">
+                <h2 class="text-3xl sm:text-4xl font-black text-white hero-title-glow">Ready to Transform Your Marketing?</h2>
+                <p class="mt-6 text-lg text-gray-300">
+                    Let’s build a marketing system that works like a product for your business. The first step is simple:
+                </p>
+                <p class="mt-4 text-lg text-gray-300">
+                    Schedule a brief discovery call with our team. We'll discuss your current marketing challenges and explore how the PRYSMI Process can align your efforts for predictable revenue growth.
+                </p>
+                <div class="mt-10">
+                    <a href="mailto:info@prysmi.com" class="inline-block bg-[#FF53AC] text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-lg button-glow-pink">
+                        Schedule a Discovery Call
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#0A0A0A] text-gray-400 py-8 text-center mt-16 border-t border-gray-800">
+        <p>&copy; <span id="currentYear"></span> PRYSMI Agency. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Dynamically set the current year in the footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Accordion for 5-Step Process in the Approach section
+        const accordionData = [
+            {
+                title: "Step 1: Extract the Signal",
+                subtitle: "Message-Market Fit → Sales Language That Converts",
+                description: "We start where others skip: digging into your deals, demos, and objections to surface what actually sells your product. Through stakeholder interviews, objection mining, and competitive teardown, we clarify your unique value — and turn it into language that lands with buyers.",
+                visualMetaphor: "A founder and strategist at a whiteboard, removing sticky notes labeled “fluff,” “jargon,” and “features” — leaving only sticky notes labeled “impact,” “metrics,” and “aha.”",
+                visualMetaphorMessage: "Clarity is subtraction. This is where conversion begins."
+            },
+            {
+                title: "Step 2: Get You Found (for the Right Things)",
+                subtitle: "Build Discoverability → Own High-Intent Search",
+                description: "We map how your buyers actually search — and reverse-engineer your site, content, and AppExchange strategy to match. No vanity traffic. Just qualified clicks and predictable leads.",
+                visualMetaphor: "A search engine heatmap zooms in on buyer intent clusters; a content strategist is re-routing arrows to align site structure with intent.",
+                visualMetaphorMessage: "Rank less. Get found more. This is SEO for services that sell."
+            },
+            {
+                title: "Step 3: Architect for Decisions",
+                subtitle: "Structure Content → Guide the Close",
+                description: "We build your site like a sales call: guiding buyers through objection, credibility, ROI, and conversion. IA, wireframes, and product language all shaped around how B2B buyers actually think.",
+                visualMetaphor: "Website wireframes overlaid with funnel stages (problem-aware → decision), with a founder walking through them like a corridor with signposts.",
+                visualMetaphorMessage: "Every click is a sales conversation. Let’s structure it that way."
+            },
+            {
+                title: "Step 4: Systemize Content Execution",
+                subtitle: "Install Playbooks → Reduce Time-to-Asset",
+                description: "We give your team repeatable kits and templates to produce sales, product, SEO, and outbound content — without bottlenecks. Think: enablement decks, founder-led post templates, AppExchange SEO kits, and more.",
+                visualMetaphor: "A visual stack of labeled kits: “Objection Handler Deck,” “Positioning Matrix,” “Case Study Generator,” “Founder Post Format.” A team member clicks \"duplicate → customize → publish.\"",
+                visualMetaphorMessage: "Content shouldn’t be a slog. With systems, it scales."
+            },
+            {
+                title: "Step 5: Launch, Iterate, Scale",
+                subtitle: "Go Live → Refine What Works. Cut What Doesn’t.",
+                description: "We implement, optimize, and scale. Messaging goes live across web, sales, AppExchange, email, and content. Weekly reviews keep everything sharp. Founder-led content starts shipping. You get performance without handholding.",
+                visualMetaphor: "A polished, live dashboard showing “Messaging Live ✅”, “AppExchange Revamp ✅”, “LinkedIn Engine ON ✅” and a small team high-fiving over a spike in MQLs.",
+                visualMetaphorMessage: "The plane’s in the air. Now we fly smarter."
+            }
+        ];
+        const accordionContainer = document.getElementById('accordion-container');
+        // Clear existing content to prevent duplication
+        if (accordionContainer) {
+            accordionContainer.innerHTML = '';
+        }
+        accordionData.forEach((item, index) => {
+            const accItem = document.createElement('div');
+            accItem.classList.add('bg-[#1A1A1A]', 'rounded-xl', 'shadow-md', 'border', 'border-gray-800', 'overflow-hidden');
+            const button = document.createElement('button');
+            button.classList.add('accordion-button', 'w-full', 'text-left', 'p-4', 'sm:p-5', 'font-semibold', 'text-white', 'transition-colors', 'duration-200', 'flex', 'justify-between', 'items-center');
+            button.innerHTML = `<span>${item.title}</span> <span class="accordion-icon text-[#FF53AC] text-xl transform transition-transform duration-300">+</span>`;
+            const contentDiv = document.createElement('div');
+            contentDiv.classList.add('accordion-content', 'text-gray-300');
+            contentDiv.innerHTML = `
+                <p class="text-lg font-bold text-[#EEFF41] mb-2">${item.subtitle}</p>
+                <p class="mb-4">${item.description}</p>
+                <div class="bg-[#0A0A0A] p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm text-gray-400 italic mb-2">Visual Metaphor:</p>
+                    <p class="text-md text-gray-200 mb-3">${item.visualMetaphor}</p>
+                    <p class="text-sm text-gray-400 italic mb-2">Visual Metaphor Message:</p>
+                    <p class="text-md text-gray-200">${item.visualMetaphorMessage}</p>
+                </div>
+            `;
+            accItem.appendChild(button);
+            accItem.appendChild(contentDiv);
+            accordionContainer.appendChild(accItem);
+            button.addEventListener('click', () => {
+                const isOpen = contentDiv.classList.contains('open');
+                accordionContainer.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                    if (openContent !== contentDiv) {
+                        openContent.classList.remove('open');
+                        openContent.previousElementSibling.querySelector('.accordion-icon').innerHTML = '+';
+                        openContent.previousElementSibling.querySelector('.accordion-icon').classList.remove('rotate-45');
+                    }
+                });
+                contentDiv.classList.toggle('open');
+                const icon = button.querySelector('.accordion-icon');
+                if (contentDiv.classList.contains('open')) {
+                    icon.innerHTML = '−';
+                    icon.classList.add('rotate-45');
+                } else {
+                    icon.innerHTML = '+';
+                    icon.classList.remove('rotate-45');
+                }
+            });
+        });
+
+        // Active Navigation Link Highlighting on Scroll
+        const sections = document.querySelectorAll('main section[id]');
+        const navLinks = document.querySelectorAll('header nav a.nav-link');
+        const mobileNavLinks = document.querySelectorAll('header #mobile-menu a.nav-link');
+        function changeNav(targetId) {
+            [...navLinks, ...mobileNavLinks].forEach(link => {
+                link.classList.remove('active');
+                link.classList.remove('next-steps-active-style'); // Ensure this is removed for all links first
+
+                if (link.getAttribute('href') === `#${targetId}`) {
+                    link.classList.add('active');
+                    if (targetId === 'next-steps') {
+                        link.classList.add('next-steps-active-style');
+                    }
+                }
+            });
+        }
+        const observerOptions = { root: null, rootMargin: "0px", threshold: 0.4 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { changeNav(entry.target.id); } });
+        }, observerOptions);
+        sections.forEach(section => { observer.observe(section); });
+
+
+        // Animation for elements on scroll (fade-in-up)
+        const animateOnScrollElements = document.querySelectorAll('.fade-in-up');
+        const observerOptionsAnimate = { root: null, rootMargin: "0px", threshold: 0.1 };
+        const animateObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptionsAnimate);
+        animateOnScrollElements.forEach(element => { animateObserver.observe(element); });
+
+        // --- 3D Waving Dots Background Animation Script ---
+        // Wrapped Three.js initialization and animation logic in a named function
+        function initializeThreeJSBackground() {
+            const canvas = document.getElementById('waving-dots-3d-background');
+            if (!canvas) {
+                console.error("3D waving dots canvas not found!");
+                // Fallback for no canvas, maybe set a background color
+                document.body.style.backgroundColor = '#0A0A0A';
+                return; // This return is now clearly inside a named function
+            }
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x0A0A0A, 1);
+
+            const dotCount = 15000;
+            const particlesGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(dotCount * 3);
+            const colorsAttribute = new Float32Array(dotCount * 3);
+
+            const palette = [new THREE.Color("#FF53AC"), new THREE.Color("#FFFFFF")];
+
+            const waveAmplitude = 2;
+            const waveFrequency = 0.2;
+            const planeSize = 40;
+
+            for (let i = 0; i < dotCount; i++) {
+                positions[i * 3] = (Math.random() - 0.5) * planeSize;
+                positions[i * 3 + 1] = 0;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * planeSize;
+
+                const color = palette[Math.floor(Math.random() * palette.length)];
+                colorsAttribute[i * 3] = color.r;
+                colorsAttribute[i * 3 + 1] = color.g;
+                colorsAttribute[i * 3 + 2] = color.b;
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsAttribute, 3));
+
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 0.08,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
+            });
+
+            const particleSystem = new THREE.Points(particlesGeometry, particleMaterial);
+            scene.add(particleSystem);
+
+            camera.position.z = 15;
+            camera.position.y = 5;
+            camera.lookAt(scene.position);
+
+            let mouseX = 0, mouseY = 0;
+            let targetRotationX = 0;
+            let targetRotationY = 0;
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+
+            document.addEventListener('mousemove', onDocumentMouseMove, false);
+            document.addEventListener('touchstart', onDocumentTouchStart, { passive: false });
+            document.addEventListener('touchmove', onDocumentTouchMove, { passive: false });
+
+
+            function onDocumentMouseMove(event) {
+                mouseX = (event.clientX - windowHalfX) * 0.01;
+                mouseY = (event.clientY - windowHalfY) * 0.01;
+            }
+
+            function onDocumentTouchStart(event) {
+                if (event.touches.length === 1) {
+                    event.preventDefault();
+                    mouseX = (event.touches[0].pageX - windowHalfX) * 0.015;
+                    mouseY = (event.touches[0].pageY - windowHalfY) * 0.015;
+                }
+            }
+
+            function onDocumentTouchMove(event) {
+                if (event.touches.length === 1) {
+                    event.preventDefault();
+                    mouseX = (event.touches[0].pageX - windowHalfX) * 0.015;
+                    mouseY = (event.touches[0].pageY - windowHalfY) * 0.015;
+                }
+            }
+
+            let time = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                time += 0.01;
+
+                const positionsArray = particleSystem.geometry.attributes.position.array;
+                const colorsArray = particleSystem.geometry.attributes.color.array;
+
+                for (let i = 0; i < dotCount; i++) {
+                    const x = positionsArray[i * 3];
+                    const z = positionsArray[i * 3 + 2];
+
+                    const yWave = Math.sin(x * waveFrequency + time) * waveAmplitude * 0.5 +
+                                  Math.cos(z * waveFrequency * 0.7 + time * 0.8) * waveAmplitude * 0.5;
+                    positionsArray[i * 3 + 1] = yWave;
+
+                    if (Math.floor(time * 10) % 120 === i % 120) {
+                         const color = palette[Math.floor(Math.random() * palette.length)];
+                         colorsArray[i * 3] = color.r;
+                         colorsArray[i * 3 + 1] = color.g;
+                         colorsArray[i * 3 + 2] = color.b;
+                    }
+                }
+                particleSystem.geometry.attributes.position.needsUpdate = true;
+                particleSystem.geometry.attributes.color.needsUpdate = true;
+
+                targetRotationX = mouseY * 0.2;
+                targetRotationY = mouseX * 0.2;
+
+                camera.rotation.x += (targetRotationX - camera.rotation.x) * 0.05;
+                camera.rotation.y += (targetRotationY - camera.rotation.y) * 0.05;
+                // Ensure camera continues to look at the center of the particle system, not just world origin if particles move
+                const boundingBox = new THREE.Box3().setFromObject(particleSystem);
+                const center = new THREE.Vector3();
+                boundingBox.getCenter(center);
+                camera.lookAt(center);
+
+                renderer.render(scene, camera);
+            }
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }, false);
+
+            animate(); // Start Three.js animation
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Dynamically set the current year in the footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Accordion for 5-Step Process in the Approach section
+            const accordionData = [
+                {
+                    title: "Step 1: Extract the Signal",
+                    subtitle: "Message-Market Fit → Sales Language That Converts",
+                    description: "We start where others skip: digging into your deals, demos, and objections to surface what actually sells your product. Through stakeholder interviews, objection mining, and competitive teardown, we clarify your unique value — and turn it into language that lands with buyers.",
+                    visualMetaphor: "A founder and strategist at a whiteboard, removing sticky notes labeled “fluff,” “jargon,” and “features” — leaving only sticky notes labeled “impact,” “metrics,” and “aha.”",
+                    visualMetaphorMessage: "Clarity is subtraction. This is where conversion begins."
+                },
+                {
+                    title: "Step 2: Get You Found (for the Right Things)",
+                    subtitle: "Build Discoverability → Own High-Intent Search",
+                    description: "We map how your buyers actually search — and reverse-engineer your site, content, and AppExchange strategy to match. No vanity traffic. Just qualified clicks and predictable leads.",
+                    visualMetaphor: "A search engine heatmap zooms in on buyer intent clusters; a content strategist is re-routing arrows to align site structure with intent.",
+                    visualMetaphorMessage: "Rank less. Get found more. This is SEO for services that sell."
+                },
+                {
+                    title: "Step 3: Architect for Decisions",
+                    subtitle: "Structure Content → Guide the Close",
+                    description: "We build your site like a sales call: guiding buyers through objection, credibility, ROI, and conversion. IA, wireframes, and product language all shaped around how B2B buyers actually think.",
+                    visualMetaphor: "Website wireframes overlaid with funnel stages (problem-aware → decision), with a founder walking through them like a corridor with signposts.",
+                    visualMetaphorMessage: "Every click is a sales conversation. Let’s structure it that way."
+                },
+                {
+                    title: "Step 4: Systemize Content Execution",
+                    subtitle: "Install Playbooks → Reduce Time-to-Asset",
+                    description: "We give your team repeatable kits and templates to produce sales, product, SEO, and outbound content — without bottlenecks. Think: enablement decks, founder-led post templates, AppExchange SEO kits, and more.",
+                    visualMetaphor: "A visual stack of labeled kits: “Objection Handler Deck,” “Positioning Matrix,” “Case Study Generator,” “Founder Post Format.” A team member clicks \"duplicate → customize → publish.\"",
+                    visualMetaphorMessage: "Content shouldn’t be a slog. With systems, it scales."
+                },
+                {
+                    title: "Step 5: Launch, Iterate, Scale",
+                    subtitle: "Go Live → Refine What Works. Cut What Doesn’t.",
+                    description: "We implement, optimize, and scale. Messaging goes live across web, sales, AppExchange, email, and content. Weekly reviews keep everything sharp. Founder-led content starts shipping. You get performance without handholding.",
+                    visualMetaphor: "A polished, live dashboard showing “Messaging Live ✅”, “AppExchange Revamp ✅”, “LinkedIn Engine ON ✅” and a small team high-fiving over a spike in MQLs.",
+                    visualMetaphorMessage: "The plane’s in the air. Now we fly smarter."
+                }
+            ];
+            const accordionContainer = document.getElementById('accordion-container');
+            // Clear existing content to prevent duplication
+            if (accordionContainer) {
+                accordionContainer.innerHTML = '';
+            }
+            accordionData.forEach((item, index) => {
+                const accItem = document.createElement('div');
+                accItem.classList.add('bg-[#1A1A1A]', 'rounded-xl', 'shadow-md', 'border', 'border-gray-800', 'overflow-hidden');
+                const button = document.createElement('button');
+                button.classList.add('accordion-button', 'w-full', 'text-left', 'p-4', 'sm:p-5', 'font-semibold', 'text-white', 'transition-colors', 'duration-200', 'flex', 'justify-between', 'items-center');
+                button.innerHTML = `<span>${item.title}</span> <span class="accordion-icon text-[#FF53AC] text-xl transform transition-transform duration-300">+</span>`;
+                const contentDiv = document.createElement('div');
+                contentDiv.classList.add('accordion-content', 'text-gray-300');
+                contentDiv.innerHTML = `
+                    <p class="text-lg font-bold text-[#EEFF41] mb-2">${item.subtitle}</p>
+                    <p class="mb-4">${item.description}</p>
+                    <div class="bg-[#0A0A0A] p-4 rounded-lg border border-gray-700">
+                        <p class="text-sm text-gray-400 italic mb-2">Visual Metaphor:</p>
+                        <p class="text-md text-gray-200 mb-3">${item.visualMetaphor}</p>
+                        <p class="text-sm text-gray-400 italic mb-2">Visual Metaphor Message:</p>
+                        <p class="text-md text-gray-200">${item.visualMetaphorMessage}</p>
+                    </div>
+                `;
+                accItem.appendChild(button);
+                accItem.appendChild(contentDiv);
+                accordionContainer.appendChild(accItem);
+                button.addEventListener('click', () => {
+                    const isOpen = contentDiv.classList.contains('open');
+                    accordionContainer.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                        if (openContent !== contentDiv) {
+                            openContent.classList.remove('open');
+                            openContent.previousElementSibling.querySelector('.accordion-icon').innerHTML = '+';
+                            openContent.previousElementSibling.querySelector('.accordion-icon').classList.remove('rotate-45');
+                        }
+                    });
+                    contentDiv.classList.toggle('open');
+                    const icon = button.querySelector('.accordion-icon');
+                    if (contentDiv.classList.contains('open')) {
+                        icon.innerHTML = '−';
+                        icon.classList.add('rotate-45');
+                    } else {
+                        icon.innerHTML = '+';
+                        icon.classList.remove('rotate-45');
+                    }
+                });
+            });
+
+            // Active Navigation Link Highlighting on Scroll
+            const sections = document.querySelectorAll('main section[id]');
+            const navLinks = document.querySelectorAll('header nav a.nav-link');
+            const mobileNavLinks = document.querySelectorAll('header #mobile-menu a.nav-link');
+            function changeNav(targetId) {
+                [...navLinks, ...mobileNavLinks].forEach(link => {
+                    link.classList.remove('active');
+                    link.classList.remove('next-steps-active-style'); // Ensure this is removed for all links first
+
+                    if (link.getAttribute('href') === `#${targetId}`) {
+                        link.classList.add('active');
+                        if (targetId === 'next-steps') {
+                            link.classList.add('next-steps-active-style');
+                        }
+                    }
+                });
+            }
+            const observerOptions = { root: null, rootMargin: "0px", threshold: 0.4 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) { changeNav(entry.target.id); } });
+            }, observerOptions);
+            sections.forEach(section => { observer.observe(section); });
+
+
+            // Animation for elements on scroll (fade-in-up)
+            const animateOnScrollElements = document.querySelectorAll('.fade-in-up');
+            const observerOptionsAnimate = { root: null, rootMargin: "0px", threshold: 0.1 };
+            const animateObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptionsAnimate);
+            animateOnScrollElements.forEach(element => { animateObserver.observe(element); });
+
+            // Call the Three.js initialization function here
+            initializeThreeJSBackground();
+        });
+    </script>
+</body>
+</html>

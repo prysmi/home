@@ -306,12 +306,39 @@
             border-top: 1px solid var(--color-footer-border); /* Border is now transparent */
             transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
         }
+
+        /* Mobile-only message styling */
+        #mobile-only-message {
+            background-color: var(--color-bg-body); /* Use body background for consistency */
+            color: var(--color-text-primary); /* Use primary text color */
+            /* Ensure it covers everything else on mobile */
+            display: none; /* Hidden by default and shown only on mobile by Tailwind's md:hidden */
+        }
+        @media (max-width: 767px) { /* Tailwind's 'md' breakpoint is 768px, so we show it below that */
+            #mobile-only-message {
+                display: flex; /* Show the flex container on mobile */
+            }
+            /* Hide main content on mobile if the message is displayed */
+            header, main, footer, #back-to-top, #theme-toggle, #waving-dots-3d-background {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
 
     <canvas id="waving-dots-3d-background"></canvas>
 
+    <div id="mobile-only-message" class="md:hidden fixed inset-0 flex flex-col items-center justify-center p-4 text-center z-[1000]">
+        <img src="https://9a7c8340.home-cba.pages.dev/Pink%20Horizontal%20Logo%20TM.png" alt="PRYSMI Agency Logo" class="h-16 w-auto mb-6" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
+        <h1 class="text-3xl font-bold mb-4">Desktop Experience Recommended</h1>
+        <p class="text-lg mb-6">For the best experience, please access our website on a desktop or laptop device.</p>
+        <div class="flex flex-col items-center justify-center space-y-4">
+            <img src="https://9a7c8340.home-cba.pages.dev/profile_photo_1.png" alt="Prabhjot Singh, Founder of PRYSMI Agency" class="w-32 h-32 object-cover rounded-full shadow-lg mb-2" onerror="this.onerror=null;this.src='https://placehold.co/200x200/0A0A0A/E0E0E0?text=Prabhjot+Singh';">
+            <p class="text-md italic">Thank you for your understanding.</p>
+            <img src="https://9a7c8340.home-cba.pages.dev/White%20Horizontal%20Logo%20TM.png" alt="PRYSMI Agency White Logo" class="h-12 w-auto mt-4" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+White+Logo';">
+        </div>
+    </div>
     <header id="main-header" class="bg-black/30 backdrop-blur-lg sticky top-0 z-50 w-full py-2">
         <nav id="main-nav" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center">

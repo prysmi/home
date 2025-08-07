@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K4LQMJGW');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRYSMI Agency | Marketing That Works Like a Product</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Libre+Franklin:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="./dist/style.css" rel="stylesheet">
+
+    <style>
+        /* CSS Variables for Theming */
+        :root {
+            /* Dark Mode Defaults */
+            --color-bg-body: #0A0A0A;
+            --color-bg-section: rgba(26, 26, 26, 0.75); /* Increased transparency */
+            --color-text-primary: #E0E0E0;
+            --color-text-heading: #FFFFFF;
+            --color-border-default: #333;
+            --color-modal-bg: #1A1A1A; /* Kept for now, but modal removed */
+            --color-input-bg: #0A0A0A; /* Kept for now, but modal removed */
+            --color-input-border: #777; /* Kept for now, but modal removed */
+            --color-header-bg: rgba(10, 10, 10, 0.1); /* Increased transparency */
+            --color-header-sticky-bg: rgba(10, 10, 10, 0.4); /* Increased transparency */
+            --color-footer-bg: var(--color-bg-body); /* Footer background matches body */
+            --color-footer-text: #A0A0A0; /* Footer text in dark mode */
+            --color-footer-border: transparent; /* Footer border in dark mode (now transparent) */
+
+
+            /* Accent Colors (remain consistent) */
+            --color-accent-pink: #FF53AC;
+            --color-accent-yellow: #EEFF41;
+            --color-success: #28A745;
+            --color-error: #FF4136;
+        }
+
+        body.light-mode {
+            /* Light Mode Overrides */
+            --color-bg-body: #F5F5F5;
+            --color-bg-section: rgba(255, 255, 255, 0.75); /* Increased transparency */
+            --color-text-primary: #333333;
+            --color-text-heading: #0A0A0A;
+            --color-border-default: #CCCCCC;
+            --color-modal-bg: #F0F0F0; /* Kept for now, but modal removed */
+            --color-input-bg: #FFFFFF; /* Kept for now, but modal removed */
+            --color-input-border: #BBBBBB; /* Kept for now, but modal removed */
+            --color-header-bg: rgba(255, 255, 255, 0.1); /* Increased transparency */
+            --color-header-sticky-bg: rgba(255, 255, 255, 0.4); /* Increased transparency */
+            --color-footer-bg: var(--color-bg-body); /* Footer background matches body */
+            --color-footer-text: #555555; /* Footer text in light mode */
+            --color-footer-border: transparent; /* Footer border in light mode (now transparent) */
+
+            /* Specific override for headings that use accent-yellow in dark mode */
+            .text-\[\#EEFF41\] {
+                color: var(--color-accent-pink) !important;
+            }
+
+            /* New rule for the specific text block that was unreadable in light mode */
+            .mt-12.text-center.p-8.rounded-xl.shadow-xl.border .text-white {
+                color: var(--color-text-primary) !important; /* Change to dark text */
+            }
+        }
+
+        /* Base styles for the body and headings */
+        body {
+            font-family: 'Libre Franklin', sans-serif;
+            background-color: var(--color-bg-body);
+            color: var(--color-text-primary);
+            overflow-x: hidden;
+            margin: 0; /* Ensure canvas takes full screen */
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Libre Franklin', sans-serif;
+            font-weight: 800;
+            color: var(--color-text-heading);
+            transition: color 0.3s ease-in-out;
+        }
+        /* Specific style for Libre Baskerville, bold and italic */
+        .text-emphasis-italic-bold {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-weight: bold; /* Ensure it's bold */
+        }
+
+        /* Header styles */
+        #main-header {
+            background-color: var(--color-header-bg);
+            backdrop-filter: blur(12px); /* Increased blur for glass effect */
+            -webkit-backdrop-filter: blur(12px); /* For Safari */
+            transition: all 0.3s ease-in-out;
+        }
+        #main-header.scrolled {
+            background-color: var(--color-header-sticky-bg);
+            backdrop-filter: blur(20px); /* Increased blur for glass effect */
+            -webkit-backdrop-filter: blur(20px); /* For Safari */
+            border-radius: 0.75rem; /* rounded-xl */
+            margin-top: 1rem; /* mt-4 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 72rem; /* max-w-6xl */
+            top: 1rem; /* top-4 */
+        }
+
+        .nav-link {
+            color: var(--color-text-primary);
+            transition: color 0.2s ease-in-out;
+        }
+        .nav-link:hover {
+            color: var(--color-accent-pink);
+        }
+        .nav-link.active {
+            font-weight: 600;
+            color: var(--color-text-heading);
+            position: relative;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.9),
+                         0 0 20px rgba(255, 255, 255, 0.7),
+                         0 0 30px rgba(255, 83, 172, 0.5);
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-accent-pink);
+            border-radius: 2px;
+            animation: underline-grow 0.3s forwards;
+        }
+        @keyframes underline-grow {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        /* Button glow for pink background (used by Get Started) */
+        .button-glow-pink {
+            box-shadow: 0 0 10px rgba(255, 83, 172, 0.6), 0 0 20px rgba(255, 83, 172, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+        .button-glow-pink:hover {
+            box-shadow: 0 0 15px rgba(255, 83, 172, 0.8), 0 0 25px rgba(255, 83, 172, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Button glow for the CTA button (white base, yellow hover) */
+        .button-glow-cta {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4); /* White glow for base */
+            transition: all 0.3s ease-in-out;
+        }
+        .button-glow-cta:hover {
+            box-shadow: 0 0 15px rgba(238, 255, 65, 0.8), 0 0 25px rgba(238, 255, 65, 0.6); /* Yellow glow on hover */
+            transform: translateY(-2px);
+        }
+
+
+        /* New style for the "Next Steps" button when its section is active */
+        .nav-link.next-steps-active-style {
+            background-color: var(--color-accent-yellow) !important; /* Brighter background */
+            color: #1A1A1A !important; /* Darker text */
+            box-shadow: 0 0 15px rgba(238, 255, 65, 0.8), 0 0 25px rgba(238, 255, 65, 0.6) !important; /* Stronger glow */
+            transform: scale(1.05); /* Slightly larger */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+         /* Staggered animation delays */
+        .fade-in-up.is-visible.delay-200ms {
+            transition-delay: 0.2s;
+        }
+        .fade-in-up.is-visible.delay-400ms {
+            transition-delay: 0.4s;
+        }
+
+        /* 3D Waving Dots Background Animation Canvas */
+        #waving-dots-3d-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: auto;
+            background-color: var(--color-bg-body); /* Uses CSS variable */
+            display: block;
+            transition: background-color 0.3s ease-in-out;
+        }
+        header, main, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* New Hero Title Glow Animation */
+        @keyframes pulseGlow {
+            0%, 100% {
+                text-shadow: 0 0 7px rgba(255, 255, 255, 0.7),
+                             0 0 14px rgba(255, 255, 255, 0.5),
+                             0 0 20px rgba(255, 83, 172, 0.3),
+                             0 0 30px rgba(255, 83, 172, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 14px rgba(255, 255, 255, 0.9),
+                             0 0 20px rgba(255, 255, 255, 0.7),
+                             0 0 30px rgba(255, 83, 172, 0.5),
+                             0 0 45px rgba(255, 83, 172, 0.3);
+            }
+        }
+        .hero-title-glow {
+            animation: pulseGlow 3.5s infinite ease-in-out;
+             /* Base shadow for non-animated state or fallback */
+            text-shadow: 0 0 7px rgba(255, 255, 255, 0.7), 0 0 14px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Sections background and border */
+        #about, #process, .p-6.rounded-xl.shadow-lg.border { /* Applies to about, process, and challenge cards, and testimonial cards */
+            background-color: var(--color-bg-section); /* Now uses RGBA from root/light-mode */
+            border-color: var(--color-border-default);
+            backdrop-filter: blur(8px); /* Added blur for glass effect */
+            -webkit-backdrop-filter: blur(8px); /* For Safari */
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+        }
+        /* Specific section background for the "Get Full-throated" block */
+        .mt-12.text-center.p-8.rounded-xl.shadow-xl.border { /* This is the specific client testimonials and profile section */
+            background-color: var(--color-bg-body); /* Should match body background for consistency */
+            border-color: var(--color-border-default);
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        }
+
+        /* Styles for the footer logo (no cropping) */
+        .footer-logo {
+            height: 60px; /* Increased height for larger logo */
+            width: auto;
+        }
+
+        /* Back to top button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--color-accent-pink);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 9999px; /* Fully rounded */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, opacity 0.3s ease-in-out;
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+        }
+        #back-to-top:hover {
+            background-color: var(--color-accent-yellow);
+            color: #1A1A1A;
+            transform: translateY(-2px);
+        }
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Theme toggle button styling */
+        #theme-toggle {
+            position: fixed; /* Make it float */
+            bottom: 80px; /* Position above back-to-top button */
+            right: 20px;
+            background-color: transparent;
+            border: 1px solid var(--color-text-primary);
+            color: var(--color-text-primary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 9999px; /* rounded-full */
+            font-size: 1.25rem; /* Increased font size for symbols */
+            font-weight: 500; /* font-medium */
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center the symbol */
+            width: 3rem; /* Fixed width for consistent button size */
+            height: 3rem; /* Fixed height for consistent button size */
+            z-index: 950; /* Higher than back-to-top button */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow for floating effect */
+        }
+        #theme-toggle:hover {
+            background-color: var(--color-accent-pink);
+            border-color: var(--color-accent-pink);
+            color: white;
+        }
+
+        /* Footer specific styles using CSS variables */
+        footer {
+            background-color: var(--color-footer-bg);
+            color: var(--color-footer-text);
+            border-top: 1px solid var(--color-footer-border); /* Border is now transparent */
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        }
+
+        /* Mobile-only message styling */
+        #mobile-only-message {
+            background-color: var(--color-bg-body); /* Use body background for consistency */
+            color: var(--color-text-primary); /* Use primary text color */
+            /* Ensure it covers everything else on mobile */
+            display: none; /* Hidden by default and shown only on mobile by Tailwind's md:hidden */
+        }
+        @media (max-width: 767px) { /* Tailwind's 'md' breakpoint is 768px, so we show it below that */
+            #mobile-only-message {
+                display: flex; /* Show the flex container on mobile */
+            }
+            /* Hide main content on mobile if the message is displayed */
+            header, main, footer, #back-to-top, #theme-toggle, #waving-dots-3d-background {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4LQMJGW"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <canvas id="waving-dots-3d-background"></canvas>
+
+    <div id="mobile-only-message" class="md:hidden fixed inset-0 flex flex-col items-center justify-center p-4 text-center z-[1000]">
+        <img src="https://raw.githubusercontent.com/prysmi/home/main/Pink%20Horizontal%20Logo%20TM.png" alt="PRYSMI Agency Logo" class="h-16 w-auto mb-6" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
+        <h1 class="text-3xl font-bold mb-4">Desktop Experience Recommended</h1>
+        <p class="text-lg mb-6">For the best experience, please access our website on a desktop or laptop device.</p>
+        <div class="flex flex-col items-center justify-center space-y-4">
+            <img src="https://raw.githubusercontent.com/prysmi/home/main/profile_photo_1.png" alt="Prabhjot Singh, Founder of PRYSMI Agency" class="w-32 h-32 object-cover rounded-full shadow-lg mb-2" onerror="this.onerror=null;this.src='https://placehold.co/200x200/0A0A0A/E0E0E0?text=Prabhjot+Singh';">
+            <p class="text-md italic">Thank you for your understanding.</p>
+            <img src="https://raw.githubusercontent.com/prysmi/home/main/White%20Horizontal%20Logo%20TM.png" alt="PRYSMI Agency White Logo" class="h-12 w-auto mt-4" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+White+Logo';">
+        </div>
+    </div>
+    <header id="main-header" class="bg-black/30 backdrop-blur-lg sticky top-0 z-50 w-full py-2">
+        <nav id="main-nav" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="#hero" class="flex items-center" aria-label="PRYSMI Agency Home">
+                    <img src="https://raw.githubusercontent.com/prysmi/home/main/Pink%20Horizontal%20Logo%20TM.png" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
+                </a>
+            </div>
+            <div class="hidden md:flex items-center">
+                <div class="ml-10 flex items-baseline space-x-4">
+                    <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="#challenges" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Challenges</a>
+                    <a href="#process" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Our Process</a>
+                    <a href="#impact-outcomes" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Our Impact</a>
+                    <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <button id="get-started-header-btn" class="nav-link bg-[#F53196] text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-sm button-glow-pink" aria-label="Get Started with PRYSMI Agency">Get Started</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="hero" class="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center text-center py-16 md:py-24 bg-gradient-to-br from-[#FF53AC] to-[#1A1A1A] rounded-xl my-8 shadow-2xl transform hover:scale-[1.005] transition-transform duration-300">
+            <div class="max-w-4xl">
+                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white hero-title-glow fade-in-up">
+                    Unbore Your B2B Marketing<br>with Absolute Clarity.
+                </h1>
+                <p class="text-lg sm:text-xl md:text-2xl text-white text-emphasis-italic-bold opacity-90 fade-in-up delay-200ms mb-0 mt-4 md:mt-6">
+                    Fast, Aligned, and Revenue-Ready Marketing<br>for CFOs and Founders that want early, demonstrable wins.
+                </p>
+                <div class="mt-8 fade-in-up delay-400ms">
+                    <button id="hero-cta-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-lg button-glow-cta" aria-label="Schedule a Discovery Call for your business">
+                        Schedule a Discovery Call
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 md:py-24 rounded-xl shadow-2xl">
+            <div class="text-center mb-12">
+                <p class="mt-4 text-lg fade-in-up">
+                    <span class="text-emphasis-italic-bold">Relax, we’re not just another agency.</span>
+                </p>
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">We are Prysmi Media Labs.</h2>
+            </div>
+            <div class="max-w-3xl mx-auto p-8 sm:p-10 rounded-xl shadow-xl border fade-in-up">
+                <div class="mt-8 text-left">
+                    <p class="text-lg mb-4">At PRYSMI, we believe marketing should be as efficient and effective as your product development. Our unique methodology is designed to deliver clear, measurable results, ensuring your marketing efforts directly contribute to revenue growth.</p>
+                    <blockquote class="text-left text-xl sm:text-2xl text-emphasis-italic-bold border-l-4 border-[#FF53AC] pl-6 py-4 mb-8">
+                        “With us, your B2B needs<br>get the <span class="text-emphasis-italic-bold">white-glove</span> treatment.”
+                    </blockquote>
+                    <ul class="list-disc list-outside space-y-2 pl-6 leading-relaxed">
+                        <li class="text-left">Specializing in <span class="text-emphasis-italic-bold">message-market fit</span>, high-intent search, and conversion-optimized content.</li>
+                        <li class="text-left">Focused on building <span class="text-emphasis-italic-bold">repeatable systems</span> for scalable content execution.</li>
+                        <li class="text-left">Committed to continuous iteration and optimization for <span class="text-emphasis-italic-bold">sustained performance.</span></li>
+                        <li class="text-left">Achieving <span class="text-emphasis-italic-bold">signature-worthy content</span> that wins customer trust and leads.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="challenges" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">The Challenges We Solve</h2>
+                <p class="mt-4 text-lg fade-in-up">Many founder-led tech firms and consultancies grapple with marketing that <span class="text-emphasis-italic-bold">doesn't deliver predictable revenue.</span></p>
+                <p class="mt-4 text-lg fade-in-up">If you've outgrown <span class="text-emphasis-italic-bold">scattered messaging and siloed content</span>, some challenges might resonate with you:</p>
+            </div>
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up">
+                    <span class="text-green-400 text-2xl mt-1">✅</span>
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#EEFF41] mb-2">Inconsistent Messaging</h3>
+                        <p class="text-lg">Your team struggles to articulate your unique value proposition clearly and consistently across all channels.</p>
+                    </div>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
+                    <span class="text-green-400 text-2xl mt-1">✅</span>
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#EEFF41] mb-2">Low-Intent Traffic</h3>
+                        <p class="text-lg">You're getting website visitors, but they're not converting into qualified leads or sales conversations.</p>
+                    </div>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
+                    <span class="text-green-400 text-2xl mt-1">✅</span>
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#EEFF41] mb-2">Siloed Content</h3>
+                        <p class="text-lg">Your marketing content isn't aligned with your sales process, leading to missed opportunities and inefficient efforts.</p>
+                    </div>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
+                    <span class="text-green-400 text-2xl mt-1">✅</span>
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#EEFF41] mb-2">Marketing Burnout</h3>
+                        <p class="text-lg">Producing content and managing campaigns feels like a constant struggle, with little time for strategic thinking.</p>
+                    </div>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
+                    <span class="text-green-400 text-2xl mt-1">✅</span>
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#EEFF41] mb-2">Unclear ROI</h3>
+                        <p class="text-lg">You're investing in marketing, but the direct impact on revenue and business growth is hard to quantify or attribute.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="py-16 md:py-24 rounded-xl shadow-2xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">The PRYSMI Process</h2>
+                <p class="mt-4 text-lg fade-in-up">
+                    <span class="text-emphasis-italic-bold">Structure That Sells. Messaging That Moves. Systems That Scale.</span>
+                </p>
+                <p class="mt-4 text-lg fade-in-up">
+                    Marketing transformation doesn’t have to be slow or abstract. Our proven 5-phase process brings clarity, discoverability, and content momentum to Salesforce Consultancies and SI partners—within the first 120 days. Every step is engineered to support sales velocity, messaging alignment, and strategic growth.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-16">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 fade-in-up">
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <h3 class="text-2xl font-bold text-[#EEFF41] mb-2">Step 1: Clarity Comes First</h3>
+                        <p class="text-lg font-bold mb-4 text-emphasis-italic-bold">Value-Led Messaging & Deep Discovery</p>
+                        <p class="mb-4">We don’t guess. We immerse—into your product, customers, competitors, and your founding story. Through interviews, audits, and intelligence-gathering, we unearth what makes your offer truly valuable—and translate that into compelling, outcome-first messaging.</p>
+                        <p class="mb-4">You'll get complete documentation: personas, positioning, sales objections, and messaging audits—so every team speaks the same language.</p>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <img src="https://raw.githubusercontent.com/prysmi/home/main/step_1.png" alt="A founder and strategist at a whiteboard, removing sticky notes labeled “fluff,” “jargon,” and “features” — leaving only sticky notes labeled “impact,” and “aha.”" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row-reverse items-center justify-center gap-8 fade-in-up">
+                    <div class="md:w-1/2 text-center md:text-left"> <h3 class="text-2xl font-bold text-[#EEFF41] mb-2">Step 2: Built to Be Found</h3>
+                        <p class="text-lg font-bold mb-4 text-emphasis-italic-bold">Discoverability, Not Just SEO</p>
+                        <p class="mb-4">We build search systems around user intention—not just keywords. Through contextual research, competitor mapping, and intent modeling, we lay the groundwork for your content, trust site, and documentation site to surface when your buyers need them most.</p>
+                        <p class="mb-4">Think: pillar-spoke models, keyword matrices, AppExchange search patterns, and high-relevance triggers that make you findable—and clickable.</p>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <img src="https://raw.githubusercontent.com/prysmi/home/main/step_2.png" alt="A search engine heatmap zooms in on buyer intent clusters; a content strategist is re-routing arrows to align site structure with intent." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 fade-in-up">
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <h3 class="text-2xl font-bold text-[#EEFF41] mb-2">Step 3: Design for Decision-Making</h3>
+                        <p class="text-lg font-bold mb-4 text-emphasis-italic-bold">Information Architecture Meets Real Messaging</p>
+                        <p class="mb-4">Once messaging and intent are clear, we structure it into conversion-ready architecture. We design intuitive menu systems, wireframes, and navigation docs for your main website, documentation site, and trust site—all mapped to user goals.</p>
+                        <p class="mb-4">At the center? A single-source-of-truth messaging document and new content assets like sales sheets, one-pagers, and objection handlers.</p>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <img src="https://raw.githubusercontent.com/prysmi/home/main/step_3.png" alt="A website wireframes overlaid with funnel stages (problem-aware → decision), with a founder walking through them like a corridor with signposts." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row-reverse items-center justify-center gap-8 fade-in-up">
+                    <div class="md:w-1/2 text-center md:text-left"> <h3 class="text-2xl font-bold text-[#EEFF41] mb-2">Step 4: Tool Up & Scale</h3>
+                        <p class="text-lg font-bold mb-4 text-emphasis-italic-bold">Content Systems That Power Sales & SEO</p>
+                        <p class="mb-4">This is where we build your content creation machine—so your team can ship without friction.</p>
+                        <p class="mb-4">From sales enablement templates and landing page systems to testimonial kits, email frameworks, and SEO content generators, we hand you the tools to create high-leverage content, fast and consistently. Oh, and your AppExchange listing? Consider it optimized, too.</p>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <img src="https://raw.githubusercontent.com/prysmi/home/main/step_4.png" alt="A visual stack of labeled kits: “Objection Handler Deck,” “Positioning Matrix,” “Case Study Generator,” “Founder Post Format.” A team member clicks 'duplicate → customize → publish.'" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 fade-in-up">
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <h3 class="text-2xl font-bold text-[#EEFF41] mb-2">Step 5: Execute With Precision</h3>
+                        <p class="text-lg font-bold mb-4 text-emphasis-italic-bold">Full-Throttle Content. Adaptive Strategy.</p>
+                        <p class="mb-4">Now the engine runs. We implement site and messaging updates, roll out social and outbound strategies, and launch a founder-led content rhythm across channels.</p>
+                        <p class="mb-4">Ongoing performance audits, optimization reports, and weekly sales-alignment loops keep everything sharp. This is where momentum becomes your marketing baseline.</p>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <img src="https://raw.githubusercontent.com/prysmi/home/main/step_5.png" alt="A polished, live dashboard showing “Messaging Live ✅”, “AppExchange Revamp ✅”, “LinkedIn Engine ON ✅” and a small team high-fiving over a spike in MQLs." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact-outcomes" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Our Impact & Your Outcomes</h2>
+                <p class="mt-4 text-lg fade-in-up">
+                    Our 5-phase system isn't just a process;<br>
+                    it's a pathway to <span class="text-emphasis-italic-bold">tangible results</span> and a marketing engine that truly works for you.
+                    <br><br>
+                    You walk away making <span class="text-emphasis-italic-bold">momentum</span> your marketing baseline.
+                </p>
+            </div>
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up">
+                    <span class="text-green-400 text-2xl mt-1">✅</span>
+                    <p class="text-lg text-left">A messaging system your team actually uses</p>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
+                    <span class="text-green-400 text-2xl mt-1">✅</span>
+                    <p class="text-lg text-left">A content engine that scales across teams and formats</p>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
+                    <span class="text-green-400 text-2xl mt-1">✅</span>
+                    <p class="text-lg text-left">A site built for conversion, not just design</p>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
+                    <span class="text-green-400 text-2xl mt-1">✅</span>
+                    <p class="text-lg text-left">A founder-led content rhythm that doesn’t burn you out</p>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
+                    <span class="text-green-400 text-2xl mt-1">✅</span>
+                    <p class="text-lg text-left">Revenue-aligned marketing in motion</p>
+                </div>
+
+                <div class="mt-12 text-center p-8 rounded-xl shadow-xl border fade-in-up">
+                    <h4 class="text-xl sm:text-2xl font-bold mb-4">
+                        Get <span class="text-emphasis-italic-bold">Full-throated, Experienced Answers</span><br>
+                        to any questions on Modern B2B Marketing.
+                    </h4>
+
+                    <p class="text-lg mb-4 text-left mx-auto max-w-xl">
+                        <span class="text-emphasis-italic-bold">Half-a**ing</span> will no longer cut it. And <span class="text-emphasis-italic-bold">‘picture-perfect’</span> millennial marketing is giving people the ick.
+                    </p>
+                    <p class="text-lg mb-4 text-left mx-auto max-w-xl">
+                        Grow your social presence consistently with <span class="text-emphasis-italic-bold">founder-led, in-person content</span> to show you have skin in the game.
+                    </p>
+                    <p class="text-lg mb-4 text-left mx-auto max-w-xl">
+                        A post-AI internet now rewards pages, ads, and videos that actually <span class="text-emphasis-italic-bold">do something</span> like:
+                    </p>
+                    <ul class="list-disc list-outside text-left mb-6 space-y-2 pl-6 mx-auto max-w-xl">
+                        <li class="text-left">Calculate / have a unique IP, like visual reports, insights, and quotes</li>
+                        <li class="text-left">Use on-brand editorial design</li>
+                        <li class="text-left">Feature collaborative efforts with other experts</li>
+                    </ul>
+                    <p class="text-lg mb-4 text-left mx-auto max-w-xl">
+                        — all things where <span class="text-emphasis-italic-bold">you</span> get cited as a <span class="text-emphasis-italic-bold">source.</span>
+                    </p>
+                    <p class="text-lg mb-4 text-left mx-auto max-w-xl">
+                        Whether it’s copy or video for SEO, brand positioning, emails, client collaterals, IG captions, or digital ads - we know <span class="text-emphasis-italic-bold">what</span> really works on <span class="text-emphasis-italic-bold">each</span> platform.
+                    </p>
+
+                    <h3 class="text-2xl sm:text-3xl font-black mt-8 mb-2">Meet Prabhjot Singh</h3>
+                    <p class="text-lg mb-6">Fractional B2B Content & Media Head</p>
+
+                    <img src="https://raw.githubusercontent.com/prysmi/home/main/profile_photo_1.png" alt="Prabhjot Singh, Founder of PRYSMI Agency" class="w-80 h-80 object-cover rounded-xl mx-auto shadow-md mb-6" onerror="this.onerror=null;this.src='https://placehold.co/200x200/0A0A0A/E0E0E0?text=Prabhjot+Singh';">
+
+                    <ul class="list-none text-center mb-6 space-y-2 max-w-xl mx-auto">
+                        <li class="text-left">&#10033;7 years leading Brand Strategy, BoFu, SEO, and more<br>for B2B SaaS worth 200Cr+.&#10033;</li>
+                        <li class="text-left">&#10033;Specialist in SEO, brand positioning, emails,<br>video & collaborative expert-driven content.&#10033;</li>
+                    </ul>
+
+                    <div class="mt-16 text-center">
+                        <h3 class="text-2xl sm:text-3xl font-black mb-4 fade-in-up">Some of Our Valued Clients</h3>
+                        <p class="text-lg mb-8 max-w-xl mx-auto fade-in-up">Trusted by leading B2B IT consultancies for marketing their key products and services.</p>
+                        <div class="max-w-5xl mx-auto space-y-6">
+                            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 fade-in-up">
+                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-48 h-28">
+                                    <img src="https://media.licdn.com/dms/image/v2/C4D0BAQHZeGy8nZo-Cg/company-logo_200_200/company-logo_200_200/0/1641207446773/360_degree_cloud_logo?e=1753315200&v=beta&t=FwAsbuFvtiySc2Xc83siTb38YR9aCf05qNcxgAwldiU" alt="360 Degree Cloud Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+Cloud';">
+                                </div>
+                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-48 h-28">
+                                    <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_6c343127ad65ae2f4ee07181588dd3f0/360-sms-app.png" alt="360 SMS App Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+SMS';">
+                                </div>
+                                </div>
+                            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 fade-in-up">
+                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-48 h-28">
+                                    <img src="https://media.licdn.com/dms/image/v2/D5633AQEkQyeBvMAv4w/productpage-logo-image_200_200/productpage-logo-image_200_200/0/1732515920673/360_degree_cloud_360_cti_logo?e=1748570400&v=beta&t=1VJanOuReVeb-Rx7DGUtpgUY0E5ho6EH2hHgHLPpJUI" alt="360 Degree Cloud 360 CTI Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+CTI';">
+                                </div>
+                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-48 h-28">
+                                    <img src="https://media.licdn.com/dms/image/v2/D5633AQHZlj6KfV_I2Q/productpage-logo-image_200_200/productpage-logo-image_200_200/0/1732516668951/360_degree_cloud_360_verify_the_email_logo?e=1748570400&v=beta&t=YQXqFvhYyaGPHNJwojZ58849T1FTYCqKM6s7X1Mmc_8" alt="360 Degree Cloud 360 Verify The Email Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+Verify';">
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+
+                    <h4 class="text-xl font-bold mt-8 mb-2">Strategic Wins Across B2B SaaS</h4>
+                    <p class="text-lg mb-8">Demonstrated success in diverse B2B SaaS environments.</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                        <div class="p-5 rounded-lg shadow-md border flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300 min-h-[140px]">
+                            <h5 class="text-lg font-semibold mb-2">Product Listings</h5>
+                            <p class="text-sm">12 listings ranked<br>#1 on AppExchange</p>
+                        </div>
+                        <div class="p-5 rounded-lg shadow-md border flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300 min-h-[140px]">
+                            <h5 class="text-lg font-semibold mb-2">Cold Email Campaigns</h5>
+                            <p class="text-sm">Activated Staff Augmentation<br>+ New Client Pipelines</p>
+                        </div>
+                        <div class="p-5 rounded-lg shadow-md border flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300 min-h-[140px]">
+                            <h5 class="text-lg font-semibold mb-2">BoFu Sales Enablement</h5>
+                            <p class="text-sm">Boosted enterprise trust<br>+ conversions</p>
+                        </div>
+                        <div class="p-5 rounded-lg shadow-md border flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300 min-h-[140px]">
+                            <h5 class="text-lg font-semibold mb-2">USA Organic Traffic</h5>
+                            <p class="text-sm">+437% in 12 months</p>
+                        </div>
+                        <div class="p-5 rounded-lg shadow-md border flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300 min-h-[140px]">
+                            <h5 class="text-lg font-semibold mb-2">Qualified Leads</h5>
+                            <p class="text-sm">+1,100% increase</p>
+                        </div>
+                        <div class="p-5 rounded-lg shadow-md border flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300 min-h-[140px]">
+                            <h5 class="text-lg font-semibold mb-2">Search Appearance</h5>
+                            <p class="text-sm">+275% Increase</p>
+                        </div>
+                        <div class="p-5 rounded-lg shadow-md border flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300 min-h-[140px]">
+                            <h5 class="text-lg font-semibold mb-2">Organic Traffic</h5>
+                            <p class="text-sm">+103% increase overall</p>
+                        </div>
+                        <div class="p-5 rounded-lg shadow-md border flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300 min-h-[140px]">
+                            <h5 class="text-lg font-semibold mb-2">Competitive Search Ranking</h5>
+                            <p class="text-sm">46× more Page-1<br>keyword wins</p>
+                        </div>
+                        <div class="p-5 rounded-lg shadow-md border flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300 min-h-[140px]">
+                            <h5 class="text-lg font-semibold mb-2">Global SEO Visibility</h5>
+                            <p class="text-sm">
+                                3.1× US, 4.5 UK, 3.4× AU search appearance
+                            </p>
+                        </div>
+                    </div>
+                    <p class="mt-12 text-lg text-center max-w-2xl mx-auto"><span class="text-emphasis-italic-bold">Results from fractional leadership + in-house enablement<br>—exactly what we’d bring to your business.</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 md:py-24 rounded-xl shadow-2xl mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Get in Touch</h2>
+                <p class="mt-4 text-lg fade-in-up">We'd love to hear from you!</p>
+            </div>
+            <div class="max-w-xl mx-auto p-8 sm:p-10 rounded-xl shadow-xl border fade-in-up">
+                <div class="space-y-4 text-left">
+                    <p class="text-lg flex items-center">
+                        <span class="mr-2 text-xl">✉️</span> <a href="mailto:prabhjot@prysmi.com" class="hover:text-gray-400 transition-colors duration-200">prabhjot@prysmi.com</a>
+                    </p>
+                    <p class="text-lg flex items-center">
+                        <span class="mr-2 text-xl">🫱🏼‍🫲🏽</span> <a href="mailto:inquiry@prysmi.com" class="hover:text-gray-400 transition-colors duration-200">inquiry@prysmi.com</a>
+                    </p>
+                    <p class="text-lg flex items-center">
+                        <span class="mr-2 text-xl">📞</span>
+                        <a href="tel:+918130752649" class="hover:text-gray-400 transition-colors duration-200">+91-8130752649</a>
+                    </p>
+                    <p class="text-lg flex items-center">
+                        <span class="mr-2 text-xl">🔗</span>
+                        <a href="https://www.linkedin.com/in/b2bitcontent/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition-colors duration-200">LinkedIn Profile</a>
+                    </p>
+                    <p class="text-lg flex items-center">
+                        <span class="mr-2 text-xl">📱</span> <a href="https://wa.me/message/SY3ITVAA72DZG1" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition-colors duration-200">WhatsApp Us</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="next-steps" class="py-20 md:py-32 bg-[#F53196] rounded-xl shadow-2xl">
+            <div class="max-w-3xl mx-auto text-center p-8 sm:p-12 rounded-xl fade-in-up">
+                <p class="text-lg sm:text-xl text-white text-emphasis-italic-bold opacity-90">
+                    Ready to transform your marketing?
+                </p>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-white hero-title-glow">
+                    Let’s Talk Strategy.
+                </h2>
+                <p class="mt-4 text-lg sm:text-xl text-white opacity-90">
+                    Schedule a free discovery call to discuss your B2B marketing challenges and how PRYSMI can help you achieve demonstrable wins.
+                </p>
+                <div class="mt-10">
+                    <button id="schedule-call-footer-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-lg button-glow-cta" aria-label="Schedule Your Discovery Call with PRYSMI Agency">
+                        Schedule Your Discovery Call
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-6 text-center mt-16">
+        <div class="flex justify-center mb-0"> <img id="footer-logo" src="https://raw.githubusercontent.com/prysmi/home/main/White%20Horizontal%20Logo%20TM.png" alt="PRYSMI Agency White Logo" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+White+Logo';">
+        </div>
+        <p class="mt-2">&copy; <span id="currentYear"></span> PRYSMI Media Labs. All rights reserved.</p>
+    </footer>
+
+    <button id="back-to-top" aria-label="Back to top">
+        ↑
+    </button>
+
+    <button id="theme-toggle" aria-label="Toggle dark and light theme">
+        <span class="theme-symbol"></span>
+    </button>
+
+    <script>
+        // --- Three.js Waving Dots Background Animation Script ---
+        function initializeThreeJSBackground() {
+            const canvas = document.getElementById('waving-dots-3d-background');
+            if (!canvas) {
+                console.error("3D waving dots canvas not found!");
+                document.body.style.backgroundColor = getComputedStyle(document.body).getPropertyValue('--color-bg-body');
+                return;
+            }
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            // Function to update Three.js colors based on theme
+            function updateThreeJSColors() {
+                const isLightMode = document.body.classList.contains('light-mode');
+                const bgColor = isLightMode ? 0xF5F5F5 : 0x0A0A0A; // Light mode background or dark mode
+                renderer.setClearColor(bgColor, 1);
+
+                // Adjust particle colors based on theme
+                const paletteLight = [new THREE.Color("#FF53AC"), new THREE.Color("#333333")]; // Pink and dark gray for light mode
+                const paletteDark = [new THREE.Color("#FF53AC"), new THREE.Color("#FFFFFF")]; // Pink and white for dark mode
+
+                const currentPalette = isLightMode ? paletteLight : paletteDark;
+
+                if (particleSystem) { // Ensure particleSystem exists before updating
+                    const colorsArray = particleSystem.geometry.attributes.color.array;
+                    const positionsArray = particleSystem.geometry.attributes.position.array; // To access positions for consistent color assignment
+
+                    for (let i = 0; i < dotCount; i++) {
+                        // Re-assign colors based on the new palette
+                        const color = currentPalette[Math.floor(Math.random() * currentPalette.length)];
+                        colorsArray[i * 3] = color.r;
+                        colorsArray[i * 3 + 1] = color.g;
+                        colorsArray[i * 3 + 2] = color.b;
+                    }
+                    particleSystem.geometry.attributes.color.needsUpdate = true;
+                }
+            }
+
+            const dotCount = 15000;
+            const particlesGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(dotCount * 3);
+            const colorsAttribute = new Float32Array(dotCount * 3);
+
+            const waveAmplitude = 2;
+            const waveFrequency = 0.2;
+            const planeSize = 40;
+
+            for (let i = 0; i < dotCount; i++) {
+                positions[i * 3] = (Math.random() - 0.5) * planeSize;
+                positions[i * 3 + 1] = 0;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * planeSize;
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsAttribute, 3)); // Initialize with empty colors, will be filled by updateThreeJSColors
+
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 0.08,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
+            });
+
+            const particleSystem = new THREE.Points(particlesGeometry, particleMaterial);
+            scene.add(particleSystem);
+
+            camera.position.z = 15;
+            camera.position.y = 5;
+            camera.lookAt(scene.position);
+
+            let mouseX = 0, mouseY = 0;
+            let targetRotationX = 0;
+            let targetRotationY = 0;
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+
+            document.addEventListener('mousemove', onDocumentMouseMove, false);
+            document.addEventListener('touchstart', onDocumentTouchStart, { passive: false });
+            document.addEventListener('touchmove', onDocumentTouchMove, { passive: false });
+
+
+            function onDocumentMouseMove(event) {
+                mouseX = (event.clientX - windowHalfX) * 0.01;
+                mouseY = (event.clientY - windowHalfY) * 0.01;
+            }
+
+            function onDocumentTouchStart(event) {
+                if (event.touches.length === 1) {
+                    event.preventDefault();
+                    mouseX = (event.touches[0].pageX - windowHalfX) * 0.015;
+                    mouseY = (event.touches[0].pageY - windowHalfY) * 0.015;
+                }
+            }
+
+            function onDocumentTouchMove(event) {
+                if (event.touches.length === 1) {
+                    event.preventDefault();
+                    mouseX = (event.touches[0].pageX - windowHalfX) * 0.015;
+                    mouseY = (event.touches[0].pageY - windowHalfY) * 0.015;
+                }
+            }
+
+            let time = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                time += 0.01;
+
+                const positionsArray = particleSystem.geometry.attributes.position.array;
+                const colorsArray = particleSystem.geometry.attributes.color.array;
+
+                for (let i = 0; i < dotCount; i++) {
+                    const x = positionsArray[i * 3];
+                    const z = positionsArray[i * 3 + 2];
+
+                    const yWave = Math.sin(x * waveFrequency + time) * waveAmplitude * 0.5 +
+                                  Math.cos(z * waveFrequency * 0.7 + time * 0.8) * waveAmplitude * 0.5;
+                    positionsArray[i * 3 + 1] = yWave;
+
+                    // Re-assign colors based on the new palette on a timed interval for subtle animation
+                    // This ensures colors update with theme changes and also have subtle shifts
+                    if (Math.floor(time * 10) % 120 === i % 120) {
+                        const isLightMode = document.body.classList.contains('light-mode');
+                        const palette = isLightMode ? [new THREE.Color("#FF53AC"), new THREE.Color("#333333")] : [new THREE.Color("#FF53AC"), new THREE.Color("#FFFFFF")];
+                        const color = palette[Math.floor(Math.random() * palette.length)];
+                        colorsArray[i * 3] = color.r;
+                        colorsArray[i * 3 + 1] = color.g;
+                        colorsArray[i * 3 + 2] = color.b;
+                    }
+                }
+                particleSystem.geometry.attributes.position.needsUpdate = true;
+                particleSystem.geometry.attributes.color.needsUpdate = true;
+
+                targetRotationX = mouseY * 0.2;
+                targetRotationY = mouseX * 0.2;
+
+                camera.rotation.x += (targetRotationX - camera.rotation.x) * 0.05;
+                camera.rotation.y += (targetRotationY - camera.rotation.y) * 0.05;
+
+                const boundingBox = new THREE.Box3().setFromObject(particleSystem);
+                const center = new THREE.Vector3();
+                boundingBox.getCenter(center);
+                camera.lookAt(center);
+
+                renderer.render(scene, camera);
+            }
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }, false);
+
+            updateThreeJSColors(); // Initial color setup
+            animate(); // Start Three.js animation
+
+            // Expose update function for theme changes
+            window.updateThreeJSColors = updateThreeJSColors;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileMenu) { // Add null check for mobileMenu
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Dynamically set the current year in the footer
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            // Navigation active state logic
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function changeNav(targetId) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active', 'next-steps-active-style');
+                    // Check if the link is a button, if so, skip active class for scroll
+                    if (link.tagName === 'A' && link.getAttribute('href') === `#${targetId}`) {
+                        link.classList.add('active');
+                        if (targetId === 'next-steps') {
+                            link.classList.add('next-steps-active-style');
+                        }
+                    }
+                });
+            }
+            // Changed threshold to 0.1 for more sensitive highlighting
+            const observerOptions = { root: null, rootMargin: "0px", threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) { changeNav(entry.target.id); } });
+            }, observerOptions);
+            sections.forEach(section => { observer.observe(section); });
+
+
+            // Animation for elements on scroll (fade-in-up)
+            const animateOnScrollElements = document.querySelectorAll('.fade-in-up');
+            const observerOptionsAnimate = { root: null, rootMargin: "0px", threshold: 0.1 };
+            const animateObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptionsAnimate);
+            animateOnScrollElements.forEach(element => { animateObserver.observe(element); });
+
+            // Floating header on scroll
+            const mainHeader = document.getElementById('main-header');
+            const scrollThreshold = 50; // Pixels scrolled before header changes
+            window.addEventListener('scroll', () => {
+                if (mainHeader) { // Add null check for mainHeader
+                    if (window.scrollY > scrollThreshold) {
+                        mainHeader.classList.add('scrolled');
+                    } else {
+                        mainHeader.classList.remove('scrolled');
+                    }
+                }
+            });
+
+            // Call the Three.js initialization function here
+            initializeThreeJSBackground();
+
+            // --- Calendly Integration ---
+            const calendlyLink = "https://calendly.com/prabhjot-prysmi";
+
+            // Buttons to open Calendly
+            const getStartedHeaderBtn = document.getElementById('get-started-header-btn');
+            const getStartedMobileBtn = document.getElementById('get-started-mobile-btn');
+            const heroCtaBtn = document.getElementById('hero-cta-btn');
+            const scheduleCallFooterBtn = document.getElementById('schedule-call-footer-btn');
+
+            // Function to redirect to Calendly
+            function redirectToCalendly() {
+                window.open(calendlyLink, '_blank'); // Open in a new tab
+            }
+
+            // Event listeners for Calendly buttons
+            if (getStartedHeaderBtn) getStartedHeaderBtn.addEventListener('click', redirectToCalendly);
+            if (getStartedMobileBtn) getStartedMobileBtn.addEventListener('click', redirectToCalendly);
+            if (heroCtaBtn) heroCtaBtn.addEventListener('click', redirectToCalendly);
+            if (scheduleCallFooterBtn) scheduleCallFooterBtn.addEventListener('click', redirectToCalendly);
+
+            // --- Back to Top Button Functionality ---
+            const backToTopButton = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (backToTopButton) { // Add null check for backToTopButton
+                    if (window.scrollY > 300) { // Show button after scrolling 300px
+                        backToTopButton.classList.add('show');
+                    } else {
+                        backToTopButton.classList.remove('show');
+                    }
+                }
+            });
+
+            if (backToTopButton) { // Add null check for backToTopButton
+                backToTopButton.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth' // Smooth scroll to top
+                    });
+                });
+            }
+
+
+            // --- Theme Toggle Functionality ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const footerLogo = document.getElementById('footer-logo');
+
+            // Select the span that will hold the symbol
+            // Corrected: Removed `.btn` as `themeToggleBtn` is already the button element.
+            const desktopThemeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('.theme-symbol') : null;
+
+            // Function to set the theme
+            function setTheme(isLight) {
+                if (isLight) {
+                    document.body.classList.add('light-mode');
+                    // When setting to light mode, the button should display "Dark Mode" (moon symbol) to suggest switching to dark.
+                    if (desktopThemeSymbol) desktopThemeSymbol.textContent = '☾';
+                    if (footerLogo) footerLogo.src = 'https://raw.githubusercontent.com/prysmi/home/main/Black%20Horizontal%20Logo%20TM.png';
+                } else {
+                    document.body.classList.remove('light-mode');
+                    // When setting to dark mode, the button should display "Light Mode" (sun symbol) to suggest switching to light.
+                    if (desktopThemeSymbol) desktopThemeSymbol.textContent = '☀';
+                    if (footerLogo) footerLogo.src = 'https://raw.githubusercontent.com/prysmi/home/main/White%20Horizontal%20Logo%20TM.png';
+                }
+                localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                // Update Three.js colors after theme change
+                if (window.updateThreeJSColors) {
+                    window.updateThreeJSColors();
+                }
+            }
+
+            // Check for saved theme preference on load
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                setTheme(true);
+            } else {
+                setTheme(false); // Default to dark mode if no preference or 'dark'
+            }
+
+            // Event listener for theme toggle button (desktop)
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    const isLightMode = document.body.classList.contains('light-mode');
+                    setTheme(!isLightMode);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

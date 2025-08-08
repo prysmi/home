@@ -5,6 +5,10 @@ export async function onRequest(context) {
 
   // Set all the static security headers.
   newResponse.headers.set("Access-Control-Allow-Origin", "https://prysmi.com"); 
+  
+  // THE FIX: Explicitly tell search engines to index the site, overriding any defaults.
+  newResponse.headers.set("X-Robots-Tag", "all");
+
   newResponse.headers.set("Permissions-Policy", "camera=(), geolocation=(), microphone=()");
   newResponse.headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   newResponse.headers.set("X-Content-Type-Options", "nosniff");
@@ -17,8 +21,7 @@ export async function onRequest(context) {
 
     const csp = [
       "default-src 'self';",
-      // REFACTORED: 'unsafe-inline' has been removed for maximum security.
-      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https:;`,
+      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' https:;`,
       `style-src 'self' fonts.googleapis.com 'sha256-Scgmef+PrV+zeVvlZq4r84BiJFFDVqo62lDGXLdgghY=';`,
       "font-src 'self' fonts.gstatic.com;",
       "img-src 'self' data: raw.githubusercontent.com media.licdn.com images.g2crowd.com;",

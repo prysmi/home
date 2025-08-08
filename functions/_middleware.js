@@ -16,12 +16,12 @@ export async function onRequest(context) {
 
     const csp = [
       "default-src 'self';",
-      // ADDED 'unsafe-inline' for event handlers. REMOVED cdnjs host (not needed with strict-dynamic)
+      // ADDED 'unsafe-inline' to allow onclick handlers.
       `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' https:;`,
-      // USED the new hash for the one permitted inline style
-      `style-src 'self' fonts.googleapis.com 'sha256-ScgmefrPrVizeVv1zq4r84BiJFFDvDQo62lDGXLdgHY=';`,
+      // USED the new, correct hash for the one permitted inline style.
+      `style-src 'self' fonts.googleapis.com 'sha256-Scgmef+PrV+zeVvlZq4r84BiJFFDVqo62lDGXLdgghY=';`,
       "font-src 'self' fonts.gstatic.com;",
-      // RE-ADDED domains for the blocked images to be sure
+      // ADDED domains for the blocked images.
       "img-src 'self' data: raw.githubusercontent.com media.licdn.com images.g2crowd.com;",
       "frame-src 'self' www.googletagmanager.com;",
       "connect-src 'self' www.google-analytics.com;",
@@ -31,7 +31,8 @@ export async function onRequest(context) {
 
     newResponse.headers.set('Content-Security-Policy', csp);
 
-    // UPDATED rewriter to add a nonce to ALL script tags, not just inline ones
+    // CRITICAL FIX: The rewriter now adds a nonce to ALL script tags,
+    // including external ones like three.js.
     const rewriter = new HTMLRewriter().on('script', {
       element(element) {
         element.setAttribute('nonce', nonce);

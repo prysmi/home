@@ -1,5 +1,6 @@
 export async function onRequest(context) {
-  // Fetch the original page from the Pages project assets
+  // Fetch the original page from the Pages project assets.
+  // `context.env.ASSETS` is automatically available because of the `functions` directory.
   const response = await context.env.ASSETS.fetch(context.request);
 
   // Clone the response to make the headers mutable

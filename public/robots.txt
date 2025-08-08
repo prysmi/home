@@ -1,0 +1,6 @@
+# Allow all web crawlers full access to the site
+User-agent: *
+Disallow:
+
+# Location of the sitemap file
+Sitemap: https://prysmi.com/sitemap.xml

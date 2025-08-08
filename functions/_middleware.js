@@ -3,7 +3,11 @@ export async function onRequest(context) {
   const response = await context.env.ASSETS.fetch(context.request);
   const newResponse = new Response(response.body, response);
 
-  // Set all the static security headers. These are best practices.
+  // Set all the static security headers.
+  // THE FIX: Explicitly set a restrictive Access-Control-Allow-Origin header.
+  // Remember to replace 'prysmi.com' with your actual domain if it's different.
+  newResponse.headers.set("Access-Control-Allow-Origin", "https://prysmi.com"); 
+
   newResponse.headers.set("Permissions-Policy", "camera=(), geolocation=(), microphone=()");
   newResponse.headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   newResponse.headers.set("X-Content-Type-Options", "nosniff");
@@ -14,7 +18,6 @@ export async function onRequest(context) {
   if (newResponse.headers.get("Content-Type")?.includes("text/html")) {
     const nonce = crypto.randomUUID();
 
-    // This CSP is built from all the error logs and AI suggestions.
     const csp = [
       "default-src 'self';",
       `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' https:;`,
@@ -37,5 +40,7 @@ export async function onRequest(context) {
 
     return rewriter.transform(newResponse);
   }
+
+  // For non-HTML files, just return them with the static headers.
   return newResponse;
 }

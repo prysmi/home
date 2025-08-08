@@ -1,9 +1,6 @@
 export async function onRequest(context) {
-  // Fetch the original page from the Pages project assets.
-  // `context.env.ASSETS` is automatically available because of the `functions` directory.
+  // Fetch the original page from the Pages project assets
   const response = await context.env.ASSETS.fetch(context.request);
-
-  // Clone the response to make the headers mutable
   const newResponse = new Response(response.body, response);
 
   // Set all the static security headers
@@ -15,27 +12,25 @@ export async function onRequest(context) {
 
   // Only run the dynamic CSP logic for HTML pages
   if (newResponse.headers.get("Content-Type")?.includes("text/html")) {
-    
-    // Generate a new, unique nonce for this specific visitor
     const nonce = crypto.randomUUID();
 
-    // Construct the A+ grade CSP header, injecting the new nonce
     const csp = [
       "default-src 'self';",
-      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https:;`,
-      "style-src 'self' fonts.googleapis.com;",
+      // ADDED cdnjs.cloudflare.com for the three.js library
+      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https: cdnjs.cloudflare.com;`,
+      // ADDED sha256 hash for the one permitted inline style, and added 'unsafe-inline' temporarily for inline event handlers
+      `style-src 'self' fonts.googleapis.com 'sha256-5Gbmef+PrV+zeVV1Zq4r84BiJFFDvDQo62lDGXLDggY=' 'unsafe-inline';`,
       "font-src 'self' fonts.gstatic.com;",
-      "img-src 'self' data: raw.githubusercontent.com;",
+      // ADDED media.licdn.com and images.g2crowd.com for the blocked images
+      "img-src 'self' data: raw.githubusercontent.com media.licdn.com images.g2crowd.com;",
       "frame-src 'self' www.googletagmanager.com;",
       "connect-src 'self' www.google-analytics.com;",
       "object-src 'none';",
       "base-uri 'self';"
     ].join(" ");
 
-    // Set the dynamic Content-Security-Policy header
     newResponse.headers.set('Content-Security-Policy', csp);
 
-    // Create the rewriter to inject the same nonce into all inline scripts
     const rewriter = new HTMLRewriter().on('script', {
       element(element) {
         if (!element.getAttribute('src')) {
@@ -44,10 +39,8 @@ export async function onRequest(context) {
       },
     });
 
-    // Return the HTML response, transformed with nonces and all headers
     return rewriter.transform(newResponse);
   }
 
-  // For non-HTML assets (CSS, images), return the response with just the static headers
   return newResponse;
 }

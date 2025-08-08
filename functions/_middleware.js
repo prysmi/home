@@ -16,12 +16,12 @@ export async function onRequest(context) {
 
     const csp = [
       "default-src 'self';",
-      // ADDED cdnjs.cloudflare.com for the three.js library
-      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https: cdnjs.cloudflare.com;`,
-      // ADDED sha256 hash for the one permitted inline style, and added 'unsafe-inline' temporarily for inline event handlers
-      `style-src 'self' fonts.googleapis.com 'sha256-5Gbmef+PrV+zeVV1Zq4r84BiJFFDvDQo62lDGXLDggY=' 'unsafe-inline';`,
+      // ADDED 'unsafe-inline' for event handlers. REMOVED cdnjs host (not needed with strict-dynamic)
+      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' https:;`,
+      // USED the new hash for the one permitted inline style
+      `style-src 'self' fonts.googleapis.com 'sha256-ScgmefrPrVizeVv1zq4r84BiJFFDvDQo62lDGXLdgHY=';`,
       "font-src 'self' fonts.gstatic.com;",
-      // ADDED media.licdn.com and images.g2crowd.com for the blocked images
+      // RE-ADDED domains for the blocked images to be sure
       "img-src 'self' data: raw.githubusercontent.com media.licdn.com images.g2crowd.com;",
       "frame-src 'self' www.googletagmanager.com;",
       "connect-src 'self' www.google-analytics.com;",
@@ -31,11 +31,10 @@ export async function onRequest(context) {
 
     newResponse.headers.set('Content-Security-Policy', csp);
 
+    // UPDATED rewriter to add a nonce to ALL script tags, not just inline ones
     const rewriter = new HTMLRewriter().on('script', {
       element(element) {
-        if (!element.getAttribute('src')) {
-          element.setAttribute('nonce', nonce);
-        }
+        element.setAttribute('nonce', nonce);
       },
     });
 

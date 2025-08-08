@@ -4,10 +4,7 @@ export async function onRequest(context) {
   const newResponse = new Response(response.body, response);
 
   // Set all the static security headers.
-  // THE FIX: Explicitly set a restrictive Access-Control-Allow-Origin header.
-  // Remember to replace 'prysmi.com' with your actual domain if it's different.
   newResponse.headers.set("Access-Control-Allow-Origin", "https://prysmi.com"); 
-
   newResponse.headers.set("Permissions-Policy", "camera=(), geolocation=(), microphone=()");
   newResponse.headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   newResponse.headers.set("X-Content-Type-Options", "nosniff");
@@ -20,7 +17,8 @@ export async function onRequest(context) {
 
     const csp = [
       "default-src 'self';",
-      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' https:;`,
+      // REFACTORED: 'unsafe-inline' has been removed for maximum security.
+      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https:;`,
       `style-src 'self' fonts.googleapis.com 'sha256-Scgmef+PrV+zeVvlZq4r84BiJFFDVqo62lDGXLdgghY=';`,
       "font-src 'self' fonts.gstatic.com;",
       "img-src 'self' data: raw.githubusercontent.com media.licdn.com images.g2crowd.com;",

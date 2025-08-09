@@ -4,10 +4,9 @@ export async function onRequest(context) {
   const newResponse = new Response(response.body, response);
 
   // Set all the static security headers.
+  // THE FIX: Explicitly set a restrictive Access-Control-Allow-Origin header.
+  // Remember to replace 'prysmi.com' with your actual domain if it's different.
   newResponse.headers.set("Access-Control-Allow-Origin", "https://prysmi.com"); 
-  
-  // THE FIX: Explicitly tell search engines to index the site, overriding any defaults.
-  newResponse.headers.set("X-Robots-Tag", "all");
 
   newResponse.headers.set("Permissions-Policy", "camera=(), geolocation=(), microphone=()");
   newResponse.headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");

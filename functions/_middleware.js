@@ -20,7 +20,7 @@ export async function onRequest(context) {
       `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' https: https://prysmi.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js;`,
       `style-src 'self' fonts.googleapis.com 'sha256-Scgmef+PrV+zeVvlZq4r84BiJFFDVqo62lDGXLdgghY=';`,
       "font-src 'self' fonts.gstatic.com;",
-      "img-src 'self' data: raw.githubusercontent.com media.licdn.com images.g2crowd.com;",
+      "img-src 'self' data: raw.githubusercontent.com;",
       "frame-src 'self' www.googletagmanager.com;",
       "connect-src 'self' www.google-analytics.com;",
       "object-src 'none';",
@@ -40,3 +40,4 @@ export async function onRequest(context) {
 
   return newResponse;
 }
+

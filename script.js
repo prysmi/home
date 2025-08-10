@@ -142,11 +142,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isLight) {
             document.body.classList.add('light-mode');
             if (desktopThemeSymbol) desktopThemeSymbol.textContent = '☾';
-            if (footerLogo) footerLogo.src = 'https://raw.githubusercontent.com/prysmi/home/main/Black%20Horizontal%20Logo%20TM.png';
+            if (footerLogo) footerLogo.src = 'https://raw.githubusercontent.com/prysmi/home/refs/heads/main/assets/trademarks/logos/Black%20Horizontal%20Logo%20TM.webp';
         } else {
             document.body.classList.remove('light-mode');
             if (desktopThemeSymbol) desktopThemeSymbol.textContent = '☀';
-            if (footerLogo) footerLogo.src = 'https://raw.githubusercontent.com/prysmi/home/main/White%20Horizontal%20Logo%20TM.png';
+            if (footerLogo) footerLogo.src = 'https://raw.githubusercontent.com/prysmi/home/refs/heads/main/assets/trademarks/logos/White%20Horizontal%20Logo%20TM.webp';
         }
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
 
@@ -228,3 +228,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
     animateOnScrollElements.forEach(element => animateObserver.observe(element));
 });
+

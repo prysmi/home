@@ -1,231 +1,191 @@
-// REFACTORED: All code is now wrapped in a DOMContentLoaded listener.
-// This is a best practice to ensure all HTML elements are loaded before the script tries to access them.
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Three.js Waving Dots Background Animation Script ---
-    function initializeThreeJSBackground() {
-        const canvas = document.getElementById('waving-dots-3d-background');
-        if (!canvas) {
-            console.error("3D waving dots canvas not found!");
-            document.body.style.backgroundColor = getComputedStyle(document.body).getPropertyValue('--color-bg-body');
-            return;
-        }
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        let particleSystem; // Define particleSystem here to be accessible within the scope
-
-        // This function is now defined within the same scope, so it can be called directly by setTheme
-        function updateThreeJSColors() {
-            const isLightMode = document.body.classList.contains('light-mode');
-            const bgColor = isLightMode ? 0xF5F5F5 : 0x0A0A0A;
-            renderer.setClearColor(bgColor, 1);
-
-            const paletteLight = [new THREE.Color("#FF53AC"), new THREE.Color("#333333")];
-            const paletteDark = [new THREE.Color("#FF53AC"), new THREE.Color("#FFFFFF")];
-            const currentPalette = isLightMode ? paletteLight : paletteDark;
-
-            if (particleSystem) {
-                const colorsArray = particleSystem.geometry.attributes.color.array;
-                for (let i = 0; i < dotCount; i++) {
-                    const color = currentPalette[Math.floor(Math.random() * currentPalette.length)];
-                    colorsArray[i * 3] = color.r;
-                    colorsArray[i * 3 + 1] = color.g;
-                    colorsArray[i * 3 + 2] = color.b;
-                }
-                particleSystem.geometry.attributes.color.needsUpdate = true;
-            }
-        }
-
-        const dotCount = 15000;
-        const particlesGeometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(dotCount * 3);
-        const colorsAttribute = new Float32Array(dotCount * 3);
-        const waveAmplitude = 2;
-        const waveFrequency = 0.2;
-        const planeSize = 40;
-
-        for (let i = 0; i < dotCount; i++) {
-            positions[i * 3] = (Math.random() - 0.5) * planeSize;
-            positions[i * 3 + 1] = 0;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * planeSize;
-        }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsAttribute, 3));
-
-        const particleMaterial = new THREE.PointsMaterial({
-            size: 0.08,
-            vertexColors: true,
-            transparent: true,
-            opacity: 0.8,
-            sizeAttenuation: true
-        });
-
-        particleSystem = new THREE.Points(particlesGeometry, particleMaterial);
-        scene.add(particleSystem);
-
-        camera.position.z = 15;
-        camera.position.y = 5;
-        camera.lookAt(scene.position);
-
-        let mouseX = 0, mouseY = 0;
-        let targetRotationX = 0, targetRotationY = 0;
-        const windowHalfX = window.innerWidth / 2;
-        const windowHalfY = window.innerHeight / 2;
-
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX - windowHalfX) * 0.01;
-            mouseY = (event.clientY - windowHalfY) * 0.01;
-        });
-
-        document.addEventListener('touchstart', (event) => {
-            if (event.touches.length === 1) {
-                event.preventDefault();
-                mouseX = (event.touches[0].pageX - windowHalfX) * 0.015;
-                mouseY = (event.touches[0].pageY - windowHalfY) * 0.015;
-            }
-        }, { passive: false });
-
-        document.addEventListener('touchmove', (event) => {
-            if (event.touches.length === 1) {
-                event.preventDefault();
-                mouseX = (event.touches[0].pageX - windowHalfX) * 0.015;
-                mouseY = (event.touches[0].pageY - windowHalfY) * 0.015;
-            }
-        }, { passive: false });
-
-        let time = 0;
-        function animate() {
-            requestAnimationFrame(animate);
-            time += 0.01;
-            const positionsArray = particleSystem.geometry.attributes.position.array;
-            for (let i = 0; i < dotCount; i++) {
-                const x = positionsArray[i * 3];
-                const z = positionsArray[i * 3 + 2];
-                positionsArray[i * 3 + 1] = Math.sin(x * waveFrequency + time) * waveAmplitude * 0.5 + Math.cos(z * waveFrequency * 0.7 + time * 0.8) * waveAmplitude * 0.5;
-            }
-            particleSystem.geometry.attributes.position.needsUpdate = true;
-
-            targetRotationX = mouseY * 0.2;
-            targetRotationY = mouseX * 0.2;
-            camera.rotation.x += (targetRotationX - camera.rotation.x) * 0.05;
-            camera.rotation.y += (targetRotationY - camera.rotation.y) * 0.05;
-
-            const boundingBox = new THREE.Box3().setFromObject(particleSystem);
-            const center = new THREE.Vector3();
-            boundingBox.getCenter(center);
-            camera.lookAt(center);
-
-            renderer.render(scene, camera);
-        }
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }, false);
-
-        updateThreeJSColors(); // Initial color setup
-        animate(); // Start Three.js animation
+  // ---------------- Three.js Background ----------------
+  function initializeThreeJSBackground() {
+    const canvas = document.getElementById('waving-dots-3d-background');
+    if (!canvas || !window.THREE) {
+      console.warn('Three.js not available');
+      document.body.style.backgroundColor = getComputedStyle(document.body).getPropertyValue('--color-bg-body');
+      return;
     }
 
-    // --- Theme Toggle Functionality ---
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const footerLogo = document.getElementById('footer-logo');
-    const desktopThemeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('.theme-symbol') : null;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
-    function setTheme(isLight) {
-        if (isLight) {
-            document.body.classList.add('light-mode');
-            if (desktopThemeSymbol) desktopThemeSymbol.textContent = '☾';
-            if (footerLogo) footerLogo.src = 'https://raw.githubusercontent.com/prysmi/home/refs/heads/main/assets/trademarks/logos/Black%20Horizontal%20Logo%20TM.webp';
-        } else {
-            document.body.classList.remove('light-mode');
-            if (desktopThemeSymbol) desktopThemeSymbol.textContent = '☀';
-            if (footerLogo) footerLogo.src = 'https://raw.githubusercontent.com/prysmi/home/refs/heads/main/assets/trademarks/logos/White%20Horizontal%20Logo%20TM.webp';
-        }
-        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    const dotCount = 15000;
+    const positions = new Float32Array(dotCount * 3);
+    const colorsArray = new Float32Array(dotCount * 3);
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
 
-        // REFACTORED: Directly call the update function, which is now in the same scope.
-        // This is only called if the 3D canvas exists.
-        if (document.getElementById('waving-dots-3d-background')) {
-            initializeThreeJSBackground.updateThreeJSColors();
-        }
+    const waveAmp = 2, waveFreq = 0.2, planeSize = 40;
+
+    for (let i = 0; i < dotCount; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * planeSize;
+      positions[i * 3 + 1] = 0;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * planeSize;
     }
 
-    // Initialize the theme toggle and check for saved preference
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            const isLightMode = document.body.classList.contains('light-mode');
-            setTheme(!isLightMode);
-        });
-    }
+    const mat = new THREE.PointsMaterial({ size: 0.08, vertexColors: true, transparent: true, opacity: 0.8 });
+    const particleSystem = new THREE.Points(geo, mat);
+    scene.add(particleSystem);
 
-    const savedTheme = localStorage.getItem('theme');
-    setTheme(savedTheme === 'light');
+    camera.position.set(0, 5, 15);
 
+    let mouseX = 0, mouseY = 0, tRotX = 0, tRotY = 0;
+    const halfX = window.innerWidth / 2, halfY = window.innerHeight / 2;
 
-    // --- Other Initializations ---
-
-    // Initialize 3D Background if canvas exists
-    if (document.getElementById('waving-dots-3d-background')) {
-        initializeThreeJSBackground();
-    }
-
-    // Mobile menu toggle functionality
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-        });
-    }
-
-    // Dynamically set the current year in the footer
-    const currentYearSpan = document.getElementById('currentYear');
-    if (currentYearSpan) {
-        currentYearSpan.textContent = new Date().getFullYear();
-    }
-
-    // Back to Top Button Functionality
-    const backToTopButton = document.getElementById('back-to-top');
-    if (backToTopButton) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
-    // Calendly Integration
-    const calendlyLink = "https://calendly.com/prabhjot-prysmi";
-    const calendlyButtons = document.querySelectorAll('#get-started-header-btn, #get-started-mobile-btn, #hero-cta-btn, #schedule-call-footer-btn');
-    calendlyButtons.forEach(button => {
-        button.addEventListener('click', () => window.open(calendlyLink, '_blank'));
+    document.addEventListener('mousemove', e => {
+      mouseX = (e.clientX - halfX) * 0.01;
+      mouseY = (e.clientY - halfY) * 0.01;
     });
 
-    // Animation for elements on scroll (fade-in-up)
-    const animateOnScrollElements = document.querySelectorAll('.fade-in-up');
-    const animateObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                obs.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    animateOnScrollElements.forEach(element => animateObserver.observe(element));
-});
+    const updateThreeJSColors = () => {
+      const isLight = document.body.classList.contains('light-mode');
+      const palette = isLight
+        ? [new THREE.Color("#FF53AC"), new THREE.Color("#333333")]
+        : [new THREE.Color("#FF53AC"), new THREE.Color("#FFFFFF")];
+      renderer.setClearColor(isLight ? 0xF5F5F5 : 0x0A0A0A, 1);
+      for (let i = 0; i < dotCount; i++) {
+        const c = palette[Math.floor(Math.random() * palette.length)];
+        colorsArray[i * 3] = c.r;
+        colorsArray[i * 3 + 1] = c.g;
+        colorsArray[i * 3 + 2] = c.b;
+      }
+      geo.attributes.color.needsUpdate = true;
+    };
 
+    let time = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      time += 0.01;
+      const posArr = geo.attributes.position.array;
+      for (let i = 0; i < dotCount; i++) {
+        const x = posArr[i * 3], z = posArr[i * 3 + 2];
+        posArr[i * 3 + 1] = Math.sin(x * waveFreq + time) * waveAmp * 0.5 +
+                            Math.cos(z * waveFreq * 0.7 + time * 0.8) * waveAmp * 0.5;
+      }
+      geo.attributes.position.needsUpdate = true;
+      tRotX = mouseY * 0.2;
+      tRotY = mouseX * 0.2;
+      camera.rotation.x += (tRotX - camera.rotation.x) * 0.05;
+      camera.rotation.y += (tRotY - camera.rotation.y) * 0.05;
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    updateThreeJSColors();
+    animate();
+    window.updateThreeJSColors = updateThreeJSColors;
+  }
+
+  // ---------------- Mobile Drawer + Focus Trap ----------------
+  const miniNav = document.getElementById('mobile-mini-nav');
+  const drawer = document.getElementById('mobile-drawer');
+  const drawerClose = document.getElementById('mobile-drawer-close');
+  const drawerLinks = document.querySelectorAll('.drawer-links a, .drawer-links button');
+  let lastFocus = null, trapHandler;
+
+  const getFocusable = c => Array.from(c.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'));
+  const trapFocus = el => {
+    const fEls = getFocusable(el);
+    const first = fEls[0], last = fEls[fEls.length - 1];
+    trapHandler = e => {
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+      if (e.key === 'Escape') closeDrawer();
+    };
+    el.addEventListener('keydown', trapHandler);
+  };
+
+  const openDrawer = () => {
+    lastFocus = document.activeElement;
+    drawer.hidden = false;
+    drawer.setAttribute('aria-hidden', 'false');
+    if (miniNav) miniNav.hidden = true;
+    trapFocus(drawer);
+    getFocusable(drawer)[0]?.focus();
+  };
+  const closeDrawer = () => {
+    drawer.hidden = true;
+    drawer.setAttribute('aria-hidden', 'true');
+    if (miniNav) miniNav.hidden = false;
+    drawer.removeEventListener('keydown', trapHandler);
+    lastFocus?.focus();
+  };
+
+  miniNav?.addEventListener('click', openDrawer);
+  drawerClose?.addEventListener('click', closeDrawer);
+  drawerLinks.forEach(l => l.addEventListener('click', closeDrawer));
+
+  // ---------------- Footer Year ----------------
+  const yearEl = document.getElementById('currentYear');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // ---------------- Active Nav Highlight ----------------
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const changeNav = id => {
+    navLinks.forEach(link => {
+      link.classList.remove('active', 'next-steps-active-style');
+      if (link.getAttribute('href') === `#${id}`) {
+        link.classList.add('active');
+        if (id === 'next-steps') link.classList.add('next-steps-active-style');
+      }
+    });
+  };
+  const sectionObserver = new IntersectionObserver(es => {
+    es.forEach(e => e.isIntersecting && changeNav(e.target.id));
+  }, { threshold: 0.1 });
+  sections.forEach(s => sectionObserver.observe(s));
+
+  // ---------------- Fade In On Scroll ----------------
+  document.querySelectorAll('.fade-in-up').forEach(el =>
+    new IntersectionObserver(es => {
+      es.forEach(e => e.isIntersecting && e.target.classList.add('is-visible'));
+    }, { threshold: 0.1 }).observe(el)
+  );
+
+  // ---------------- Header Scroll State ----------------
+  const head = document.getElementById('main-header');
+  window.addEventListener('scroll', () => head?.classList.toggle('scrolled', window.scrollY > 50));
+
+  // ---------------- Calendly Buttons ----------------
+  const calURL = "https://calendly.com/prabhjot-prysmi";
+  ['get-started-header-btn', 'drawer-get-started', 'hero-cta-btn', 'schedule-call-footer-btn']
+    .forEach(id => document.getElementById(id)?.addEventListener('click', () => window.open(calURL, '_blank')));
+
+  // ---------------- Back to Top ----------------
+  const btt = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => btt?.classList.toggle('show', window.scrollY > 300));
+  btt?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // ---------------- Theme Toggle ----------------
+  const tBtn = document.getElementById('theme-toggle');
+  const tSymbol = tBtn?.querySelector('.theme-symbol');
+  const logo = document.getElementById('footer-logo');
+  const setTheme = light => {
+    document.body.classList.toggle('light-mode', light);
+    if (tSymbol) tSymbol.textContent = light ? '☾' : '☀';
+    if (logo) logo.src = light
+      ? 'https://raw.githubusercontent.com/prysmi/home/refs/heads/main/assets/trademarks/logos/Black%20Horizontal%20Logo%20TM.webp'
+      : 'https://raw.githubusercontent.com/prysmi/home/refs/heads/main/assets/trademarks/logos/White%20Horizontal%20Logo%20TM.webp';
+    localStorage.setItem('theme', light ? 'light' : 'dark');
+    window.updateThreeJSColors?.();
+  };
+  setTheme(localStorage.getItem('theme') === 'light');
+  tBtn?.addEventListener('click', () => setTheme(!document.body.classList.contains('light-mode')));
+
+  // Init background
+  initializeThreeJSBackground();
+});

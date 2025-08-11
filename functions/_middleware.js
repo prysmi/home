@@ -3,7 +3,7 @@ export async function onRequest(context) {
   const response = await context.env.ASSETS.fetch(context.request);
   const newResponse = new Response(response.body, response);
 
-  // Set all the static security headers.
+  // Set static security headers
   newResponse.headers.set("Access-Control-Allow-Origin", "https://prysmi.com");
   newResponse.headers.set("X-Robots-Tag", "all");
   newResponse.headers.set("Permissions-Policy", "camera=(), geolocation=(), microphone=()");
@@ -17,8 +17,8 @@ export async function onRequest(context) {
 
     const csp = [
       "default-src 'self';",
-      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' https: https://prysmi.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js;`,
-      `style-src 'self' fonts.googleapis.com 'sha256-Scgmef+PrV+zeVvlZq4r84BiJFFDVqo62lDGXLdgghY=';`,
+      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://cdn.jsdelivr.net https://prysmi.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js;`,
+      "style-src 'self' fonts.googleapis.com;",
       "font-src 'self' fonts.gstatic.com;",
       "img-src 'self' data: raw.githubusercontent.com;",
       "frame-src 'self' www.googletagmanager.com;",
@@ -29,6 +29,7 @@ export async function onRequest(context) {
 
     newResponse.headers.set("Content-Security-Policy", csp);
 
+    // Add nonce to all <script> tags
     const rewriter = new HTMLRewriter().on("script", {
       element(element) {
         element.setAttribute("nonce", nonce);
@@ -40,4 +41,3 @@ export async function onRequest(context) {
 
   return newResponse;
 }
-

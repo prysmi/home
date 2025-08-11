@@ -1,313 +1,312 @@
-/* CSS Variables for Theming */
+/* ===========================
+   THEME VARIABLES
+   =========================== */
 :root {
-    /* Dark Mode Defaults */
-    --color-bg-body: #0A0A0A;
-    --color-bg-section: rgba(26, 26, 26, 0.75); /* Increased transparency */
-    --color-text-primary: #E0E0E0;
-    --color-text-heading: #FFFFFF;
-    --color-border-default: #333;
-    --color-modal-bg: #1A1A1A; /* Kept for now, but modal removed */
-    --color-input-bg: #0A0A0A; /* Kept for now, but modal removed */
-    --color-input-border: #777; /* Kept for now, but modal removed */
-    --color-header-bg: rgba(10, 10, 10, 0.1); /* Increased transparency */
-    --color-header-sticky-bg: rgba(10, 10, 10, 0.4); /* Increased transparency */
-    --color-footer-bg: var(--color-bg-body); /* Footer background matches body */
-    --color-footer-text: #A0A0A0; /* Footer text in dark mode */
-    --color-footer-border: transparent; /* Footer border in dark mode (now transparent) */
-
-
-    /* Accent Colors (remain consistent) */
-    --color-accent-pink: #FF53AC;
-    --color-accent-yellow: #EEFF41;
-    --color-success: #28A745;
-    --color-error: #FF4136;
+  --color-bg-body: #0A0A0A;
+  --color-bg-section: rgba(26, 26, 26, 0.75);
+  --color-text-primary: #E0E0E0;
+  --color-text-heading: #FFFFFF;
+  --color-border-default: #333;
+  --color-modal-bg: #1A1A1A;
+  --color-input-bg: #0A0A0A;
+  --color-input-border: #777;
+  --color-header-bg: rgba(10, 10, 10, 0.1);
+  --color-header-sticky-bg: rgba(10, 10, 10, 0.4);
+  --color-footer-bg: var(--color-bg-body);
+  --color-footer-text: #A0A0A0;
+  --color-footer-border: transparent;
+  --color-accent-pink: #FF53AC;
+  --color-accent-yellow: #EEFF41;
+  --color-success: #28A745;
+  --color-error: #FF4136;
 }
 
 body.light-mode {
-    /* Light Mode Overrides */
-    --color-bg-body: #F5F5F5;
-    --color-bg-section: rgba(255, 255, 255, 0.75); /* Increased transparency */
-    --color-text-primary: #333333;
-    --color-text-heading: #0A0A0A;
-    --color-border-default: #CCCCCC;
-    --color-modal-bg: #F0F0F0; /* Kept for now, but modal removed */
-    --color-input-bg: #FFFFFF; /* Kept for now, but modal removed */
-    --color-input-border: #BBBBBB; /* Kept for now, but modal removed */
-    --color-header-bg: rgba(255, 255, 255, 0.1); /* Increased transparency */
-    --color-header-sticky-bg: rgba(255, 255, 255, 0.4); /* Increased transparency */
-    --color-footer-bg: var(--color-bg-body); /* Footer background matches body */
-    --color-footer-text: #555555; /* Footer text in light mode */
-    --color-footer-border: transparent; /* Footer border in light mode (now transparent) */
-
-    /* Specific override for headings that use accent-yellow in dark mode */
-    .text-\[\#EEFF41\] {
-        color: var(--color-accent-pink) !important;
-    }
-
-    /* New rule for the specific text block that was unreadable in light mode */
-    .mt-12.text-center.p-8.rounded-xl.shadow-xl.border .text-white {
-        color: var(--color-text-primary) !important; /* Change to dark text */
-    }
+  --color-bg-body: #F5F5F5;
+  --color-bg-section: rgba(255, 255, 255, 0.75);
+  --color-text-primary: #333333;
+  --color-text-heading: #0A0A0A;
+  --color-border-default: #CCCCCC;
+  --color-modal-bg: #F0F0F0;
+  --color-input-bg: #FFFFFF;
+  --color-input-border: #BBBBBB;
+  --color-header-bg: rgba(255, 255, 255, 0.1);
+  --color-header-sticky-bg: rgba(255, 255, 255, 0.4);
+  --color-footer-bg: var(--color-bg-body);
+  --color-footer-text: #555555;
+  --color-footer-border: transparent;
 }
 
-/* Base styles for the body and headings */
+body.light-mode .text-\[\#EEFF41\] {
+  color: var(--color-accent-pink) !important;
+}
+
+body.light-mode .mt-12.text-center.p-8.rounded-xl.shadow-xl.border .text-white {
+  color: var(--color-text-primary) !important;
+}
+
+/* ===========================
+   BASE / DESKTOP
+   =========================== */
 body {
-    font-family: 'Libre Franklin', sans-serif;
-    background-color: var(--color-bg-body);
-    color: var(--color-text-primary);
-    overflow-x: hidden;
-    margin: 0; /* Ensure canvas takes full screen */
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-h1, h2, h3, h4 {
-    font-family: 'Libre Franklin', sans-serif;
-    font-weight: 800;
-    color: var(--color-text-heading);
-    transition: color 0.3s ease-in-out;
-}
-/* Specific style for Libre Baskerville, bold and italic */
-.text-emphasis-italic-bold {
-    font-family: 'Libre Baskerville', serif;
-    font-style: italic;
-    font-weight: bold; /* Ensure it's bold */
+  font-family: 'Libre Franklin', sans-serif;
+  background-color: var(--color-bg-body);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  margin: 0;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-/* Header styles */
+h1, h2, h3, h4 {
+  font-weight: 800;
+  color: var(--color-text-heading);
+  transition: color 0.3s ease-in-out;
+}
+
+.text-emphasis-italic-bold {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* HEADER / NAV */
 #main-header {
-    background-color: var(--color-header-bg);
-    backdrop-filter: blur(12px); /* Increased blur for glass effect */
-    -webkit-backdrop-filter: blur(12px); /* For Safari */
-    transition: all 0.3s ease-in-out;
+  background-color: var(--color-header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease-in-out;
 }
 #main-header.scrolled {
-    background-color: var(--color-header-sticky-bg);
-    backdrop-filter: blur(20px); /* Increased blur for glass effect */
-    -webkit-backdrop-filter: blur(20px); /* For Safari */
-    border-radius: 0.75rem; /* rounded-xl */
-    margin-top: 1rem; /* mt-4 */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 72rem; /* max-w-6xl */
-    top: 1rem; /* top-4 */
+  background-color: var(--color-header-sticky-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 72rem;
+  top: 1rem;
 }
-
 .nav-link {
-    color: var(--color-text-primary);
-    transition: color 0.2s ease-in-out;
+  color: var(--color-text-primary);
+  transition: color 0.2s ease-in-out;
 }
-.nav-link:hover {
-    color: var(--color-accent-pink);
-}
+.nav-link:hover { color: var(--color-accent-pink); }
 .nav-link.active {
-    font-weight: 600;
-    color: var(--color-text-heading);
-    position: relative;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9),
-                 0 0 20px rgba(255, 255, 255, 0.7),
-                 0 0 30px rgba(255, 83, 172, 0.5);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  position: relative;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9),
+               0 0 20px rgba(255, 255, 255, 0.7),
+               0 0 30px rgba(255, 83, 172, 0.5);
 }
 .nav-link.active::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-accent-pink);
-    border-radius: 2px;
-    animation: underline-grow 0.3s forwards;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent-pink);
+  border-radius: 2px;
+  animation: underline-grow 0.3s forwards;
 }
 @keyframes underline-grow {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
+  from { transform: scaleX(0);}
+  to { transform: scaleX(1);}
+}
+.nav-link.next-steps-active-style {
+  background-color: var(--color-accent-yellow) !important;
+  color: #1A1A1A !important;
+  box-shadow: 0 0 15px rgba(238, 255, 65, 0.8),
+              0 0 25px rgba(238, 255, 65, 0.6) !important;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
 }
 
-/* Button glow for pink background (used by Get Started) */
+/* BUTTONS */
 .button-glow-pink {
-    box-shadow: 0 0 10px rgba(255, 83, 172, 0.6), 0 0 20px rgba(255, 83, 172, 0.4);
-    transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 83, 172, 0.6),
+              0 0 20px rgba(255, 83, 172, 0.4);
+  transition: all 0.3s ease-in-out;
 }
 .button-glow-pink:hover {
-    box-shadow: 0 0 15px rgba(255, 83, 172, 0.8), 0 0 25px rgba(255, 83, 172, 0.6);
-    transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(255, 83, 172, 0.8),
+              0 0 25px rgba(255, 83, 172, 0.6);
+  transform: translateY(-2px);
 }
-
-/* Button glow for the CTA button (white base, yellow hover) */
 .button-glow-cta {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4); /* White glow for base */
-    transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+              0 0 20px rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease-in-out;
 }
 .button-glow-cta:hover {
-    box-shadow: 0 0 15px rgba(238, 255, 65, 0.8), 0 0 25px rgba(238, 255, 65, 0.6); /* Yellow glow on hover */
-    transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(238, 255, 65, 0.8),
+              0 0 25px rgba(238, 255, 65, 0.6);
+  transform: translateY(-2px);
 }
 
-
-/* New style for the "Next Steps" button when its section is active */
-.nav-link.next-steps-active-style {
-    background-color: var(--color-accent-yellow) !important; /* Brighter background */
-    color: #1A1A1A !important; /* Darker text */
-    box-shadow: 0 0 15px rgba(238, 255, 65, 0.8), 0 0 25px rgba(238, 255, 65, 0.6) !important; /* Stronger glow */
-    transform: scale(1.05); /* Slightly larger */
-    transition: all 0.3s ease-in-out;
-}
-
-.fade-in-up {
-    opacity: 0;
-    transform: translateY(20px);
-}
-.fade-in-up.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
- /* Staggered animation delays */
-.fade-in-up.is-visible.delay-200ms {
-    transition-delay: 0.2s;
-}
-.fade-in-up.is-visible.delay-400ms {
-    transition-delay: 0.4s;
-}
-
-/* 3D Waving Dots Background Animation Canvas */
-#waving-dots-3d-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    pointer-events: auto;
-    background-color: var(--color-bg-body); /* Uses CSS variable */
-    display: block;
-    transition: background-color 0.3s ease-in-out;
-}
-header, main, footer {
-    position: relative;
-    z-index: 1;
-}
-
-/* New Hero Title Glow Animation */
+/* ANIMATIONS */
 @keyframes pulseGlow {
-    0%, 100% {
-        text-shadow: 0 0 7px rgba(255, 255, 255, 0.7),
-                     0 0 14px rgba(255, 255, 255, 0.5),
-                     0 0 20px rgba(255, 83, 172, 0.3),
-                     0 0 30px rgba(255, 83, 172, 0.2);
-    }
-    50% {
-        text-shadow: 0 0 14px rgba(255, 255, 255, 0.9),
-                     0 0 20px rgba(255, 255, 255, 0.7),
-                     0 0 30px rgba(255, 83, 172, 0.5),
-                     0 0 45px rgba(255, 83, 172, 0.3);
-    }
+  0%,100% {
+    text-shadow: 0 0 7px rgba(255, 255, 255, 0.7),
+                 0 0 14px rgba(255, 255, 255, 0.5),
+                 0 0 20px rgba(255, 83, 172, 0.3),
+                 0 0 30px rgba(255, 83, 172, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.9),
+                 0 0 20px rgba(255, 255, 255, 0.7),
+                 0 0 30px rgba(255, 83, 172, 0.5),
+                 0 0 45px rgba(255, 83, 172, 0.3);
+  }
 }
 .hero-title-glow {
-    animation: pulseGlow 3.5s infinite ease-in-out;
-     /* Base shadow for non-animated state or fallback */
-    text-shadow: 0 0 7px rgba(255, 255, 255, 0.7), 0 0 14px rgba(255, 255, 255, 0.5);
+  animation: pulseGlow 3.5s infinite ease-in-out;
+  text-shadow: 0 0 7px rgba(255, 255, 255, 0.7),
+               0 0 14px rgba(255, 255, 255, 0.5);
+}
+.fade-in-up { opacity:0; transform: translateY(20px);}
+.fade-in-up.is-visible {
+  opacity:1; transform:translateY(0);
+  transition:opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-up.is-visible.delay-200ms { transition-delay:0.2s; }
+.fade-in-up.is-visible.delay-400ms { transition-delay:0.4s; }
+
+/* BACKGROUND */
+#waving-dots-3d-background {
+  position: fixed; top:0; left:0; width:100vw; height:100vh;
+  z-index:-1; pointer-events:auto; background-color:var(--color-bg-body);
+  display:block; transition: background-color 0.3s ease-in-out;
+}
+header, main, footer { position: relative; z-index: 1; }
+
+/* SECTIONS */
+#about, #process, .p-6.rounded-xl.shadow-lg.border {
+  background-color:var(--color-bg-section);
+  border-color:var(--color-border-default);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  transition: background-color 0.3s ease-in-out,
+              border-color 0.3s ease-in-out,
+              backdrop-filter 0.3s ease-in-out;
+}
+.mt-12.text-center.p-8.rounded-xl.shadow-xl.border {
+  background-color:var(--color-bg-body);
+  border-color:var(--color-border-default);
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
-/* Sections background and border */
-#about, #process, .p-6.rounded-xl.shadow-lg.border { /* Applies to about, process, and challenge cards, and testimonial cards */
-    background-color: var(--color-bg-section); /* Now uses RGBA from root/light-mode */
-    border-color: var(--color-border-default);
-    backdrop-filter: blur(8px); /* Added blur for glass effect */
-    -webkit-backdrop-filter: blur(8px); /* For Safari */
-    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
-}
-/* Specific section background for the "Get Full-throated" block */
-.mt-12.text-center.p-8.rounded-xl.shadow-xl.border { /* This is the specific client testimonials and profile section */
-    background-color: var(--color-bg-body); /* Should match body background for consistency */
-    border-color: var(--color-border-default);
-    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+/* FOOTER */
+.footer-logo { height:60px; width:auto;}
+footer {
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  border-top:1px solid var(--color-footer-border);
+  transition: background-color 0.3s ease-in-out,
+              color 0.3s ease-in-out,
+              border-color 0.3s ease-in-out;
 }
 
-/* Styles for the footer logo (no cropping) */
-.footer-logo {
-    height: 60px; /* Increased height for larger logo */
-    width: auto;
-}
-
-/* Back to top button */
+/* UTILITIES */
 #back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--color-accent-pink);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 9999px; /* Fully rounded */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, opacity 0.3s ease-in-out;
-    z-index: 900;
-    opacity: 0;
-    visibility: hidden;
+  position: fixed; bottom: 20px; right: 20px;
+  background-color: var(--color-accent-pink);
+  color: white; padding: 10px 15px;
+  border-radius: 9999px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.5rem;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease-in-out,
+              transform 0.2s ease-in-out,
+              opacity 0.3s ease-in-out;
+  z-index: 900; opacity:0; visibility:hidden;
 }
 #back-to-top:hover {
-    background-color: var(--color-accent-yellow);
-    color: #1A1A1A;
-    transform: translateY(-2px);
+  background-color: var(--color-accent-yellow);
+  color:#1A1A1A; transform:translateY(-2px);
 }
-#back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Theme toggle button styling */
+#back-to-top.show { opacity:1; visibility:visible; }
 #theme-toggle {
-    position: fixed; /* Make it float */
-    bottom: 80px; /* Position above back-to-top button */
-    right: 20px;
-    background-color: transparent;
-    border: 1px solid var(--color-text-primary);
-    color: var(--color-text-primary);
-    padding: 0.5rem 0.75rem;
-    border-radius: 9999px; /* rounded-full */
-    font-size: 1.25rem; /* Increased font size for symbols */
-    font-weight: 500; /* font-medium */
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Center the symbol */
-    width: 3rem; /* Fixed width for consistent button size */
-    height: 3rem; /* Fixed height for consistent button size */
-    z-index: 950; /* Higher than back-to-top button */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow for floating effect */
+  position: fixed; bottom: 80px; right: 20px;
+  background-color:transparent;
+  border:1px solid var(--color-text-primary);
+  color:var(--color-text-primary);
+  padding:0.5rem 0.75rem;
+  border-radius:9999px;
+  font-size:1.25rem; font-weight:500;
+  cursor:pointer;
+  transition:all 0.3s ease-in-out;
+  display:flex; align-items:center; justify-content:center;
+  width:3rem; height:3rem; z-index:950;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
 #theme-toggle:hover {
-    background-color: var(--color-accent-pink);
-    border-color: var(--color-accent-pink);
-    color: white;
+  background-color:var(--color-accent-pink);
+  border-color:var(--color-accent-pink);
+  color:white;
 }
 
-/* Footer specific styles using CSS variables */
-footer {
-    background-color: var(--color-footer-bg);
-    color: var(--color-footer-text);
-    border-top: 1px solid var(--color-footer-border); /* Border is now transparent */
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+/* ===========================
+   MOBILE / RESPONSIVE ADDITIONS
+   =========================== */
+@media (max-width: 767px) {
+  #mobile-only-message {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--color-bg-body);
+    color: var(--color-text-primary);
+    display: flex; align-items:center; justify-content:center;
+    z-index: 2000;
+  }
+  header, main, footer, #back-to-top, #theme-toggle, #waving-dots-3d-background {
+    display: none !important;
+  }
 }
+html, body { width:100%; overflow-x:hidden;}
+img, canvas, video { max-width:100%; height:auto;}
+.container, .mx-auto, .max-w-6xl, .max-w-7xl {
+  padding-left: clamp(12px, 4vw, 24px);
+  padding-right: clamp(12px, 4vw, 24px);
+}
+@media (max-width: 1024px) {
+  .two-col { display: block; }
+  .two-col > * { width: 100% !important; max-width: 100% !important; }
+  .media-right, .media-left { margin-top: 24px; }
+  .figure, .media, .illustration { max-width: 560px; margin-left:auto; margin-right:auto; }
+}
+h1 { font-size: clamp(28px, 6vw, 56px); line-height: 1.1; }
+h2 { font-size: clamp(22px, 4.5vw, 40px); line-height: 1.15; }
+h3 { font-size: clamp(18px, 3.8vw, 28px); line-height: 1.2; }
+p, li { font-size: clamp(15px, 2.9vw, 18px); line-height: 1.6; hyphens: auto; overflow-wrap: anywhere; }
+.text-column { max-width: 68ch; margin: 0 auto; }
 
-/* Mobile-only message styling */
-#mobile-only-message {
-    background-color: var(--color-bg-body); /* Use body background for consistency */
-    color: var(--color-text-primary); /* Use primary text color */
-    /* Ensure it covers everything else on mobile */
-    display: none; /* Hidden by default and shown only on mobile by Tailwind's md:hidden */
-}
-@media (max-width: 767px) { /* Tailwind's 'md' breakpoint is 768px, so we show it below that */
-    #mobile-only-message {
-        display: flex; /* Show the flex container on mobile */
-    }
-    /* Hide main content on mobile if the message is displayed */
-    header, main, footer, #back-to-top, #theme-toggle, #waving-dots-3d-background {
-        display: none;
-    }
+/* Mobile nav fixes */
+@media (max-width: 768px) {
+  #main-header { display:none; }
+  .mobile-mini-nav {
+    position: fixed; right:16px; bottom:16px;
+    width:48px; height:48px; border-radius:9999px;
+    background:var(--color-accent-pink); color:#fff; font-weight:700;
+    box-shadow:0 8px 24px rgba(0,0,0,0.35);
+    display:flex; align-items:center; justify-content:center;
+    z-index:1100;
+  }
+  .mobile-mini-nav:active { transform: translateY(1px);}
+  .mobile-drawer {
+    position: fixed; top:0; right:0; height:100dvh; width:min(86vw, 360px);
+    background:var(--color-bg-section); backdrop-filter: blur(10px);
+    border-left:1px solid var(--color-border-default);
+    z-index:1200; padding:20px;
+    display:flex; flex-direction:column; gap:12px;
+    animation: slideIn 0.25s ease-out both;
+  }
+  .mobile-drawer[hidden] { display:none!important; }
+  .drawer-close { align-self:flex-end; background:transparent; color:var(--color-text-primary); font-size:28px; }
+  .drawer-links { list-style:none; padding:0; margin:8px 0; display:flex; flex-direction:column; gap:12px; }
+  .drawer-links a, .drawer-links button { color:var(--color-text-primary); font-size:18px; background:none; border:none; text-align:left; }
+  @keyframes slideIn { from { transform: translateX(100%); opacity:0; } to { transform: translateX(0); opacity:1; } }
+  #waving-dots-3d-background { pointer-events:none; height:100dvh; }
+  #back-to-top, #theme-toggle { pointer-events:auto; }
 }

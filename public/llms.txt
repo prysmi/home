@@ -1,0 +1,12 @@
+# Allow AI crawlers from major companies to use site content for training
+User-agent: Google-Extended
+Disallow:
+
+User-agent: ChatGPT-User
+Disallow:
+
+User-agent: GPTBot
+Disallow:
+
+User-agent: CCBot
+Disallow:

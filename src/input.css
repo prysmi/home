@@ -1,6 +1,6 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+
 
 /* Custom CSS for PRYSMI website - all styles included */
 
@@ -261,3 +261,5 @@ footer {
     display: none;
   }
 }
+
+@tailwind utilities;

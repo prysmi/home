@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for PRYSMI website - all styles included */
+
+/* CSS Variables for Theming */
+:root {
+  /* Dark Mode Defaults */
+  --color-bg-body: #0A0A0A;
+  --color-bg-section: rgba(26, 26, 26, 0.75);
+  --color-text-primary: #E0E0E0;
+  --color-text-heading: #FFFFFF;
+  --color-border-default: #333;
+  --color-accent-pink: #FF53AC;
+  --color-accent-yellow: #EEFF41;
+  --color-header-bg: rgba(10, 10, 10, 0.1);
+  --color-header-sticky-bg: rgba(10, 10, 10, 0.4);
+}
+
+body.light-mode {
+  /* Light Mode Overrides */
+  --color-bg-body: #F5F5F5;
+  --color-bg-section: rgba(255, 255, 255, 0.75);
+  --color-text-primary: #333333;
+  --color-text-heading: #0A0A0A;
+  --color-border-default: #CCCCCC;
+  --color-header-bg: rgba(255, 255, 255, 0.1);
+  --color-header-sticky-bg: rgba(255, 255, 255, 0.4);
+}
+
+/* Base styles */
+body {
+  font-family: 'Libre Franklin', sans-serif;
+  background-color: var(--color-bg-body);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  margin: 0;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: 800;
+  color: var(--color-text-heading);
+  transition: color 0.3s ease-in-out;
+}
+
+.text-emphasis-italic-bold {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* Header styles */
+#main-header {
+  background-color: var(--color-header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease-in-out;
+}
+
+#main-header.scrolled {
+  background-color: var(--color-header-sticky-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 72rem;
+  top: 1rem;
+}
+
+.nav-link {
+  color: var(--color-text-primary);
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: var(--color-accent-pink);
+}
+
+.nav-link.active {
+  font-weight: 600;
+  color: var(--color-text-heading);
+  position: relative;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9),
+               0 0 20px rgba(255, 255, 255, 0.7),
+               0 0 30px rgba(255, 83, 172, 0.5);
+}
+
+.button-glow-pink {
+  box-shadow: 0 0 10px rgba(255, 83, 172, 0.6), 0 0 20px rgba(255, 83, 172, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.button-glow-pink:hover {
+  box-shadow: 0 0 15px rgba(255, 83, 172, 0.8), 0 0 25px rgba(255, 83, 172, 0.6);
+  transform: translateY(-2px);
+}
+
+.button-glow-cta {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.button-glow-cta:hover {
+  box-shadow: 0 0 15px rgba(238, 255, 65, 0.8), 0 0 25px rgba(238, 255, 65, 0.6);
+  transform: translateY(-2px);
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-in-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* 3D Background Canvas */
+#waving-dots-3d-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: auto;
+  background-color: var(--color-bg-body);
+  display: block;
+  transition: background-color 0.3s ease-in-out;
+}
+
+header, main, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero title glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    text-shadow: 0 0 7px rgba(255, 255, 255, 0.7),
+                 0 0 14px rgba(255, 255, 255, 0.5),
+                 0 0 20px rgba(255, 83, 172, 0.3),
+                 0 0 30px rgba(255, 83, 172, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.9),
+                 0 0 20px rgba(255, 255, 255, 0.7),
+                 0 0 30px rgba(255, 83, 172, 0.5),
+                 0 0 45px rgba(255, 83, 172, 0.3);
+  }
+}
+
+.hero-title-glow {
+  animation: pulseGlow 3.5s infinite ease-in-out;
+  text-shadow: 0 0 7px rgba(255, 255, 255, 0.7), 0 0 14px rgba(255, 255, 255, 0.5);
+}
+
+/* Sections background */
+#about, #process, .p-6.rounded-xl.shadow-lg.border {
+  background-color: var(--color-bg-section);
+  border-color: var(--color-border-default);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+}
+
+/* Footer logo */
+.footer-logo {
+  height: 60px;
+  width: auto;
+}
+
+/* Back to top button */
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--color-accent-pink);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#back-to-top:hover {
+  background-color: var(--color-accent-yellow);
+  color: #1A1A1A;
+  transform: translateY(-2px);
+}
+
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Theme toggle */
+#theme-toggle {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: transparent;
+  border: 1px solid var(--color-text-primary);
+  color: var(--color-text-primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  z-index: 950;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#theme-toggle:hover {
+  background-color: var(--color-accent-pink);
+  border-color: var(--color-accent-pink);
+  color: white;
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-bg-body);
+  color: var(--color-text-primary);
+  border-top: 1px solid transparent;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+/* Mobile message */
+#mobile-only-message {
+  background-color: var(--color-bg-body);
+  color: var(--color-text-primary);
+  display: none;
+}
+
+@media (max-width: 767px) {
+  #mobile-only-message {
+    display: flex;
+  }
+  
+  header, main, footer, #back-to-top, #theme-toggle, #waving-dots-3d-background {
+    display: none;
+  }
+}

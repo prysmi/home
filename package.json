@@ -4,8 +4,8 @@
   "description": "PRYSMI Agency website with Tailwind CSS build process",
   "main": "index.html",
   "scripts": {
-    "build-css": "tailwindcss -i ./src/style.css -o ./dist/style.css --minify",
-    "watch-css": "tailwindcss -i ./src/style.css -o ./dist/style.css --watch",
+    "build-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
+    "watch-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch",
     "build": "npm run build-css",
     "dev": "npm run watch-css",
     "start": "npm run watch-css"

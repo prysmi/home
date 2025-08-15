@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom CSS for PRYSMI website - all styles included */
+/* Custom CSS for PRYSMI website */
 
 /* CSS Variables for Theming */
 :root {
@@ -14,8 +14,12 @@
   --color-border-default: #333;
   --color-accent-pink: #FF53AC;
   --color-accent-yellow: #EEFF41;
+  --color-accent-lime: #EEFF41; /* This will be the one that changes */
   --color-header-bg: rgba(10, 10, 10, 0.1);
   --color-header-sticky-bg: rgba(10, 10, 10, 0.4);
+  --color-footer-bg: var(--color-bg-body);
+  --color-footer-text: #A0A0A0;
+  --color-footer-border: transparent;
 }
 
 body.light-mode {
@@ -25,8 +29,11 @@ body.light-mode {
   --color-text-primary: #333333;
   --color-text-heading: #0A0A0A;
   --color-border-default: #CCCCCC;
+  --color-accent-lime: #FF53AC; /* Lime becomes Pink in light mode */
   --color-header-bg: rgba(255, 255, 255, 0.1);
   --color-header-sticky-bg: rgba(255, 255, 255, 0.4);
+  --color-footer-bg: var(--color-bg-body);
+  --color-footer-text: #555555;
 }
 
 /* Base styles */
@@ -39,7 +46,7 @@ body {
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
   font-family: 'Libre Franklin', sans-serif;
   font-weight: 800;
   color: var(--color-text-heading);
@@ -52,12 +59,17 @@ h1, h2, h3, h4 {
   font-weight: bold;
 }
 
-/* Header styles */
+/* Use a class for the lime color to handle the theme switch */
+.text-lime {
+    color: var(--color-accent-lime);
+}
+
+/* Desktop Header styles */
 #main-header {
-  background-color: var(--color-header-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.3s ease-in-out;
+    background-color: var(--color-header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s ease-in-out;
 }
 
 #main-header.scrolled {
@@ -91,36 +103,28 @@ h1, h2, h3, h4 {
                0 0 30px rgba(255, 83, 172, 0.5);
 }
 
-.button-glow-pink {
-  box-shadow: 0 0 10px rgba(255, 83, 172, 0.6), 0 0 20px rgba(255, 83, 172, 0.4);
-  transition: all 0.3s ease-in-out;
-}
-
+/* Button glows */
 .button-glow-pink:hover {
   box-shadow: 0 0 15px rgba(255, 83, 172, 0.8), 0 0 25px rgba(255, 83, 172, 0.6);
   transform: translateY(-2px);
 }
-
-.button-glow-cta {
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
-  transition: all 0.3s ease-in-out;
-}
-
 .button-glow-cta:hover {
   box-shadow: 0 0 15px rgba(238, 255, 65, 0.8), 0 0 25px rgba(238, 255, 65, 0.6);
   transform: translateY(-2px);
 }
 
+/* Fade-in animation */
 .fade-in-up {
   opacity: 0;
   transform: translateY(20px);
 }
-
 .fade-in-up.is-visible {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
+.fade-in-up.is-visible.delay-200ms { transition-delay: 0.2s; }
+.fade-in-up.is-visible.delay-400ms { transition-delay: 0.4s; }
 
 /* 3D Background Canvas */
 #waving-dots-3d-background {
@@ -130,7 +134,7 @@ h1, h2, h3, h4 {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  pointer-events: auto;
+  pointer-events: none;
   background-color: var(--color-bg-body);
   display: block;
   transition: background-color 0.3s ease-in-out;
@@ -143,121 +147,115 @@ header, main, footer {
 
 /* Hero title glow */
 @keyframes pulseGlow {
-  0%, 100% {
-    text-shadow: 0 0 7px rgba(255, 255, 255, 0.7),
-                 0 0 14px rgba(255, 255, 255, 0.5),
-                 0 0 20px rgba(255, 83, 172, 0.3),
-                 0 0 30px rgba(255, 83, 172, 0.2);
-  }
-  50% {
-    text-shadow: 0 0 14px rgba(255, 255, 255, 0.9),
-                 0 0 20px rgba(255, 255, 255, 0.7),
-                 0 0 30px rgba(255, 83, 172, 0.5),
-                 0 0 45px rgba(255, 83, 172, 0.3);
-  }
+  0%, 100% { text-shadow: 0 0 7px rgba(255, 255, 255, 0.7), 0 0 14px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 83, 172, 0.3), 0 0 30px rgba(255, 83, 172, 0.2); }
+  50% { text-shadow: 0 0 14px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 83, 172, 0.5), 0 0 45px rgba(255, 83, 172, 0.3); }
 }
-
 .hero-title-glow {
   animation: pulseGlow 3.5s infinite ease-in-out;
-  text-shadow: 0 0 7px rgba(255, 255, 255, 0.7), 0 0 14px rgba(255, 255, 255, 0.5);
 }
 
-/* Sections background */
+/* Original Sections background and border */
 #about, #process, .p-6.rounded-xl.shadow-lg.border {
-  background-color: var(--color-bg-section);
-  border-color: var(--color-border-default);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+    background-color: var(--color-bg-section);
+    border-color: var(--color-border-default);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+}
+
+/* Special section ("Full-throated...") background */
+.special-section-bg {
+    background-color: #000000 !important; /* Pure black for dark mode */
+    border-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+body.light-mode .special-section-bg {
+    background-color: #FFFFFF !important; /* Pure white for light mode */
+}
+
+
+/* Glassmorphic Contact Card - emulates floating navbar */
+.contact-card {
+  background-color: var(--color-header-bg) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: transparent !important; /* Override default border */
+}
+
+/* Stat Card and Number Animation */
+.stat-card {
+  @apply p-5 rounded-lg shadow-md border-none flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300 min-h-[140px];
+  background-color: var(--color-accent-pink);
+  color: #FFFFFF;
+}
+.stat-card h5, .stat-card p, .stat-card .stat-number {
+  color: #FFFFFF !important;
+}
+
+.stat-number {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.stat-number.is-visible {
+  opacity: 1;
 }
 
 /* Footer logo */
 .footer-logo {
-  height: 60px;
+  height: 40px;
   width: auto;
 }
 
-/* Back to top button */
-#back-to-top {
+/* Floating Action Buttons */
+#back-to-top, #theme-toggle {
   position: fixed;
-  bottom: 20px;
   right: 20px;
-  background-color: var(--color-accent-pink);
-  color: white;
-  padding: 10px 15px;
+  width: 44px;
+  height: 44px;
   border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, opacity 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   z-index: 900;
+}
+#back-to-top {
+  bottom: 20px;
+  background-color: var(--color-accent-pink);
+  color: white;
+  font-size: 1.5rem;
   opacity: 0;
   visibility: hidden;
 }
-
+#theme-toggle {
+  bottom: 75px;
+  background-color: transparent;
+  border: 1px solid var(--color-text-primary);
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+}
 #back-to-top:hover {
   background-color: var(--color-accent-yellow);
   color: #1A1A1A;
   transform: translateY(-2px);
 }
-
-#back-to-top.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Theme toggle */
-#theme-toggle {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  background-color: transparent;
-  border: 1px solid var(--color-text-primary);
-  color: var(--color-text-primary);
-  padding: 0.5rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 1.25rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  z-index: 950;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
 #theme-toggle:hover {
   background-color: var(--color-accent-pink);
   border-color: var(--color-accent-pink);
   color: white;
 }
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
 
 /* Footer */
 footer {
-  background-color: var(--color-bg-body);
-  color: var(--color-text-primary);
-  border-top: 1px solid transparent;
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  border-top: 1px solid var(--color-footer-border);
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-}
-
-/* Mobile message */
-#mobile-only-message {
-  background-color: var(--color-bg-body);
-  color: var(--color-text-primary);
-  display: none;
-}
-
-@media (max-width: 767px) {
-  #mobile-only-message {
-    display: flex;
-  }
-  
-  header, main, footer, #back-to-top, #theme-toggle, #waving-dots-3d-background {
-    display: none;
-  }
 }

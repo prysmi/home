@@ -53,9 +53,9 @@
   --color-text-primary: #E0E0E0;
   --color-text-heading: #FFFFFF;
   --color-border-default: #333;
-  --color-accent-pink: #FF53AC;
+  --color-accent-pink: #FF53AC; /* leave brand system pink alone */
   --color-accent-yellow: #EEFF41;
-  --color-accent-lime: #EEFF41;
+  --color-accent-lime: #EEFF41; /* DO NOT change */
   --color-header-bg: rgba(10, 10, 10, 0.1);
   --color-header-sticky-bg: rgba(10, 10, 10, 0.4);
   --color-footer-bg: var(--color-bg-body);
@@ -70,7 +70,7 @@ body.light-mode {
   --color-text-primary: #333333;
   --color-text-heading: #0A0A0A;
   --color-border-default: #CCCCCC;
-  --color-accent-lime: #FF53AC;
+  --color-accent-lime: #FF53AC; /* keep as-is per your theme swap */
   --color-header-bg: rgba(255, 255, 255, 0.1);
   --color-header-sticky-bg: rgba(255, 255, 255, 0.4);
   --color-footer-bg: var(--color-bg-body);
@@ -102,26 +102,79 @@ h1, h2, h3, h4, h5 {
 
 /* Use a class for the lime color to handle the theme switch */
 .text-lime {
-    color: var(--color-accent-lime);
+  color: var(--color-accent-lime);
 }
 
-/* Button modifications: accessible pink for buttons only */
-.button-white-pink {
-  background-color: #E60A70; /* was #F53196 */
-  color: #FFFFFF;
+/* ===========================
+   Button-only pink overrides
+   ===========================
+   Goal:
+   - Convert ONLY button combos that use #F53196 to #E60A70.
+   - White–pink (bg-white + text-[#F53196]) -> text #E60A70
+   - Pink–white (bg-[#F53196] + text-white) -> bg #E60A70
+   - Do NOT touch hover states, lime/black, or glows.
+   - Scoped to button-ish elements only.
+*/
+
+/* Base pink background -> new accessible pink background */
+button.bg-\[\#F53196\],
+.btn.bg-\[\#F53196\],
+.button.bg-\[\#F53196\],
+a[role="button"].bg-\[\#F53196\],
+a.btn.bg-\[\#F53196\],
+a.button.bg-\[\#F53196\],
+button.bg-\[\#f53196\],
+.btn.bg-\[\#f53196\],
+.button.bg-\[\#f53196\],
+a[role="button"].bg-\[\#f53196\],
+a.btn.bg-\[\#f53196\],
+a.button.bg-\[\#f53196\] {
+  background-color: #E60A70; /* no !important -> preserve hover utilities */
 }
 
-.button-pink-white {
-  background-color: #FFFFFF;
-  color: #E60A70; /* was #F53196 */
+/* White background + pink text -> keep white bg, replace ONLY the text color */
+button.bg-white.text-\[\#F53196\],
+.btn.bg-white.text-\[\#F53196\],
+.button.bg-white.text-\[\#F53196\],
+a[role="button"].bg-white.text-\[\#F53196\],
+a.btn.bg-white.text-\[\#F53196\],
+a.button.bg-white.text-\[\#F53196\],
+button.bg-white.text-\[\#f53196\],
+.btn.bg-white.text-\[\#f53196\],
+.button.bg-white.text-\[\#f53196\],
+a[role="button"].bg-white.text-\[\#f53196\],
+a.btn.bg-white.text-\[\#f53196\],
+a.button.bg-white.text-\[\#f53196\] {
+  color: #E60A70;
 }
+
+/* Safety: if someone wrote buttons with just text-[#F53196] (no bg-white), still only touch button-ish elements */
+button.text-\[\#F53196\],
+.btn.text-\[\#F53196\],
+.button.text-\[\#F53196\],
+a[role="button"].text-\[\#F53196\],
+a.btn.text-\[\#F53196\],
+a.button.text-\[\#F53196\],
+button.text-\[\#f53196\],
+.btn.text-\[\#f53196\],
+.button.text-\[\#f53196\],
+a[role="button"].text-\[\#f53196\],
+a.btn.text-\[\#f53196\],
+a.button.text-\[\#f53196\] {
+  color: #E60A70;
+}
+
+/* NOTE:
+   - No :hover selectors here by design.
+   - No !important so Tailwind hover utilities (lime/black) and glow effects win on hover/focus.
+*/
 
 /* Desktop Header styles */
 #main-header {
-    background-color: var(--color-header-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: all 0.3s ease-in-out;
+  background-color: var(--color-header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease-in-out;
 }
 
 #main-header.scrolled {
@@ -208,23 +261,23 @@ header, main, footer {
 
 /* Original Sections background and border */
 #about, #process, .p-6.rounded-xl.shadow-lg.border {
-    background-color: var(--color-bg-section);
-    border-color: var(--color-border-default);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+  background-color: var(--color-bg-section);
+  border-color: var(--color-border-default);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
 }
 
 /* Special section ("Full-throated...") background */
 .special-section-bg {
-    background-color: #000000 !important;
-    border-color: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+  background-color: #000000 !important; /* Pure black for dark mode */
+  border-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 body.light-mode .special-section-bg {
-    background-color: #FFFFFF !important;
+  background-color: #FFFFFF !important; /* Pure white for light mode */
 }
 
 /* Glassmorphic Contact Card - emulates floating navbar */
@@ -232,7 +285,7 @@ body.light-mode .special-section-bg {
   background-color: var(--color-header-bg) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
-  border-color: transparent !important;
+  border-color: transparent !important; /* Override default border */
 }
 
 /* Stat Card and Number Animation */

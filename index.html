@@ -15,17 +15,15 @@
 
     <!-- Preconnects -->
     <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com">
+    <!-- Removed unused preconnect to google-analytics.com -->
 
     <!-- SEO, Social, and Schema Meta Tags -->
     <meta name="description" content="Prysmi delivers revenue-ready B2B marketing for tech founders. We build clear messaging, high-intent content strategies, and scalable systems that drive growth.">
     <meta name="author" content="Prysmi Media Labs">
     <meta name="theme-color" content="#FF53AC">
     <link rel="canonical" href="https://prysmi.com/">
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Libre+Franklin:wght@400;600;800;900&display=swap" rel="stylesheet"> -->
-
+    
+    <!-- Preload Fonts for faster rendering -->
     <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/libre-baskerville-v16-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
@@ -63,10 +61,34 @@
     }
     </script>
     
-    <!-- Scripts and Styles -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script> -->
+    <!-- INLINED CRITICAL CSS -->
+    <style>
+      /* Critical CSS has been inlined here for performance */
+      /* === Self-Hosted Fonts === */
+      @font-face {font-family: 'Libre Franklin';font-style: normal;font-weight: 400;font-display: swap;src: url('/assets/fonts/libre-franklin-v19-latin-regular.woff2') format('woff2');}
+      @font-face {font-family: 'Libre Franklin';font-style: normal;font-weight: 600;font-display: swap;src: url('/assets/fonts/libre-franklin-v19-latin-600.woff2') format('woff2');}
+      @font-face {font-family: 'Libre Franklin';font-style: normal;font-weight: 800;font-display: swap;src: url('/assets/fonts/libre-franklin-v19-latin-800.woff2') format('woff2');}
+      @font-face {font-family: 'Libre Franklin';font-style: normal;font-weight: 900;font-display: swap;src: url('/assets/fonts/libre-franklin-v19-latin-900.woff2') format('woff2');}
+      @font-face {font-family: 'Libre Baskerville';font-style: italic;font-weight: 400;font-display: swap;src: url('/assets/fonts/libre-baskerville-v16-latin-italic.woff2') format('woff2');}
+      
+      /* CSS Variables for Theming */
+      :root {--color-bg-body: #0A0A0A;--color-bg-section: rgba(26, 26, 26, 0.75);--color-text-primary: #E0E0E0;--color-text-heading: #FFFFFF;--color-border-default: #333;--color-accent-pink: #FF53AC;--color-accent-yellow: #EEFF41;--color-accent-lime: #EEFF41;--color-header-bg: rgba(10, 10, 10, 0.1);--color-header-sticky-bg: rgba(10, 10, 10, 0.4);--color-footer-bg: var(--color-bg-body);--color-footer-text: #A0A0A0;--color-footer-border: transparent;}
+      body.light-mode {--color-bg-body: #F5F5F5;--color-bg-section: rgba(255, 255, 255, 0.75);--color-text-primary: #333333;--color-text-heading: #0A0A0A;--color-border-default: #CCCCCC;--color-accent-lime: #FF53AC;--color-header-bg: rgba(255, 255, 255, 0.1);--color-header-sticky-bg: rgba(255, 255, 255, 0.4);--color-footer-bg: var(--color-bg-body);--color-footer-text: #555555;}
+      
+      /* Base styles */
+      body {font-family: 'Libre Franklin', sans-serif;background-color: var(--color-bg-body);color: var(--color-text-primary);overflow-x: hidden;margin: 0;transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;}
+      h1, h2, h3, h4, h5 {font-family: 'Libre Franklin', sans-serif;font-weight: 800;color: var(--color-text-heading);transition: color 0.3s ease-in-out;}
+      .text-emphasis-italic-bold {font-family: 'Libre Baskerville', serif;font-style: italic;font-weight: bold;}
+      
+      /* 3D Background Canvas */
+      #waving-dots-3d-background {position: fixed;top: 0;left: 0;width: 100vw;height: 100vh;z-index: -1;pointer-events: none;background-color: var(--color-bg-body);display: block;transition: background-color 0.3s ease-in-out;}
+      header, main, footer {position: relative;z-index: 1;}
+    </style>
 
+    <!-- Non-blocking stylesheet load -->
+    <link rel="preload" href="./style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="./style.css"></noscript>
+    
     <!-- Lazy-load Three.js -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -76,18 +98,6 @@
         document.head.appendChild(s);
       });
     </script>
-
-    
-    <link href="./style.css" rel="stylesheet">
-    <!-- Make stylesheet non-blocking -->
-    <!-- <link rel="preload" href="/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
-    <!-- <noscript><link rel="stylesheet" href="/style.css"></noscript> -->
-    <!-- Safer non-blocking stylesheet load -->
-    <!-- <link rel="stylesheet" href="./style.css" media="print" onload="this.media='all'"> -->
-    <!-- <noscript><link rel="stylesheet" href="./style.css"></noscript> -->
-    
-
-    
 </head>
 <body class="antialiased">
     <!-- Google Tag Manager (noscript) -->
@@ -160,6 +170,7 @@
             </div>
         </section>
 
+        <!-- The rest of your content remains the same -->
         <section id="about" class="py-16 md:py-24 rounded-xl shadow-2xl">
             <div class="text-center mb-12 px-4">
                 <p class="mt-4 text-lg fade-in-up">
@@ -599,16 +610,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

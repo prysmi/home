@@ -13,14 +13,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRYSMI Agency | Marketing That Works Like a Product</title>
 
+    <!-- Preconnects -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+
     <!-- SEO, Social, and Schema Meta Tags -->
     <meta name="description" content="Prysmi delivers revenue-ready B2B marketing for tech founders. We build clear messaging, high-intent content strategies, and scalable systems that drive growth.">
     <meta name="author" content="Prysmi Media Labs">
     <meta name="theme-color" content="#FF53AC">
     <link rel="canonical" href="https://prysmi.com/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Libre+Franklin:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Libre+Franklin:wght@400;600;800;900&display=swap" rel="stylesheet"> -->
+
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-baskerville-v16-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-900.woff2" as="font" type="font/woff2" crossorigin>
     
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Prysmi">
@@ -54,9 +64,30 @@
     </script>
     
     <!-- Scripts and Styles -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script> -->
+
+    <!-- Lazy-load Three.js -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const s = document.createElement("script");
+        s.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
+        s.defer = true;
+        document.head.appendChild(s);
+      });
+    </script>
+
+    
     <link href="./style.css" rel="stylesheet">
+    <!-- Make stylesheet non-blocking -->
+    <!-- <link rel="preload" href="/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
+    <!-- <noscript><link rel="stylesheet" href="/style.css"></noscript> -->
+    <!-- Safer non-blocking stylesheet load -->
+    <!-- <link rel="stylesheet" href="./style.css" media="print" onload="this.media='all'"> -->
+    <!-- <noscript><link rel="stylesheet" href="./style.css"></noscript> -->
+    
+
+    
 </head>
 <body class="antialiased">
     <!-- Google Tag Manager (noscript) -->
@@ -280,7 +311,7 @@
                 <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms"><span class="text-green-400 text-2xl mt-1">✅</span><p class="text-lg text-left">Revenue-aligned marketing in motion</p></div>
 
                 <div class="mt-12 text-center p-6 sm:p-8 rounded-xl shadow-xl fade-in-up special-section-bg">
-                    <h4 class="text-xl sm:text-2xl font-bold mb-4">Get <span class="text-emphasis-italic-bold">Full-throated, Experienced Answers</span><br> to any questions on Modern B2B Marketing.</h4>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4">Get <span class="text-emphasis-italic-bold">Full-throated, Experienced Answers</span><br> to any questions on Modern B2B Marketing.</h3>
                     <p class="text-lg mb-4 text-left mx-auto max-w-xl"><span class="text-emphasis-italic-bold">Half-measures</span> will no longer cut it. And <span class="text-emphasis-italic-bold">‘picture-perfect’</span> millennial marketing is giving people the ick.</p>
                     <p class="text-lg mb-4 text-left mx-auto max-w-xl">Grow your social presence consistently with <span class="text-emphasis-italic-bold">founder-led, in-person content</span> to show you have skin in the game.</p>
                     <p class="text-lg mb-4 text-left mx-auto max-w-xl">A post-AI internet now rewards pages, ads, and videos that actually <span class="text-emphasis-italic-bold">do something</span>, for example:</p>

@@ -377,4 +377,10 @@ input[type="submit"].text-\[\#f53196\]:not(:hover):not(:focus):not(:active) {
   color: #E60A70;
 }
 
-/* End of surgical overrides. */
+/* End of surgical overrides.
+   NOTES:
+   - No :hover/:focus/:active overrides are defined here, so your lime/black hovers
+     and glow classes keep working exactly as before.
+   - I intentionally kept specificity moderate and used :not(:hover):not(:focus):not(:active)
+     so these base states update while your hover/focus rules still win when active.
+*/

@@ -13,6 +13,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRYSMI Agency | Marketing That Works Like a Product</title>
 
+    <!-- Preconnects -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+
     <!-- SEO, Social, and Schema Meta Tags -->
     <meta name="description" content="Prysmi delivers revenue-ready B2B marketing for tech founders. We build clear messaging, high-intent content strategies, and scalable systems that drive growth.">
     <meta name="author" content="Prysmi Media Labs">
@@ -61,8 +65,25 @@
     
     <!-- Scripts and Styles -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-    <link href="./style.css" rel="stylesheet">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script> -->
+
+    <!-- Lazy-load Three.js -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const s = document.createElement("script");
+        s.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
+        s.defer = true;
+        document.head.appendChild(s);
+      });
+    </script>
+
+    
+    <!-- <link href="./style.css" rel="stylesheet"> -->
+    <!-- Make stylesheet non-blocking -->
+    <link rel="preload" href="/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/style.css"></noscript>
+
+    
 </head>
 <body class="antialiased">
     <!-- Google Tag Manager (noscript) -->
@@ -574,6 +595,7 @@
     </script>
 </body>
 </html>
+
 
 
 

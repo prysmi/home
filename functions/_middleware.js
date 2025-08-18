@@ -7,6 +7,8 @@ export async function onRequest(context) {
   // Clone the original response so we can modify headers
   const newResponse = new Response(response.body, response);
 
+  const url = new URL(context.request.url);
+
   // --- Static Security Headers ---
   newResponse.headers.set("Access-Control-Allow-Origin", "https://prysmi.com");
   newResponse.headers.set("X-Robots-Tag", "all");
@@ -22,6 +24,14 @@ export async function onRequest(context) {
   newResponse.headers.set("X-Frame-Options", "DENY");
   newResponse.headers.set("X-XSS-Protection", "1; mode=block");
 
+  // --- Long-term caching for fonts ---
+  if (url.pathname.startsWith("/assets/fonts/")) {
+    newResponse.headers.set(
+      "Cache-Control",
+      "public, max-age=31536000, immutable"
+    );
+  }
+
   // --- CSP for HTML pages only ---
   if (newResponse.headers.get("Content-Type")?.includes("text/html")) {
     const nonce = crypto.randomUUID();
@@ -29,8 +39,8 @@ export async function onRequest(context) {
     const csp = [
       "default-src 'self';",
       `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://prysmi.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js https://www.googletagmanager.com;`,
-      "style-src 'self';",               // ✅ Only your own CSS
-      "font-src 'self';",                // ✅ Only your self-hosted fonts
+      "style-src 'self';",
+      "font-src 'self';",
       "img-src 'self' data: raw.githubusercontent.com;",
       "frame-src 'self' https://www.googletagmanager.com;",
       "connect-src 'self' https://www.google-analytics.com;",

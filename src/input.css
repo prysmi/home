@@ -55,7 +55,7 @@
   --color-border-default: #333;
   --color-accent-pink: #FF53AC;
   --color-accent-yellow: #EEFF41;
-  --color-accent-lime: #EEFF41; /* This will be the one that changes */
+  --color-accent-lime: #EEFF41;
   --color-header-bg: rgba(10, 10, 10, 0.1);
   --color-header-sticky-bg: rgba(10, 10, 10, 0.4);
   --color-footer-bg: var(--color-bg-body);
@@ -70,7 +70,7 @@ body.light-mode {
   --color-text-primary: #333333;
   --color-text-heading: #0A0A0A;
   --color-border-default: #CCCCCC;
-  --color-accent-lime: #FF53AC; /* Lime becomes Pink in light mode */
+  --color-accent-lime: #FF53AC;
   --color-header-bg: rgba(255, 255, 255, 0.1);
   --color-header-sticky-bg: rgba(255, 255, 255, 0.4);
   --color-footer-bg: var(--color-bg-body);
@@ -103,6 +103,17 @@ h1, h2, h3, h4, h5 {
 /* Use a class for the lime color to handle the theme switch */
 .text-lime {
     color: var(--color-accent-lime);
+}
+
+/* Button modifications: accessible pink for buttons only */
+.button-white-pink {
+  background-color: #E60A70; /* was #F53196 */
+  color: #FFFFFF;
+}
+
+.button-pink-white {
+  background-color: #FFFFFF;
+  color: #E60A70; /* was #F53196 */
 }
 
 /* Desktop Header styles */
@@ -144,7 +155,7 @@ h1, h2, h3, h4, h5 {
                0 0 30px rgba(255, 83, 172, 0.5);
 }
 
-/* Button glows */
+/* Button glows (untouched) */
 .button-glow-pink:hover {
   box-shadow: 0 0 15px rgba(255, 83, 172, 0.8), 0 0 25px rgba(255, 83, 172, 0.6);
   transform: translateY(-2px);
@@ -206,23 +217,22 @@ header, main, footer {
 
 /* Special section ("Full-throated...") background */
 .special-section-bg {
-    background-color: #000000 !important; /* Pure black for dark mode */
+    background-color: #000000 !important;
     border-color: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
 
 body.light-mode .special-section-bg {
-    background-color: #FFFFFF !important; /* Pure white for light mode */
+    background-color: #FFFFFF !important;
 }
-
 
 /* Glassmorphic Contact Card - emulates floating navbar */
 .contact-card {
   background-color: var(--color-header-bg) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
-  border-color: transparent !important; /* Override default border */
+  border-color: transparent !important;
 }
 
 /* Stat Card and Number Animation */

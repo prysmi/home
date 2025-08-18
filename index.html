@@ -86,8 +86,21 @@
     </style>
 
     <!-- Non-blocking stylesheet load -->
-    <link rel="preload" href="./style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="./style.css"></noscript>
+    <!-- <link rel="preload" href="./style.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
+    <!-- <noscript><link rel="stylesheet" href="./style.css"></noscript> -->
+
+    <link id="main-css" rel="stylesheet" href="">
+
+    <script>
+      // JavaScript function to load the stylesheet
+      function loadCSS(href) {
+        const link = document.getElementById('main-css');
+        link.href = href;
+      }
+
+      // Call the function to load your stylesheet
+      loadCSS('./style.css');
+    </script>
     
     <!-- Lazy-load Three.js -->
     <script>
@@ -610,3 +623,4 @@
     </script>
 </body>
 </html>
+

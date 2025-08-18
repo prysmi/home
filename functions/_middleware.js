@@ -28,8 +28,8 @@ export async function onRequest(context) {
 
     const csp = [
       "default-src 'self';",
-      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' https://prysmi.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js;`,
-      "style-src 'self' fonts.googleapis.com 'sha256-Scgmef+PrV+zeVvlZq4r84BiJFFDVqo62lDGXLdgghY=';",
+      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://prysmi.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js https://www.googletagmanager.com;`,
+      "style-src 'self' fonts.googleapis.com;",
       "font-src 'self' fonts.gstatic.com;",
       "img-src 'self' data: raw.githubusercontent.com;",
       "frame-src 'self' https://www.googletagmanager.com;",

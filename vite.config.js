@@ -2,9 +2,12 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   build: {
-    outDir: 'dist',
     rollupOptions: {
-      input: 'index.html'
+      input: 'src/three-optimized.js',
+      output: {
+        entryFileNames: 'assets/[name].js',
+        format: 'es'
+      }
     }
   },
   base: './'

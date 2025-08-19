@@ -6,7 +6,8 @@
   "scripts": {
     "build-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
     "watch-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch",
-    "build": "npm run build-css && vite build",
+    "build-three": "vite build --outDir temp && mkdir -p dist/assets/js && cp temp/assets/*.js dist/assets/js/three-optimized.js",
+    "build": "npm run build-css && npm run build-three && mkdir -p dist && cp index.html dist/ && cp -r assets dist/ && cp -r public/* dist/",
     "dev": "vite",
     "start": "vite"
   },

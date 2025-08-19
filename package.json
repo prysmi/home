@@ -6,12 +6,16 @@
   "scripts": {
     "build-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
     "watch-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch",
-    "build": "npm run build-css",
-    "dev": "npm run watch-css",
-    "start": "npm run watch-css"
+    "build": "npm run build-css && vite build",
+    "dev": "vite",
+    "start": "vite"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.0"
+    "tailwindcss": "^3.4.0",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "three": "^0.167.1"
   },
   "keywords": [
     "tailwind",

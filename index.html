@@ -68,6 +68,9 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script> -->
 
     <!-- Lazy-load Three.js -->
+    
+      
+    <!-- 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const s = document.createElement("script");
@@ -75,8 +78,26 @@
         s.defer = true;
         document.head.appendChild(s);
       });
-    </script>
-
+    </script> 
+    -->
+    
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener('load', () => {
+      function loadThreeJS() {
+        import('./assets/js/three-optimized.js').then(() => {
+          // Module auto-initializes  
+        }).catch(error => {
+          console.error('Failed to load Three.js:', error);
+          const canvas = document.getElementById('waving-dots-3d-background');
+          if (canvas) canvas.style.display = 'none';
+        });
+      }
+      setTimeout(loadThreeJS, 100);
+    });
+  });
+</script>
+    
     
     <link href="./style.css" rel="stylesheet">
     <!-- Make stylesheet non-blocking -->
@@ -516,7 +537,7 @@
         });
 
         // --- Defer Three.js Background Animation for Performance ---
-        window.addEventListener('load', () => {
+/*      window.addEventListener('load', () => {
             function initializeThreeJSBackground() {
                 const canvas = document.getElementById('waving-dots-3d-background');
                 if (!canvas || !window.THREE) {
@@ -595,8 +616,9 @@
             }
             // A small delay to ensure the main thread is free
             setTimeout(initializeThreeJSBackground, 100);
-        });
+        }); */
     </script>
 </body>
 </html>
+
 

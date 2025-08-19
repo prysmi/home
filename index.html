@@ -150,7 +150,14 @@
         <nav id="main-nav" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center">
                 <a href="#hero" class="flex items-center" aria-label="PRYSMI Agency Home">
-                    <img src="assets/trademarks/logos/Pink Horizontal Logo TM.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
+<!--                <img src="assets/trademarks/logos/Pink Horizontal Logo TM.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto"
+onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">   -->
+                    <picture>
+                        <source media="(min-width: 768px)" srcset="assets/trademarks/logos/Pink Horizontal Logo TM.webp">
+    
+                        <img loading="lazy" width="150" height="50" src="assets/trademarks/logos/Pink Horizontal Logo TM.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
+                    </picture>
+
                 </a>
             </div>
             <div class="flex items-center">
@@ -622,7 +629,6 @@
     </script>
 </body>
 </html>
-
 
 
 

@@ -1,6 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRYSMI Agency | Marketing That Works Like a Product</title>
+
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com"> 
+
+      <!-- 1. Inline Critical CSS -->
+  <style>
+
+              /* Inlined @font-face rules from input.css */
+      @font-face {
+        font-family: 'Libre Franklin'; font-style: normal; font-weight: 400; font-display: swap;
+        src: url('/assets/fonts/libre-franklin-v19-latin-regular.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Libre Franklin'; font-style: normal; font-weight: 800; font-display: swap;
+        src: url('/assets/fonts/libre-franklin-v19-latin-800.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Libre Baskerville'; font-style: italic; font-weight: 400; font-display: swap;
+        src: url('/assets/fonts/libre-baskerville-v16-latin-italic.woff2') format('woff2');
+      }
+
+      /* Define CSS Variables for themes first */
+      :root {
+        --color-bg-body: #0A0A0A;
+        --color-text-primary: #E0E0E0;
+        --color-text-heading: #FFFFFF;
+      }
+      body.light-mode {
+        --color-bg-body: #F5F5F5;
+        --color-text-primary: #333333;
+        --color-text-heading: #0A0A0A;
+      }
+
+      /* Basic structural & typographic styles */
+      body {
+        font-family: 'Libre Franklin', sans-serif;
+        background-color: var(--color-bg-body);
+        color: var(--color-text-primary);
+        overflow-x: hidden; margin: 0;
+      }
+      h1, h2, h3, h4, h5 {
+        font-family: 'Libre Franklin', sans-serif;
+        font-weight: 800;
+        color: var(--color-text-heading);
+      }
+  
+      /* Canvas background placeholder */
+      #waving-dots-3d-background {
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        z-index: -1; pointer-events: none;
+        background-color: var(--color-bg-body);
+      }
+      header, main, footer { position: relative; z-index: 1; }
+
+  </style>
+
     <!-- Google Tag Manager -->
     <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -9,13 +69,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-K4LQMJGW');</script>
     <!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRYSMI Agency | Marketing That Works Like a Product</title>
-
-    <!-- Preconnects
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com">  -->
+    
 
     <!-- SEO, Social, and Schema Meta Tags -->
     <meta name="description" content="Prysmi delivers revenue-ready B2B marketing for tech founders. We build clear messaging, high-intent content strategies, and scalable systems that drive growth.">
@@ -81,6 +135,8 @@
       });
     </script> 
 
+-->
+
 <!--
 
 <script>
@@ -103,7 +159,7 @@
 -->
  
     
-    <link href="./style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <!-- Make stylesheet non-blocking -->
     <!-- <link rel="preload" href="/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
     <!-- <noscript><link rel="stylesheet" href="/style.css"></noscript> -->
@@ -551,11 +607,12 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
     </script>
 
-    <script src="./animation.bundle.js" defer></script>
+    <script src="animation.bundle.js" defer></script>
 
 
 </body>
 </html>
+
 
 
 

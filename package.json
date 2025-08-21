@@ -5,13 +5,21 @@
   "main": "index.html",
   "scripts": {
     "build-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
+    "build-js": "rollup -c",
+    "build": "npm run build-css && npm run build-js && mkdir -p dist && cp index.html dist/ && cp -r assets dist/ && cp -r public/* dist/",
     "watch-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch",
-    "build": "npm run build-css",
     "dev": "npm run watch-css",
-    "start": "npm run watch-css"
+    "start": "live-server"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.0"
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "autoprefixer": "^10.4.21",
+    "live-server": "^1.2.2",
+    "postcss": "^8.5.6",
+    "rollup": "^2.79.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "tailwindcss": "^3.4.17",
+    "three": "^0.179.1"
   },
   "keywords": [
     "tailwind",

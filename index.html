@@ -88,7 +88,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('load', () => {
       function loadThreeJS() {
-        import('./assets/js/three-optimized.js').then(() => {
+        import('./animation.bundle.js').then(() => {
           // Module auto-initializes
         }).catch(error => {
           console.error('Failed to load Three.js:', error);
@@ -552,6 +552,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
 </body>
 </html>
+
 
 
 

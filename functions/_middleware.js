@@ -1,21 +1,21 @@
 // functions/_middleware.js
 
 export async function onRequest(context) {
-  // Fetch the original page from the project assets
+  // Fetch the original page
   const response = await context.env.ASSETS.fetch(context.request);
   let html = await response.text();
 
   // Generate a unique nonce for each request
   const nonce = crypto.randomUUID();
 
-  // Add the nonce to all script tags
+  // Add the nonce to all script tags for a strict CSP
   html = html.replace(/<script/g, `<script nonce="${nonce}"`);
 
   // --- STRICT CONTENT SECURITY POLICY (CSP) ---
   const csp = [
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com`,
-    "style-src 'self' 'unsafe-inline'", // 'unsafe-inline' is generally acceptable for styles
+    "style-src 'self' 'unsafe-inline'",
     "font-src 'self' data:",
     "img-src 'self' data: raw.githubusercontent.com",
     "frame-src 'self' https://www.googletagmanager.com",
@@ -25,7 +25,7 @@ export async function onRequest(context) {
     "form-action 'self'",
   ].join('; ');
 
-  // Create a new response with the modified HTML and security headers
+  // Create a new response
   const newResponse = new Response(html, response);
 
   // --- SET ALL SECURITY HEADERS ---
@@ -35,7 +35,11 @@ export async function onRequest(context) {
   newResponse.headers.set('X-Frame-Options', 'DENY');
   newResponse.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   newResponse.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
-  
+
+  // --- THIS IS THE FIX ---
+  // Replace the wildcard with your specific domain for a stricter CORS policy.
+  newResponse.headers.set('Access-Control-Allow-Origin', 'https://prysmi.com');
+
   // Set cache control for the HTML page
   newResponse.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
 

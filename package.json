@@ -7,7 +7,7 @@
     "clean": "rimraf dist",
     "build-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
     "build-js": "rollup -c",
-    "copy-files": "copyfiles index.html dist && copyfiles -u 1 \"assets/**/*\" dist/assets && copyfiles -f \"public/**/*\" dist",
+    "copy-files": "copyfiles index.html dist && copyfiles -u 1 \"assets/fonts/**/*\" dist/assets && copyfiles -u 1 \"assets/trademarks/**/*\" dist/assets && copyfiles -f \"public/**/*\" dist",
     "build": "npm-run-all clean -p build-css build-js -s copy-files && node inline-css.js",
     "watch-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch",
     "dev": "npm-run-all -p watch-css start",

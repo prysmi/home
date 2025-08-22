@@ -606,26 +606,42 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
     <script src="animation.bundle.js" defer></script>
 
-    <!-- Google Tag Manager -->
     <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-K4LQMJGW');</script>
-    <!-- End Google Tag Manager -->
+      const loadGTM = () => {
+        const gtmScript = document.createElement('script');
+        gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-K4LQMJGW');`;
+        document.head.appendChild(gtmScript);
 
+        const gtmNoScript = document.createElement('noscript');
+        const iframe = document.createElement('iframe');
+        iframe.src = "https://www.googletagmanager.com/ns.html?id=GTM-K4LQMJGW";
+        iframe.height = "0";
+        iframe.width = "0";
+        iframe.style.display = "none";
+        iframe.style.visibility = "hidden";
+        gtmNoScript.appendChild(iframe);
+        document.body.insertBefore(gtmNoScript, document.body.firstChild);
+        
+        // Remove the event listeners after GTM is loaded
+        ['scroll', 'mousemove', 'touchstart'].forEach(event => 
+          window.removeEventListener(event, loadGTM, { passive: true })
+        );
+      };
+      // Add event listeners to trigger GTM load on first interaction
+      ['scroll', 'mousemove', 'touchstart'].forEach(event => 
+        window.addEventListener(event, loadGTM, { once: true, passive: true })
+      );
+    </script>
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4LQMJGW"
-      height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
 
 </body>
 </html>
+
 
 
 

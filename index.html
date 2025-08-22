@@ -106,7 +106,7 @@
       "@type": "Organization",
       "name": "Prysmi",
       "url": "https://prysmi.com/",
-      "logo": "https://prysmi.com/assets/trademarks/logos/Pink%20Horizontal%20Logo%20TM.webp",
+      "logo": "https://prysmi.com/assets/trademarks/logos/logo-horizontal-pink.webp",
       "description": "Prysmi is a B2B marketing consultancy that builds revenue-ready marketing systems for tech founders, focusing on messaging clarity, high-intent search, and conversion-optimized content.",
       "founder": {
         "@type": "Person",
@@ -181,7 +181,7 @@
     <div class="md:hidden">
         <!-- Mobile Nav Toggle Button -->
         <button id="mobile-nav-toggle" class="fixed top-4 left-4 z-[60] w-14 h-14 p-2 bg-black/50 backdrop-blur-md rounded-xl shadow-lg flex items-center justify-center" aria-label="Open navigation menu">
-            <img src="assets/trademarks/logos/Pink Vertical LogoMark Without TM.webp" alt="Prysmi Logo" class="w-10 h-10 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FF53AC/FFFFFF?text=P';">
+            <img src="assets/trademarks/logos/logo-vertical-pink.webp" alt="Prysmi Logo" class="w-10 h-10 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FF53AC/FFFFFF?text=P';">
         </button>
 
         <!-- Mobile Nav Panel (Slide-out) -->
@@ -208,9 +208,9 @@
 <!--                <img src="assets/trademarks/logos/Pink Horizontal Logo TM.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto"
 onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">   -->
                     <picture>
-                        <source media="(min-width: 768px)" srcset="assets/trademarks/logos/Pink Horizontal Logo TM.webp">
+                        <source media="(min-width: 768px)" srcset="assets/trademarks/logos/logo-horizontal-pink.webp">
     
-                        <img loading="lazy" width="150" height="50" src="assets/trademarks/logos/Pink Horizontal Logo TM.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
+                        <img loading="lazy" width="150" height="50" src="assets/trademarks/logos/logo-horizontal-pink.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
                     </picture>
 
                 </a>
@@ -481,7 +481,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
     <footer class="py-6 text-center mt-16">
         <div class="flex justify-center mb-0">
-            <img id="footer-logo" loading="lazy" src="assets/trademarks/logos/White Horizontal Logo TM.webp" alt="PRYSMI Agency White Logo" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+White+Logo';">
+            <img id="footer-logo" loading="lazy" src="assets/trademarks/logos/logo-horizontal-white.webp" alt="PRYSMI Agency White Logo" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+White+Logo';">
         </div>
         <p class="mt-2 text-sm">&copy; <span id="currentYear"></span> PRYSMI Media Labs. All rights reserved.</p>
     </footer>
@@ -589,8 +589,8 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
             function setTheme(isLight) {
                 document.body.classList.toggle('light-mode', isLight);
                 if (themeSymbol) themeSymbol.textContent = isLight ? '☾' : '☀';
-                if (footerLogo) footerLogo.src = isLight ? 'assets/trademarks/logos/Black Horizontal Logo TM.webp' : 'assets/trademarks/logos/White Horizontal Logo TM.webp';
-                if (mobileNavLogo) mobileNavLogo.src = isLight ? 'assets/trademarks/logos/Pink Vertical LogoMark Without TM.webp' : 'assets/trademarks/logos/Pink Vertical LogoMark Without TM.webp';
+                if (footerLogo) footerLogo.src = isLight ? 'assets/trademarks/logos/logo-horizontal-black.webp' : 'assets/trademarks/logos/logo-horizontal-white.webp';
+                if (mobileNavLogo) mobileNavLogo.src = isLight ? 'assets/trademarks/logos/logo-vertical-pink.webp' : 'assets/trademarks/logos/logo-vertical-pink.webp';
                 localStorage.setItem('theme', isLight ? 'light' : 'dark');
                 if (window.updateThreeJSColors) window.updateThreeJSColors();
             }
@@ -641,6 +641,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
 </body>
 </html>
+
 
 
 

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const offscreenCanvas = canvas.transferControlToOffscreen();
             const worker = new Worker('animation.worker.bundle.js', { type: 'module' });
 
+            // Initial message to the worker
             worker.postMessage({
                 canvas: offscreenCanvas,
                 width: window.innerWidth,
@@ -14,22 +15,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 theme: document.body.classList.contains('light-mode') ? 'light' : 'dark'
             }, [offscreenCanvas]);
 
+            // Function to send theme updates
             const updateTheme = () => {
                 const theme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
                 worker.postMessage({ theme: theme });
             };
 
+            // --- THIS IS THE FIX ---
+            // The logic is wrapped in requestAnimationFrame to prevent forced reflow.
+            // This ensures layout reads (innerWidth/Height) happen at the most
+            // optimal time in the browser's rendering cycle.
             const resizeHandler = () => {
-                worker.postMessage({
-                    resize: {
-                        width: window.innerWidth,
-                        height: window.innerHeight
-                    } // <-- This closing brace was missing
+                requestAnimationFrame(() => {
+                    worker.postMessage({
+                        resize: {
+                            width: window.innerWidth,
+                            height: window.innerHeight
+                        }
+                    });
                 });
             };
 
+            // Event listeners
             new MutationObserver(updateTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
             window.addEventListener('resize', resizeHandler, false);
+
         } catch (error) {
             console.error('Failed to initialize OffscreenCanvas worker:', error);
             if (canvas) canvas.style.display = 'none';

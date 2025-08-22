@@ -7,12 +7,14 @@
     "clean": "rimraf dist",
     "build-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
     "build-js": "rollup -c",
-    "copy-static": "copyfiles -u 1 \"public/**/*\" dist && copyfiles index.html dist",
-    "build": "npm-run-all clean -p build-css build-js -s copy-static && node inline-css.js",
+    "copy-assets": "copyfiles -u 1 \"assets/**/*\" dist/assets && copyfiles index.html dist",
+    "list-files": "ls -R dist",
+    "build": "npm-run-all clean -p build-css build-js -s copy-assets && node inline-css.js && npm run list-files",
     "watch-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch",
     "dev": "npm-run-all -p watch-css start",
     "start": "live-server dist"
   },
+ 
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^16.0.1",
     "autoprefixer": "^10.4.21",

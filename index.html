@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.google-analytics.com"> 
     
-      <!--  Hey look, Inline Critical CSS -->
+      <!-- 1. Inline Critical CSS -->
 
     <!--
   <style>
@@ -84,11 +84,11 @@
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Libre+Franklin:wght@400;600;800;900&display=swap" rel="stylesheet"> -->
 
-    <link rel="preload" href="libre-franklin-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="libre-franklin-v19-latin-600.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="libre-baskerville-v16-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="libre-franklin-v19-latin-800.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="libre-franklin-v19-latin-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-baskerville-v16-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-900.woff2" as="font" type="font/woff2" crossorigin>
     
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Prysmi">
@@ -110,7 +110,7 @@
       "@type": "Organization",
       "name": "Prysmi",
       "url": "https://prysmi.com/",
-      "logo": "https://prysmi.com/logo-horizontal-pink.webp",
+      "logo": "https://prysmi.com/assets/trademarks/logos/logo-horizontal-pink.webp",
       "description": "Prysmi is a B2B marketing consultancy that builds revenue-ready marketing systems for tech founders, focusing on messaging clarity, high-intent search, and conversion-optimized content.",
       "founder": {
         "@type": "Person",
@@ -185,7 +185,7 @@
     <div class="md:hidden">
         <!-- Mobile Nav Toggle Button -->
         <button id="mobile-nav-toggle" class="fixed top-4 left-4 z-[60] w-14 h-14 p-2 bg-black/50 backdrop-blur-md rounded-xl shadow-lg flex items-center justify-center" aria-label="Open navigation menu">
-            <img src="logo-vertical-pink.webp" alt="Prysmi Logo" class="w-10 h-10 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FF53AC/FFFFFF?text=P';">
+            <img src="assets/trademarks/logos/logo-vertical-pink.webp" alt="Prysmi Logo" class="w-10 h-10 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FF53AC/FFFFFF?text=P';">
         </button>
 
         <!-- Mobile Nav Panel (Slide-out) -->
@@ -212,7 +212,7 @@
 <!--                <img src="assets/trademarks/logos/Pink Horizontal Logo TM.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto"
 onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">   -->
                     <picture>
-                        <source media="(min-width: 768px)" srcset="logo-horizontal-pink.webp">
+                        <source media="(min-width: 768px)" srcset="assets/trademarks/logos/logo-horizontal-pink.webp">
     
                         <img loading="lazy" width="150" height="50" src="assets/trademarks/logos/logo-horizontal-pink.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
                     </picture>
@@ -333,7 +333,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
                         <p class="mb-4">You'll get complete documentation: personas, positioning, sales objections, and messaging audits, so every team speaks the same language.</p>
                     </div>
                     <div class="md:w-1/2 flex justify-center">
-                        <img loading="lazy" decoding="async" src="step_1.webp" alt="A founder and strategist at a whiteboard, removing sticky notes labeled “fluff,” “jargon,” and “features” : leaving only sticky notes labeled “impact,” and “aha.”" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
+                        <img loading="lazy" decoding="async" src="assets/illustrations/methodology/step_1.webp" alt="A founder and strategist at a whiteboard, removing sticky notes labeled “fluff,” “jargon,” and “features” : leaving only sticky notes labeled “impact,” and “aha.”" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
                     </div>
                 </div>
 
@@ -345,7 +345,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
                         <p class="mb-4">Think: pillar-spoke models, keyword matrices, AppExchange search patterns, and high-relevance triggers that make you findable and clickable.</p>
                     </div>
                     <div class="md:w-1/2 flex justify-center">
-                        <img loading="lazy" decoding="async" src="step_2.webp" alt="A search engine heatmap zooms in on buyer intent clusters; a content strategist is re-routing arrows to align site structure with intent." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
+                        <img loading="lazy" decoding="async" src="assets/illustrations/methodology/step_2.webp" alt="A search engine heatmap zooms in on buyer intent clusters; a content strategist is re-routing arrows to align site structure with intent." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
                     </div>
                 </div>
 
@@ -357,7 +357,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
                         <p class="mb-4">At the center is a single-source-of-truth messaging document and new content assets like sales sheets, one-pagers, and objection handlers.</p>
                     </div>
                     <div class="md:w-1/2 flex justify-center">
-                        <img loading="lazy" decoding="async" src="step_3.webp" alt="A website wireframes overlaid with funnel stages (problem-aware to decision), with a founder walking through them like a corridor with signposts." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
+                        <img loading="lazy" decoding="async" src="assets/illustrations/methodology/step_3.webp" alt="A website wireframes overlaid with funnel stages (problem-aware to decision), with a founder walking through them like a corridor with signposts." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
                     </div>
                 </div>
 
@@ -369,7 +369,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
                         <p class="mb-4">From sales enablement templates and landing page systems to testimonial kits, email frameworks, and SEO content generators, we hand you the tools to create high-leverage content, fast and consistently. Oh, and your AppExchange listing? Consider it optimized, too.</p>
                     </div>
                     <div class="md:w-1/2 flex justify-center">
-                        <img loading="lazy" decoding="async" src="step_4.webp" alt="A visual stack of labeled kits: “Objection Handler Deck,” “Positioning Matrix,” “Case Study Generator,” “Founder Post Format.” A team member clicks 'duplicate, customize, publish.'" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
+                        <img loading="lazy" decoding="async" src="assets/illustrations/methodology/step_4.webp" alt="A visual stack of labeled kits: “Objection Handler Deck,” “Positioning Matrix,” “Case Study Generator,” “Founder Post Format.” A team member clicks 'duplicate, customize, publish.'" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
                     </div>
                 </div>
 
@@ -381,7 +381,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
                         <p class="mb-4">Ongoing performance audits, optimization reports, and weekly sales-alignment loops keep everything sharp. This is where momentum becomes your marketing baseline.</p>
                     </div>
                     <div class="md:w-1/2 flex justify-center">
-                        <img loading="lazy" decoding="async" src="step_5.webp" alt="A polished, live dashboard showing “Messaging Live,” “AppExchange Revamp,” “LinkedIn Engine ON” and a small team high-fiving over a spike in MQLs." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
+                        <img loading="lazy" decoding="async" src="assets/illustrations/methodology/step_5.webp" alt="A polished, live dashboard showing “Messaging Live,” “AppExchange Revamp,” “LinkedIn Engine ON” and a small team high-fiving over a spike in MQLs." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
                     </div>
                 </div>
             </div>
@@ -414,7 +414,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
                     <h3 class="text-2xl sm:text-3xl font-black mt-8 mb-2">Meet Prabhjot Singh</h3>
                     <p class="text-lg mb-6">Fractional B2B Content & Media Head</p>
-                    <img loading="lazy" decoding="async" src="profile_photo_1.webp" alt="Prabhjot Singh, Founder of PRYSMI Agency" class="w-48 h-48 sm:w-80 sm:h-80 object-cover rounded-xl mx-auto shadow-md mb-6" onerror="this.onerror=null;this.src='https://placehold.co/200x200/0A0A0A/E0E0E0?text=Prabhjot+Singh';">
+                    <img loading="lazy" decoding="async" src="assets/profiles/leadership/profile_photo_1.webp" alt="Prabhjot Singh, Founder of PRYSMI Agency" class="w-48 h-48 sm:w-80 sm:h-80 object-cover rounded-xl mx-auto shadow-md mb-6" onerror="this.onerror=null;this.src='https://placehold.co/200x200/0A0A0A/E0E0E0?text=Prabhjot+Singh';">
                     <ul class="list-none text-center mb-6 space-y-2 max-w-xl mx-auto text-sm sm:text-base">
                         <li class="text-left">&#10033; 7 years leading Brand Strategy, BoFu, SEO, and more for B2B SaaS worth 200Cr+. &#10033;</li>
                         <li class="text-left">&#10033; Specialist in SEO, brand positioning, emails, video & collaborative expert-driven content. &#10033;</li>
@@ -425,12 +425,12 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
                         <p class="text-lg mb-8 max-w-xl mx-auto fade-in-up">Trusted by leading B2B IT consultancies for marketing their key products and services.</p>
                         <div class="max-w-5xl mx-auto space-y-6">
                             <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 fade-in-up">
-                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-40 h-24 sm:w-48 sm:h-28"><img loading="lazy" decoding="async" src="360_degree_cloud_logo.webp" alt="360 Degree Cloud Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+Cloud';"></div>
-                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-40 h-24 sm:w-48 sm:h-28"><img loading="lazy" decoding="async" src="360_sms_app_logo.webp" alt="360 SMS App Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+SMS';"></div>
+                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-40 h-24 sm:w-48 sm:h-28"><img loading="lazy" decoding="async" src="assets/clients/logos/360_degree_cloud_logo.webp" alt="360 Degree Cloud Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+Cloud';"></div>
+                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-40 h-24 sm:w-48 sm:h-28"><img loading="lazy" decoding="async" src="assets/clients/logos/360_sms_app_logo.webp" alt="360 SMS App Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+SMS';"></div>
                             </div>
                             <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 fade-in-up">
-                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-40 h-24 sm:w-48 sm:h-28"><img loading="lazy" decoding="async" src="360_cti_logo.webp" alt="360 CTI Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+CTI';"></div>
-                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-40 h-24 sm:w-48 sm:h-28"><img loading="lazy" decoding="async" src="360_verify_the_email_logo.webp" alt="360 Verify The Email Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+Verify';"></div>
+                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-40 h-24 sm:w-48 sm:h-28"><img loading="lazy" decoding="async" src="assets/clients/logos/360_cti_logo.webp" alt="360 CTI Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+CTI';"></div>
+                                <div class="group bg-white rounded-xl shadow-lg flex items-center justify-center p-4 transform hover:scale-105 transition-all duration-300 w-40 h-24 sm:w-48 sm:h-28"><img loading="lazy" decoding="async" src="assets/clients/logos/360_verify_the_email_logo.webp" alt="360 Verify The Email Logo" class="h-full w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFFFFF/333333?text=360+Verify';"></div>
                             </div>
                         </div>
                     </div>
@@ -485,7 +485,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
     <footer class="py-6 text-center mt-16">
         <div class="flex justify-center mb-0">
-            <img id="footer-logo" loading="lazy" src="logo-horizontal-white.webp" alt="PRYSMI Agency White Logo" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+White+Logo';">
+            <img id="footer-logo" loading="lazy" src="assets/trademarks/logos/logo-horizontal-white.webp" alt="PRYSMI Agency White Logo" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+White+Logo';">
         </div>
         <p class="mt-2 text-sm">&copy; <span id="currentYear"></span> PRYSMI Media Labs. All rights reserved.</p>
     </footer>
@@ -593,8 +593,8 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
             function setTheme(isLight) {
                 document.body.classList.toggle('light-mode', isLight);
                 if (themeSymbol) themeSymbol.textContent = isLight ? '☾' : '☀';
-                if (footerLogo) footerLogo.src = isLight ? 'logo-horizontal-black.webp' : 'logo-horizontal-white.webp';
-                if (mobileNavLogo) mobileNavLogo.src = isLight ? 'logo-vertical-pink.webp' : 'logo-vertical-pink.webp';
+                if (footerLogo) footerLogo.src = isLight ? 'assets/trademarks/logos/logo-horizontal-black.webp' : 'assets/trademarks/logos/logo-horizontal-white.webp';
+                if (mobileNavLogo) mobileNavLogo.src = isLight ? 'assets/trademarks/logos/logo-vertical-pink.webp' : 'assets/trademarks/logos/logo-vertical-pink.webp';
                 localStorage.setItem('theme', isLight ? 'light' : 'dark');
                 if (window.updateThreeJSColors) window.updateThreeJSColors();
             }
@@ -645,8 +645,6 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
 </body>
 </html>
-
-
 
 
 

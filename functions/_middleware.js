@@ -1,5 +1,5 @@
 // functions/_middleware.js
-
+/*
 export async function onRequest(context) {
   // Fetch the original page
   const response = await context.env.ASSETS.fetch(context.request);
@@ -45,3 +45,4 @@ export async function onRequest(context) {
 
   return newResponse;
 }
+*/

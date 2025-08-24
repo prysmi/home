@@ -9,7 +9,7 @@
     "build-js": "rollup -c",
     "copy-assets": "copyfiles -u 1 \"assets/**/*\" dist/assets && copyfiles index.html dist && copyfiles -f public/* dist && copyfiles -R functions dist",
     "list-files": "ls -R dist",
-    "build": "npm-run-all clean -p build-css build-js -s copy-assets && node inline-css.js && npm run list-files",
+    "build": "npm-run-all clean -p build-css build-js -s copy-assets && npm run list-files",
     "watch-css": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch",
     "dev": "npm-run-all -p watch-css start",
     "start": "live-server dist"

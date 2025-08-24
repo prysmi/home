@@ -17,3 +17,4 @@ Disallow:
 
 # Location of the sitemap file
 Sitemap: https://prysmi.com/sitemap.xml
+

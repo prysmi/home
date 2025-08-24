@@ -1,0 +1,386 @@
+/* === Self-Hosted Fonts === */
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/libre-franklin-v19-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/libre-franklin-v19-latin-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/assets/fonts/libre-franklin-v19-latin-800.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/assets/fonts/libre-franklin-v19-latin-900.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/libre-baskerville-v16-latin-italic.woff2') format('woff2');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for PRYSMI website */
+
+/* CSS Variables for Theming */
+:root {
+  /* Dark Mode Defaults */
+  --color-bg-body: #0A0A0A;
+  --color-bg-section: rgba(26, 26, 26, 0.75);
+  --color-text-primary: #E0E0E0;
+  --color-text-heading: #FFFFFF;
+  --color-border-default: #333;
+  --color-accent-pink: #FF53AC;
+  --color-accent-yellow: #EEFF41;
+  --color-accent-lime: #EEFF41; /* This will be the one that changes */
+  --color-header-bg: rgba(10, 10, 10, 0.1);
+  --color-header-sticky-bg: rgba(10, 10, 10, 0.4);
+  --color-footer-bg: var(--color-bg-body);
+  --color-footer-text: #A0A0A0;
+  --color-footer-border: transparent;
+}
+
+body.light-mode {
+  /* Light Mode Overrides */
+  --color-bg-body: #F5F5F5;
+  --color-bg-section: rgba(255, 255, 255, 0.75);
+  --color-text-primary: #333333;
+  --color-text-heading: #0A0A0A;
+  --color-border-default: #CCCCCC;
+  --color-accent-lime: #FF53AC; /* Lime becomes Pink in light mode */
+  --color-header-bg: rgba(255, 255, 255, 0.1);
+  --color-header-sticky-bg: rgba(255, 255, 255, 0.4);
+  --color-footer-bg: var(--color-bg-body);
+  --color-footer-text: #555555;
+}
+
+/* Base styles */
+body {
+  font-family: 'Libre Franklin', sans-serif;
+  background-color: var(--color-bg-body);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  margin: 0;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: 800;
+  color: var(--color-text-heading);
+  transition: color 0.3s ease-in-out;
+}
+
+.text-emphasis-italic-bold {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* Use a class for the lime color to handle the theme switch */
+.text-lime {
+    color: var(--color-accent-lime);
+}
+
+/* Desktop Header styles */
+#main-header {
+    background-color: var(--color-header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s ease-in-out;
+}
+
+#main-header.scrolled {
+  background-color: var(--color-header-sticky-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 72rem;
+  top: 1rem;
+}
+
+.nav-link {
+  color: var(--color-text-primary);
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: var(--color-accent-pink);
+}
+
+.nav-link.active {
+  font-weight: 600;
+  color: var(--color-text-heading);
+  position: relative;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9),
+               0 0 20px rgba(255, 255, 255, 0.7),
+               0 0 30px rgba(255, 83, 172, 0.5);
+}
+
+/* Button glows */
+.button-glow-pink:hover {
+  box-shadow: 0 0 15px rgba(255, 83, 172, 0.8), 0 0 25px rgba(255, 83, 172, 0.6);
+  transform: translateY(-2px);
+}
+.button-glow-cta:hover {
+  box-shadow: 0 0 15px rgba(238, 255, 65, 0.8), 0 0 25px rgba(238, 255, 65, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Fade-in animation */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.fade-in-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-up.is-visible.delay-200ms { transition-delay: 0.2s; }
+.fade-in-up.is-visible.delay-400ms { transition-delay: 0.4s; }
+
+/* 3D Background Canvas */
+#waving-dots-3d-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--color-bg-body);
+  display: block;
+  transition: background-color 0.3s ease-in-out;
+}
+
+header, main, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero title glow */
+@keyframes pulseGlow {
+  0%, 100% { text-shadow: 0 0 7px rgba(255, 255, 255, 0.7), 0 0 14px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 83, 172, 0.3), 0 0 30px rgba(255, 83, 172, 0.2); }
+  50% { text-shadow: 0 0 14px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 83, 172, 0.5), 0 0 45px rgba(255, 83, 172, 0.3); }
+}
+.hero-title-glow {
+  animation: pulseGlow 3.5s infinite ease-in-out;
+}
+
+/* Original Sections background and border */
+#about, #process, .p-6.rounded-xl.shadow-lg.border {
+    background-color: var(--color-bg-section);
+    border-color: var(--color-border-default);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+}
+
+/* Special section ("Full-throated...") background */
+.special-section-bg {
+    background-color: #000000 !important; /* Pure black for dark mode */
+    border-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+body.light-mode .special-section-bg {
+    background-color: #FFFFFF !important;
+}
+
+
+/* Glassmorphic Contact Card - emulates floating navbar */
+.contact-card {
+  background-color: var(--color-header-bg) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: transparent !important; /* Override default border */
+}
+
+/* Stat Card and Number Animation */
+.stat-card {
+  @apply p-5 rounded-lg shadow-md border-none flex flex-col justify-between transform hover:scale-[1.02] transition-transform duration-300 min-h-[140px];
+  background-color: var(--color-accent-pink);
+  color: #FFFFFF;
+}
+.stat-card h5, .stat-card p, .stat-card .stat-number {
+  color: #FFFFFF !important;
+}
+
+.stat-number {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.stat-number.is-visible {
+  opacity: 1;
+}
+
+/* Footer logo */
+.footer-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* Floating Action Buttons */
+#back-to-top, #theme-toggle {
+  position: fixed;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  z-index: 900;
+}
+#back-to-top {
+  bottom: 20px;
+  background-color: var(--color-accent-pink);
+  color: white;
+  font-size: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+}
+#theme-toggle {
+  bottom: 75px;
+  background-color: transparent;
+  border: 1px solid var(--color-text-primary);
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+}
+#back-to-top:hover {
+  background-color: var(--color-accent-yellow);
+  color: #1A1A1A;
+  transform: translateY(-2px);
+}
+#theme-toggle:hover {
+  background-color: var(--color-accent-pink);
+  border-color: var(--color-accent-pink);
+  color: white;
+}
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  border-top: 1px solid var(--color-footer-border);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+
+/* ======================================================
+   SURGICAL BUTTON-ONLY OVERRIDES
+   - Only affects button-ish elements
+   - Only changes the specific combos you asked for
+   - Uses :not(:hover):not(:focus):not(:active) so hover
+     (lime/black), glows and focus styles remain untouched
+   - Accessible pink used: #E60A70
+   ====================================================== */
+
+/* 1) Buttons that used pink-bg (#F53196) + text-white
+   -> change pink background to #E60A70, keep white text
+*/
+button.bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
+.btn.bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
+.button.bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
+a[role="button"].bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
+a.btn.bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
+input[type="submit"].bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
+/* lowercase variant */
+button.bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
+.btn.bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
+.button.bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
+a[role="button"].bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
+a.btn.bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
+input[type="submit"].bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
+/* inline style background cases with explicit white text */
+button[style*="#F53196"].text-white:not(:hover):not(:focus):not(:active),
+button[style*="#f53196"].text-white:not(:hover):not(:focus):not(:active),
+input[type="submit"][style*="#F53196"].text-white:not(:hover):not(:focus):not(:active),
+input[type="submit"][style*="#f53196"].text-white:not(:hover):not(:focus):not(:active),
+a[role="button"][style*="#F53196"].text-white:not(:hover):not(:focus):not(:active),
+a[role="button"][style*="#f53196"].text-white:not(:hover):not(:focus):not(:active) {
+  background-color: #E60A70;
+  color: #FFFFFF; /* keep white text */
+}
+
+/* 2) Buttons that are white-bg + pink-text (bg-white + text-[#F53196])
+   -> keep white background, change text color to #E60A70
+*/
+button.bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+.btn.bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+.button.bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+a[role="button"].bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+a.btn.bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+input[type="submit"].bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+/* lowercase */
+button.bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
+.btn.bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
+.button.bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
+a[role="button"].bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
+a.btn.bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
+input[type="submit"].bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active) {
+  color: #E60A70;
+}
+
+/* 3) Safety net: any button-ish element that uses text-[#F53196]
+   (but not hovered/focused/active) -> change text to #E60A70.
+   This ensures button text utilities using the hex get replaced.
+*/
+button.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+.btn.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+.button.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+a[role="button"].text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+a.btn.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+input[type="submit"].text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
+/* lowercase */
+button.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
+.btn.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
+.button.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
+a[role="button"].text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
+a.btn.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
+input[type="submit"].text-\[\#f53196\]:not(:hover):not(:focus):not(:active) {
+  color: #E60A70;
+}
+
+/* End of surgical overrides.
+   NOTES:
+   - No :hover/:focus/:active overrides are defined here, so your lime/black hovers
+     and glow classes keep working exactly as before.
+   - I intentionally kept specificity moderate and used :not(:hover):not(:focus):not(:active)
+     so these base states update while your hover/focus rules still win when active.
+*/

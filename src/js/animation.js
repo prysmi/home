@@ -38,6 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Event listeners
             new MutationObserver(updateTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+            // --- NEW CODE: Adds the click listener for the theme button ---
+            const themeToggleButton = document.querySelector('#theme-toggle');
+            if (themeToggleButton) {
+                themeToggleButton.addEventListener('click', () => {
+                    document.body.classList.toggle('light-mode');
+                });
+            }
+            // --- END NEW CODE ---
+
             window.addEventListener('resize', resizeHandler, false);
 
         } catch (error) {

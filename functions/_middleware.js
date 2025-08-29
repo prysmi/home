@@ -1,9 +1,9 @@
 // functions/_middleware.js
 
 /**
- * Cloudflare Pages Middleware to add security headers using a nonce for scripts.
- * This is the recommended approach for getting an A+ on securityheaders.com
- * while still allowing necessary inline scripts to run.
+ * Cloudflare Pages Middleware to add security headers using a nonce and HTMLRewriter.
+ * This is the most robust approach for getting an A+ on securityheaders.com
+ * while ensuring inline scripts run correctly.
  */
 export async function onRequest(context) {
   // First, get the response from the asset server.
@@ -17,19 +17,11 @@ export async function onRequest(context) {
   // Generate a unique, random nonce for each page view.
   const nonce = crypto.randomUUID().toString().replace(/-/g, '');
 
-  // Read the original HTML content from the response.
-  let html = await response.text();
-
-  // Inject the nonce into every script tag.
-  // This tells the browser that these specific scripts are trusted.
-  html = html.replaceAll('<script', `<script nonce="${nonce}"`);
-
   // --- Security Headers ---
   const headers = {
-    // Content-Security-Policy: Updated to use the nonce.
     'Content-Security-Policy': [
       "default-src 'self'",
-      // IMPORTANT: We've removed 'unsafe-inline' and added the nonce.
+      // IMPORTANT: The policy still uses the nonce we're about to inject.
       `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com`,
       "style-src 'self' 'unsafe-inline'", // 'unsafe-inline' is generally safer for styles than scripts.
       "font-src 'self'",
@@ -48,11 +40,11 @@ export async function onRequest(context) {
     'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
   };
 
-  // Create a new response with the modified HTML.
-  const newResponse = new Response(html, {
+  // Create a new response with the original headers.
+  const newResponse = new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
-    headers: response.headers, // Start with original headers
+    headers: response.headers,
   });
 
   // Apply all the new and updated security headers.
@@ -60,6 +52,12 @@ export async function onRequest(context) {
     newResponse.headers.set(key, value);
   }
 
-  return newResponse;
+  // Use HTMLRewriter to safely add the nonce to all script tags.
+  return new HTMLRewriter()
+    .on('script', {
+      element(element) {
+        element.setAttribute('nonce', nonce);
+      },
+    })
+    .transform(newResponse);
 }
-

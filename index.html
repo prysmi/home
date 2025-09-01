@@ -600,11 +600,14 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
                 });
                 backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
             }
-            
+                
+ // Theme Toggle
+
             // --- Theme Toggle ---
             const themeToggleBtn = document.getElementById('theme-toggle');
             const footerLogo = document.getElementById('footer-logo');
-            const themeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('.theme-symbol') : null;
+            // FIX: Query for the ID, not the class
+            const themeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('#themeSymbol') : null;
             const mobileNavLogo = document.querySelector('#mobile-nav-toggle img');
 
             function setTheme(isLight) {
@@ -619,6 +622,28 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
             const savedTheme = localStorage.getItem('theme');
             setTheme(savedTheme === 'light');
             if (themeToggleBtn) themeToggleBtn.addEventListener('click', () => setTheme(!document.body.classList.contains('light-mode')));
+
+            
+  //          const themeToggleBtn = document.getElementById('theme-toggle');
+  //          const footerLogo = document.getElementById('footer-logo');
+  //          const themeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('.theme-symbol') : null;
+  //          const mobileNavLogo = document.querySelector('#mobile-nav-toggle img');
+        
+
+  //          function setTheme(isLight) {
+  //              document.body.classList.toggle('light-mode', isLight);
+  //              if (themeSymbol) themeSymbol.textContent = isLight ? '☾' : '☀';
+  //              if (footerLogo) footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
+  //              if (mobileNavLogo) mobileNavLogo.src = isLight ? '/assets/trademarks/logos/logo-vertical-pink.webp' : '/assets/trademarks/logos/logo-vertical-pink.webp';
+  //              localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  //              if (window.updateThreeJSColors) window.updateThreeJSColors();
+  //          }
+
+  //          const savedTheme = localStorage.getItem('theme');
+  //          setTheme(savedTheme === 'light');
+  //          if (themeToggleBtn) themeToggleBtn.addEventListener('click', () => setTheme(!document.body.classList.contains('light-mode')));
+
+            
         });
 
         // --- Defer Three.js Background Animation for Performance ---
@@ -662,6 +687,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
 </body>
 </html>
+
 
 
 

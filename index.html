@@ -491,12 +491,21 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
     <!-- Floating Action Buttons -->
     <button id="back-to-top" aria-label="Back to top">↑</button>
-    <button id="theme-toggle" aria-label="Toggle dark and light theme">
-    <!-- Use the correct class name "theme-symbol" -->
-    <span class="theme-symbol"></span>
+
+
+    <button id="theme-toggle" class="menu-button relative z-[999] p-3 md:p-4 hover:scale-[1.05] active:scale-[0.9] transition-[transform] duration-[0.3s]">
+    <!-- This is the corrected span. It has both the ID and the class. -->
+    <span id="themeSymbol" class="text-text-primary-dark"></span>
     </button>
 
-<!--    
+
+<!--
+    <button id="theme-toggle" aria-label="Toggle dark and light theme">
+
+    <span class="theme-symbol"></span>
+    </button>
+    
+    
     <button id="theme-toggle" aria-label="Toggle dark and light theme">
         <span class="themeSymbol"></span>
     
@@ -653,6 +662,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
 </body>
 </html>
+
 
 
 

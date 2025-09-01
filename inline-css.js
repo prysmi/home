@@ -1,4 +1,5 @@
 // inline-css.js
+
 const fs = require('fs');
 const path = require('path');
 
@@ -8,7 +9,7 @@ try {
   const htmlPath = path.join(distPath, 'index.html');
 
   console.log('Starting CSS inlining process...');
-  
+
   // 1. Read the generated CSS content
   const cssContent = fs.readFileSync(cssPath, 'utf8');
   console.log(`Successfully read ${cssContent.length} bytes from style.css`);
@@ -16,10 +17,10 @@ try {
   // 2. Read the generated HTML content
   let htmlContent = fs.readFileSync(htmlPath, 'utf8');
   console.log(`Successfully read index.html`);
-  
-  // 3. Define the link tag we want to replace
-  const placeholder = '<link href="style.css" rel="stylesheet">';
 
+  // 3. Define the link tag we want to replace (adjust if your href is different)
+  const placeholder = /<link\s+rel="stylesheet"\s+href="\.\/style\.css"\s*\/?>|<link\s+href="\.\/style\.css"\s+rel="stylesheet"\s*\/?>/;
+  
   // 4. Create the replacement <style> tag
   const inlineStyle = `<style>${cssContent}</style>`;
 
@@ -29,6 +30,7 @@ try {
 
   // 6. Write the modified HTML back to the file
   fs.writeFileSync(htmlPath, htmlContent);
+
   console.log('Successfully inlined CSS into dist/index.html!');
 
 } catch (error) {

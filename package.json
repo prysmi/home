@@ -5,10 +5,11 @@
   "main": "index.html",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && npm run build:css && npm run build:js && npm run copy",
+    "build": "npm run clean && npm run build:css && npm run build:js && npm run copy && npm run inline:css",
     "build:css": "tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
     "build:js": "rollup -c",
     "copy": "copyfiles -u 1 \"assets/**/*\" dist/assets && copyfiles index.html dist && copyfiles -f public/* dist && copyfiles -R functions dist",
+    "inline:css": "node inline-css.js",
     "dev": "live-server dist --watch=dist & npm run watch:css",
     "watch:css": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch"
   },

@@ -514,139 +514,211 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 -->
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Mobile Navigation Logic ---
-            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
-            const mobileNavClose = document.getElementById('mobile-nav-close');
-            const mobileNavPanel = document.getElementById('mobile-nav-panel');
-            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+                /**
+ * @fileoverview Main script for handling all client-side logic on the website.
+ * This includes mobile navigation, scroll animations, theme toggling,
+ * and external link integrations.
+ */
 
-            const openMobileMenu = () => mobileNavPanel.classList.remove('translate-x-full');
-            const closeMobileMenu = () => mobileNavPanel.classList.add('translate-x-full');
+document.addEventListener('DOMContentLoaded', () => {
 
-            if (mobileNavToggle) mobileNavToggle.addEventListener('click', openMobileMenu);
-            if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileMenu);
-            mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
-            
-            // --- Common Functionality ---
-            const currentYearSpan = document.getElementById('currentYear');
-            if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
+    // --- Utility Functions ---
 
-            // --- Active Nav Link Highlighting ---
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('#main-nav .nav-link');
-            const observerOptions = { root: null, rootMargin: "-50% 0px -50% 0px", threshold: 0 };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
+    /**
+     * Toggles a CSS class on an element based on a condition.
+     * @param {HTMLElement} element The element to modify.
+     * @param {string} className The class to toggle.
+     * @param {boolean} condition The condition to check.
+     */
+    const toggleClass = (element, className, condition) => {
+        if (element) {
+            element.classList.toggle(className, condition);
+        }
+    };
+
+    /**
+     * Sets up event listeners for multiple elements.
+     * @param {string[]} ids An array of element IDs.
+     * @param {string} event The event type (e.g., 'click').
+     * @param {Function} handler The event handler function.
+     */
+    const setupEventListeners = (ids, event, handler) => {
+        ids.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener(event, handler);
+            }
+        });
+    };
+
+    // --- Mobile Navigation Logic ---
+
+    /**
+     * Sets up the mobile navigation menu functionality.
+     */
+    const setupMobileNav = () => {
+        const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+        const mobileNavClose = document.getElementById('mobile-nav-close');
+        const mobileNavPanel = document.getElementById('mobile-nav-panel');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        const openMenu = () => {
+            if (mobileNavPanel) mobileNavPanel.classList.remove('translate-x-full');
+        };
+        const closeMenu = () => {
+            if (mobileNavPanel) mobileNavPanel.classList.add('translate-x-full');
+        };
+
+        if (mobileNavToggle) mobileNavToggle.addEventListener('click', openMenu);
+        if (mobileNavClose) mobileNavClose.addEventListener('click', closeMenu);
+        mobileNavLinks.forEach(link => link.addEventListener('click', closeMenu));
+    };
+
+    // --- Header Scroll Behavior ---
+
+    /**
+     * Adds a "scrolled" class to the header after scrolling past a certain point.
+     */
+    const setupHeaderScroll = () => {
+        const mainHeader = document.getElementById('main-header');
+        if (mainHeader) {
+            window.addEventListener('scroll', () => {
+                toggleClass(mainHeader, 'scrolled', window.scrollY > 50);
+            });
+        }
+    };
+
+    // --- Back to Top Button ---
+
+    /**
+     * Sets up the "back to top" button's visibility and scroll functionality.
+     */
+    const setupBackToTop = () => {
+        const backToTopButton = document.getElementById('back-to-top');
+        if (backToTopButton) {
+            window.addEventListener('scroll', () => {
+                toggleClass(backToTopButton, 'show', window.scrollY > 300);
+            });
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    };
+
+    // --- Theme Toggle Logic ---
+
+    /**
+     * Handles the dark/light theme toggling and persists the setting.
+     */
+    const setupThemeToggle = () => {
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const footerLogo = document.getElementById('footer-logo');
+        const themeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('#themeSymbol') : null;
+        const mobileNavLogo = document.querySelector('#mobile-nav-toggle img');
+
+        /**
+         * Applies the theme.
+         * @param {boolean} isLight True for light mode, false for dark mode.
+         */
+        const setTheme = (isLight) => {
+            toggleClass(document.body, 'light-mode', isLight);
+            if (themeSymbol) themeSymbol.textContent = isLight ? '☾' : '☀';
+            if (footerLogo) footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
+            if (mobileNavLogo) mobileNavLogo.src = isLight ? '/assets/trademarks/logos/logo-vertical-pink.webp' : '/assets/trademarks/logos/logo-vertical-pink.webp';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            // Check if a Three.js update function exists and call it.
+            if (window.updateThreeJSColors) {
+                window.updateThreeJSColors();
+            }
+        };
+
+        const savedTheme = localStorage.getItem('theme');
+        setTheme(savedTheme === 'light');
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                setTheme(!document.body.classList.contains('light-mode'));
+            });
+        }
+    };
+
+    // --- Intersection Observers for Animations and Active Nav Links ---
+
+    /**
+     * Sets up IntersectionObserver for scroll-based animations.
+     */
+    const setupIntersectionObservers = () => {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('#main-nav .nav-link');
+        const animatedElements = document.querySelectorAll('.fade-in-up, .stat-number');
+
+        // Observer for active navigation links
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => link.classList.remove('active'));
                     const id = entry.target.getAttribute('id');
                     const navLink = document.querySelector(`#main-nav .nav-link[href="#${id}"]`);
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => link.classList.remove('active'));
-                        if(navLink) navLink.classList.add('active');
-                    }
-                });
-            }, observerOptions);
-            sections.forEach(section => observer.observe(section));
-
-            // --- Fade-in and Stat Counter Animations on Scroll ---
-            const animatedElements = document.querySelectorAll('.fade-in-up, .stat-number');
-            const animateObserver = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        // If it's a stat number, start the count-up animation
-                        if (entry.target.classList.contains('stat-number')) {
-                            const target = +entry.target.getAttribute('data-target');
-                            let current = 0;
-                            const increment = target / 100; // Control animation speed
-                            const updateCount = () => {
-                                if (current < target) {
-                                    current += increment;
-                                    entry.target.innerText = Math.ceil(current).toLocaleString();
-                                    requestAnimationFrame(updateCount);
-                                } else {
-                                    entry.target.innerText = target.toLocaleString();
-                                }
-                            };
-                            updateCount();
-                        }
-                        obs.unobserve(entry.target); // Stop observing after animation
-                    }
-                });
-            }, { threshold: 0.1 });
-            animatedElements.forEach(el => animateObserver.observe(el));
-
-            // --- Desktop Header Scroll Behavior ---
-            const mainHeader = document.getElementById('main-header');
-            if(mainHeader) {
-                window.addEventListener('scroll', () => {
-                    mainHeader.classList.toggle('scrolled', window.scrollY > 50);
-                });
-            }
-
-            // --- Calendly Integration ---
-            const calendlyLink = "https://calendly.com/prabhjot-prysmi";
-            const calendlyButtons = ['get-started-header-btn', 'get-started-mobile-btn', 'hero-cta-btn', 'schedule-call-footer-btn'];
-            calendlyButtons.forEach(id => {
-                const btn = document.getElementById(id);
-                if (btn) btn.addEventListener('click', () => window.open(calendlyLink, '_blank'));
+                    if (navLink) navLink.classList.add('active');
+                }
             });
+        }, { root: null, rootMargin: "-50% 0px -50% 0px", threshold: 0 });
+        sections.forEach(section => navObserver.observe(section));
 
-            // --- Back to Top Button ---
-            const backToTopButton = document.getElementById('back-to-top');
-            if(backToTopButton) {
-                window.addEventListener('scroll', () => {
-                    backToTopButton.classList.toggle('show', window.scrollY > 300);
-                });
-                backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-            }
-                
- // Theme Toggle
+        // Observer for fade-in and stat counter animations
+        const animateObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Start count-up animation for stat numbers
+                    if (entry.target.classList.contains('stat-number')) {
+                        const target = +entry.target.getAttribute('data-target');
+                        let current = 0;
+                        const increment = target / 100; // Animation speed
+                        const updateCount = () => {
+                            if (current < target) {
+                                current += increment;
+                                entry.target.innerText = Math.ceil(current).toLocaleString();
+                                requestAnimationFrame(updateCount);
+                            } else {
+                                entry.target.innerText = target.toLocaleString();
+                            }
+                        };
+                        updateCount();
+                    }
+                    obs.unobserve(entry.target); // Stop observing after animation
+                }
+            });
+        }, { threshold: 0.1 });
+        animatedElements.forEach(el => animateObserver.observe(el));
+    };
 
-            // --- Theme Toggle ---
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const footerLogo = document.getElementById('footer-logo');
-            // FIX: Query for the ID, not the class
-            const themeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('#themeSymbol') : null;
-            const mobileNavLogo = document.querySelector('#mobile-nav-toggle img');
+    // --- Calendly Integration ---
 
-            function setTheme(isLight) {
-                document.body.classList.toggle('light-mode', isLight);
-                if (themeSymbol) themeSymbol.textContent = isLight ? '☾' : '☀';
-                if (footerLogo) footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
-                if (mobileNavLogo) mobileNavLogo.src = isLight ? '/assets/trademarks/logos/logo-vertical-pink.webp' : '/assets/trademarks/logos/logo-vertical-pink.webp';
-                localStorage.setItem('theme', isLight ? 'light' : 'dark');
-                if (window.updateThreeJSColors) window.updateThreeJSColors();
-            }
+    /**
+     * Sets up click handlers to open the Calendly link.
+     */
+    const setupCalendlyLinks = () => {
+        const calendlyLink = "https://calendly.com/prabhjot-prysmi";
+        const calendlyButtons = ['get-started-header-btn', 'get-started-mobile-btn', 'hero-cta-btn', 'schedule-call-footer-btn'];
+        setupEventListeners(calendlyButtons, 'click', () => window.open(calendlyLink, '_blank'));
+    };
 
-            const savedTheme = localStorage.getItem('theme');
-            setTheme(savedTheme === 'light');
-            if (themeToggleBtn) themeToggleBtn.addEventListener('click', () => setTheme(!document.body.classList.contains('light-mode')));
+    // --- Initializers ---
 
-            
-  //          const themeToggleBtn = document.getElementById('theme-toggle');
-  //          const footerLogo = document.getElementById('footer-logo');
-  //          const themeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('.theme-symbol') : null;
-  //          const mobileNavLogo = document.querySelector('#mobile-nav-toggle img');
-        
+    setupMobileNav();
+    setupHeaderScroll();
+    setupBackToTop();
+    setupThemeToggle();
+    setupIntersectionObservers();
+    setupCalendlyLinks();
 
-  //          function setTheme(isLight) {
-  //              document.body.classList.toggle('light-mode', isLight);
-  //              if (themeSymbol) themeSymbol.textContent = isLight ? '☾' : '☀';
-  //              if (footerLogo) footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
-  //              if (mobileNavLogo) mobileNavLogo.src = isLight ? '/assets/trademarks/logos/logo-vertical-pink.webp' : '/assets/trademarks/logos/logo-vertical-pink.webp';
-  //              localStorage.setItem('theme', isLight ? 'light' : 'dark');
-  //              if (window.updateThreeJSColors) window.updateThreeJSColors();
-  //          }
-
-  //          const savedTheme = localStorage.getItem('theme');
-  //          setTheme(savedTheme === 'light');
-  //          if (themeToggleBtn) themeToggleBtn.addEventListener('click', () => setTheme(!document.body.classList.contains('light-mode')));
-
-            
-        });
-
-        // --- Defer Three.js Background Animation for Performance ---
+    // Set the current year in the footer
+    const currentYearSpan = document.getElementById('currentYear');
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
+    }
+});
 
     </script>
 
@@ -687,6 +759,7 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
 
 </body>
 </html>
+
 
 
 

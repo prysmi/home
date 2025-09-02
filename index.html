@@ -422,7 +422,8 @@
     <button id="back-to-top" aria-label="Back to top">↑</button>
 
     <button id="theme-toggle" class="menu-button relative z-[999] p-3 md:p-4 hover:scale-[1.05] active:scale-[0.9] transition-[transform] duration-[0.3s]">
-        <span id="themeSymbol" class="text-text-primary-dark"></span>
+        <!-- ERROR FIXED: Removed the hardcoded text color class. The icon will now inherit the correct color from the button's CSS, making it visible in both light and dark modes. -->
+        <span id="themeSymbol"></span>
     </button>
     
     <script>
@@ -530,7 +531,17 @@
 
             const savedTheme = localStorage.getItem('theme');
             setTheme(savedTheme === 'light');
-            if (themeToggleBtn) themeToggleBtn.addEventListener('click', () => setTheme(!document.body.classList.contains('light-mode')));
+
+            // ERROR FIXED: A conflicting click listener exists in animation.js.
+            // To ensure this script's logic runs without interference, we add the listener
+            // in the "capture" phase (by adding `true`) and use stopImmediatePropagation()
+            // to prevent the conflicting listener in animation.js from firing.
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', (event) => {
+                    event.stopImmediatePropagation();
+                    setTheme(!document.body.classList.contains('light-mode'));
+                }, true); // Use capture phase to run this listener first.
+            }
         });
     </script>
 
@@ -568,4 +579,5 @@
     </script>
 </body>
 </html>
+
 

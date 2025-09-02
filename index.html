@@ -10,11 +10,8 @@
     <link rel="preconnect" href="https://www.google-analytics.com"> 
 
       <!-- 1. Inline Critical CSS -->
-
-
   <style>
-
-              /* Inlined @font-face rules from input.css */
+      /* Inlined @font-face rules from input.css */
       @font-face {
         font-family: 'Libre Franklin'; font-style: normal; font-weight: 400; font-display: swap;
         src: url('/assets/fonts/libre-franklin-v19-latin-regular.woff2') format('woff2');
@@ -60,29 +57,16 @@
         background-color: var(--color-bg-body);
       }
       header, main, footer { position: relative; z-index: 1; }
-
   </style>
 
-
-    <!-- Google Tag Manager -->
-
-    <!-- CODE GOES HERE -->
-
-    <!-- End Google Tag Manager -->
-
-
-
+    <!-- Google Tag Manager will be injected here by script -->
     
-
     <!-- SEO, Social, and Schema Meta Tags -->
     <meta name="description" content="Prysmi delivers revenue-ready B2B marketing for tech founders. We build clear messaging, high-intent content strategies, and scalable systems that drive growth.">
     <meta name="author" content="Prysmi Media Labs">
     <meta name="theme-color" content="#FF53AC">
     <link rel="canonical" href="https://prysmi.com/">
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Libre+Franklin:wght@400;600;800;900&display=swap" rel="stylesheet"> -->
-
+    
     <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/libre-baskerville-v16-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
@@ -120,63 +104,11 @@
     }
     </script>
     
-    <!-- Scripts and Styles -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script> -->
-
-    <!-- Lazy-load Three.js -->
-    
-
-
-<!-- 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const s = document.createElement("script");
-        s.src = "./animation.bundle.js";
-        s.defer = true;
-        document.head.appendChild(s);
-      });
-    </script> 
-
--->
-
-<!--
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    window.addEventListener('load', () => {
-      function loadThreeJS() {
-        import('./animation.bundle.js').then(() => {
-          // Module auto-initializes
-        }).catch(error => {
-          console.error('Failed to load Three.js:', error);
-          const canvas = document.getElementById('waving-dots-3d-background');
-          if (canvas) canvas.style.display = 'none';
-        });
-      }
-      setTimeout(loadThreeJS, 100);
-    });
-  });
-</script> 
-
--->
- 
-    
+    <!-- This link is a placeholder for the build process which inlines the CSS -->
     <link href="./style.css" rel="stylesheet">
-    <!-- Make stylesheet non-blocking -->
-    <!-- <link rel="preload" href="/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
-    <!-- <noscript><link rel="stylesheet" href="/style.css"></noscript> -->
-    <!-- Safer non-blocking stylesheet load -->
-    <!-- <link rel="stylesheet" href="./style.css" media="print" onload="this.media='all'"> -->
-    <!-- <noscript><link rel="stylesheet" href="./style.css"></noscript> -->
-    
-
-    
 </head>
 <body class="antialiased">
-    <!-- Google Tag Manager (noscript) -->
-    <!-- CODE GOES HERE -->
-    <!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) will be injected here by script -->
 
     <canvas id="waving-dots-3d-background"></canvas>
 
@@ -208,14 +140,11 @@
         <nav id="main-nav" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center">
                 <a href="#hero" class="flex items-center" aria-label="PRYSMI Agency Home">
-<!--                <img src="assets/trademarks/logos/Pink Horizontal Logo TM.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto"
-onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">   -->
                     <picture>
                         <source media="(min-width: 768px)" srcset="/assets/trademarks/logos/logo-horizontal-pink.webp">
-    
-                        <img loading="lazy" width="150" height="50" src="/assets/trademarks/logos/logo-horizontal-pink.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
+                        <!-- ERROR FIXED: Removed loading="lazy" from this critical, above-the-fold image to ensure it loads immediately. -->
+                        <img width="150" height="50" src="/assets/trademarks/logos/logo-horizontal-pink.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
                     </picture>
-
                 </a>
             </div>
             <div class="flex items-center">
@@ -492,301 +421,118 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
     <!-- Floating Action Buttons -->
     <button id="back-to-top" aria-label="Back to top">↑</button>
 
-
     <button id="theme-toggle" class="menu-button relative z-[999] p-3 md:p-4 hover:scale-[1.05] active:scale-[0.9] transition-[transform] duration-[0.3s]">
-    <!-- This is the corrected span. It has both the ID and the class. -->
-    <span id="themeSymbol" class="text-text-primary-dark"></span>
-    </button>
-
-
-<!--
-    <button id="theme-toggle" aria-label="Toggle dark and light theme">
-
-    <span class="theme-symbol"></span>
+        <span id="themeSymbol" class="text-text-primary-dark"></span>
     </button>
     
-    
-    <button id="theme-toggle" aria-label="Toggle dark and light theme">
-        <span class="themeSymbol"></span>
-    
-        <span id="themeSymbol"></span>
-    </button> 
--->
-    
-
-    <script>
-
-        document.addEventListener('DOMContentLoaded', () => {
-
-            // --- Mobile Navigation Logic ---
-
-            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
-
-            const mobileNavClose = document.getElementById('mobile-nav-close');
-
-            const mobileNavPanel = document.getElementById('mobile-nav-panel');
-
-            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-
-
-            const openMobileMenu = () => mobileNavPanel.classList.remove('translate-x-full');
-
-            const closeMobileMenu = () => mobileNavPanel.classList.add('translate-x-full');
-
-
-
-            if (mobileNavToggle) mobileNavToggle.addEventListener('click', openMobileMenu);
-
-            if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileMenu);
-
-            mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
-
-            
-
-            // --- Common Functionality ---
-
-            const currentYearSpan = document.getElementById('currentYear');
-
-            if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
-
-
-
-            // --- Active Nav Link Highlighting ---
-
-            const sections = document.querySelectorAll('section[id]');
-
-            const navLinks = document.querySelectorAll('#main-nav .nav-link');
-
-            const observerOptions = { root: null, rootMargin: "-50% 0px -50% 0px", threshold: 0 };
-
-            const observer = new IntersectionObserver((entries) => {
-
-                entries.forEach(entry => {
-
-                    const id = entry.target.getAttribute('id');
-
-                    const navLink = document.querySelector(`#main-nav .nav-link[href="#${id}"]`);
-
-                    if (entry.isIntersecting) {
-
-                        navLinks.forEach(link => link.classList.remove('active'));
-
-                        if(navLink) navLink.classList.add('active');
-
-                    }
-
-                });
-
-            }, observerOptions);
-
-            sections.forEach(section => observer.observe(section));
-
-
-
-            // --- Fade-in and Stat Counter Animations on Scroll ---
-
-            const animatedElements = document.querySelectorAll('.fade-in-up, .stat-number');
-
-            const animateObserver = new IntersectionObserver((entries, obs) => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add('is-visible');
-
-                        // If it's a stat number, start the count-up animation
-
-                        if (entry.target.classList.contains('stat-number')) {
-
-                            const target = +entry.target.getAttribute('data-target');
-
-                            let current = 0;
-
-                            const increment = target / 100; // Control animation speed
-
-                            const updateCount = () => {
-
-                                if (current < target) {
-
-                                    current += increment;
-
-                                    entry.target.innerText = Math.ceil(current).toLocaleString();
-
-                                    requestAnimationFrame(updateCount);
-
-                                } else {
-
-                                    entry.target.innerText = target.toLocaleString();
-
-                                }
-
-                            };
-
-                            updateCount();
-
-                        }
-
-                        obs.unobserve(entry.target); // Stop observing after animation
-
-                    }
-
-                });
-
-            }, { threshold: 0.1 });
-
-            animatedElements.forEach(el => animateObserver.observe(el));
-
-
-
-            // --- Desktop Header Scroll Behavior ---
-
-            const mainHeader = document.getElementById('main-header');
-
-            if(mainHeader) {
-
-                window.addEventListener('scroll', () => {
-
-                    mainHeader.classList.toggle('scrolled', window.scrollY > 50);
-
-                });
-
-            }
-
-
-
-            // --- Calendly Integration ---
-
-            const calendlyLink = "https://calendly.com/prabhjot-prysmi";
-
-            const calendlyButtons = ['get-started-header-btn', 'get-started-mobile-btn', 'hero-cta-btn', 'schedule-call-footer-btn'];
-
-            calendlyButtons.forEach(id => {
-
-                const btn = document.getElementById(id);
-
-                if (btn) btn.addEventListener('click', () => window.open(calendlyLink, '_blank'));
-
-            });
-
-
-
-            // --- Back to Top Button ---
-
-            const backToTopButton = document.getElementById('back-to-top');
-
-            if(backToTopButton) {
-
-                window.addEventListener('scroll', () => {
-
-                    backToTopButton.classList.toggle('show', window.scrollY > 300);
-
-                });
-
-                backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-            }
-
-                
-
- // Theme Toggle
-
-
-
-            // --- Theme Toggle ---
-
-            const themeToggleBtn = document.getElementById('theme-toggle');
-
-            const footerLogo = document.getElementById('footer-logo');
-
-            // FIX: Query for the ID, not the class
-
-            const themeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('#themeSymbol') : null;
-
-            const mobileNavLogo = document.querySelector('#mobile-nav-toggle img');
-
-
-
-            function setTheme(isLight) {
-
-                document.body.classList.toggle('light-mode', isLight);
-
-                if (themeSymbol) themeSymbol.textContent = isLight ? '☾' : '☀';
-
-                if (footerLogo) footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
-
-                if (mobileNavLogo) mobileNavLogo.src = isLight ? '/assets/trademarks/logos/logo-vertical-pink.webp' : '/assets/trademarks/logos/logo-vertical-pink.webp';
-
-                localStorage.setItem('theme', isLight ? 'light' : 'dark');
-
-                if (window.updateThreeJSColors) window.updateThreeJSColors();
-
-            }
-
-
-
-            const savedTheme = localStorage.getItem('theme');
-
-            setTheme(savedTheme === 'light');
-
-            if (themeToggleBtn) themeToggleBtn.addEventListener('click', () => setTheme(!document.body.classList.contains('light-mode')));
-
-
-
-            
-
-  //          const themeToggleBtn = document.getElementById('theme-toggle');
-
-  //          const footerLogo = document.getElementById('footer-logo');
-
-  //          const themeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('.theme-symbol') : null;
-
-  //          const mobileNavLogo = document.querySelector('#mobile-nav-toggle img');
-
-        
-
-
-
-  //          function setTheme(isLight) {
-
-  //              document.body.classList.toggle('light-mode', isLight);
-
-  //              if (themeSymbol) themeSymbol.textContent = isLight ? '☾' : '☀';
-
-  //              if (footerLogo) footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
-
-  //              if (mobileNavLogo) mobileNavLogo.src = isLight ? '/assets/trademarks/logos/logo-vertical-pink.webp' : '/assets/trademarks/logos/logo-vertical-pink.webp';
-
-  //              localStorage.setItem('theme', isLight ? 'light' : 'dark');
-
-  //              if (window.updateThreeJSColors) window.updateThreeJSColors();
-
-  //          }
-
-
-
-  //          const savedTheme = localStorage.getItem('theme');
-
-  //          setTheme(savedTheme === 'light');
-
-  //          if (themeToggleBtn) themeToggleBtn.addEventListener('click', () => setTheme(!document.body.classList.contains('light-mode')));
-
-
-
-            
-
-        });
-
-
-
-        // --- Defer Three.js Background Animation for Performance ---
-
-
-
-    </script>
-
-
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Navigation Logic ---
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            const mobileNavClose = document.getElementById('mobile-nav-close');
+            const mobileNavPanel = document.getElementById('mobile-nav-panel');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            const openMobileMenu = () => mobileNavPanel.classList.remove('translate-x-full');
+            const closeMobileMenu = () => mobileNavPanel.classList.add('translate-x-full');
+
+            if (mobileNavToggle) mobileNavToggle.addEventListener('click', openMobileMenu);
+            if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileMenu);
+            mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+            
+            // --- Common Functionality ---
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
+
+            // --- Active Nav Link Highlighting ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('#main-nav .nav-link');
+            const observerOptions = { root: null, rootMargin: "-50% 0px -50% 0px", threshold: 0 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const id = entry.target.getAttribute('id');
+                    const navLink = document.querySelector(`#main-nav .nav-link[href="#${id}"]`);
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        if(navLink) navLink.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+            sections.forEach(section => observer.observe(section));
+
+            // --- Fade-in and Stat Counter Animations on Scroll ---
+            const animatedElements = document.querySelectorAll('.fade-in-up, .stat-number');
+            const animateObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // If it's a stat number, start the count-up animation
+                        if (entry.target.classList.contains('stat-number')) {
+                            const target = +entry.target.getAttribute('data-target');
+                            let current = 0;
+                            const increment = target / 100; // Control animation speed
+                            const updateCount = () => {
+                                if (current < target) {
+                                    current += increment;
+                                    entry.target.innerText = Math.ceil(current).toLocaleString();
+                                    requestAnimationFrame(updateCount);
+                                } else {
+                                    entry.target.innerText = target.toLocaleString();
+                                }
+                            };
+                            updateCount();
+                        }
+                        obs.unobserve(entry.target); // Stop observing after animation
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => animateObserver.observe(el));
+
+            // --- Desktop Header Scroll Behavior ---
+            const mainHeader = document.getElementById('main-header');
+            if(mainHeader) {
+                window.addEventListener('scroll', () => {
+                    mainHeader.classList.toggle('scrolled', window.scrollY > 50);
+                });
+            }
+
+            // --- Calendly Integration ---
+            const calendlyLink = "https://calendly.com/prabhjot-prysmi";
+            const calendlyButtons = ['get-started-header-btn', 'get-started-mobile-btn', 'hero-cta-btn', 'schedule-call-footer-btn'];
+            calendlyButtons.forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) btn.addEventListener('click', () => window.open(calendlyLink, '_blank'));
+            });
+
+            // --- Back to Top Button ---
+            const backToTopButton = document.getElementById('back-to-top');
+            if(backToTopButton) {
+                window.addEventListener('scroll', () => {
+                    backToTopButton.classList.toggle('show', window.scrollY > 300);
+                });
+                backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            }
+                
+            // --- Theme Toggle ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const footerLogo = document.getElementById('footer-logo');
+            const themeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('#themeSymbol') : null;
+            const mobileNavLogo = document.querySelector('#mobile-nav-toggle img');
+
+            function setTheme(isLight) {
+                document.body.classList.toggle('light-mode', isLight);
+                if (themeSymbol) themeSymbol.textContent = isLight ? '☾' : '☀';
+                if (footerLogo) footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
+                if (mobileNavLogo) mobileNavLogo.src = isLight ? '/assets/trademarks/logos/logo-vertical-pink.webp' : '/assets/trademarks/logos/logo-vertical-pink.webp';
+                localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                if (window.updateThreeJSColors) window.updateThreeJSColors();
+            }
+
+            const savedTheme = localStorage.getItem('theme');
+            setTheme(savedTheme === 'light');
+            if (themeToggleBtn) themeToggleBtn.addEventListener('click', () => setTheme(!document.body.classList.contains('light-mode')));
+        });
+    </script>
 
     <script src="./animation.bundle.js" defer></script>
 
@@ -820,33 +566,6 @@ onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?t
         window.addEventListener(event, loadGTM, { once: true, passive: true })
       );
     </script>
-
-
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

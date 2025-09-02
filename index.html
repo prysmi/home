@@ -422,7 +422,6 @@
     <button id="back-to-top" aria-label="Back to top">↑</button>
 
     <button id="theme-toggle" class="menu-button relative z-[999] p-3 md:p-4 hover:scale-[1.05] active:scale-[0.9] transition-[transform] duration-[0.3s]">
-        <!-- ERROR FIXED: Removed the hardcoded text color class. The icon will now inherit the correct color from the button's CSS, making it visible in both light and dark modes. -->
         <span id="themeSymbol"></span>
     </button>
     
@@ -526,21 +525,18 @@
                 if (footerLogo) footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
                 if (mobileNavLogo) mobileNavLogo.src = isLight ? '/assets/trademarks/logos/logo-vertical-pink.webp' : '/assets/trademarks/logos/logo-vertical-pink.webp';
                 localStorage.setItem('theme', isLight ? 'light' : 'dark');
-                if (window.updateThreeJSColors) window.updateThreeJSColors();
+                // The MutationObserver in animation.js will automatically tell the background to update.
             }
 
             const savedTheme = localStorage.getItem('theme');
             setTheme(savedTheme === 'light');
 
-            // ERROR FIXED: A conflicting click listener exists in animation.js.
-            // To ensure this script's logic runs without interference, we add the listener
-            // in the "capture" phase (by adding `true`) and use stopImmediatePropagation()
-            // to prevent the conflicting listener in animation.js from firing.
+            // ERROR FIXED: Reverted to a simple click listener now that the conflicting
+            // code has been removed from animation.js. This is cleaner and more reliable.
             if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', (event) => {
-                    event.stopImmediatePropagation();
+                themeToggleBtn.addEventListener('click', () => {
                     setTheme(!document.body.classList.contains('light-mode'));
-                }, true); // Use capture phase to run this listener first.
+                });
             }
         });
     </script>
@@ -579,5 +575,6 @@
     </script>
 </body>
 </html>
+
 
 

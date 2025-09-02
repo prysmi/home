@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 theme: document.body.classList.contains('light-mode') ? 'light' : 'dark'
             }, [offscreenCanvas]);
 
-            // Function to send theme updates
+            // Function to send theme updates to the 3D background worker
             const updateTheme = () => {
                 const theme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
                 worker.postMessage({ theme: theme });
@@ -32,11 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             };
 
-            // Event listeners
+            // This observer tells the 3D background to update when the theme class changes on the body
             new MutationObserver(updateTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
-            // ERROR FIXED: Removed the conflicting click listener from this file.
-            // The theme toggle logic is now handled exclusively and correctly in index.html.
+            // RESTORED CODE: This click listener is the primary trigger for changing the theme.
+            const themeToggleButton = document.querySelector('#theme-toggle');
+            if (themeToggleButton) {
+                themeToggleButton.addEventListener('click', () => {
+                    document.body.classList.toggle('light-mode');
+                });
+            }
 
             window.addEventListener('resize', resizeHandler, false);
 
@@ -49,3 +54,4 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('OffscreenCanvas or Web Workers not supported, hiding 3D background.');
     }
 });
+

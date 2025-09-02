@@ -519,7 +519,7 @@
             // This function is responsible for updating the icon and logo based on the theme.
             function updateThemeUI(isLight) {
                 if (themeSymbol) {
-                    themeSymbol.textContent = isLight ? '☾' : '☀';
+                    themeSymbol.textContent = isLight ? '\u263E' : '\u2600';
                 }
                 if (footerLogo) {
                     footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
@@ -577,4 +577,3 @@
     </script>
 </body>
 </html>
-

@@ -513,31 +513,34 @@
                 backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
             }
                 
-            // --- Theme Toggle ---
-            const themeToggleBtn = document.getElementById('theme-toggle');
+            // --- Theme UI Management ---
             const footerLogo = document.getElementById('footer-logo');
-            const themeSymbol = themeToggleBtn ? themeToggleBtn.querySelector('#themeSymbol') : null;
-            const mobileNavLogo = document.querySelector('#mobile-nav-toggle img');
+            const themeSymbol = document.getElementById('themeSymbol');
 
-            function setTheme(isLight) {
-                document.body.classList.toggle('light-mode', isLight);
-                if (themeSymbol) themeSymbol.textContent = isLight ? '☾' : '☀';
-                if (footerLogo) footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
-                if (mobileNavLogo) mobileNavLogo.src = isLight ? '/assets/trademarks/logos/logo-vertical-pink.webp' : '/assets/trademarks/logos/logo-vertical-pink.webp';
-                localStorage.setItem('theme', isLight ? 'light' : 'dark');
-                // The MutationObserver in animation.js will automatically tell the background to update.
+            // This function is responsible for updating the icon and logo based on the theme.
+            function updateThemeUI(isLight) {
+                if (themeSymbol) {
+                    themeSymbol.textContent = isLight ? '☾' : '☀';
+                }
+                if (footerLogo) {
+                    footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
+                }
             }
 
-            const savedTheme = localStorage.getItem('theme');
-            setTheme(savedTheme === 'light');
+            // Set the initial theme on page load based on localStorage
+            const savedThemeIsLight = localStorage.getItem('theme') === 'light';
+            document.body.classList.toggle('light-mode', savedThemeIsLight);
+            updateThemeUI(savedThemeIsLight);
 
-            // ERROR FIXED: Reverted to a simple click listener now that the conflicting
-            // code has been removed from animation.js. This is cleaner and more reliable.
-            if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', () => {
-                    setTheme(!document.body.classList.contains('light-mode'));
-                });
-            }
+            // ERROR FIXED: Instead of a conflicting click listener, this observer now watches for
+            // the class change on the <body> (triggered by animation.js) and updates the UI.
+            const themeObserver = new MutationObserver(() => {
+                const isLightNow = document.body.classList.contains('light-mode');
+                updateThemeUI(isLightNow);
+                localStorage.setItem('theme', isLightNow ? 'light' : 'dark');
+            });
+
+            themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
         });
     </script>
 
@@ -575,6 +578,7 @@
     </script>
 </body>
 </html>
+
 
 
 

@@ -21,10 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 worker.postMessage({ theme: theme });
             };
 
-            // --- THIS IS THE FIX ---
-            // The logic is wrapped in requestAnimationFrame to prevent forced reflow.
-            // This ensures layout reads (innerWidth/Height) happen at the most
-            // optimal time in the browser's rendering cycle.
             const resizeHandler = () => {
                 requestAnimationFrame(() => {
                     worker.postMessage({
@@ -39,14 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Event listeners
             new MutationObserver(updateTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
-            // --- NEW CODE: Adds the click listener for the theme button ---
-            const themeToggleButton = document.querySelector('#theme-toggle');
-            if (themeToggleButton) {
-                themeToggleButton.addEventListener('click', () => {
-                    document.body.classList.toggle('light-mode');
-                });
-            }
-            // --- END NEW CODE ---
+            // ERROR FIXED: Removed the conflicting click listener from this file.
+            // The theme toggle logic is now handled exclusively and correctly in index.html.
 
             window.addEventListener('resize', resizeHandler, false);
 

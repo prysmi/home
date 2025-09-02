@@ -15,8 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 theme: document.body.classList.contains('light-mode') ? 'light' : 'dark'
             }, [offscreenCanvas]);
 
-            // Function to send theme updates to the 3D background worker.
-            // This will be triggered by the MutationObserver below.
+            // Function to send theme updates to the 3D background worker
             const updateTheme = () => {
                 const theme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
                 worker.postMessage({ theme: theme });
@@ -33,13 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             };
 
-            // Event listeners
-            // This observer correctly listens for class changes on the <body> (triggered by index.html)
-            // and tells the 3D background to update its colors.
+            // This observer tells the 3D background to update when the theme class changes on the body
             new MutationObserver(updateTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
-            // ERROR FIXED: The conflicting click listener has been removed from this file.
-            // The script in index.html is now the single source of truth for handling the click.
+            // RESTORED CODE: This click listener is the primary trigger for changing the theme.
+            const themeToggleButton = document.querySelector('#theme-toggle');
+            if (themeToggleButton) {
+                themeToggleButton.addEventListener('click', () => {
+                    document.body.classList.toggle('light-mode');
+                });
+            }
 
             window.addEventListener('resize', resizeHandler, false);
 

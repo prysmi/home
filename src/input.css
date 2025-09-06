@@ -55,7 +55,7 @@
   --color-border-default: #333;
   --color-accent-pink: #FF53AC;
   --color-accent-yellow: #EEFF41;
-  --color-accent-lime: #EEFF41; /* This will be the one that changes */
+  --color-accent-lime: #FF53AC; /* This will be the one that changes */
   --color-header-bg: rgba(10, 10, 10, 0.1);
   --color-header-sticky-bg: rgba(10, 10, 10, 0.4);
   --color-footer-bg: var(--color-bg-body);

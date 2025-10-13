@@ -389,7 +389,7 @@ input[type="submit"].text-\[\#f53196\]:not(:hover):not(:focus):not(:active) {
 
 /* --- 1. Sticky Ticker --- */
 #prysmi-ticker {
-  position: fixed;a
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -613,3 +613,4 @@ body.light-mode .prysmi-chip {
 }
 
 /* === PRYSMI: NEW CUSTOM STYLES END === */
+

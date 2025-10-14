@@ -2,6 +2,14 @@
 @font-face {
   font-family: 'Libre Franklin';
   font-style: normal;
+  font-weight: 200; /* Extra-Light */
+  font-display: swap;
+  src: url('/assets/fonts/libre-franklin-v19-latin-200.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: url('/assets/fonts/libre-franklin-v19-latin-regular.woff2') format('woff2');
@@ -85,7 +93,13 @@ body {
   overflow-x: hidden;
   margin: 0;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  padding-top: 48px; /* Ticker Height */
+  cursor: none;
 }
+body a, body button, body [role="button"] {
+  cursor: none;
+}
+
 
 h1, h2, h3, h4, h5 {
   font-family: 'Libre Franklin', sans-serif;
@@ -111,6 +125,7 @@ h1, h2, h3, h4, h5 {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     transition: all 0.3s ease-in-out;
+    top: 48px; /* Offset for ticker */
 }
 
 #main-header.scrolled {
@@ -123,7 +138,11 @@ h1, h2, h3, h4, h5 {
   margin-left: auto;
   margin-right: auto;
   max-width: 72rem;
-  top: 1rem;
+  top: calc(48px + 1rem); /* Ticker height + margin */
+}
+/* Adjust mobile nav toggle for ticker */
+#mobile-nav-toggle {
+    top: calc(48px + 1rem);
 }
 
 .nav-link {
@@ -304,105 +323,96 @@ footer {
 
 /* ======================================================
    SURGICAL BUTTON-ONLY OVERRIDES
-   - Only affects button-ish elements
-   - Only changes the specific combos you asked for
-   - Uses :not(:hover):not(:focus):not(:active) so hover
-     (lime/black), glows and focus styles remain untouched
-   - Accessible pink used: #E60A70
    ====================================================== */
-
-/* 1) Buttons that used pink-bg (#F53196) + text-white
-   -> change pink background to #E60A70, keep white text
-*/
 button.bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
-.btn.bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
-.button.bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
-a[role="button"].bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
-a.btn.bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
-input[type="submit"].bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active),
-/* lowercase variant */
-button.bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
-.btn.bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
-.button.bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
-a[role="button"].bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
-a.btn.bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
-input[type="submit"].bg-\[\#f53196\].text-white:not(:hover):not(:focus):not(:active),
-/* inline style background cases with explicit white text */
-button[style*="#F53196"].text-white:not(:hover):not(:focus):not(:active),
-button[style*="#f53196"].text-white:not(:hover):not(:focus):not(:active),
-input[type="submit"][style*="#F53196"].text-white:not(:hover):not(:focus):not(:active),
-input[type="submit"][style*="#f53196"].text-white:not(:hover):not(:focus):not(:active),
-a[role="button"][style*="#F53196"].text-white:not(:hover):not(:focus):not(:active),
-a[role="button"][style*="#f53196"].text-white:not(:hover):not(:focus):not(:active) {
+a[role="button"].bg-\[\#F53196\].text-white:not(:hover):not(:focus):not(:active)
+{
   background-color: #E60A70;
-  color: #FFFFFF; /* keep white text */
+  color: #FFFFFF;
 }
-
-/* 2) Buttons that are white-bg + pink-text (bg-white + text-[#F53196])
-   -> keep white background, change text color to #E60A70
-*/
 button.bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-.btn.bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-.button.bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-a[role="button"].bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-a.btn.bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-input[type="submit"].bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-/* lowercase */
-button.bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
-.btn.bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
-.button.bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
-a[role="button"].bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
-a.btn.bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
-input[type="submit"].bg-white.text-\[\#f53196\]:not(:hover):not(:focus):not(:active) {
+a[role="button"].bg-white.text-\[\#F53196\]:not(:hover):not(:focus):not(:active)
+{
   color: #E60A70;
 }
-
-/* 3) Safety net: any button-ish element that uses text-[#F53196]
-   (but not hovered/focused/active) -> change text to #E60A70.
-   This ensures button text utilities using the hex get replaced.
-*/
 button.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-.btn.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-.button.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-a[role="button"].text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-a.btn.text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-input[type="submit"].text-\[\#F53196\]:not(:hover):not(:focus):not(:active),
-/* lowercase */
-button.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
-.btn.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
-.button.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
-a[role="button"].text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
-a.btn.text-\[\#f53196\]:not(:hover):not(:focus):not(:active),
-input[type="submit"].text-\[\#f53196\]:not(:hover):not(:focus):not(:active) {
+a[role="button"].text-\[\#F53196\]:not(:hover):not(:focus):not(:active)
+{
   color: #E60A70;
 }
 
-/* End of surgical overrides.
-   NOTES:
-   - No :hover/:focus/:active overrides are defined here, so your lime/black hovers
-     and glow classes keep working exactly as before.
-   - I intentionally kept specificity moderate and used :not(:hover):not(:focus):not(:active)
-     so these base states update while your hover/focus rules still win when active.
-*/
+/* === PRYSMI: NEW/UPDATED STYLES START === */
 
-/* === PRYSMI: NEW CUSTOM STYLES START === */
+/* --- 1. Custom Mouse Cursor --- */
+#pm-cursor-dot, #pm-cursor-eye {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  will-change: width, height, transform;
+}
+#pm-cursor-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #f53196;
+  transition: transform 0.1s ease-out, opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+#pm-cursor-eye {
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #0A0A0A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  overflow: hidden;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease, transform 0.2s ease-out;
+}
+#pm-cursor-eye svg {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    transition: opacity 0.2s ease 0.1s;
+}
+body.pm-cursor-hover-testimonial #pm-cursor-dot {
+  opacity: 0;
+}
+body.pm-cursor-hover-testimonial #pm-cursor-eye {
+  width: 80px;
+  height: 80px;
+  opacity: 1;
+}
+body.pm-cursor-hover-testimonial #pm-cursor-eye svg {
+  opacity: 1;
+}
 
-/* --- 1. Sticky Ticker --- */
+
+/* --- 2. Sticky Ticker --- */
 #prysmi-ticker {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 40px; /* Mobile-first height */
-  background-color: var(--color-accent-pink);
-  color: #FFFFFF;
-  z-index: 9999;
+  height: 48px;
+  background-color: #f5f5f5;
+  color: #0A0A0A;
+  z-index: 1000;
   overflow: hidden;
   display: flex;
   align-items: center;
-  pointer-events: none; /* Allow clicks to pass through to header below */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  font-size: 14px;
+  border-bottom: 1px solid #ddd;
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+body.light-mode #prysmi-ticker {
+    background-color: #FFFFFF;
+    border-bottom-color: #eee;
 }
 
 .prysmi-ticker__inner {
@@ -414,7 +424,7 @@ input[type="submit"].text-\[\#f53196\]:not(:hover):not(:focus):not(:active) {
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  animation: prysmi-scroll 30s linear infinite;
+  animation: prysmi-scroll 40s linear infinite;
   min-width: 100%;
 }
 
@@ -422,54 +432,43 @@ input[type="submit"].text-\[\#f53196\]:not(:hover):not(:focus):not(:active) {
   display: flex;
   align-items: center;
   white-space: nowrap;
-  padding: 0 2rem;
-  flex-shrink: 0;
-}
-
-.prysmi-ticker__item span {
-  font-weight: 600;
-  margin-right: 0.75rem;
-  opacity: 0.9;
-  text-transform: uppercase;
+  padding: 0 1.5rem;
+  font-size: 14px;
   letter-spacing: 0.05em;
 }
 
-.prysmi-ticker__link {
-  color: var(--color-accent-yellow);
-  text-decoration: none;
-  font-weight: bold;
-  pointer-events: auto; /* Make links clickable */
-  transition: opacity 0.2s ease-in-out;
+.prysmi-ticker__item span {
+  opacity: 0.8;
 }
 
-.prysmi-ticker__link:hover {
-  opacity: 0.8;
-  text-decoration: underline;
+.prysmi-ticker__cta {
+  color: #FF53AC;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 1rem;
+  transition: opacity 0.2s ease-in-out;
+}
+.prysmi-ticker__cta:hover {
+  opacity: 0.7;
+}
+
+.prysmi-ticker__delim {
+    color: #FF53AC;
+    font-size: 1.25rem;
+    margin-right: 1.5rem;
 }
 
 @keyframes prysmi-scroll {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
 }
 
-/* Duplicate the list for a seamless loop */
-#prysmi-ticker .prysmi-ticker__list + .prysmi-ticker__list {
-    display: flex;
+#prysmi-ticker:hover .prysmi-ticker__list {
+  animation-play-state: paused;
 }
 
-/* Media query for larger screens */
-@media (min-width: 768px) {
-  #prysmi-ticker {
-    height: 48px;
-    font-size: 16px;
-  }
-}
 
-/* --- 2. Testimonials & Case Studies --- */
+/* --- 3. Testimonials & Case Studies --- */
 #prysmi-testimonials {
   border-top: 1px solid var(--color-border-default);
 }
@@ -477,19 +476,13 @@ input[type="submit"].text-\[\#f53196\]:not(:hover):not(:focus):not(:active) {
 .prysmi-testimonials__container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 2.5rem;
 }
 
 @media (min-width: 1024px) {
   .prysmi-testimonials__container {
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
   }
-}
-
-.prysmi-testimonial-wrapper {
-  transition: all 0.3s ease-in-out;
 }
 
 .prysmi-testimonial-card {
@@ -499,19 +492,16 @@ input[type="submit"].text-\[\#f53196\]:not(:hover):not(:focus):not(:active) {
   -webkit-backdrop-filter: blur(8px);
   border-radius: 0.75rem;
   padding: 1.5rem;
-  cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
 .prysmi-testimonial-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
-
 .prysmi-testimonial-card:focus-visible {
   outline: 2px solid var(--color-accent-pink);
   outline-offset: 3px;
@@ -560,57 +550,74 @@ input[type="submit"].text-\[\#f53196\]:not(:hover):not(:focus):not(:active) {
   overflow: hidden;
   max-height: 0;
   opacity: 0;
-  transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out 0.2s, padding 0.5s ease-in-out;
-  padding: 0 1.5rem;
-  background-color: rgba(0,0,0,0.2);
+  transition: max-height 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease-in-out, padding-top 0.7s ease, margin-top 0.7s ease;
+  padding: 0 1rem;
   border-radius: 0 0 0.75rem 0.75rem;
-  margin-top: -0.75rem; /* Overlap with card's rounded bottom */
-  border: 1px solid transparent;
-  border-top: none;
 }
 
 .prysmi-expanded .prysmi-case-study-panel {
-  max-height: 1000px; /* Large enough to not clip content */
+  max-height: 1200px;
   opacity: 1;
-  padding: 2.5rem 1.5rem 1.5rem;
-  border-color: var(--color-border-default);
+  padding-top: 2rem;
+  margin-top: 1rem;
 }
 
-.prysmi-expanded .prysmi-testimonial-card {
-   border-radius: 0.75rem 0.75rem 0 0;
+.prysmi-case-study__title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--color-text-heading);
+    margin-bottom: 0.5rem;
+}
+.pm-case-study__summary {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+    max-width: 90%;
+}
+.pm-case-study__main-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+@media (min-width: 768px) {
+    .pm-case-study__main-content {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+.pm-case-study__main-content h4 {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-accent-pink);
+    border-bottom: 1px solid var(--color-border-default);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+.pm-case-study__narrative p {
+    line-height: 1.7;
+}
+.pm-case-study__kpi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+.pm-case-study__kpi-item {
+    display: flex;
+    flex-direction: column;
+}
+.pm-case-study__kpi-item strong {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-text-heading);
+    line-height: 1.1;
+}
+.pm-case-study__kpi-item span {
+    font-size: 0.875rem;
+    opacity: 0.8;
 }
 
-.prysmi-case-study-panel__headline {
-  color: var(--color-accent-lime);
-  font-weight: 800;
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.prysmi-case-study-panel__text {
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
-.prysmi-case-study-panel__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.prysmi-chip {
-  background-color: var(--color-accent-pink);
-  color: #FFFFFF;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  display: inline-block;
-}
-
-body.light-mode .prysmi-chip {
-  background-color: #E60A70; /* Accessible Pink */
-}
-
-/* === PRYSMI: NEW CUSTOM STYLES END === */
+/* === PRYSMI: NEW/UPDATED STYLES END === */
 

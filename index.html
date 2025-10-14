@@ -13,10 +13,6 @@
   <style>
       /* Inlined @font-face rules from input.css */
       @font-face {
-        font-family: 'Libre Franklin'; font-style: normal; font-weight: 200; font-display: swap;
-        src: url('/assets/fonts/libre-franklin-v19-latin-200.woff2') format('woff2');
-      }
-      @font-face {
         font-family: 'Libre Franklin'; font-style: normal; font-weight: 400; font-display: swap;
         src: url('/assets/fonts/libre-franklin-v19-latin-regular.woff2') format('woff2');
       }
@@ -71,7 +67,6 @@
     <meta name="theme-color" content="#FF53AC">
     <link rel="canonical" href="https://prysmi.com/">
     
-    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-200.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/libre-baskerville-v16-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
@@ -113,28 +108,6 @@
     <link href="./style.css" rel="stylesheet">
 </head>
 <body class="antialiased">
-    <!-- Custom Cursor Elements -->
-    <div id="pm-cursor-dot"></div>
-    <div id="pm-cursor-eye">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.49 4.467-5.705 7.69-10.675 7.69-4.97 0-9.185-3.223-10.675-7.69a.75.75 0 010-1.113zM12 16.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9z" clip-rule="evenodd"/></svg>
-    </div>
-
-    <!-- Ticker -->
-    <div id="prysmi-ticker">
-        <div class="prysmi-ticker__inner">
-            <div role="list" class="prysmi-ticker__list">
-                <div role="listitem" class="prysmi-ticker__item"><span>NOW BOOKING Q4 2025</span><a href="#contact" class="prysmi-ticker__cta">SCHEDULE A CALL</a><span class="prysmi-ticker__delim">✳</span></div>
-                <div role="listitem" class="prysmi-ticker__item"><span>NEW CASE STUDY</span><a href="#prysmi-testimonials" class="prysmi-ticker__cta">SEE THE 1200% LEAD GEN RESULTS</a><span class="prysmi-ticker__delim">✳</span></div>
-                <div role="listitem" class="prysmi-ticker__item"><span>LIMITED SLOTS</span><a href="#contact" class="prysmi-ticker__cta">GET A FREE MARKETING AUDIT</a><span class="prysmi-ticker__delim">✳</span></div>
-            </div>
-            <div role="list" class="prysmi-ticker__list" aria-hidden="true">
-                <div role="listitem" class="prysmi-ticker__item"><span>NOW BOOKING Q4 2025</span><a href="#contact" class="prysmi-ticker__cta">SCHEDULE A CALL</a><span class="prysmi-ticker__delim">✳</span></div>
-                <div role="listitem" class="prysmi-ticker__item"><span>NEW CASE STUDY</span><a href="#prysmi-testimonials" class="prysmi-ticker__cta">SEE THE 1200% LEAD GEN RESULTS</a><span class="prysmi-ticker__delim">✳</span></div>
-                <div role="listitem" class="prysmi-ticker__item"><span>LIMITED SLOTS</span><a href="#contact" class="prysmi-ticker__cta">GET A FREE MARKETING AUDIT</a><span class="prysmi-ticker__delim">✳</span></div>
-            </div>
-        </div>
-    </div>
-    
     <!-- Google Tag Manager (noscript) will be injected here by script -->
 
     <canvas id="waving-dots-3d-background"></canvas>
@@ -151,7 +124,7 @@
             <div class="flex flex-col h-full p-6 pt-20">
                 <button id="mobile-nav-close" class="absolute top-5 right-5 text-white text-3xl" aria-label="Close navigation menu">&times;</button>
                 <nav class="flex flex-col space-y-6 text-center">
-                    <a href="#prysmi-testimonials" class="mobile-nav-link text-white text-xl font-semibold">Results</a>
+                    <a href="#about" class="mobile-nav-link text-white text-xl font-semibold">About</a>
                     <a href="#challenges" class="mobile-nav-link text-white text-xl font-semibold">Challenges</a>
                     <a href="#process" class="mobile-nav-link text-white text-xl font-semibold">Our Process</a>
                     <a href="#impact-outcomes" class="mobile-nav-link text-white text-xl font-semibold">Our Impact</a>
@@ -175,7 +148,7 @@
             </div>
             <div class="flex items-center">
                 <div class="ml-10 flex items-baseline space-x-4">
-                    <a href="#prysmi-testimonials" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Results</a>
+                    <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium">About</a>
                     <a href="#challenges" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Challenges</a>
                     <a href="#process" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Our Process</a>
                     <a href="#impact-outcomes" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Our Impact</a>
@@ -202,83 +175,26 @@
                 </div>
             </div>
         </section>
-        
-        <!-- === NEW TESTIMONIALS SECTION (RELOCATED & REVAMPED) === -->
-        <section id="prysmi-testimonials" class="py-16 md:py-24">
-            <div class="text-center mb-12 px-4">
-                <h2 class="text-3xl sm:text-4xl font-black fade-in-up is-visible">Real Partnerships, Real Growth</h2>
-                <p class="mt-4 text-lg fade-in-up is-visible">We don't just deliver services; we build revenue engines. See how we've helped founders turn market invisibility into authority.</p>
-            </div>
-            
-            <div class="prysmi-testimonials__container">
-                <!-- Testimonial 1: Rohit Bhalla -->
-                <div class="prysmi-testimonial-wrapper">
-                    <div id="pm-card-rohit" role="button" tabindex="0" aria-expanded="false" aria-controls="pm-panel-rohit" class="prysmi-testimonial-card">
-                        <div class="prysmi-testimonial-card__profile">
-                            <img src="https://prysmi.com/assets/clients/profiles/Rohit%20Bhalla%20360%20Degree%20Cloud.jpg" alt="Rohit Bhalla" class="prysmi-testimonial-card__avatar">
-                            <div>
-                                <h3 class="prysmi-testimonial-card__name">Rohit Bhalla</h3>
-                                <p class="prysmi-testimonial-card__title">ex-CEO @ 360 Degree Cloud</p>
-                            </div>
-                        </div>
-                        <blockquote class="prysmi-testimonial-card__quote">
-                            “He's the rare expert who bridges that critical gap between being great at your craft and building a machine that makes the market believe it, too.”
-                        </blockquote>
-                    </div>
-                    <div id="pm-panel-rohit" role="region" aria-labelledby="pm-card-rohit" class="prysmi-case-study-panel" hidden>
-                        <h3 class="pm-case-study__title">The Architect Who Turned a Referral-Only Firm into a $10M Authority</h3>
-                        <p class="pm-case-study__summary">360 Degree Cloud built market authority from scratch to attract high-value clients and systematize growth through a sophisticated mix of Demand Gen, ABM, and event marketing.</p>
-                        <div class="pm-case-study__main-content">
-                            <div class="pm-case-study__narrative">
-                                <h4>Client Story</h4>
-                                <p>"For years, our biggest frustration was being a world-class cloud consulting team that nobody knew about. We were completely dependent on referrals... Prabhjot didn't just get us more leads; he fundamentally changed how the market saw us. He built a powerful Demand Gen engine... We stopped chasing scraps and started having our ideal clients come to us. Our pipeline became predictable, and we were finally seen as the premium partner, not a commodity."</p>
-                            </div>
-                            <div class="pm-case-study__kpis">
-                                <h4>Key Outcomes</h4>
-                                <div class="pm-case-study__kpi-grid">
-                                    <div class="pm-case-study__kpi-item"><strong>+75%</strong><span>Avg. Contract Value</span></div>
-                                    <div class="pm-case-study__kpi-item"><strong>-40%</strong><span>Sales Cycle Duration</span></div>
-                                    <div class="pm-case-study__kpi-item"><strong>+600%</strong><span>C-Suite Lead Inflow</span></div>
-                                    <div class="pm-case-study__kpi-item"><strong>4x</strong><span>Pipeline Predictability</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Testimonial 2: Siddharth Sehgal -->
-                <div class="prysmi-testimonial-wrapper">
-                    <div id="pm-card-sid" role="button" tabindex="0" aria-expanded="false" aria-controls="pm-panel-sid" class="prysmi-testimonial-card">
-                        <div class="prysmi-testimonial-card__profile">
-                            <img src="https://prysmi.com/assets/clients/profiles/Siddharth%20Sehgal%20360%20SMS%20App.jpg" alt="Siddharth Sehgal" class="prysmi-testimonial-card__avatar">
-                            <div>
-                                <h3 class="prysmi-testimonial-card__name">Siddharth Sehgal</h3>
-                                <p class="prysmi-testimonial-card__title">Founder & CEO @ 360 SMS App</p>
-                            </div>
-                        </div>
-                        <blockquote class="prysmi-testimonial-card__quote">
-                            “PJ's not the marketer you hire just to get more clicks. He's the revenue unblocker you bring in when you have a great product but can't figure out why it's not selling itself.”
-                        </blockquote>
-                    </div>
-                     <div id="pm-panel-sid" role="region" aria-labelledby="pm-card-sid" class="prysmi-case-study-panel" hidden>
-                        <h3 class="pm-case-study__title">From Invisible Vendor to #1 on AppExchange & Millions in Pipeline</h3>
-                        <p class="pm-case-study__summary">360 SMS activated its dead channels—the AppExchange and Organic Traffic—turning product visibility into sales-ready opportunities through targeted demand generation and organic optimization.</p>
-                        <div class="pm-case-study__main-content">
-                            <div class="pm-case-study__narrative">
-                                <h4>Client Story</h4>
-                                <p>"To be blunt, we were stuck. We had multiple industry-beating products but felt completely invisible. Our marketing felt like we were just throwing things at the wall... Prabhjot performed a full system overhaul. He found the core story, re-engineered our AppExchange presence, and armed our sales team with an arsenal of case studies... The results felt unreal. Our organic traffic shot up over 400%, and qualified inbound leads exploded by over 900%."</p>
-                            </div>
-                            <div class="pm-case-study__kpis">
-                                <h4>Key Outcomes</h4>
-                                <div class="pm-case-study__kpi-grid">
-                                    <div class="pm-case-study__kpi-item"><strong>+320%</strong><span>AppExchange Visibility</span></div>
-                                    <div class="pm-case-study__kpi-item"><strong>+35%</strong><span>Sales Conversion Rate</span></div>
-                                    <div class="pm-case-study__kpi-item"><strong>+800%</strong><span>Inbound Demo Requests</span></div>
-                                    <div class="pm-case-study__kpi-item"><strong>#1</strong><span>Ranking on AppExchange</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <section id="about" class="py-16 md:py-24 rounded-xl shadow-2xl">
+            <div class="text-center mb-12 px-4">
+                <p class="mt-4 text-lg fade-in-up">
+                    <span class="text-emphasis-italic-bold">Relax, we’re not just another agency.</span>
+                </p>
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">We are Prysmi Media Labs.</h2>
+            </div>
+            <div class="max-w-3xl mx-auto p-6 sm:p-10 rounded-xl shadow-xl border fade-in-up">
+                <div class="mt-8 text-left">
+                    <p class="text-lg mb-4">At PRYSMI, we believe marketing should be as efficient and effective as your product development. Our unique methodology is designed to deliver clear, measurable results, ensuring your marketing efforts directly contribute to revenue growth.</p>
+                    <blockquote class="text-left text-xl sm:text-2xl text-emphasis-italic-bold border-l-4 border-[#FF53AC] pl-4 sm:pl-6 py-4 mb-8">
+                        “With us, your B2B needs<br>get the <span class="text-emphasis-italic-bold">white-glove</span> treatment.”
+                    </blockquote>
+                    <ul class="list-disc list-outside space-y-2 pl-6 leading-relaxed">
+                        <li>Specializing in <span class="text-emphasis-italic-bold">message-market fit</span>, high-intent search, and conversion-optimized content.</li>
+                        <li>Focused on building <span class="text-emphasis-italic-bold">repeatable systems</span> for scalable content execution.</li>
+                        <li>Committed to continuous iteration and optimization for <span class="text-emphasis-italic-bold">sustained performance.</span></li>
+                        <li>Achieving <span class="text-emphasis-italic-bold">signature-worthy content</span> that wins customer trust and leads.</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -494,12 +410,6 @@
         </section>
     </main>
 
-    <!-- Floating Action Buttons -->
-    <button id="back-to-top" aria-label="Back to top">↑</button>
-    <button id="theme-toggle" class="menu-button relative z-[999] p-3 md:p-4 hover:scale-[1.05] active:scale-[0.9] transition-[transform] duration-[0.3s]">
-        <span id="themeSymbol"></span>
-    </button>
-
     <footer class="py-6 text-center mt-16">
         <div class="flex justify-center mb-0">
             <img id="footer-logo" loading="lazy" src="/assets/trademarks/logos/logo-horizontal-white.webp" alt="PRYSMI Agency White Logo" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+White+Logo';">
@@ -507,6 +417,13 @@
         <p class="mt-2 text-sm">&copy; <span id="currentYear"></span> PRYSMI Media Labs. All rights reserved.</p>
     </footer>
 
+    <!-- Floating Action Buttons -->
+    <button id="back-to-top" aria-label="Back to top">↑</button>
+
+    <button id="theme-toggle" class="menu-button relative z-[999] p-3 md:p-4 hover:scale-[1.05] active:scale-[0.9] transition-[transform] duration-[0.3s]">
+        <span id="themeSymbol"></span>
+    </button>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Mobile Navigation Logic ---
@@ -623,49 +540,9 @@
             });
 
             themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
-            // --- Testimonial Panel Logic ---
-            (function pm_initTestimonials() {
-                const cards = document.querySelectorAll('.prysmi-testimonial-card');
-                if (!cards.length) return;
-
-                const togglePanel = (card) => {
-                    const panel = document.getElementById(card.getAttribute('aria-controls'));
-                    const wrapper = card.parentElement;
-                    if (!panel || !wrapper) return;
-
-                    const isExpanded = card.getAttribute('aria-expanded') === 'true';
-
-                    // Close any other open panels
-                    cards.forEach(otherCard => {
-                        if (otherCard !== card && otherCard.getAttribute('aria-expanded') === 'true') {
-                            const otherPanel = document.getElementById(otherCard.getAttribute('aria-controls'));
-                            const otherWrapper = otherCard.parentElement;
-                            otherCard.setAttribute('aria-expanded', 'false');
-                            otherPanel.hidden = true;
-                            otherWrapper.classList.remove('prysmi-expanded');
-                        }
-                    });
-                    
-                    // Toggle the clicked panel
-                    card.setAttribute('aria-expanded', !isExpanded);
-                    panel.hidden = isExpanded;
-                    wrapper.classList.toggle('prysmi-expanded', !isExpanded);
-                };
-
-                cards.forEach(card => {
-                    card.addEventListener('click', () => togglePanel(card));
-                    card.addEventListener('keydown', (event) => {
-                        if (event.key === 'Enter' || event.key === ' ') {
-                            event.preventDefault();
-                            togglePanel(card);
-                        }
-                    });
-                });
-            })();
         });
     </script>
-    
+
     <script src="./animation.bundle.js" defer></script>
 
     <script>
@@ -698,41 +575,26 @@
         window.addEventListener(event, loadGTM, { once: true, passive: true })
       );
     </script>
-    <script>
-    // Self-contained script for custom cursor
-    (function pm_initCustomCursor() {
-        const cursorDot = document.getElementById('pm-cursor-dot');
-        const cursorEye = document.getElementById('pm-cursor-eye');
-        const testimonialSection = document.getElementById('prysmi-testimonials');
-
-        if (!cursorDot || !cursorEye) return;
-
-        let dotX = 0, dotY = 0, eyeX = 0, eyeY = 0;
-
-        window.addEventListener('mousemove', e => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            // Spring effect for the eye
-            eyeX += (posX - eyeX) * 0.2;
-            eyeY += (posY - eyeY) * 0.2;
-            cursorEye.style.left = `${eyeX}px`;
-            cursorEye.style.top = `${eyeY}px`;
-        });
-
-        if (testimonialSection) {
-            testimonialSection.addEventListener('mouseenter', () => {
-                document.body.classList.add('pm-cursor-hover-testimonial');
-            });
-            testimonialSection.addEventListener('mouseleave', () => {
-                document.body.classList.remove('pm-cursor-hover-testimonial');
-            });
-        }
-    })();
-    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

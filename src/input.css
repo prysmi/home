@@ -529,6 +529,12 @@ body.light-mode #prysmi-ticker .prysmi-ticker__delim {
   filter: grayscale(100%);
   transform: scale(1.15); /* Pre-zoom to hide borders */
   transition: filter 0.4s ease, transform 0.4s ease;
+  object-position: center center; /* Default positioning */
+}
+
+/* Specific adjustment for the second testimonial photo to prevent cropping */
+.prysmi-testimonials__container .pm-testimonial-card:nth-child(2) .pm-testimonial-card__avatar {
+  object-position: center top; /* Focus on the top part of the image */
 }
 
 .pm-testimonial-card:hover .pm-testimonial-card__avatar {

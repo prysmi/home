@@ -351,14 +351,15 @@ a[role="button"].text-\[\#F53196\]:not(:hover):not(:focus):not(:active)
   transform: translate(-50%, -50%);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 10000;
-  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  z-index: 10002; /* Higher than modal */
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
   will-change: width, height, transform;
 }
 #pm-cursor-dot {
   width: 12px;
   height: 12px;
-  background-color: #f53196;
+  background-color: white; /* Changed for blend mode */
+  mix-blend-mode: difference; /* Ensures visibility */
   transition: transform 0.1s ease-out, opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
 #pm-cursor-eye {
@@ -588,11 +589,12 @@ body.light-mode .pm-chip {
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
+    transition: opacity 0.4s ease, visibility 0s 0.4s;
 }
 .pm-case-study-modal.is-active {
     opacity: 1;
     visibility: visible;
+    transition-delay: 0s;
 }
 .pm-case-study__backdrop {
     position: absolute;
@@ -606,7 +608,7 @@ body.light-mode .pm-chip {
     background: var(--color-bg-body);
     border: 1px solid var(--color-border-default);
     border-radius: 1rem;
-    padding: 2.5rem;
+    padding: 2rem 2.5rem 2.5rem;
     width: 90%;
     max-width: 900px;
     max-height: 90vh;
@@ -621,22 +623,51 @@ body.light-mode .pm-chip {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     background: rgba(255,255,255,0.1);
-    border: none;
+    border: 1px solid var(--color-border-default);
     border-radius: 50%;
-    color: white;
+    color: var(--color-text-primary);
     font-size: 1.5rem;
     line-height: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: all 0.2s ease;
 }
 .pm-case-study__close:hover {
     background: var(--color-accent-pink);
-    transform: rotate(90deg);
+    color: white;
+    transform: rotate(90deg) scale(1.1);
+    border-color: transparent;
+}
+.pm-case-study__close svg {
+    width: 24px;
+    height: 24px;
+}
+
+.pm-case-study__header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border-default);
+}
+@media (min-width: 640px) {
+    .pm-case-study__header {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+.pm-case-study__avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-accent-pink);
+    flex-shrink: 0;
 }
 
 .pm-case-study__title {
@@ -650,13 +681,12 @@ body.light-mode .pm-chip {
     font-style: italic;
     font-size: 1.1rem;
     color: var(--color-text-primary);
-    margin-bottom: 2rem;
-    max-width: 90%;
+    margin: 0;
 }
 .pm-case-study__main-content {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 @media (min-width: 768px) {
     .pm-case-study__main-content {
@@ -694,6 +724,18 @@ body.light-mode .pm-chip {
 .pm-case-study__kpi-item span {
     font-size: 0.875rem;
     opacity: 0.8;
+}
+
+/* Larger Employer Logos */
+.pm-employer-logo {
+    width: 12rem; /* 192px */
+    height: 7rem; /* 112px */
+}
+@media (min-width: 640px) {
+    .pm-employer-logo {
+        width: 14rem; /* 224px */
+        height: 8rem; /* 128px */
+    }
 }
 
 /* === PRYSMI: NEW/UPDATED STYLES END === */

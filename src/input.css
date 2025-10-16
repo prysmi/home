@@ -527,12 +527,13 @@ body.light-mode #prysmi-ticker .prysmi-ticker__delim {
   object-fit: cover;
   border: none;
   filter: grayscale(100%);
+  transform: scale(1.15); /* Pre-zoom to hide borders */
   transition: filter 0.4s ease, transform 0.4s ease;
 }
 
 .pm-testimonial-card:hover .pm-testimonial-card__avatar {
   filter: grayscale(0%);
-  transform: scale(1.05);
+  transform: scale(1.2); /* Slightly more zoom on hover */
 }
 
 .pm-testimonial-card__name {

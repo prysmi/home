@@ -353,14 +353,20 @@ a[role="button"].text-\[\#F53196\]:not(:hover):not(:focus):not(:active)
   pointer-events: none;
   z-index: 10002; /* Higher than modal */
   transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
-  will-change: width, height, transform;
+  will-change: width, height, transform, background-color;
 }
 #pm-cursor-dot {
   width: 12px;
   height: 12px;
-  background-color: white; /* Changed for blend mode */
-  mix-blend-mode: difference; /* Ensures visibility */
+  background-color: white;
+  mix-blend-mode: difference;
   transition: transform 0.1s ease-out, opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+#pm-cursor-dot.on-hover {
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255, 83, 172, 0.5); /* translucent #FF53AC */
+    mix-blend-mode: normal;
 }
 #pm-cursor-eye {
   width: 0;
@@ -372,7 +378,11 @@ a[role="button"].text-\[\#F53196\]:not(:hover):not(:focus):not(:active)
   justify-content: center;
   opacity: 0;
   overflow: hidden;
-  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease, transform 0.2s ease-out;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease, transform 0.2s ease-out, background-color 0.3s ease, color 0.3s ease;
+}
+body.light-mode #pm-cursor-eye {
+    background-color: rgba(10, 10, 10, 0.95); /* Flipped color for light mode */
+    color: #FFFFFF;
 }
 #pm-cursor-eye svg {
     width: 40px;
@@ -412,8 +422,13 @@ body.pm-cursor-hover-testimonial #pm-cursor-eye svg {
   text-transform: uppercase;
 }
 body.light-mode #prysmi-ticker {
-    background-color: #FFFFFF;
-    border-bottom-color: #eee;
+    background-color: #000000; /* Perfect black for light mode */
+    color: #FFFFFF;
+    border-bottom-color: #333;
+}
+body.light-mode #prysmi-ticker .prysmi-ticker__cta,
+body.light-mode #prysmi-ticker .prysmi-ticker__delim {
+    color: #FF53AC;
 }
 
 .prysmi-ticker__inner {
@@ -664,7 +679,7 @@ body.light-mode .pm-chip {
 .pm-case-study__avatar {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
+    border-radius: 0.75rem; /* Rounded Square */
     object-fit: cover;
     border: 2px solid var(--color-accent-pink);
     flex-shrink: 0;

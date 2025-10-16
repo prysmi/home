@@ -510,19 +510,29 @@ body.light-mode #prysmi-ticker .prysmi-ticker__delim {
   flex-direction: column;
 }
 
+.pm-testimonial-card__image-wrapper {
+  overflow: hidden;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  aspect-ratio: 1 / 1;
+}
+
 .pm-testimonial-card__profile {
-  display: flex;
-  align-items: center;
   margin-bottom: 1.5rem;
 }
 
 .pm-testimonial-card__avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  margin-right: 1rem;
-  border: 2px solid var(--color-accent-pink);
+  border: none;
+  filter: grayscale(100%);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.pm-testimonial-card:hover .pm-testimonial-card__avatar {
+  filter: grayscale(0%);
+  transform: scale(1.05);
 }
 
 .pm-testimonial-card__name {
@@ -677,12 +687,14 @@ body.light-mode .pm-chip {
     }
 }
 .pm-case-study__avatar {
-    width: 80px;
-    height: 80px;
+    width: 140px;
+    height: 140px;
     border-radius: 0.75rem; /* Rounded Square */
     object-fit: cover;
     border: 2px solid var(--color-accent-pink);
     flex-shrink: 0;
+    filter: grayscale(0%);
+    transform: scale(1.05);
 }
 
 .pm-case-study__title {

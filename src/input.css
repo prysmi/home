@@ -343,6 +343,47 @@ a[role="button"].text-\[\#F53196\]:not(:hover):not(:focus):not(:active)
 
 /* === PRYSMI: NEW/UPDATED STYLES START === */
 
+/* --- 0. Preloader --- */
+#pm-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10003; /* Higher than everything else */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-body);
+  transition: opacity 0.75s ease, visibility 0s 0.75s;
+}
+
+#pm-preloader.pm-preloader--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#pm-preloader img {
+  width: 200px;
+  animation: pm-pulse-logo 2s infinite ease-in-out;
+}
+
+.pm-preloader__logo-light { display: none; }
+.pm-preloader__logo-dark { display: block; }
+
+body.light-mode .pm-preloader__logo-light { display: block; }
+body.light-mode .pm-preloader__logo-dark { display: none; }
+
+@keyframes pm-pulse-logo {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+
 /* --- 1. Custom Mouse Cursor --- */
 #pm-cursor-dot, #pm-cursor-eye {
   position: fixed;
@@ -534,7 +575,7 @@ body.light-mode #prysmi-ticker .prysmi-ticker__delim {
 
 /* Specific adjustment for the second testimonial photo to prevent cropping */
 .prysmi-testimonials__container .pm-testimonial-card:nth-child(2) .pm-testimonial-card__avatar {
-  object-position: center top; /* Focus on the top part of the image */
+  object-position: center 20%; /* Focus higher up on the image */
 }
 
 .pm-testimonial-card:hover .pm-testimonial-card__avatar {

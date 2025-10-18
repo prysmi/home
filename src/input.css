@@ -813,5 +813,16 @@ body.light-mode .pm-chip {
     }
 }
 
+/* Founder Profile Photo */
+.pm-founder-profile-photo {
+  filter: grayscale(100%);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+.pm-founder-profile-photo:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+
 /* === PRYSMI: NEW/UPDATED STYLES END === */
 

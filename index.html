@@ -113,12 +113,6 @@
     <link href="./style.css" rel="stylesheet">
 </head>
 <body class="antialiased">
-    <!-- Preloader -->
-    <div id="pm-preloader">
-        <img src="/assets/trademarks/logos/logo-horizontal-white.webp" alt="Prysmi Logo" class="pm-preloader__logo-dark" onerror="this.onerror=null;this.src='https://placehold.co/200x67/0A0A0A/E0E0E0?text=PRYSMI';">
-        <img src="/assets/trademarks/logos/logo-horizontal-black.webp" alt="Prysmi Logo" class="pm-preloader__logo-light" onerror="this.onerror=null;this.src='https://placehold.co/200x67/F5F5F5/0A0A0A?text=PRYSMI';">
-    </div>
-
     <!-- Custom Cursor Elements -->
     <div id="pm-cursor-dot"></div>
     <div id="pm-cursor-eye">
@@ -336,6 +330,61 @@
                 </div>
             </div>
         </section>
+
+        <!-- NEW: Pipeline Engine Section -->
+        <section id="pm-pipeline-engine" class="py-16 md:py-24">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Build Pipeline That Compounds—Not Collapses</h2>
+                <p class="mt-4 text-lg fade-in-up max-w-3xl mx-auto">Organic traffic engines for founders who need demos and CMOs who need predictable growth</p>
+            </div>
+            <div class="pm-pipeline-cards-container max-w-5xl mx-auto">
+                <!-- Card 1: For Founders -->
+                <div class="pm-pipeline-card">
+                    <h3 class="pm-pipeline-card__super-title">For Early-Stage Tech Founders</h3>
+                    <h4 class="pm-pipeline-card__title">Fractional CMO Consulting</h4>
+                    <p class="pm-pipeline-card__subtitle">Book 6x More Annual Demos</p>
+                    <p class="pm-pipeline-card__body">Stop chasing ranking algorithms and paid ad costs that scale with your growth. Get strategic CMO-level guidance without the full-time cost. The CO-MET Framework (Compounding. Organic. Marketing. Engines. Together.) builds an anti-hack traffic engine that cements your reputation as a trusted problem-solver.</p>
+                    <div class="pm-pipeline-card__features">
+                        <h5>What You Get:</h5>
+                        <ul>
+                            <li>Survive all Google and OpenAI "Death-Comets" (ranking updates) forever</li>
+                            <li>Cost-managed lead source for unpredictable times and crowded markets</li>
+                            <li>Customer acquisition touchpoints that keep on giving</li>
+                            <li>End 80% organic traffic cat-and-mouse games and ranking-killers</li>
+                            <li>Shiny-object-proof pipeline that compounds over time</li>
+                        </ul>
+                    </div>
+                    <div class="pm-pipeline-card__guarantee">
+                        <h5>No Overages, No Surprises</h5>
+                        <p>Budget anticipates revisions and tweaks so we don't stop mid-project to renegotiate—unless you have major changes.</p>
+                    </div>
+                    <button id="pm-cta-founder" class="mt-auto bg-[#F53196] text-white font-semibold py-3 px-6 rounded-lg shadow-md button-glow-pink text-lg">Ready for More Demos?</button>
+                </div>
+                <!-- Card 2: For CMOs -->
+                <div class="pm-pipeline-card">
+                    <h3 class="pm-pipeline-card__super-title">For B2B Tech CMOs</h3>
+                    <h4 class="pm-pipeline-card__title">In-House BoFu + Organic Strategy</h4>
+                    <p class="pm-pipeline-card__subtitle">Generate 4x-15x Annualized Traffic Value</p>
+                    <p class="pm-pipeline-card__body">Your paid channels are saturated. Your team is stretched thin. Get a battle-tested bottom-funnel and organic strategy that integrates seamlessly with your existing team. The CO-MET Framework (Compounding. Organic. Marketing. Engines. Together.) creates an anti-hack organic engine that positions your brand as the trusted problem-solver in your space.</p>
+                    <div class="pm-pipeline-card__features">
+                        <h5>Strategic Benefits:</h5>
+                        <ul>
+                            <li>Survive all Google and OpenAI "Death-Comets" (ranking updates) forever</li>
+                            <li>Conserve billable marketer hours for other lead pipelines</li>
+                            <li>End 80% organic traffic cat-and-mouse games and ranking-killers</li>
+                            <li>Long-term touchpoints that keep on giving in crowded markets</li>
+                            <li>Makes your organic pipeline shiny-object-proof</li>
+                        </ul>
+                    </div>
+                    <div class="pm-pipeline-card__guarantee">
+                        <h5>Friction-Free Execution</h5>
+                        <p>Budget anticipates revisions and tweaks so we maintain momentum without renegotiating—unless you have major changes.</p>
+                    </div>
+                    <button id="pm-cta-cmo" class="mt-auto bg-[#F53196] text-white font-semibold py-3 px-6 rounded-lg shadow-md button-glow-pink text-lg">Let's Work Together</button>
+                </div>
+            </div>
+        </section>
+
 
         <section id="process" class="py-16 md:py-24 rounded-xl shadow-2xl">
             <div class="text-center mb-12 px-4">
@@ -652,7 +701,7 @@
 
             // --- Calendly Integration ---
             const calendlyLink = "https://calendly.com/prabhjot-prysmi";
-            const calendlyButtons = ['get-started-header-btn', 'get-started-mobile-btn', 'hero-cta-btn', 'schedule-call-footer-btn'];
+            const calendlyButtons = ['get-started-header-btn', 'get-started-mobile-btn', 'hero-cta-btn', 'schedule-call-footer-btn', 'pm-cta-founder', 'pm-cta-cmo'];
             calendlyButtons.forEach(id => {
                 const btn = document.getElementById(id);
                 if (btn) btn.addEventListener('click', () => window.open(calendlyLink, '_blank'));
@@ -814,14 +863,7 @@
         });
     })();
     </script>
-    <script>
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('pm-preloader');
-            if (preloader) {
-                preloader.classList.add('pm-preloader--hidden');
-            }
-        });
-    </script>
+    
 </body>
 </html>
 

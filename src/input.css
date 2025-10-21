@@ -788,9 +788,16 @@ body.light-mode .pm-chip {
     background-color: var(--color-bg-section);
     border: 1px solid var(--color-border-default);
     border-radius: 0.75rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 4rem; /* py-16 */
+    padding-bottom: 4rem; /* py-16 */
 }
+@media (min-width: 768px) {
+    #pm-pipeline-engine {
+        padding-top: 6rem; /* md:py-24 */
+        padding-bottom: 6rem; /* md:py-24 */
+    }
+}
+
 
 .pm-pipeline-cards-container {
     display: grid;

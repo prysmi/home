@@ -968,26 +968,8 @@ body.light-mode .pm-bento-grid__item--gradient-c {
 .pm-logo-scroller {
     width: 100%;
     overflow: hidden;
-    position: relative;
-}
-/* Fade effect for hero scroller using pseudo-elements */
-#hero .pm-logo-scroller::before,
-#hero .pm-logo-scroller::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 15%;
-    z-index: 2;
-    pointer-events: none;
-}
-#hero .pm-logo-scroller::before {
-    left: 0;
-    background: linear-gradient(to right, #F53196, transparent);
-}
-#hero .pm-logo-scroller::after {
-    right: 0;
-    background: linear-gradient(to left, #F53196, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
 }
 .pm-logo-scroller__inner {
     display: flex;
@@ -998,13 +980,10 @@ body.light-mode .pm-bento-grid__item--gradient-c {
     flex-shrink: 0;
     width: 200px;
     height: 80px;
-    margin: 0 1rem;
+    margin: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #000000;
-    border-radius: 0.5rem;
-    padding: 1rem;
 }
 .pm-logo-scroller__item img {
     max-width: 150px;
@@ -1017,16 +996,10 @@ body.light-mode .pm-bento-grid__item--gradient-c {
 
 /* Default state for scrollers on light/dark backgrounds */
 .pm-logo-scroller__item img {
-    filter: grayscale(100%) brightness(1.5);
-    opacity: 0.8;
+    filter: grayscale(100%) brightness(0.7);
 }
 .pm-logo-scroller__item:hover img {
     filter: grayscale(0%) brightness(1);
-    opacity: 1;
-}
-body.light-mode .pm-logo-scroller__item {
-    background-color: #FFFFFF;
-    border: 1px solid var(--color-border-default);
 }
 body.light-mode .pm-logo-scroller__item img {
     filter: grayscale(100%) brightness(0.3);
@@ -1036,10 +1009,6 @@ body.light-mode .pm-logo-scroller__item:hover img {
 }
 
 /* Specific override for the hero section scroller logos to make them white */
-#hero .pm-logo-scroller__item {
-    background-color: transparent;
-    border: none;
-}
 #hero .pm-logo-scroller__item img {
     filter: brightness(0) invert(1);
     opacity: 0.7;

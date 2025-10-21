@@ -974,22 +974,29 @@ body.light-mode .pm-bento-grid__item--gradient-c {
 .pm-logo-scroller__inner {
     display: flex;
     width: fit-content;
-    animation: pm-logo-scroll 30s linear infinite;
+    animation: pm-logo-scroll 40s linear infinite;
 }
 .pm-logo-scroller__item {
+    flex-shrink: 0;
     width: 200px;
-    height: 100px;
+    height: 80px;
     margin: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .pm-logo-scroller__item img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 150px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
     object-fit: contain;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* Default state for scrollers on light/dark backgrounds */
+.pm-logo-scroller__item img {
     filter: grayscale(100%) brightness(0.7);
-    transition: filter 0.3s ease;
 }
 .pm-logo-scroller__item:hover img {
     filter: grayscale(0%) brightness(1);
@@ -1001,6 +1008,15 @@ body.light-mode .pm-logo-scroller__item:hover img {
     filter: grayscale(0%) brightness(1);
 }
 
+/* Specific override for the hero section scroller logos to make them white */
+#hero .pm-logo-scroller__item img {
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+}
+#hero .pm-logo-scroller__item:hover img {
+    opacity: 1;
+}
+
 @keyframes pm-logo-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -1008,3 +1024,4 @@ body.light-mode .pm-logo-scroller__item:hover img {
 
 
 /* === PRYSMI: NEW/UPDATED STYLES END === */
+

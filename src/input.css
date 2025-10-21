@@ -968,8 +968,26 @@ body.light-mode .pm-bento-grid__item--gradient-c {
 .pm-logo-scroller {
     width: 100%;
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
-    mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+    position: relative;
+}
+/* Fade effect for hero scroller using pseudo-elements */
+#hero .pm-logo-scroller::before,
+#hero .pm-logo-scroller::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 15%;
+    z-index: 2;
+    pointer-events: none;
+}
+#hero .pm-logo-scroller::before {
+    left: 0;
+    background: linear-gradient(to right, #F53196, transparent);
+}
+#hero .pm-logo-scroller::after {
+    right: 0;
+    background: linear-gradient(to left, #F53196, transparent);
 }
 .pm-logo-scroller__inner {
     display: flex;

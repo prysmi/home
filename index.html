@@ -61,6 +61,31 @@
         background-color: var(--color-bg-body);
       }
       header, main, footer { position: relative; z-index: 1; }
+
+      /* Custom override for a softer logo scroller fade in the hero section */
+      #hero .pm-logo-scroller {
+        -webkit-mask-image: none;
+        mask-image: none;
+        position: relative;
+      }
+      #hero .pm-logo-scroller::before,
+      #hero .pm-logo-scroller::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 15%; /* Adjust the width of the fade effect */
+          z-index: 2;
+          pointer-events: none;
+      }
+      #hero .pm-logo-scroller::before {
+          left: 0;
+          background: linear-gradient(to right, #F53196, transparent);
+      }
+      #hero .pm-logo-scroller::after {
+          right: 0;
+          background: linear-gradient(to left, #F53196, transparent);
+      }
   </style>
 
     <!-- Google Tag Manager will be injected here by script -->
@@ -962,3 +987,4 @@
     
 </body>
 </html>
+

@@ -34,11 +34,15 @@
         --color-bg-body: #0A0A0A;
         --color-text-primary: #E0E0E0;
         --color-text-heading: #FFFFFF;
+        --color-accent-pink: #F53196; /* Define pink accent color */
+        --color-border-default: #333; /* Define default border color */
+
       }
       body.light-mode {
         --color-bg-body: #F5F5F5;
         --color-text-primary: #333333;
         --color-text-heading: #0A0A0A;
+        --color-border-default: #CCCCCC; /* Light mode border color */
       }
 
       /* Basic structural & typographic styles */
@@ -53,6 +57,11 @@
         font-weight: 800;
         color: var(--color-text-heading);
       }
+      .text-emphasis-italic-bold {
+        font-family: 'Libre Baskerville', serif;
+        font-style: italic;
+        font-weight: bold; /* Use browser default bold or adjust if needed */
+       }
   
       /* Canvas background placeholder */
       #waving-dots-3d-background {
@@ -80,11 +89,11 @@
       }
       #hero .pm-logo-scroller::before {
           left: 0;
-          background: linear-gradient(to right, #F53196, transparent);
+          background: linear-gradient(to right, var(--color-accent-pink), transparent); /* Use CSS var */
       }
       #hero .pm-logo-scroller::after {
           right: 0;
-          background: linear-gradient(to left, #F53196, transparent);
+          background: linear-gradient(to left, var(--color-accent-pink), transparent); /* Use CSS var */
       }
 
       /* Make hero logos fully opaque so they are not washed out */
@@ -92,8 +101,143 @@
           opacity: 1 !important;
       }
       .text-prysmi-pink {
-        color: #F53196;
+        color: var(--color-accent-pink); /* Use CSS var */
       }
+
+      /* Carousel Styles */
+        #process-carousel-wrapper {
+            position: relative;
+        }
+        .carousel-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem; /* space-x-2 */
+            margin-bottom: 1rem; /* mb-4 */
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+        .carousel-tab {
+            padding: 0.5rem 1rem; /* py-2 px-4 */
+            border-radius: 9999px; /* rounded-full */
+            border: 1px solid var(--color-border-default);
+            background-color: transparent;
+            color: var(--color-text-primary);
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600; /* font-semibold */
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .carousel-tab:hover {
+             background-color: rgba(255, 255, 255, 0.1);
+        }
+         body.light-mode .carousel-tab:hover {
+             background-color: rgba(0, 0, 0, 0.05);
+         }
+        .carousel-tab.active {
+            background-color: var(--color-accent-pink);
+            color: white;
+            border-color: var(--color-accent-pink);
+        }
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+            border-radius: 0.75rem; /* rounded-lg */
+             border: 1px solid var(--color-border-default); /* Match card borders */
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-card {
+            width: 100%;
+            flex-shrink: 0;
+            padding: 2rem; /* p-8 for consistent padding */
+            background-color: transparent; /* Card bg is handled by container if needed */
+            box-sizing: border-box; /* Ensure padding is included in width */
+             min-height: 450px; /* Ensure cards have a minimum height */
+             display: flex;
+             align-items: center; /* Vertically center content */
+        }
+       .carousel-card h3 {
+           margin-bottom: 0.5rem; /* mb-2 */
+       }
+       .carousel-card p {
+            margin-bottom: 1rem; /* mb-4 */
+       }
+       .carousel-card img {
+            max-width: 100%; /* Ensure images don't overflow */
+            height: auto;
+       }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+             border: none;
+            padding: 0.75rem; /* p-3 */
+            border-radius: 9999px; /* rounded-full */
+            z-index: 10;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+             width: 44px; /* Fixed width */
+             height: 44px; /* Fixed height */
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             font-size: 1.25rem; /* Larger arrow */
+        }
+         body.light-mode .carousel-arrow {
+             background-color: rgba(255, 255, 255, 0.7);
+             color: black;
+         }
+
+        .carousel-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+         body.light-mode .carousel-arrow:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+         }
+        .carousel-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        #prev-btn {
+            left: 0.75rem; /* left-3 */
+        }
+        #next-btn {
+            right: 0.75rem; /* right-3 */
+        }
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem; /* space-x-3 */
+            margin-top: 1rem; /* mt-4 */
+        }
+        .carousel-indicator {
+            width: 0.75rem; /* w-3 */
+            height: 0.75rem; /* h-3 */
+            border-radius: 9999px; /* rounded-full */
+            background-color: var(--color-border-default); /* Use border color for inactive */
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .carousel-indicator.active {
+            background-color: var(--color-accent-pink);
+        }
+
+       /* Ensure text contrast on cards */
+       .carousel-card .md\:w-1\/2 { /* Target the text/image containers */
+            color: var(--color-text-primary);
+       }
+       .carousel-card h3,
+       .carousel-card .text-emphasis-italic-bold {
+            color: var(--color-text-heading); /* Ensure headings are clear */
+       }
+       .text-lime { /* Specific class for lime text */
+          color: var(--color-accent-yellow); /* Assuming lime is yellow in variables */
+       }
+
   </style>
 
     <!-- Google Tag Manager will be injected here by script -->
@@ -474,75 +618,124 @@
             </div>
         </section>
 
+        <!-- Revenue-Ready Content System™ Section - Updated to Carousel -->
         <section id="process" class="py-16 md:py-24 rounded-xl shadow-2xl">
             <div class="text-center mb-12 px-4">
                 <p class="mt-4 text-lg fade-in-up"><span class="text-emphasis-italic-bold">Structure That Sells. Messaging That Moves. Systems That Scale.</span></p>
                 <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Revenue-Ready Content System™</h2>
-                <p class="mt-4 text-lg fade-in-up"><br>Marketing transformation doesn’t have to be slow or abstract. <br> Our proven 5-phase process brings clarity, discoverability, and content momentum<br> to Salesforce Consultancies and SI partners, often within the first 120 days. <br> <br> Every step is engineered to support sales velocity, messaging alignment, and strategic growth.</p>
+                <p class="mt-4 text-lg fade-in-up">
+                    Marketing transformation doesn’t have to be slow or abstract. <br>
+                    Our proven 5-phase process brings clarity, discoverability, and content momentum<br>
+                    to Salesforce Consultancies and SI partners, often within the first 120 days. <br> <br>
+                    Every step is engineered to support sales velocity, messaging alignment, and strategic growth.
+                </p>
             </div>
 
-            <div class="max-w-4xl mx-auto space-y-16">
-                <div class="flex flex-col md:flex-row items-center justify-center gap-8 fade-in-up">
-                    <div class="md:w-1/2 text-center md:text-left">
-                        <h3 class="text-2xl font-bold text-lime mb-2">Step 1: Clarity Comes First</h3>
-                        <p class="text-lg font-bold mb-4 text-emphasis-italic-bold">Value-Led Messaging & Deep Discovery</p>
-                        <p class="mb-4">We don’t guess. We immerse ourselves in your product, customers, competitors, and your founding story. Through interviews, audits, and intelligence-gathering, we unearth what makes your offer truly valuable and translate that into compelling, outcome-first messaging.</p>
-                        <p class="mb-4">You'll get complete documentation: personas, positioning, sales objections, and messaging audits, so every team speaks the same language.</p>
-                    </div>
-                    <div class="md:w-1/2 flex justify-center">
-                        <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_1.webp" alt="A founder and strategist at a whiteboard, removing sticky notes labeled “fluff,” “jargon,” and “features” : leaving only sticky notes labeled “impact,” and “aha.”" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
-                    </div>
+            <!-- Carousel Wrapper -->
+            <div id="process-carousel-wrapper" class="max-w-4xl mx-auto fade-in-up">
+
+                <!-- Tabs -->
+                <div class="carousel-tabs" id="carousel-tabs">
+                    <button data-index="0" class="carousel-tab active">Step 1</button>
+                    <button data-index="1" class="carousel-tab">Step 2</button>
+                    <button data-index="2" class="carousel-tab">Step 3</button>
+                    <button data-index="3" class="carousel-tab">Step 4</button>
+                    <button data-index="4" class="carousel-tab">Step 5</button>
                 </div>
 
-                <div class="flex flex-col md:flex-row-reverse items-center justify-center gap-8 fade-in-up">
-                    <div class="md:w-1/2 text-center md:text-left">
-                        <h3 class="text-2xl font-bold text-lime mb-2">Step 2: Built to Be Found</h3>
-                        <p class="text-lg font-bold mb-4 text-emphasis-italic-bold">Discoverability, Not Just SEO</p>
-                        <p class="mb-4">We build search systems around user intention, not just keywords. Through contextual research, competitor mapping, and intent modeling, we lay the groundwork for your content, trust site, and documentation site to surface when your buyers need them most.</p>
-                        <p class="mb-4">Think: pillar-spoke models, keyword matrices, AppExchange search patterns, and high-relevance triggers that make you findable and clickable.</p>
-                    </div>
-                    <div class="md:w-1/2 flex justify-center">
-                        <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_2.webp" alt="A search engine heatmap zooms in on buyer intent clusters; a content strategist is re-routing arrows to align site structure with intent." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
-                    </div>
+                <!-- Carousel Container -->
+                <div class="carousel-container" id="carousel-container">
+                    <!-- Arrow Buttons -->
+                    <button id="prev-btn" class="carousel-arrow" aria-label="Previous Step">&lt;</button>
+                    <button id="next-btn" class="carousel-arrow" aria-label="Next Step">&gt;</button>
+
+                    <!-- Inner Scrollable Container -->
+                    <div class="carousel-inner" id="carousel-inner">
+                        <!-- Card 1 (Step 1) -->
+                        <div class="carousel-card">
+                            <div class="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <h3 class="text-2xl font-bold text-lime">Step 1: Clarity Comes First</h3>
+                                    <p class="text-lg font-bold text-emphasis-italic-bold">Value-Led Messaging & Deep Discovery</p>
+                                    <p>We don’t guess. We immerse ourselves in your product, customers, competitors, and your founding story. Through interviews, audits, and intelligence-gathering, we unearth what makes your offer truly valuable and translate that into compelling, outcome-first messaging.</p>
+                                    <p>You'll get complete documentation: personas, positioning, sales objections, and messaging audits, so every team speaks the same language.</p>
+                                </div>
+                                <div class="md:w-1/2 flex justify-center">
+                                    <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_1.webp" alt="A founder and strategist at a whiteboard, removing sticky notes labeled “fluff,” “jargon,” and “features” : leaving only sticky notes labeled “impact,” and “aha.”" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+1';">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2 (Step 2) -->
+                        <div class="carousel-card">
+                             <div class="flex flex-col md:flex-row-reverse items-center justify-center gap-8 w-full">
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <h3 class="text-2xl font-bold text-lime">Step 2: Built to Be Found</h3>
+                                    <p class="text-lg font-bold text-emphasis-italic-bold">Discoverability, Not Just SEO</p>
+                                    <p>We build search systems around user intention, not just keywords. Through contextual research, competitor mapping, and intent modeling, we lay the groundwork for your content, trust site, and documentation site to surface when your buyers need them most.</p>
+                                    <p>Think: pillar-spoke models, keyword matrices, AppExchange search patterns, and high-relevance triggers that make you findable and clickable.</p>
+                                </div>
+                                <div class="md:w-1/2 flex justify-center">
+                                    <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_2.webp" alt="A search engine heatmap zooms in on buyer intent clusters; a content strategist is re-routing arrows to align site structure with intent." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+2';">
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Card 3 (Step 3) -->
+                        <div class="carousel-card">
+                             <div class="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <h3 class="text-2xl font-bold text-lime">Step 3: Design for Decision-Making</h3>
+                                    <p class="text-lg font-bold text-emphasis-italic-bold">Information Architecture Meets Real Messaging</p>
+                                    <p>Once messaging and intent are clear, we structure it into conversion-ready architecture. We design intuitive menu systems, wireframes, and navigation docs for your main website, documentation site, and trust site, all mapped to user goals.</p>
+                                    <p>At the center is a single-source-of-truth messaging document and new content assets like sales sheets, one-pagers, and objection handlers.</p>
+                                </div>
+                                <div class="md:w-1/2 flex justify-center">
+                                    <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_3.webp" alt="A website wireframes overlaid with funnel stages (problem-aware to decision), with a founder walking through them like a corridor with signposts." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+3';">
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Card 4 (Step 4) -->
+                        <div class="carousel-card">
+                             <div class="flex flex-col md:flex-row-reverse items-center justify-center gap-8 w-full">
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <h3 class="text-2xl font-bold text-lime">Step 4: Tool Up & Scale</h3>
+                                    <p class="text-lg font-bold text-emphasis-italic-bold">Content Systems That Power Sales & SEO</p>
+                                    <p>This is where we build your content creation machine, so your team can ship without friction.</p>
+                                    <p>From sales enablement templates and landing page systems to testimonial kits, email frameworks, and SEO content generators, we hand you the tools to create high-leverage content, fast and consistently. Oh, and your AppExchange listing? Consider it optimized, too.</p>
+                                </div>
+                                <div class="md:w-1/2 flex justify-center">
+                                    <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_4.webp" alt="A visual stack of labeled kits: “Objection Handler Deck,” “Positioning Matrix,” “Case Study Generator,” “Founder Post Format.” A team member clicks 'duplicate, customize, publish.'" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+4';">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 5 (Step 5) -->
+                        <div class="carousel-card">
+                             <div class="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <h3 class="text-2xl font-bold text-lime">Step 5: Execute With Precision</h3>
+                                    <p class="text-lg font-bold text-emphasis-italic-bold">Full-Throttle Content. Adaptive Strategy.</p>
+                                    <p>Now the engine runs. We implement site and messaging updates, roll out social and outbound strategies, and launch a founder-led content rhythm across channels.</p>
+                                    <p>Ongoing performance audits, optimization reports, and weekly sales-alignment loops keep everything sharp. This is where momentum becomes your marketing baseline.</p>
+                                </div>
+                                <div class="md:w-1/2 flex justify-center">
+                                    <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_5.webp" alt="A polished, live dashboard showing “Messaging Live,” “AppExchange Revamp,” “LinkedIn Engine ON” and a small team high-fiving over a spike in MQLs." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+5';">
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End Inner Container -->
+                </div> <!-- End Carousel Container -->
+
+                <!-- Indicators -->
+                <div class="carousel-indicators" id="carousel-indicators">
+                    <button data-index="0" class="carousel-indicator active"></button>
+                    <button data-index="1" class="carousel-indicator"></button>
+                    <button data-index="2" class="carousel-indicator"></button>
+                    <button data-index="3" class="carousel-indicator"></button>
+                    <button data-index="4" class="carousel-indicator"></button>
                 </div>
 
-                <div class="flex flex-col md:flex-row items-center justify-center gap-8 fade-in-up">
-                    <div class="md:w-1/2 text-center md:text-left">
-                        <h3 class="text-2xl font-bold text-lime mb-2">Step 3: Design for Decision-Making</h3>
-                        <p class="text-lg font-bold mb-4 text-emphasis-italic-bold">Information Architecture Meets Real Messaging</p>
-                        <p class="mb-4">Once messaging and intent are clear, we structure it into conversion-ready architecture. We design intuitive menu systems, wireframes, and navigation docs for your main website, documentation site, and trust site, all mapped to user goals.</p>
-                        <p class="mb-4">At the center is a single-source-of-truth messaging document and new content assets like sales sheets, one-pagers, and objection handlers.</p>
-                    </div>
-                    <div class="md:w-1/2 flex justify-center">
-                        <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_3.webp" alt="A website wireframes overlaid with funnel stages (problem-aware to decision), with a founder walking through them like a corridor with signposts." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row-reverse items-center justify-center gap-8 fade-in-up">
-                    <div class="md:w-1/2 text-center md:text-left">
-                        <h3 class="text-2xl font-bold text-lime mb-2">Step 4: Tool Up & Scale</h3>
-                        <p class="text-lg font-bold mb-4 text-emphasis-italic-bold">Content Systems That Power Sales & SEO</p>
-                        <p class="mb-4">This is where we build your content creation machine, so your team can ship without friction.</p>
-                        <p class="mb-4">From sales enablement templates and landing page systems to testimonial kits, email frameworks, and SEO content generators, we hand you the tools to create high-leverage content, fast and consistently. Oh, and your AppExchange listing? Consider it optimized, too.</p>
-                    </div>
-                    <div class="md:w-1/2 flex justify-center">
-                        <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_4.webp" alt="A visual stack of labeled kits: “Objection Handler Deck,” “Positioning Matrix,” “Case Study Generator,” “Founder Post Format.” A team member clicks 'duplicate, customize, publish.'" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row items-center justify-center gap-8 fade-in-up">
-                    <div class="md:w-1/2 text-center md:text-left">
-                        <h3 class="text-2xl font-bold text-lime mb-2">Step 5: Execute With Precision</h3>
-                        <p class="text-lg font-bold mb-4 text-emphasis-italic-bold">Full-Throttle Content. Adaptive Strategy.</p>
-                        <p class="mb-4">Now the engine runs. We implement site and messaging updates, roll out social and outbound strategies, and launch a founder-led content rhythm across channels.</p>
-                        <p class="mb-4">Ongoing performance audits, optimization reports, and weekly sales-alignment loops keep everything sharp. This is where momentum becomes your marketing baseline.</p>
-                    </div>
-                    <div class="md:w-1/2 flex justify-center">
-                        <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_5.webp" alt="A polished, live dashboard showing “Messaging Live,” “AppExchange Revamp,” “LinkedIn Engine ON” and a small team high-fiving over a spike in MQLs." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Image+Placeholder';">
-                    </div>
-                </div>
-            </div>
+            </div> <!-- End Carousel Wrapper -->
         </section>
+
 
         <section id="impact-outcomes" class="py-16 md:py-24">
             <div class="text-center mb-12 px-4">
@@ -575,7 +768,7 @@
         <!-- NEW: Pipeline Engine Section -->
         <section id="pm-pipeline-engine" class="py-16 md:py-24">
             <div class="text-center mb-12 px-4">
-                <p class="text-lg fade-in-up max-w-3xl mx-auto"><span class="text-emphasis-italic-bold">Organic traffic engines for founders who need demos<br> and CMOs who need predictable growth</span></p>
+                <p class="text-lg fade-in-up max-w-3xl mx-auto"><span class="text-emphasis-italic-bold">Organic traffic engines for founders who need demos and CMOs who need predictable growth</span></p>
                 <h2 class="text-3xl sm:text-4xl font-black fade-in-up mt-4">Build Pipeline That Compounds, Not Collapses</h2>
                 <p class="mt-4 text-lg fade-in-up max-w-3xl mx-auto font-semibold">The CO-MET Framework (Compounding. Organic. Marketing. Engines. Together.) builds an anti-hack traffic engine that cements your reputation as a trusted problem-solver.</p>
         
@@ -766,33 +959,52 @@
             }, observerOptions);
             sections.forEach(section => observer.observe(section));
 
-            // --- Fade-in and Stat Counter Animations on Scroll ---
-            const animatedElements = document.querySelectorAll('.fade-in-up, .stat-number');
+            // --- Fade-in Animations on Scroll ---
+             // Select only elements that need fade-in, exclude stat numbers handled elsewhere
+            const animatedElements = document.querySelectorAll('.fade-in-up:not(.stat-number)');
             const animateObserver = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // If it's a stat number, start the count-up animation
-                        if (entry.target.classList.contains('stat-number')) {
-                            const target = +entry.target.getAttribute('data-target');
-                            let current = 0;
-                            const increment = target / 100; // Control animation speed
-                            const updateCount = () => {
-                                if (current < target) {
-                                    current += increment;
-                                    entry.target.innerText = Math.ceil(current).toLocaleString();
-                                    requestAnimationFrame(updateCount);
-                                } else {
-                                    entry.target.innerText = target.toLocaleString();
-                                }
-                            };
-                            updateCount();
-                        }
+                         // No count-up logic here anymore
                         obs.unobserve(entry.target); // Stop observing after animation
                     }
                 });
             }, { threshold: 0.1 });
             animatedElements.forEach(el => animateObserver.observe(el));
+
+             // --- Stat Counter Animation (Separate Observer if needed or combined) ---
+             // If you still have stat numbers elsewhere, keep this logic
+             const statNumbers = document.querySelectorAll('.stat-number');
+             const statObserver = new IntersectionObserver((entries, obs) => {
+                 entries.forEach(entry => {
+                     if (entry.isIntersecting) {
+                         entry.target.classList.add('is-visible');
+                         const target = +entry.target.getAttribute('data-target');
+                         if (!isNaN(target)) { // Check if target is a valid number
+                            let current = 0;
+                            const increment = target / 100; // Control animation speed
+                            const updateCount = () => {
+                                if (current < target) {
+                                    current += increment;
+                                    // Use Math.min to prevent exceeding the target slightly due to increments
+                                    entry.target.innerText = Math.ceil(Math.min(current, target)).toLocaleString();
+                                    requestAnimationFrame(updateCount);
+                                } else {
+                                    entry.target.innerText = target.toLocaleString(); // Ensure final value is exact
+                                }
+                            };
+                            updateCount();
+                         } else {
+                            // Handle cases where data-target might be missing or invalid
+                            console.warn("Invalid data-target for stat number:", entry.target);
+                         }
+                         obs.unobserve(entry.target);
+                     }
+                 });
+             }, { threshold: 0.1 });
+             statNumbers.forEach(el => statObserver.observe(el));
+
 
             // --- Desktop Header Scroll Behavior ---
             const mainHeader = document.getElementById('main-header');
@@ -836,13 +1048,17 @@
             document.body.classList.toggle('light-mode', savedThemeIsLight);
             updateThemeUI(savedThemeIsLight);
 
-            const themeObserver = new MutationObserver(() => {
-                const isLightNow = document.body.classList.contains('light-mode');
-                updateThemeUI(isLightNow);
-                localStorage.setItem('theme', isLightNow ? 'light' : 'dark');
-            });
-
-            themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+             // Theme Toggle Button Logic
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                 themeToggleBtn.addEventListener('click', () => {
+                     document.body.classList.toggle('light-mode');
+                     // Update UI and save preference immediately after toggle
+                     const isLightNow = document.body.classList.contains('light-mode');
+                     updateThemeUI(isLightNow);
+                     localStorage.setItem('theme', isLightNow ? 'light' : 'dark');
+                 });
+             }
 
             // --- Testimonial Modal Logic ---
             (function pm_initTestimonialModals() {
@@ -892,6 +1108,103 @@
                     });
                 });
             })();
+
+             // --- Process Carousel Logic ---
+             const carouselInner = document.getElementById('carousel-inner');
+             const prevBtn = document.getElementById('prev-btn');
+             const nextBtn = document.getElementById('next-btn');
+             const indicators = document.querySelectorAll('.carousel-indicator');
+             const tabs = document.querySelectorAll('.carousel-tab');
+             
+             if (carouselInner && prevBtn && nextBtn && indicators.length > 0 && tabs.length > 0) {
+                const cards = carouselInner.children;
+                const totalCards = cards.length;
+                let currentIndex = 0;
+
+                function updateCarouselUI() {
+                    // Slide effect
+                    carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                    // Update indicators
+                    indicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === currentIndex);
+                    });
+
+                    // Update tabs
+                    tabs.forEach((tab, index) => {
+                        tab.classList.toggle('active', index === currentIndex);
+                    });
+
+                    // Update arrow buttons state
+                    prevBtn.disabled = currentIndex === 0;
+                    nextBtn.disabled = currentIndex === totalCards - 1;
+                }
+
+                function goToSlide(index) {
+                    if (index < 0 || index >= totalCards) return; // Boundary check
+                    currentIndex = index;
+                    updateCarouselUI();
+                }
+
+                // Event Listeners
+                prevBtn.addEventListener('click', () => {
+                    goToSlide(currentIndex - 1);
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    goToSlide(currentIndex + 1);
+                });
+
+                indicators.forEach(indicator => {
+                    indicator.addEventListener('click', () => {
+                        goToSlide(parseInt(indicator.dataset.index));
+                    });
+                });
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        goToSlide(parseInt(tab.dataset.index));
+                    });
+                });
+
+                // Initial setup
+                updateCarouselUI();
+
+                 // --- Touch/Swipe Functionality for Carousel ---
+                 let touchStartX = 0;
+                 let touchEndX = 0;
+                 const swipeThreshold = 50; // Minimum distance for a swipe
+
+                 carouselInner.addEventListener('touchstart', (e) => {
+                     touchStartX = e.changedTouches[0].screenX;
+                 }, { passive: true }); // Use passive listener for better scroll performance
+
+                 carouselInner.addEventListener('touchend', (e) => {
+                     touchEndX = e.changedTouches[0].screenX;
+                     handleSwipeGesture();
+                 });
+
+                 function handleSwipeGesture() {
+                     const deltaX = touchEndX - touchStartX;
+                     if (Math.abs(deltaX) > swipeThreshold) { // Only trigger if swipe is significant
+                         if (deltaX < 0) {
+                             // Swiped left (Next)
+                             goToSlide(currentIndex + 1);
+                         } else {
+                             // Swiped right (Previous)
+                             goToSlide(currentIndex - 1);
+                         }
+                     }
+                      // Reset values for the next swipe
+                      touchStartX = 0;
+                      touchEndX = 0;
+                 }
+
+
+             } else {
+                 console.warn("Carousel elements not found, carousel functionality disabled.");
+             }
+
         });
     </script>
     
@@ -969,5 +1282,4 @@
     
 </body>
 </html>
-
 

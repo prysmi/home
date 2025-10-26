@@ -58,6 +58,10 @@
         font-weight: 800;
         color: var(--color-text-heading);
       }
+      /* Ensure h2 specifically uses font-black */
+      h2 {
+        font-weight: 900; /* font-black */
+      }
       .text-emphasis-italic-bold {
         font-family: 'Libre Baskerville', serif;
         font-style: italic;
@@ -74,17 +78,34 @@
 
        /* === Logo Scroller General Styles - Enhanced Visibility === */
        .pm-logo-scroller-container {
-           width: 85%; /* Slightly wider */
+           width: 90%; /* Wider container */
            margin-left: auto;
            margin-right: auto;
            margin-top: 4rem;
            margin-bottom: 4rem;
        }
 
+        .pm-logo-scroller-heading {
+             margin-bottom: 2rem; /* Increased space below heading */
+             text-align: center;
+             /* Ensure font matches h2 */
+             font-size: 1.875rem; /* text-3xl */
+             line-height: 2.25rem;
+             font-weight: 900; /* font-black */
+             color: var(--color-text-heading);
+        }
+        @media (min-width: 640px) { /* sm breakpoint */
+             .pm-logo-scroller-heading {
+                 font-size: 2.25rem; /* sm:text-4xl */
+                 line-height: 2.5rem;
+             }
+        }
+
+
        .pm-logo-scroller {
            /* Apply mask for fading effect */
-           -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-           mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+           -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); /* Adjust fade width slightly */
+           mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
            position: relative;
            overflow: hidden;
            width: 100%;
@@ -98,14 +119,14 @@
        .pm-logo-scroller__item {
            background-color: rgba(30, 30, 30, 0.8); /* Dark gray, slightly transparent */
            border: 1px solid var(--color-border-default); /* Add subtle border */
-           padding: 1rem; /* Slightly more padding */
+           padding: 1.5rem; /* Increase padding */
            border-radius: 0.75rem; /* rounded-xl */
            display: flex;
            align-items: center;
            justify-content: center;
            width: auto;
            height: auto;
-           margin: 0 1.5rem;
+           margin: 0 2rem; /* Increase margin */
            flex-shrink: 0;
            transition: transform 0.2s ease-out, background-color 0.2s ease-out; /* Add transition */
            box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Add subtle shadow */
@@ -116,13 +137,13 @@
             background-color: rgba(50, 50, 50, 0.9); /* Slightly lighter on hover */
         }
 
-       /* Styling for the logo image itself */
+       /* Styling for the logo image itself - Much Bigger */
        .pm-logo-scroller__item img {
            opacity: 1 !important;
            filter: none !important; /* Display as is */
            transition: none;
-           max-width: 180px; /* Logo size */
-           max-height: 60px; /* Logo size */
+           max-width: 240px; /* Logo size - Increased */
+           max-height: 80px; /* Logo size - Increased */
            width: auto;
            height: auto;
            object-fit: contain;
@@ -152,7 +173,7 @@
        .pm-logo-scroller__inner {
             display: flex;
             width: fit-content; /* Critical for scroll width calculation */
-            animation: pm-logo-scroll 40s linear infinite; /* Ensure this uses the correct animation */
+            animation: pm-logo-scroll 60s linear infinite; /* Slow down animation slightly due to larger items */
         }
        /* === End Logo Scroller Styles === */
 
@@ -556,7 +577,8 @@
             </div>
             <!-- Container for the single scroller - MOVED HERE -->
             <div class="w-full max-w-5xl mx-auto fade-in-up pm-logo-scroller-container">
-                <p class="text-sm sm:text-base opacity-80 mb-4 text-center">Trusted by your Industry Peers and Leaders</p>
+                <!-- Updated Heading Tag and Classes -->
+                <h2 class="pm-logo-scroller-heading">Trusted by your Industry Peers and Leaders</h2>
                 <!-- Scroller 1 (Right to Left) -->
                 <div class="pm-logo-scroller">
                     <div class="pm-logo-scroller__inner">
@@ -1342,4 +1364,3 @@
     
 </body>
 </html>
-

@@ -83,12 +83,13 @@
            margin-right: auto;
            margin-top: 4rem;
            margin-bottom: 4rem;
-           /* Change gradient to use black */
+           /* Dark gradient background */
            background: linear-gradient(135deg, #222, #000); /* Dark gray to black gradient */
            padding: 2.5rem 0; /* py-10 */
            border-radius: 1rem; /* rounded-2xl */
            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
            border: 1px solid #444; /* Add a border for definition */
+           transition: background 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Add transition */
        }
         /* Update heading color if needed for contrast against black */
         .pm-logo-scroller-heading {
@@ -99,6 +100,7 @@
              line-height: 2.25rem;
              font-weight: 900; /* font-black */
              color: var(--color-text-heading); /* Use heading color variable */
+             transition: color 0.3s ease-in-out; /* Add transition */
         }
         @media (min-width: 640px) { /* sm breakpoint */
              .pm-logo-scroller-heading {
@@ -135,7 +137,7 @@
            height: auto;
            margin: 0 2rem; /* Increase margin */
            flex-shrink: 0;
-           transition: transform 0.2s ease-out, background-color 0.2s ease-out; /* Add transition */
+           transition: transform 0.2s ease-out, background-color 0.2s ease-out, border-color 0.3s ease-in-out; /* Add transitions */
            box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Add subtle shadow */
        }
 
@@ -155,25 +157,145 @@
            height: auto;
            object-fit: contain;
        }
-       /* Adjust logo appearance for light mode (NO CHANGE needed for gradient box) */
-        /* body.light-mode .pm-logo-scroller__item { ... } */
-        /* body.light-mode .pm-logo-scroller__item img { ... } */
 
-
-        /* Animation definitions */
-        @keyframes pm-logo-scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); } /* Scrolls left */
+        /* === LIGHT MODE Styles for Logo Scroller === */
+        body.light-mode .pm-logo-scroller-container {
+             background: linear-gradient(135deg, #FFF, #EEE); /* White to light gray gradient */
+             border-color: #DDD;
+             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
+         body.light-mode .pm-logo-scroller-heading {
+              color: var(--color-text-heading); /* Use light mode heading color */
+         }
 
-       /* Apply animation to the single scroller */
-       .pm-logo-scroller__inner {
-            display: flex;
-            width: fit-content; /* Critical for scroll width calculation */
-            animation: pm-logo-scroll 60s linear infinite; /* Slow down animation slightly due to larger items */
+        body.light-mode .pm-logo-scroller__item {
+             background-color: rgba(255, 255, 255, 0.8); /* White, slightly transparent */
+             border-color: #DDD; /* Lighter border */
+             box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Lighter shadow */
+        }
+         body.light-mode .pm-logo-scroller__item:hover {
+             background-color: rgba(255, 255, 255, 0.95);
+         }
+
+        body.light-mode .pm-logo-scroller__item img {
+            /* Keep logos as is */
+            filter: none !important;
         }
        /* === End Logo Scroller Styles === */
 
+       /* === Bento Box Styles === */
+       .pm-bento-grid {
+           display: grid;
+           gap: 1rem;
+           grid-template-columns: repeat(4, 1fr);
+           grid-template-areas:
+               "a a a a"
+               "b c d d"
+               "e f g g"
+               "h i i j"
+               "k k l l";
+       }
+       @media (max-width: 1024px) {
+           .pm-bento-grid {
+               grid-template-columns: repeat(2, 1fr);
+               grid-template-areas:
+                   "a a" "b c" "d d" "e f" "g g" "h i" "j k" "l l";
+           }
+       }
+       @media (max-width: 640px) {
+           .pm-bento-grid {
+               grid-template-columns: 1fr;
+               grid-template-areas:
+                   "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l";
+           }
+       }
+        .pm-bento-grid__item {
+            background-color: var(--color-bg-section);
+            border: 1px solid var(--color-border-default);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        }
+        .pm-bento-grid__item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .pm-bento-grid__item--pink {
+            background: linear-gradient(135deg, #F53196, #FF53AC);
+            color: white; border: none; /* Remove border for gradient items */
+        }
+        .pm-bento-grid__item--dark {
+            background-color: #111; border: none;
+        }
+        .pm-bento-grid__item--gradient-a {
+            background: linear-gradient(135deg, #FF53AC, #5f2c82); border: none;
+        }
+        .pm-bento-grid__item--gradient-b {
+            background: linear-gradient(135deg, #3a3a3a, #1a1a1a); border: none;
+        }
+        .pm-bento-grid__item--gradient-c {
+            background: linear-gradient(135deg, #7d7d7d, #4a4a4a); border: none;
+        }
+        /* Color overrides for text within colored/gradient boxes */
+        .pm-bento-grid__item--pink .pm-bento-grid__stat,
+        .pm-bento-grid__item--pink .pm-bento-grid__desc,
+        .pm-bento-grid__item[class*="--gradient-"] .pm-bento-grid__stat,
+        .pm-bento-grid__item[class*="--gradient-"] .pm-bento-grid__desc {
+            color: white !important; /* Ensure text is white */
+        }
+        .pm-bento-grid__stat {
+            font-size: 3rem; font-weight: 900; line-height: 1;
+            color: var(--color-text-heading); transition: color 0.3s ease-in-out;
+        }
+        .pm-bento-grid__stat-small {
+            font-size: 1.5rem; font-weight: 800;
+        }
+        .pm-bento-grid__desc {
+            margin-top: 0.5rem; font-size: 0.9rem;
+            color: var(--color-text-primary); transition: color 0.3s ease-in-out;
+        }
+       /* === LIGHT MODE Styles for Bento Box === */
+       body.light-mode .pm-bento-grid__item {
+           background-color: rgba(255, 255, 255, 0.7); /* Lighter background */
+           border-color: #DDD;
+       }
+        body.light-mode .pm-bento-grid__item:hover {
+             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        /* Keep pink gradient, but ensure text is readable */
+        body.light-mode .pm-bento-grid__item--pink {
+             background: linear-gradient(135deg, #F53196, #FF53AC); /* Keep gradient */
+             border: none;
+        }
+         body.light-mode .pm-bento-grid__item--pink .pm-bento-grid__stat,
+         body.light-mode .pm-bento-grid__item--pink .pm-bento-grid__desc {
+             color: white !important;
+         }
+        /* Make dark items light gray */
+        body.light-mode .pm-bento-grid__item--dark {
+            background-color: #e0e0e0; border: none;
+        }
+        /* Make gradient items light gray */
+        body.light-mode .pm-bento-grid__item--gradient-a,
+        body.light-mode .pm-bento-grid__item--gradient-b,
+        body.light-mode .pm-bento-grid__item--gradient-c {
+            background: #f0f0f0; border: 1px solid #DDD;
+        }
+        /* Ensure text in lightened gradient boxes is dark */
+        body.light-mode .pm-bento-grid__item[class*="--gradient-"] .pm-bento-grid__stat,
+        body.light-mode .pm-bento-grid__item[class*="--gradient-"] .pm-bento-grid__desc {
+             color: var(--color-text-heading) !important; /* Use dark heading color */
+        }
+         body.light-mode .pm-bento-grid__item--dark .pm-bento-grid__stat,
+         body.light-mode .pm-bento-grid__item--dark .pm-bento-grid__desc {
+              color: var(--color-text-heading) !important;
+         }
+        body.light-mode .pm-bento-grid__stat { color: var(--color-text-heading); }
+        body.light-mode .pm-bento-grid__desc { color: var(--color-text-primary); }
+       /* === End Bento Box Styles === */
 
       .text-prysmi-pink {
         color: var(--color-accent-pink); /* Use CSS var */
@@ -1340,7 +1462,7 @@
             eyeX += (posX - eyeX) * 0.2;
             eyeY += (posY - eyeY) * 0.2;
             cursorEye.style.left = `${eyeX}px`;
-            cursorEye.style.top = `${eyeY}px`;
+            cursorEye.style.top = `${posY}px`;
         });
 
         if (testimonialSection) {

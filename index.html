@@ -83,6 +83,11 @@
            margin-right: auto;
            margin-top: 4rem;
            margin-bottom: 4rem;
+           /* Add gradient background and styling */
+           background: linear-gradient(135deg, #F53156, #D82A48); /* Gradient */
+           padding: 2.5rem 0; /* py-10 */
+           border-radius: 1rem; /* rounded-2xl */
+           box-shadow: 0 10px 20px rgba(0,0,0,0.3);
        }
 
         .pm-logo-scroller-heading {
@@ -92,7 +97,7 @@
              font-size: 1.875rem; /* text-3xl */
              line-height: 2.25rem;
              font-weight: 900; /* font-black */
-             color: var(--color-text-heading);
+             color: #FFFFFF !important; /* Force white text over gradient */
         }
         @media (min-width: 640px) { /* sm breakpoint */
              .pm-logo-scroller-heading {
@@ -118,7 +123,7 @@
         /* Styling for the logo container - Enhanced */
        .pm-logo-scroller__item {
            background-color: rgba(30, 30, 30, 0.8); /* Dark gray, slightly transparent */
-           border: 1px solid var(--color-border-default); /* Add subtle border */
+           border: 1px solid rgba(255, 255, 255, 0.2); /* Lighter border for contrast on gradient */
            padding: 1.5rem; /* Increase padding */
            border-radius: 0.75rem; /* rounded-xl */
            display: flex;
@@ -148,20 +153,10 @@
            height: auto;
            object-fit: contain;
        }
-       /* Adjust logo appearance for light mode */
-        body.light-mode .pm-logo-scroller__item {
-             background-color: rgba(255, 255, 255, 0.8); /* White, slightly transparent */
-             border-color: #DDD; /* Lighter border */
-             box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Lighter shadow */
-        }
-         body.light-mode .pm-logo-scroller__item:hover {
-             background-color: rgba(255, 255, 255, 0.95);
-         }
+       /* Adjust logo appearance for light mode (NO CHANGE needed for gradient box) */
+        /* body.light-mode .pm-logo-scroller__item { ... } */
+        /* body.light-mode .pm-logo-scroller__item img { ... } */
 
-        body.light-mode .pm-logo-scroller__item img {
-            /* Keep logos as is */
-            filter: none !important;
-        }
 
         /* Animation definitions */
         @keyframes pm-logo-scroll {
@@ -1364,3 +1359,4 @@
     
 </body>
 </html>
+

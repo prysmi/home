@@ -83,13 +83,14 @@
            margin-right: auto;
            margin-top: 4rem;
            margin-bottom: 4rem;
-           /* Add gradient background and styling */
-           background: linear-gradient(135deg, #F53156, #D82A48); /* Gradient */
+           /* Change gradient to use black */
+           background: linear-gradient(135deg, #222, #000); /* Dark gray to black gradient */
            padding: 2.5rem 0; /* py-10 */
            border-radius: 1rem; /* rounded-2xl */
            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+           border: 1px solid #444; /* Add a border for definition */
        }
-
+        /* Update heading color if needed for contrast against black */
         .pm-logo-scroller-heading {
              margin-bottom: 2rem; /* Increased space below heading */
              text-align: center;
@@ -97,7 +98,7 @@
              font-size: 1.875rem; /* text-3xl */
              line-height: 2.25rem;
              font-weight: 900; /* font-black */
-             color: #FFFFFF !important; /* Force white text over gradient */
+             color: var(--color-text-heading); /* Use heading color variable */
         }
         @media (min-width: 640px) { /* sm breakpoint */
              .pm-logo-scroller-heading {
@@ -122,8 +123,9 @@
 
         /* Styling for the logo container - Enhanced */
        .pm-logo-scroller__item {
-           background-color: rgba(30, 30, 30, 0.8); /* Dark gray, slightly transparent */
-           border: 1px solid rgba(255, 255, 255, 0.2); /* Lighter border for contrast on gradient */
+           /* Keep background dark, adjust border for black box */
+           background-color: rgba(30, 30, 30, 0.8);
+           border: 1px solid #555; /* Slightly lighter border */
            padding: 1.5rem; /* Increase padding */
            border-radius: 0.75rem; /* rounded-xl */
            display: flex;

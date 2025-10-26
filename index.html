@@ -72,44 +72,44 @@
       }
       header, main, footer { position: relative; z-index: 1; }
 
-      /* === Hero Logo Scroller Fixes === */
+      /* === Hero Logo Scroller Fixes v2 === */
       #hero .pm-logo-scroller {
         -webkit-mask-image: none;
         mask-image: none;
         position: relative;
       }
-      /* Smoother gradient fade using the hero background color */
+      /* Narrower gradient fade */
       #hero .pm-logo-scroller::before,
       #hero .pm-logo-scroller::after {
           content: '';
           position: absolute;
           top: 0;
           bottom: 0;
-          width: 15%; /* Adjust width as needed */
+          width: 10%; /* Make gradient narrower */
           z-index: 2;
           pointer-events: none;
       }
        /* Gradient matching the hero background */
       #hero .pm-logo-scroller::before {
           left: 0;
-          background: linear-gradient(to right, var(--color-accent-pink) 0%, rgba(245, 49, 150, 0) 100%);
+          background: linear-gradient(to right, var(--color-accent-pink), transparent);
       }
       #hero .pm-logo-scroller::after {
           right: 0;
-          background: linear-gradient(to left, var(--color-accent-pink) 0%, rgba(245, 49, 150, 0) 100%);
+          background: linear-gradient(to left, var(--color-accent-pink), transparent);
       }
 
-      /* Ensure logos are displayed as is (white on pink) */
+      /* Ensure logos are displayed as is (white on pink), remove hover effect */
       #hero .pm-logo-scroller__item img {
           opacity: 1 !important; /* Keep full opacity */
-          filter: brightness(0) invert(1); /* This makes logos white */
-          transition: opacity 0.3s ease; /* Optional: Keep hover effect if desired */
+          filter: brightness(0) invert(1) !important; /* Make logos white, override any other filters */
+          transition: none; /* Remove transition */
       }
-       /* Optional: Slight fade on hover for interaction */
+       /* Remove hover effect that might cause washout */
       #hero .pm-logo-scroller__item:hover img {
-           opacity: 0.8 !important;
+           opacity: 1 !important; /* Keep full opacity on hover */
       }
-      /* === End Hero Logo Scroller Fixes === */
+      /* === End Hero Logo Scroller Fixes v2 === */
 
       .text-prysmi-pink {
         color: var(--color-accent-pink); /* Use CSS var */

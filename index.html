@@ -72,11 +72,11 @@
       }
       header, main, footer { position: relative; z-index: 1; }
 
-      /* === Hero Logo Scroller Fixes v4 === */
+      /* === Hero Logo Scroller Fixes v5 === */
       #hero .pm-logo-scroller {
-          /* Apply mask for fading effect - Shorten right fade */
-          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent); /* Changed 85% to 90% */
-          mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent); /* Changed 85% to 90% */
+          /* Apply mask for fading effect - Shorten right fade further */
+          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 95%, transparent); /* Changed 90% to 95% */
+          mask-image: linear-gradient(to right, transparent, black 15%, black 95%, transparent); /* Changed 90% to 95% */
           position: relative;
       }
       #hero .pm-logo-scroller::before,
@@ -93,7 +93,7 @@
       #hero .pm-logo-scroller__item:hover img {
            opacity: 1 !important;
       }
-      /* === End Hero Logo Scroller Fixes v4 === */
+      /* === End Hero Logo Scroller Fixes v5 === */
 
       .text-prysmi-pink {
         color: var(--color-accent-pink); /* Use CSS var */

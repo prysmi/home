@@ -72,30 +72,28 @@
       }
       header, main, footer { position: relative; z-index: 1; }
 
-      /* === Hero Logo Scroller Fixes v3 === */
+      /* === Hero Logo Scroller Fixes v4 === */
       #hero .pm-logo-scroller {
-          /* Apply mask for fading effect */
-          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-          mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-          position: relative; /* Keep relative positioning if needed elsewhere */
-          /* Remove pseudo-elements as they are replaced by mask */
+          /* Apply mask for fading effect - Shorten right fade */
+          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent); /* Changed 85% to 90% */
+          mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent); /* Changed 85% to 90% */
+          position: relative;
       }
       #hero .pm-logo-scroller::before,
       #hero .pm-logo-scroller::after {
-          content: none; /* Disable pseudo-elements */
+          content: none;
       }
 
       /* Ensure logos appear AS IS (bwlogos) against the pink background */
       #hero .pm-logo-scroller__item img {
-          opacity: 1 !important; /* Ensure full opacity */
-          filter: none !important; /* REMOVE any filters like invert/brightness */
-          transition: none; /* No transition needed */
+          opacity: 1 !important;
+          filter: none !important;
+          transition: none;
       }
-      /* Remove hover effect */
       #hero .pm-logo-scroller__item:hover img {
            opacity: 1 !important;
       }
-      /* === End Hero Logo Scroller Fixes v3 === */
+      /* === End Hero Logo Scroller Fixes v4 === */
 
       .text-prysmi-pink {
         color: var(--color-accent-pink); /* Use CSS var */

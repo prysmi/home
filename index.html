@@ -434,6 +434,18 @@
        .text-lime { /* Specific class for lime text */
           color: var(--color-accent-yellow); /* Assuming lime is yellow in variables */
        }
+       /* Additional styling for merged sections */
+        .merged-section-padding {
+            padding-top: 4rem; /* pt-16 */
+            padding-bottom: 4rem; /* pb-16 */
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .merged-section-padding {
+                padding-top: 6rem; /* md:pt-24 */
+                padding-bottom: 6rem; /* md:pb-24 */
+            }
+        }
+
 
   </style>
 
@@ -526,9 +538,9 @@
                 <button id="mobile-nav-close" class="absolute top-5 right-5 text-white text-3xl" aria-label="Close navigation menu">&times;</button>
                 <nav class="flex flex-col space-y-6 text-center">
                     <a href="#about" class="mobile-nav-link text-white text-xl font-semibold">About</a>
-                    <a href="#challenges" class="mobile-nav-link text-white text-xl font-semibold">Challenges</a>
+                    <!-- Removed Challenges link as it's merged -->
                     <a href="#process" class="mobile-nav-link text-white text-xl font-semibold">Our Process</a>
-                    <a href="#impact-outcomes" class="mobile-nav-link text-white text-xl font-semibold">Our Impact</a>
+                    <!-- Removed Our Impact link as it's merged -->
                     <a href="#contact" class="mobile-nav-link text-white text-xl font-semibold">Contact</a>
                     <button id="get-started-mobile-btn" class="mt-6 bg-[#F53196] text-white font-semibold py-3 px-6 rounded-lg shadow-md button-glow-pink text-lg" aria-label="Get Started with PRYSMI Agency">Get Started</button>
                 </nav>
@@ -550,9 +562,9 @@
             <div class="flex items-center">
                 <div class="ml-10 flex items-baseline space-x-4">
                     <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium">About</a>
-                    <a href="#challenges" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Challenges</a>
+                     <!-- Removed Challenges link -->
                     <a href="#process" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Our Process</a>
-                    <a href="#impact-outcomes" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Our Impact</a>
+                     <!-- Removed Our Impact link -->
                     <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                     <button id="get-started-header-btn" class="nav-link bg-[#F53196] text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-sm button-glow-pink" aria-label="Get Started with PRYSMI Agency">Get Started</button>
                 </div>
@@ -751,6 +763,7 @@
             <!-- Removed the paragraph that was here -->
         </section>
 
+        <!-- About Section -->
         <section id="about" class="py-16 md:py-24 rounded-xl shadow-2xl">
             <div class="text-center mb-12 px-4">
                 <p class="mt-4 text-lg fade-in-up">
@@ -772,54 +785,55 @@
                     </ul>
                 </div>
             </div>
-        </section>
 
-        <section id="challenges" class="py-16 md:py-24">
-            <div class="text-center mb-12 px-4">
-                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">The Challenges We Solve</h2>
-                <p class="mt-4 text-lg fade-in-up">Many founder-led tech firms and consultancies grapple with marketing that <span class="text-emphasis-italic-bold">doesn't deliver predictable revenue.</span></p>
-                <p class="mt-4 text-lg fade-in-up">If you've outgrown <span class="text-emphasis-italic-bold">scattered messaging and siloed content</span>, some challenges might resonate with you:</p>
+            <!-- Merged "The Challenges We Solve" section content -->
+            <div class="merged-section-padding"> <!-- Added padding class -->
+                <div class="text-center mb-12 px-4">
+                    <h2 class="text-3xl sm:text-4xl font-black fade-in-up">The Challenges We Solve</h2>
+                    <p class="mt-4 text-lg fade-in-up">Many founder-led tech firms and consultancies grapple with marketing that <span class="text-emphasis-italic-bold">doesn't deliver predictable revenue.</span></p>
+                    <p class="mt-4 text-lg fade-in-up">If you've outgrown <span class="text-emphasis-italic-bold">scattered messaging and siloed content</span>, some challenges might resonate with you:</p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up">
+                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-lime mb-2">Inconsistent Messaging</h3>
+                            <p>Your team struggles to articulate your unique value proposition clearly and consistently across all channels.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
+                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-lime mb-2">Low-Intent Traffic</h3>
+                            <p>You're getting website visitors, but they're not converting into qualified leads or sales conversations.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
+                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-lime mb-2">Siloed Content</h3>
+                            <p>Your marketing content isn't aligned with your sales process, leading to missed opportunities and inefficient efforts.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
+                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-lime mb-2">Marketing Burnout</h3>
+                            <p>Producing content and managing campaigns feels like a constant struggle, with little time for strategic thinking.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
+                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-lime mb-2">Unclear ROI</h3>
+                            <p>You're investing in marketing, but the direct impact on revenue and business growth is hard to quantify or attribute.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="max-w-3xl mx-auto space-y-6">
-                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up">
-                    <span class="text-prysmi-pink text-2xl mt-1">☑</span>
-                    <div>
-                        <h3 class="text-xl font-semibold text-lime mb-2">Inconsistent Messaging</h3>
-                        <p>Your team struggles to articulate your unique value proposition clearly and consistently across all channels.</p>
-                    </div>
-                </div>
-                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
-                    <span class="text-prysmi-pink text-2xl mt-1">☑</span>
-                    <div>
-                        <h3 class="text-xl font-semibold text-lime mb-2">Low-Intent Traffic</h3>
-                        <p>You're getting website visitors, but they're not converting into qualified leads or sales conversations.</p>
-                    </div>
-                </div>
-                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
-                    <span class="text-prysmi-pink text-2xl mt-1">☑</span>
-                    <div>
-                        <h3 class="text-xl font-semibold text-lime mb-2">Siloed Content</h3>
-                        <p>Your marketing content isn't aligned with your sales process, leading to missed opportunities and inefficient efforts.</p>
-                    </div>
-                </div>
-                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
-                    <span class="text-prysmi-pink text-2xl mt-1">☑</span>
-                    <div>
-                        <h3 class="text-xl font-semibold text-lime mb-2">Marketing Burnout</h3>
-                        <p>Producing content and managing campaigns feels like a constant struggle, with little time for strategic thinking.</p>
-                    </div>
-                </div>
-                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
-                    <span class="text-prysmi-pink text-2xl mt-1">☑</span>
-                    <div>
-                        <h3 class="text-xl font-semibold text-lime mb-2">Unclear ROI</h3>
-                        <p>You're investing in marketing, but the direct impact on revenue and business growth is hard to quantify or attribute.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </section> <!-- End About section -->
 
-        <!-- Revenue-Ready Content System™ Section - Updated to Carousel -->
+        <!-- Revenue-Ready Content System™ Section -->
         <section id="process" class="py-16 md:py-24 rounded-xl shadow-2xl">
             <div class="text-center mb-12 px-4">
                 <p class="mt-4 text-lg fade-in-up"><span class="text-emphasis-italic-bold">Structure That Sells. Messaging That Moves. Systems That Scale.</span></p>
@@ -935,36 +949,36 @@
                 </div>
 
             </div> <!-- End Carousel Wrapper -->
-        </section>
 
-
-        <section id="impact-outcomes" class="py-16 md:py-24">
-            <div class="text-center mb-12 px-4">
-                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Our Impact & Your Outcomes</h2>
-                <p class="mt-4 text-lg fade-in-up">Our 5-phase system isn't just a process;<br> it's a pathway to <span class="text-emphasis-italic-bold">tangible results</span> and a marketing engine that truly works for you. <br><br> You walk away making <span class="text-emphasis-italic-bold">momentum</span> your marketing baseline.</p>
-            </div>
-            <div class="max-w-3xl mx-auto space-y-6">
-                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">A messaging system your team actually uses</p></div>
-                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">A content engine that scales across teams and formats</p></div>
-                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">A site built for conversion, not just design</p></div>
-                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">A founder-led content rhythm that doesn’t burn you out</p></div>
-                <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">Revenue-aligned marketing in motion</p></div>
-
-                <div class="mt-12 text-center p-6 sm:p-8 rounded-xl shadow-xl fade-in-up special-section-bg">
-                    <h3 class="text-xl sm:text-2xl font-bold mb-4">Get <span class="text-emphasis-italic-bold">Full-throated, Experienced Answers</span><br> to any questions on Modern B2B Marketing.</h3>
-                    <p class="text-lg mb-4 text-left mx-auto max-w-xl"><span class="text-emphasis-italic-bold">Half-measures</span> will no longer cut it. And <span class="text-emphasis-italic-bold">‘picture-perfect’</span> millennial marketing is giving people the ick.</p>
-                    <p class="text-lg mb-4 text-left mx-auto max-w-xl">Grow your social presence consistently with <span class="text-emphasis-italic-bold">founder-led, in-person content</span> to show you have skin in the game.</p>
-                    <p class="text-lg mb-4 text-left mx-auto max-w-xl">A post-AI internet now rewards pages, ads, and videos that actually <span class="text-emphasis-italic-bold">do something</span>, for example:</p>
-                    <ul class="list-disc list-outside text-left mb-6 space-y-2 pl-6 mx-auto max-w-xl">
-                        <li>Calculate / have a unique IP, like visual reports, insights, and quotes</li>
-                        <li>Use on-brand editorial design</li>
-                        <li>Feature collaborative efforts with other experts</li>
-                    </ul>
-                    <p class="text-lg mb-4 text-left mx-auto max-w-xl">: all things where <span class="text-emphasis-italic-bold">you</span> get cited as a <span class="text-emphasis-italic-bold">source.</span></p>
-                    <p class="text-lg mb-4 text-left mx-auto max-w-xl">Whether it’s copy or video for SEO, brand positioning, emails, client collaterals, IG captions, or digital ads, we know <span class="text-emphasis-italic-bold">what</span> really works on <span class="text-emphasis-italic-bold">each</span> platform.</p>
+             <!-- Merged "Our Impact & Your Outcomes" section content -->
+             <div class="merged-section-padding"> <!-- Added padding class -->
+                <div class="text-center mb-12 px-4">
+                    <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Our Impact & Your Outcomes</h2>
+                    <p class="mt-4 text-lg fade-in-up">Our 5-phase system isn't just a process;<br> it's a pathway to <span class="text-emphasis-italic-bold">tangible results</span> and a marketing engine that truly works for you. <br><br> You walk away making <span class="text-emphasis-italic-bold">momentum</span> your marketing baseline.</p>
                 </div>
-            </div>
-        </section>
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">A messaging system your team actually uses</p></div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">A content engine that scales across teams and formats</p></div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">A site built for conversion, not just design</p></div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">A founder-led content rhythm that doesn’t burn you out</p></div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">Revenue-aligned marketing in motion</p></div>
+
+                    <div class="mt-12 text-center p-6 sm:p-8 rounded-xl shadow-xl fade-in-up special-section-bg">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-4">Get <span class="text-emphasis-italic-bold">Full-throated, Experienced Answers</span><br> to any questions on Modern B2B Marketing.</h3>
+                        <p class="text-lg mb-4 text-left mx-auto max-w-xl"><span class="text-emphasis-italic-bold">Half-measures</span> will no longer cut it. And <span class="text-emphasis-italic-bold">‘picture-perfect’</span> millennial marketing is giving people the ick.</p>
+                        <p class="text-lg mb-4 text-left mx-auto max-w-xl">Grow your social presence consistently with <span class="text-emphasis-italic-bold">founder-led, in-person content</span> to show you have skin in the game.</p>
+                        <p class="text-lg mb-4 text-left mx-auto max-w-xl">A post-AI internet now rewards pages, ads, and videos that actually <span class="text-emphasis-italic-bold">do something</span>, for example:</p>
+                        <ul class="list-disc list-outside text-left mb-6 space-y-2 pl-6 mx-auto max-w-xl">
+                            <li>Calculate / have a unique IP, like visual reports, insights, and quotes</li>
+                            <li>Use on-brand editorial design</li>
+                            <li>Feature collaborative efforts with other experts</li>
+                        </ul>
+                        <p class="text-lg mb-4 text-left mx-auto max-w-xl">: all things where <span class="text-emphasis-italic-bold">you</span> get cited as a <span class="text-emphasis-italic-bold">source.</span></p>
+                        <p class="text-lg mb-4 text-left mx-auto max-w-xl">Whether it’s copy or video for SEO, brand positioning, emails, client collaterals, IG captions, or digital ads, we know <span class="text-emphasis-italic-bold">what</span> really works on <span class="text-emphasis-italic-bold">each</span> platform.</p>
+                    </div>
+                </div>
+             </div>
+        </section> <!-- End Process section -->
 
         <!-- NEW: Pipeline Engine Section -->
         <section id="pm-pipeline-engine" class="py-16 md:py-24">
@@ -1151,14 +1165,48 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const id = entry.target.getAttribute('id');
-                    const navLink = document.querySelector(`#main-nav .nav-link[href="#${id}"]`);
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => link.classList.remove('active'));
-                        if(navLink) navLink.classList.add('active');
+                    // Adjust selector for merged sections - target the parent section id
+                    const parentSectionId = entry.target.closest('section[id]').getAttribute('id');
+                    const navLink = document.querySelector(`#main-nav .nav-link[href="#${parentSectionId}"]`);
+
+                    if (entry.isIntersecting && navLink) {
+                         // Check if ANY part of the larger section is intersecting
+                         let sectionIsVisible = false;
+                         entries.forEach(e => {
+                             if (e.target.closest('section[id]').getAttribute('id') === parentSectionId && e.isIntersecting) {
+                                 sectionIsVisible = true;
+                             }
+                         });
+
+                         if (sectionIsVisible) {
+                            navLinks.forEach(link => link.classList.remove('active'));
+                            navLink.classList.add('active');
+                         }
+                    } else if (navLink && !entry.isIntersecting) {
+                         // Check if NO part of the larger section is intersecting before removing active
+                         let sectionStillVisible = false;
+                          entries.forEach(e => {
+                              if (e.target.closest('section[id]').getAttribute('id') === parentSectionId && e.isIntersecting) {
+                                  sectionStillVisible = true;
+                              }
+                          });
+                          // Only remove active if no part of the section is visible
+                          // This logic might need refinement depending on desired behavior at section boundaries
+                          // if (!sectionStillVisible) {
+                          //     navLink.classList.remove('active');
+                          // }
                     }
                 });
             }, observerOptions);
-            sections.forEach(section => observer.observe(section));
+            // Observe the immediate child divs/elements that contain the content if direct section observation causes issues
+            document.querySelectorAll('#about > div, #process > div').forEach(el => {
+                if(el.id || el.classList.contains('fade-in-up')) { // Observe significant elements
+                     observer.observe(el);
+                }
+            });
+             // Also observe the main sections themselves for initial trigger
+             document.querySelectorAll('#about, #process').forEach(section => observer.observe(section));
+
 
             // --- Fade-in Animations on Scroll ---
              // Select only elements that need fade-in, exclude stat numbers handled elsewhere

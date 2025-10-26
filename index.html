@@ -215,7 +215,7 @@
         .pm-bento-grid__item,
         #about > .max-w-3xl, /* Target inner container of #about */
         #about .p-6.rounded-xl, /* Target challenge boxes inside #about */
-        #process > .max-w-4xl, /* Target carousel container in #process */
+        /* #process > .max-w-4xl,  REMOVED this selector */
         #process .p-6.rounded-xl, /* Target outcome boxes inside #process */
         #pm-pipeline-engine .pm-pipeline-card, /* Target pipeline cards */
         #contact > .max-w-xl /* Target contact card container */
@@ -279,7 +279,7 @@
        body.light-mode .pm-bento-grid__item,
        body.light-mode #about > .max-w-3xl,
        body.light-mode #about .p-6.rounded-xl,
-       body.light-mode #process > .max-w-4xl,
+       /* body.light-mode #process > .max-w-4xl, REMOVED this selector */
        body.light-mode #process .p-6.rounded-xl,
        body.light-mode #pm-pipeline-engine .pm-pipeline-card,
        body.light-mode #contact > .max-w-xl
@@ -364,7 +364,7 @@
             overflow: hidden;
             position: relative;
             border-radius: 0.75rem; /* rounded-lg */
-             border: 1px solid var(--color-border-default); /* Match card borders */
+             /* REMOVED border from here */
         }
         .carousel-inner {
             display: flex;
@@ -639,7 +639,7 @@
                         </div>
                     </div>
                     <blockquote class="pm-testimonial-card__quote">
-                        “He's the rare expert who bridges that critical gap between being great at your craft and building a machine that makes the market believe it, too.”
+                        “He's const rare expert who bridges that critical gap between being great at your craft and building a machine that makes the market believe it, too.”
                     </blockquote>
                     <div class="pm-testimonial-card__footer">
                          <div class="pm-testimonial-card__chips">

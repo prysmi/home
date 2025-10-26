@@ -72,12 +72,16 @@
       }
       header, main, footer { position: relative; z-index: 1; }
 
-      /* === Hero Logo Scroller Fixes v5 === */
+      /* === Hero Logo Scroller Fixes v6 === */
       #hero .pm-logo-scroller {
-          /* Apply mask for fading effect - Shorten right fade further */
-          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 95%, transparent); /* Changed 90% to 95% */
-          mask-image: linear-gradient(to right, transparent, black 15%, black 95%, transparent); /* Changed 90% to 95% */
+          /* Apply mask for fading effect */
+          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
           position: relative;
+          width: 75%; /* Set width to 3/4 of parent */
+          margin-left: auto; /* Center the scroller */
+          margin-right: auto; /* Center the scroller */
+          overflow: hidden; /* Ensure inner content respects width */
       }
       #hero .pm-logo-scroller::before,
       #hero .pm-logo-scroller::after {
@@ -93,7 +97,7 @@
       #hero .pm-logo-scroller__item:hover img {
            opacity: 1 !important;
       }
-      /* === End Hero Logo Scroller Fixes v5 === */
+      /* === End Hero Logo Scroller Fixes v6 === */
 
       .text-prysmi-pink {
         color: var(--color-accent-pink); /* Use CSS var */

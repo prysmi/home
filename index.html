@@ -72,15 +72,16 @@
       }
       header, main, footer { position: relative; z-index: 1; }
 
-       /* === Hero Logo Scroller - Single Scroll Styling === */
-       #hero .pm-logo-scroller-container {
-           /* Removed flex-direction and gap */
+       /* === Logo Scroller General Styles (Moved from #hero prefix) === */
+       .pm-logo-scroller-container {
            width: 75%; /* Maintain 3/4 width for the container */
            margin-left: auto;
            margin-right: auto;
+           margin-top: 4rem; /* Add margin-top for spacing */
+           margin-bottom: 4rem; /* Add margin-bottom for spacing */
        }
 
-       #hero .pm-logo-scroller {
+       .pm-logo-scroller {
            /* Apply mask for fading effect */
            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -88,13 +89,13 @@
            overflow: hidden; /* Needed for mask and inner scroll */
            width: 100%; /* Scroller takes full width of its container */
        }
-       #hero .pm-logo-scroller::before,
-       #hero .pm-logo-scroller::after {
+       .pm-logo-scroller::before,
+       .pm-logo-scroller::after {
            content: none;
        }
 
         /* Styling for the logo container */
-       #hero .pm-logo-scroller__item {
+       .pm-logo-scroller__item {
            background-color: black;
            padding: 0.75rem; /* Add padding around the logo */
            border-radius: 0.5rem; /* rounded-lg equivalent */
@@ -107,18 +108,28 @@
            flex-shrink: 0;
        }
 
-       /* Styling for the logo image itself - make bigger */
-       #hero .pm-logo-scroller__item img {
+       /* Styling for the logo image itself */
+       .pm-logo-scroller__item img {
            opacity: 1 !important;
            filter: none !important; /* Display as is */
            transition: none;
-           max-width: 180px; /* Increased max-width */
-           max-height: 60px; /* Increased max-height */
+           max-width: 180px; /* Logo size */
+           max-height: 60px; /* Logo size */
            width: auto;
            height: auto;
            object-fit: contain;
        }
-       #hero .pm-logo-scroller__item:hover img {
+       /* Adjust logo appearance for light mode if needed */
+        body.light-mode .pm-logo-scroller__item {
+             background-color: #EEE; /* Lighter background for light mode */
+        }
+        body.light-mode .pm-logo-scroller__item img {
+            /* filter: grayscale(100%) contrast(0%); /* Example: make logos gray on light background */
+            /* filter: none !important; /* Or keep them as is if they have enough contrast */
+        }
+
+
+       .pm-logo-scroller__item:hover img {
            opacity: 1 !important;
        }
 
@@ -127,19 +138,14 @@
             from { transform: translateX(0); }
             to { transform: translateX(-50%); } /* Scrolls left */
         }
-        /* Remove reverse animation definition */
-        /* @keyframes pm-logo-scroll-reverse { ... } */
 
        /* Apply animation to the single scroller */
-       #hero .pm-logo-scroller__inner {
+       .pm-logo-scroller__inner {
             display: flex;
             width: fit-content; /* Critical for scroll width calculation */
             animation: pm-logo-scroll 40s linear infinite; /* Ensure this uses the correct animation */
         }
-
-        /* Remove reverse animation application */
-        /* #hero .pm-logo-scroller--reverse .pm-logo-scroller__inner { ... } */
-       /* === End Hero Logo Scroller Styles === */
+       /* === End Logo Scroller Styles === */
 
 
       .text-prysmi-pink {
@@ -420,60 +426,7 @@
                     </button>
                 </div>
             </div>
-            <!-- Container for the single scroller -->
-             <div class="mt-16 w-full max-w-5xl mx-auto fade-in-up delay-400ms pm-logo-scroller-container">
-                 <p class="text-sm sm:text-base text-white opacity-80 mb-4 text-center">Trusted by your Industry Peers and Leaders</p>
-                 <!-- Scroller 1 (Right to Left) -->
-                 <div class="pm-logo-scroller">
-                     <div class="pm-logo-scroller__inner">
-                         <!-- Logos Set 1 -->
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360ctiapp.png" alt="360 CTI App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+CTI';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360degreecloud.png" alt="360 Degree Cloud Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Cloud';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360mergeduplicatesapp.png" alt="360 Merge Duplicates App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Merge';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+SMS';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360textolicapp.png" alt="360 Textolic App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Textolic';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360unsubscribeapp.png" alt="360 Unsubscribe App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Unsubscribe';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360verifytheemailapp.png" alt="360 Verify The Email App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Verify';">
-                         </div>
-                         <!-- Logos Set 1 Duplicated -->
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360ctiapp.png" alt="360 CTI App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+CTI';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360degreecloud.png" alt="360 Degree Cloud Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Cloud';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360mergeduplicatesapp.png" alt="360 Merge Duplicates App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Merge';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+SMS';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360textolicapp.png" alt="360 Textolic App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Textolic';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360unsubscribeapp.png" alt="360 Unsubscribe App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Unsubscribe';">
-                         </div>
-                         <div class="pm-logo-scroller__item">
-                             <img src="/assets/clients/bwlogos/360verifytheemailapp.png" alt="360 Verify The Email App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Verify';">
-                         </div>
-                     </div>
-                 </div>
-                 <!-- Removed Scroller 2 -->
-             </div>
+             <!-- Logo Scroller removed from here -->
         </section>
 
         <!-- Testimonials Section - RELOCATED -->
@@ -535,6 +488,60 @@
                 </div>
             </div>
         </section>
+
+         <!-- Container for the single scroller - MOVED HERE -->
+         <div class="w-full max-w-5xl mx-auto fade-in-up pm-logo-scroller-container">
+             <p class="text-sm sm:text-base opacity-80 mb-4 text-center">Trusted by your Industry Peers and Leaders</p>
+             <!-- Scroller 1 (Right to Left) -->
+             <div class="pm-logo-scroller">
+                 <div class="pm-logo-scroller__inner">
+                     <!-- Logos Set 1 -->
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360ctiapp.png" alt="360 CTI App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+CTI';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360degreecloud.png" alt="360 Degree Cloud Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Cloud';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360mergeduplicatesapp.png" alt="360 Merge Duplicates App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Merge';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+SMS';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360textolicapp.png" alt="360 Textolic App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Textolic';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360unsubscribeapp.png" alt="360 Unsubscribe App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Unsubscribe';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360verifytheemailapp.png" alt="360 Verify The Email App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Verify';">
+                     </div>
+                     <!-- Logos Set 1 Duplicated -->
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360ctiapp.png" alt="360 CTI App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+CTI';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360degreecloud.png" alt="360 Degree Cloud Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Cloud';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360mergeduplicatesapp.png" alt="360 Merge Duplicates App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Merge';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+SMS';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360textolicapp.png" alt="360 Textolic App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Textolic';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360unsubscribeapp.png" alt="360 Unsubscribe App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Unsubscribe';">
+                     </div>
+                     <div class="pm-logo-scroller__item">
+                         <img src="/assets/clients/bwlogos/360verifytheemailapp.png" alt="360 Verify The Email App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Verify';">
+                     </div>
+                 </div>
+             </div>
+         </div>
 
         <!-- NEW Bento Box Wins Section -->
         <section id="bento-wins" class="py-16 md:py-24">

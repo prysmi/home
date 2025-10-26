@@ -72,13 +72,13 @@
       }
       header, main, footer { position: relative; z-index: 1; }
 
-       /* === Logo Scroller General Styles === */
+       /* === Logo Scroller General Styles - Enhanced Visibility === */
        .pm-logo-scroller-container {
-           width: 75%; /* Maintain 3/4 width for the container */
+           width: 85%; /* Slightly wider */
            margin-left: auto;
            margin-right: auto;
-           margin-top: 4rem; /* Add margin-top for spacing */
-           margin-bottom: 4rem; /* Add margin-bottom for spacing */
+           margin-top: 4rem;
+           margin-bottom: 4rem;
        }
 
        .pm-logo-scroller {
@@ -86,27 +86,35 @@
            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
            position: relative;
-           overflow: hidden; /* Needed for mask and inner scroll */
-           width: 100%; /* Scroller takes full width of its container */
+           overflow: hidden;
+           width: 100%;
        }
        .pm-logo-scroller::before,
        .pm-logo-scroller::after {
            content: none;
        }
 
-        /* Styling for the logo container */
+        /* Styling for the logo container - Enhanced */
        .pm-logo-scroller__item {
-           background-color: black;
-           padding: 0.75rem; /* Add padding around the logo */
-           border-radius: 0.5rem; /* rounded-lg equivalent */
-           display: flex; /* Keep flex centering */
+           background-color: rgba(30, 30, 30, 0.8); /* Dark gray, slightly transparent */
+           border: 1px solid var(--color-border-default); /* Add subtle border */
+           padding: 1rem; /* Slightly more padding */
+           border-radius: 0.75rem; /* rounded-xl */
+           display: flex;
            align-items: center;
            justify-content: center;
-           width: auto; /* Adjust width based on content + padding */
-           height: auto; /* Adjust height based on content + padding */
-           margin: 0 1.5rem; /* Adjust margin if needed */
+           width: auto;
+           height: auto;
+           margin: 0 1.5rem;
            flex-shrink: 0;
+           transition: transform 0.2s ease-out, background-color 0.2s ease-out; /* Add transition */
+           box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Add subtle shadow */
        }
+
+        .pm-logo-scroller__item:hover {
+            transform: scale(1.05); /* Scale up on hover */
+            background-color: rgba(50, 50, 50, 0.9); /* Slightly lighter on hover */
+        }
 
        /* Styling for the logo image itself */
        .pm-logo-scroller__item img {
@@ -119,19 +127,20 @@
            height: auto;
            object-fit: contain;
        }
-       /* Adjust logo appearance for light mode if needed */
+       /* Adjust logo appearance for light mode */
         body.light-mode .pm-logo-scroller__item {
-             background-color: #EEE; /* Lighter background for light mode */
+             background-color: rgba(255, 255, 255, 0.8); /* White, slightly transparent */
+             border-color: #DDD; /* Lighter border */
+             box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Lighter shadow */
         }
+         body.light-mode .pm-logo-scroller__item:hover {
+             background-color: rgba(255, 255, 255, 0.95);
+         }
+
         body.light-mode .pm-logo-scroller__item img {
             /* Keep logos as is */
             filter: none !important;
         }
-
-
-       .pm-logo-scroller__item:hover img {
-           opacity: 1 !important;
-       }
 
         /* Animation definitions */
         @keyframes pm-logo-scroll {

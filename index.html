@@ -149,7 +149,7 @@
        /* Styling for the logo image itself - Much Bigger */
        .pm-logo-scroller__item img {
            opacity: 1 !important;
-           filter: none !important; /* Display as is */
+           filter: none !important; /* Display as is by default (dark mode) */
            transition: none;
            max-width: 240px; /* Logo size - Increased */
            max-height: 80px; /* Logo size - Increased */
@@ -177,9 +177,9 @@
              background-color: rgba(220, 220, 220, 1); /* Slightly darker solid gray on hover */
          }
 
+        /* Apply invert filter ONLY in light mode */
         body.light-mode .pm-logo-scroller__item img {
-            /* Keep logos as is - ensure no filter is inherited */
-            filter: none !important;
+            filter: invert(1) !important;
         }
        /* === End Logo Scroller Styles === */
 
@@ -1462,7 +1462,7 @@
             eyeX += (posX - eyeX) * 0.2;
             eyeY += (posY - eyeY) * 0.2;
             cursorEye.style.left = `${eyeX}px`;
-            cursorEye.style.top = `${posY}px`;
+            cursorEye.style.top = `${eyeY}px`;
         });
 
         if (testimonialSection) {

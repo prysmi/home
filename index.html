@@ -36,6 +36,7 @@
         --color-text-heading: #FFFFFF;
         --color-accent-pink: #F53196; /* Define pink accent color */
         --color-border-default: #333; /* Define default border color */
+         --color-accent-yellow: #EEFF41; /* Define yellow accent color */
 
       }
       body.light-mode {
@@ -71,35 +72,45 @@
       }
       header, main, footer { position: relative; z-index: 1; }
 
-      /* Custom override for a softer logo scroller fade in the hero section */
+      /* === Hero Logo Scroller Fixes === */
       #hero .pm-logo-scroller {
         -webkit-mask-image: none;
         mask-image: none;
         position: relative;
       }
+      /* Smoother gradient fade using the hero background color */
       #hero .pm-logo-scroller::before,
       #hero .pm-logo-scroller::after {
           content: '';
           position: absolute;
           top: 0;
           bottom: 0;
-          width: 15%; /* Adjust the width of the fade effect */
+          width: 15%; /* Adjust width as needed */
           z-index: 2;
           pointer-events: none;
       }
+       /* Gradient matching the hero background */
       #hero .pm-logo-scroller::before {
           left: 0;
-          background: linear-gradient(to right, var(--color-accent-pink), transparent); /* Use CSS var */
+          background: linear-gradient(to right, var(--color-accent-pink) 0%, rgba(245, 49, 150, 0) 100%);
       }
       #hero .pm-logo-scroller::after {
           right: 0;
-          background: linear-gradient(to left, var(--color-accent-pink), transparent); /* Use CSS var */
+          background: linear-gradient(to left, var(--color-accent-pink) 0%, rgba(245, 49, 150, 0) 100%);
       }
 
-      /* Make hero logos fully opaque so they are not washed out */
+      /* Ensure logos are displayed as is (white on pink) */
       #hero .pm-logo-scroller__item img {
-          opacity: 1 !important;
+          opacity: 1 !important; /* Keep full opacity */
+          filter: brightness(0) invert(1); /* This makes logos white */
+          transition: opacity 0.3s ease; /* Optional: Keep hover effect if desired */
       }
+       /* Optional: Slight fade on hover for interaction */
+      #hero .pm-logo-scroller__item:hover img {
+           opacity: 0.8 !important;
+      }
+      /* === End Hero Logo Scroller Fixes === */
+
       .text-prysmi-pink {
         color: var(--color-accent-pink); /* Use CSS var */
       }
@@ -768,11 +779,10 @@
         <!-- NEW: Pipeline Engine Section -->
         <section id="pm-pipeline-engine" class="py-16 md:py-24">
             <div class="text-center mb-12 px-4">
-                <p class="text-lg fade-in-up max-w-3xl mx-auto"><span class="text-emphasis-italic-bold">Organic traffic engines for founders who need demos<br> and CMOs who need predictable growth</span></p>
+                <p class="text-lg fade-in-up max-w-3xl mx-auto"><span class="text-emphasis-italic-bold">Organic traffic engines for founders who need demos and CMOs who need predictable growth</span></p>
                 <h2 class="text-3xl sm:text-4xl font-black fade-in-up mt-4">Build Pipeline That Compounds, Not Collapses</h2>
-                <p class="mt-4 text-lg fade-in-up max-w-3xl mx-auto font-semibold">The CO-MET™ Models (Compounding. Organic. Marketing. Engines. Together.), our offerings built on the 5-step Revenue-Ready Content System™ build an anti-hack traffic engine that cements your reputation as a trusted problem-solver.</p>
-
-                
+                <p class="mt-4 text-lg fade-in-up max-w-3xl mx-auto font-semibold">The CO-MET Framework (Compounding. Organic. Marketing. Engines. Together.) builds an anti-hack traffic engine that cements your reputation as a trusted problem-solver.</p>
+        
                 <div class="mt-12 text-left max-w-3xl mx-auto border-t border-b border-gray-700 py-8">
                      <h4 class="text-xl font-bold text-center mb-6">Strategic Benefits:</h4>
                      <ul class="space-y-2 text-base">
@@ -1283,5 +1293,4 @@
     
 </body>
 </html>
-
 

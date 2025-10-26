@@ -37,6 +37,7 @@
         --color-accent-pink: #F53196; /* Define pink accent color */
         --color-border-default: #333; /* Define default border color */
          --color-accent-yellow: #EEFF41; /* Define yellow accent color */
+         --color-bg-section: rgba(26, 26, 26, 0.75); /* Default section bg */
 
       }
       body.light-mode {
@@ -44,6 +45,7 @@
         --color-text-primary: #333333;
         --color-text-heading: #0A0A0A;
         --color-border-default: #CCCCCC; /* Light mode border color */
+        --color-bg-section: rgba(255, 255, 255, 0.75); /* Light mode section bg */
       }
 
       /* Basic structural & typographic styles */
@@ -209,20 +211,36 @@
                    "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l";
            }
        }
+        /* General Item Styles (including background & border for glass effect) */
+        .pm-bento-grid__item,
+        #about > .max-w-3xl, /* Target inner container of #about */
+        #about .p-6.rounded-xl, /* Target challenge boxes inside #about */
+        #process > .max-w-4xl, /* Target carousel container in #process */
+        #process .p-6.rounded-xl, /* Target outcome boxes inside #process */
+        #pm-pipeline-engine .pm-pipeline-card, /* Target pipeline cards */
+        #contact > .max-w-xl /* Target contact card container */
+        {
+             background-color: var(--color-bg-section);
+             border: 1px solid var(--color-border-default);
+             backdrop-filter: blur(8px);
+             -webkit-backdrop-filter: blur(8px);
+             border-radius: 0.75rem; /* rounded-xl */
+             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        }
+
+        /* Specific Bento Item Padding & Hover */
         .pm-bento-grid__item {
-            background-color: var(--color-bg-section);
-            border: 1px solid var(--color-border-default);
-            border-radius: 0.75rem;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
         }
         .pm-bento-grid__item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
+
+        /* Bento Item Variations (Gradients, Dark) */
         .pm-bento-grid__item--pink {
             background: linear-gradient(135deg, #F53196, #FF53AC);
             color: white; border: none; /* Remove border for gradient items */
@@ -258,10 +276,18 @@
             color: var(--color-text-primary); transition: color 0.3s ease-in-out;
         }
        /* === LIGHT MODE Styles for Bento Box === */
-       body.light-mode .pm-bento-grid__item {
-           background-color: rgba(255, 255, 255, 0.7); /* Lighter background */
-           border-color: #DDD;
+       body.light-mode .pm-bento-grid__item,
+       body.light-mode #about > .max-w-3xl,
+       body.light-mode #about .p-6.rounded-xl,
+       body.light-mode #process > .max-w-4xl,
+       body.light-mode #process .p-6.rounded-xl,
+       body.light-mode #pm-pipeline-engine .pm-pipeline-card,
+       body.light-mode #contact > .max-w-xl
+       {
+           background-color: var(--color-bg-section); /* Use light mode section bg */
+           border-color: var(--color-border-default); /* Use light mode border */
        }
+
         body.light-mode .pm-bento-grid__item:hover {
              box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
@@ -445,6 +471,10 @@
                 padding-bottom: 6rem; /* md:pb-24 */
             }
         }
+        /* Add margin between main sections */
+         #about, #process, #bento-wins, #prysmi-testimonials, #pm-pipeline-engine, #contact {
+              margin-bottom: 4rem; /* mb-16 */
+         }
 
 
   </style>
@@ -763,7 +793,7 @@
             <!-- Removed the paragraph that was here -->
         </section>
 
-        <!-- About Section -->
+        <!-- About Section - Merged Challenges -->
         <section id="about" class="py-16 md:py-24 rounded-xl shadow-2xl">
             <div class="text-center mb-12 px-4">
                 <p class="mt-4 text-lg fade-in-up">
@@ -833,7 +863,7 @@
             </div>
         </section> <!-- End About section -->
 
-        <!-- Revenue-Ready Content System™ Section -->
+        <!-- Revenue-Ready Content System™ Section - Merged Impact -->
         <section id="process" class="py-16 md:py-24 rounded-xl shadow-2xl">
             <div class="text-center mb-12 px-4">
                 <p class="mt-4 text-lg fade-in-up"><span class="text-emphasis-italic-bold">Structure That Sells. Messaging That Moves. Systems That Scale.</span></p>

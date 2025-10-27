@@ -590,6 +590,38 @@
              background-color: #333;
          }
 
+      /* === Blinking CTA Dot === */
+      @keyframes blink {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.2; transform: scale(0.9); }
+      }
+
+      .blinking-dot {
+        display: inline-block;
+        width: 10px;  /* Adjust size as needed */
+        height: 10px; /* Adjust size as needed */
+        background-color: white;
+        border-radius: 50%;
+        animation: blink 1.5s infinite ease-in-out;
+      }
+
+      /* Adjust dot color for buttons with white background */
+      #hero-cta-btn .blinking-dot,
+      #schedule-call-footer-btn .blinking-dot {
+        background-color: #F53196; /* Pink dot on white buttons */
+      }
+
+      /* Ensure flex alignment for all CTA buttons */
+      #get-started-mobile-btn,
+      #get-started-header-btn,
+      #hero-cta-btn,
+      #pipeline-cta-btn,
+      #schedule-call-footer-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem; /* space-x-2 */
+      }
 
   </style>
 
@@ -686,7 +718,7 @@
                     <a href="#process" class="mobile-nav-link text-white text-xl font-semibold">Our Process</a>
                     <a href="#pm-pipeline-engine" class="mobile-nav-link text-white text-xl font-semibold">Offerings</a>
                     <a href="#contact" class="mobile-nav-link text-white text-xl font-semibold">Contact</a>
-                    <button id="get-started-mobile-btn" class="mt-6 bg-[#F53196] text-white font-semibold py-3 px-6 rounded-lg shadow-md button-glow-pink text-lg" aria-label="I'd Like To Book More Demos">I'd Like To Book More Demos</button>
+                    <button id="get-started-mobile-btn" class="mt-6 bg-[#F53196] text-white font-semibold py-3 px-6 rounded-lg shadow-md button-glow-pink text-lg" aria-label="I'd Like To Book More Demos">I'd Like To Book More Demos<span class="blinking-dot"></span></button>
                 </nav>
             </div>
         </div>
@@ -710,7 +742,7 @@
                     <a href="#process" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Our Process</a>
                     <a href="#pm-pipeline-engine" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Offerings</a>
                     <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-                    <button id="get-started-header-btn" class="nav-link bg-[#F53196] text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-sm button-glow-pink" aria-label="Book More Demos">Book More Demos</button>
+                    <button id="get-started-header-btn" class="nav-link bg-[#F53196] text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-sm button-glow-pink" aria-label="Book More Demos">Book More Demos<span class="blinking-dot"></span></button>
                 </div>
             </div>
         </nav>
@@ -728,7 +760,7 @@
                 </p>
                 <div class="mt-8 fade-in-up delay-400ms">
                     <button id="hero-cta-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-lg button-glow-cta" aria-label="I'd Like To Book More Demos">
-                        I'd Like To Book More Demos
+                        I'd Like To Book More Demos<span class="blinking-dot"></span>
                     </button>
                      <!-- NEW Hero Testimonial Slider -->
                     <div id="hero-testimonial-slider" class="fade-in-up delay-400ms">
@@ -1179,7 +1211,7 @@
              <!-- Add single CTA button here -->
              <div class="mt-12 text-center">
                 <button id="pipeline-cta-btn" class="inline-block bg-[#F53196] text-white font-semibold py-3 px-8 rounded-lg shadow-md button-glow-pink text-lg" aria-label="I'd Like To Book More Demos">
-                    I'd Like To Book More Demos
+                    I'd Like To Book More Demos<span class="blinking-dot"></span>
                 </button>
             </div>
              <div class="mt-16 text-center max-w-2xl mx-auto px-4">
@@ -1211,7 +1243,7 @@
                 <p class="mt-4 text-lg sm:text-xl text-white opacity-90">Schedule your free, 30-minute Strategy Call. We'll audit your current marketing and show you the exact gaps keeping you from predictable growth.</p>
                 <div class="mt-10">
                     <button id="schedule-call-footer-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-lg button-glow-cta" aria-label="I'd Like To Book More Demos">
-                        I'd Like To Book More Demos
+                        I'd Like To Book More Demos<span class="blinking-dot"></span>
                     </button>
                 </div>
             </div>
@@ -1758,4 +1790,3 @@
     
 </body>
 </html>
-

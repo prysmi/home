@@ -28,6 +28,16 @@
         font-family: 'Libre Baskerville'; font-style: italic; font-weight: 400; font-display: swap;
         src: url('/assets/fonts/libre-baskerville-v16-latin-italic.woff2') format('woff2');
       }
+       /* Added missing font weights */
+       @font-face {
+        font-family: 'Libre Franklin'; font-style: normal; font-weight: 600; font-display: swap;
+        src: url('/assets/fonts/libre-franklin-v19-latin-600.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Libre Franklin'; font-style: normal; font-weight: 900; font-display: swap;
+        src: url('/assets/fonts/libre-franklin-v19-latin-900.woff2') format('woff2');
+      }
+
 
       /* Define CSS Variables for themes first */
       :root {
@@ -476,6 +486,89 @@
               margin-bottom: 4rem; /* mb-16 */
          }
 
+         /* === Hero Testimonial Slider Styles === */
+        #hero-testimonial-slider {
+            margin-top: 2rem; /* Space above slider */
+            width: 100%;
+            max-width: 450px; /* Max width of the slider */
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-xl */
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white bg */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 1.5rem; /* p-6 */
+            margin-left: auto; /* Center align */
+            margin-right: auto; /* Center align */
+        }
+         /* Light mode styles */
+         body.light-mode #hero-testimonial-slider {
+             background-color: rgba(0, 0, 0, 0.05);
+             border-color: rgba(0, 0, 0, 0.1);
+             color: #333; /* Adjust text color if needed */
+         }
+
+        #hero-testimonial-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .hero-testimonial-slide {
+            width: 100%;
+            flex-shrink: 0;
+            text-align: center;
+            color: white; /* Default text color */
+        }
+         body.light-mode .hero-testimonial-slide {
+             color: #111; /* Darker text for light mode */
+         }
+
+        .hero-testimonial-slide blockquote {
+             font-family: 'Libre Baskerville', serif;
+             font-style: italic;
+             font-size: 1rem; /* text-base */
+             line-height: 1.6;
+             margin-bottom: 0.75rem; /* mb-3 */
+        }
+         @media (min-width: 640px) { /* sm breakpoint */
+             .hero-testimonial-slide blockquote {
+                 font-size: 1.125rem; /* sm:text-lg */
+             }
+         }
+        .hero-testimonial-slide p {
+            font-weight: 600; /* font-semibold */
+            font-size: 0.875rem; /* text-sm */
+            opacity: 0.8;
+        }
+         body.light-mode .hero-testimonial-slide p {
+            opacity: 0.7;
+         }
+
+        #hero-testimonial-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem; /* space-x-2 */
+            margin-top: 1rem; /* mt-4 */
+        }
+        .hero-testimonial-indicator {
+            width: 0.5rem; /* w-2 */
+            height: 0.5rem; /* h-2 */
+            border-radius: 9999px; /* rounded-full */
+            background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        body.light-mode .hero-testimonial-indicator {
+             background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black for light */
+         }
+        .hero-testimonial-indicator.active {
+            background-color: white; /* Solid white for active */
+        }
+         body.light-mode .hero-testimonial-indicator.active {
+             background-color: #333; /* Dark gray for active in light */
+         }
+
 
   </style>
 
@@ -616,6 +709,23 @@
                     <button id="hero-cta-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-lg button-glow-cta" aria-label="I'd Like To Book More Demos">
                         I'd Like To Book More Demos
                     </button>
+                     <!-- NEW Hero Testimonial Slider -->
+                    <div id="hero-testimonial-slider" class="fade-in-up delay-400ms">
+                        <div id="hero-testimonial-inner">
+                            <div class="hero-testimonial-slide">
+                                <blockquote>“Our pipeline became predictable, we were finally seen as the premium partner, not a commodity”</blockquote>
+                                <p>Rohit Bhalla, CEO @ Cloud Ingenious</p>
+                            </div>
+                            <div class="hero-testimonial-slide">
+                                <blockquote>“Bring them in when you have a great product but can’t figure out why it’s not selling itself.”</blockquote>
+                                <p>Siddharth Sehgal, CEO @ 360 SMS App</p>
+                            </div>
+                            <!-- Add more slides as needed -->
+                        </div>
+                        <div id="hero-testimonial-indicators">
+                            <!-- Indicators will be generated by JS -->
+                        </div>
+                    </div>
                 </div>
             </div>
              <!-- Logo Scroller removed from here -->
@@ -1477,6 +1587,65 @@
              } else {
                  console.warn("Carousel elements not found, carousel functionality disabled.");
              }
+             
+            // --- NEW Hero Testimonial Slider Logic ---
+            const heroSliderInner = document.getElementById('hero-testimonial-inner');
+            const heroIndicatorsContainer = document.getElementById('hero-testimonial-indicators');
+            let heroSliderInterval;
+
+            if (heroSliderInner && heroIndicatorsContainer) {
+                const slides = heroSliderInner.children;
+                const totalSlides = slides.length;
+                let currentSlideIndex = 0;
+
+                // Create indicators
+                for (let i = 0; i < totalSlides; i++) {
+                    const button = document.createElement('button');
+                    button.classList.add('hero-testimonial-indicator');
+                    button.dataset.index = i;
+                    if (i === 0) button.classList.add('active');
+                    button.addEventListener('click', () => {
+                        goToHeroSlide(i);
+                        resetHeroInterval(); // Reset timer on manual navigation
+                    });
+                    heroIndicatorsContainer.appendChild(button);
+                }
+                const heroIndicators = heroIndicatorsContainer.children;
+
+                function updateHeroSliderUI() {
+                    heroSliderInner.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+                    Array.from(heroIndicators).forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === currentSlideIndex);
+                    });
+                }
+
+                function goToHeroSlide(index) {
+                    currentSlideIndex = index;
+                    updateHeroSliderUI();
+                }
+
+                function nextHeroSlide() {
+                    currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+                    updateHeroSliderUI();
+                }
+
+                function startHeroInterval() {
+                   heroSliderInterval = setInterval(nextHeroSlide, 5000); // Change slide every 5 seconds
+                }
+
+                function resetHeroInterval() {
+                    clearInterval(heroSliderInterval);
+                    startHeroInterval();
+                }
+
+                // Initial setup
+                updateHeroSliderUI();
+                startHeroInterval(); // Start auto-sliding
+
+            } else {
+                 console.warn("Hero testimonial slider elements not found.");
+            }
+
 
         });
     </script>

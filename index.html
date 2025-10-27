@@ -550,15 +550,15 @@
         }
          @media (min-width: 640px) {
              .hero-testimonial-slide blockquote {
-             /* Only override the font-size; padding is inherited */
-             font-size: 1rem;
+             font-family: 'Libre Baskerville', serif;
+             font-style: italic;
+             font-size: 0.9rem;
+             line-height: 1.5;
+             margin: 0 auto 0.75rem auto; /* Centered and reset side margins */
+             padding: 0 1.5rem; /* Increased horizontal padding to keep text from edges */
         }
-         /* Removed the incorrectly nested @media query */
-         }
-        .hero-testimonial-slide p {
-            /* === RESTORED ORIGINAL STYLES === */
-            font-weight: 600;
-            font-size: 0.875rem;
+         @media (min-width: 640px) {
+             .hero-testimonial-slide blockquote {
             opacity: 0.8;
             margin-top: 0.5rem;
             /* === REMOVED INCORRECT STYLES === */
@@ -1794,6 +1794,7 @@
     
 </body>
 </html>
+
 
 
 

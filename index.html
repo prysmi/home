@@ -554,6 +554,7 @@
         }
          @media (min-width: 640px) {
              .hero-testimonial-slide blockquote {
+             /* Re-merging the styles correctly */
              font-family: 'Libre Baskerville', serif;
              font-style: italic;
              font-size: 0.9rem;
@@ -566,14 +567,31 @@
              -webkit-line-clamp: 2;
              -webkit-box-orient: vertical;
              padding: 0 1rem; /* Increased horizontal padding */
+             font-size: 1rem; /* This was incorrectly nested */
         }
-         @media (min-width: 640px) {
-             .hero-testimonial-slide blockquote {
-                 font-size: 1rem;
-             }
+         /* Removed the incorrectly nested @media query */
          }
         .hero-testimonial-slide p {
+            /* === RESTORED ORIGINAL STYLES === */
             font-weight: 600;
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+            /* === REMOVED INCORRECT STYLES === */
+            /* width, height, border-radius, etc. removed */
+        }
+        /* === RESTORED ORIGINAL STYLES === */
+        body.light-mode .hero-testimonial-slide p {
+            opacity: 0.7;
+        }
+
+        #hero-testimonial-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .hero-testimonial-indicator {
             width: 0.5rem;
             height: 0.5rem;
             border-radius: 9999px;
@@ -1792,6 +1810,7 @@
     
 </body>
 </html>
+
 
 
 

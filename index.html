@@ -496,7 +496,7 @@
         #hero-testimonial-slider {
             margin-top: 2rem; /* Space above slider */
             width: 100%;
-            max-width: 440px; /* Max width of the slider - REDUCED from 450px */
+            max-width: 450px; /* Max width of the slider - RESTORED from 440px */
             position: relative;
             overflow: hidden; /* CRITICAL: Ensure overflow is hidden */
             border-radius: 0.75rem; /* rounded-xl */
@@ -524,15 +524,17 @@
         }
         .hero-testimonial-slide {
             width: 100%; /* Each slide takes full width OF THE CONTAINER */
-            /* display: inline-block; */ /* Removed - Parent is flex */
-            /* vertical-align: top; */ /* Removed - Parent is flex */
             white-space: normal; /* Allow text wrapping within slide */
             flex-shrink: 0;
             box-sizing: border-box;
-            /* Padding removed, applied to container */
             text-align: center;
             color: white;
             overflow: hidden; /* Added to prevent spillover */
+            /* Added flex properties for vertical centering and consistent height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 7rem; /* Ensure all slides have same min-height */
         }
          body.light-mode .hero-testimonial-slide {
              color: #111;
@@ -544,13 +546,14 @@
              font-size: 0.9rem;
              line-height: 1.5;
              margin: 0 auto 0.75rem auto; /* Centered and reset side margins */
-             max-height: 3em;
-             overflow: hidden;
-             text-overflow: ellipsis;
-             display: -webkit-box;
-             -webkit-line-clamp: 2;
-             -webkit-box-orient: vertical;
-             padding: 0 0.5rem; /* Added horizontal padding */
+             /* === REMOVED TRUNCATION STYLES === */
+             /* max-height: 3em; */
+             /* overflow: hidden; */
+             /* text-overflow: ellipsis; */
+             /* display: -webkit-box; */
+             /* -webkit-line-clamp: 2; */
+             /* -webkit-box-orient: vertical; */
+             /* padding: 0 0.5rem; */ /* Removed padding */
         }
          @media (min-width: 640px) {
              .hero-testimonial-slide blockquote {
@@ -560,14 +563,15 @@
              font-size: 0.9rem;
              line-height: 1.5;
              margin: 0 auto 0.75rem auto; /* Centered and reset side margins */
-             max-height: 3em;
-             overflow: hidden;
-             text-overflow: ellipsis;
-             display: -webkit-box;
-             -webkit-line-clamp: 2;
-             -webkit-box-orient: vertical;
-             padding: 0 1rem; /* Increased horizontal padding */
-             font-size: 1rem; /* This was incorrectly nested */
+             /* === REMOVED TRUNCATION STYLES === */
+             /* max-height: 3em; */
+             /* overflow: hidden; */
+             /* text-overflow: ellipsis; */
+             /* display: -webkit-box; */
+             /* -webkit-line-clamp: 2; */
+             /* -webkit-box-orient: vertical; */
+             /* padding: 0 1rem; */ /* Removed padding */
+             font-size: 1rem;
         }
          /* Removed the incorrectly nested @media query */
          }
@@ -1810,6 +1814,7 @@
     
 </body>
 </html>
+
 
 
 

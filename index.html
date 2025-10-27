@@ -524,14 +524,15 @@
         }
         .hero-testimonial-slide {
             width: 100%; /* Each slide takes full width OF THE CONTAINER */
-            display: inline-block; /* Change display for nowrap */
-            vertical-align: top; /* Align slides properly */
+            /* display: inline-block; */ /* Removed - Parent is flex */
+            /* vertical-align: top; */ /* Removed - Parent is flex */
             white-space: normal; /* Allow text wrapping within slide */
             flex-shrink: 0;
             box-sizing: border-box;
             /* Padding removed, applied to container */
             text-align: center;
             color: white;
+            overflow: hidden; /* Added to prevent spillover */
         }
          body.light-mode .hero-testimonial-slide {
              color: #111;
@@ -542,13 +543,14 @@
              font-style: italic;
              font-size: 0.9rem;
              line-height: 1.5;
-             margin-bottom: 0.75rem;
+             margin: 0 auto 0.75rem auto; /* Centered and reset side margins */
              max-height: 3em;
              overflow: hidden;
              text-overflow: ellipsis;
              display: -webkit-box;
              -webkit-line-clamp: 2;
              -webkit-box-orient: vertical;
+             padding: 0 0.5rem; /* Added horizontal padding */
         }
          @media (min-width: 640px) {
              .hero-testimonial-slide blockquote {
@@ -1790,3 +1792,4 @@
     
 </body>
 </html>
+

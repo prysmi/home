@@ -61,6 +61,26 @@
 
       /* ... existing basic styles, h1-h5, text-emphasis, canvas styles ... */
         /* Basic structural & typographic styles */
+      
+      /* === FIX: Add responsive padding to main content area === */
+      main {
+          padding-left: 1rem; /* px-4 */
+          padding-right: 1rem; /* px-4 */
+      }
+      @media (min-width: 640px) { /* sm breakpoint */
+          main {
+              padding-left: 1.5rem; /* sm:px-6 */
+              padding-right: 1.5rem; /* sm:px-6 */
+          }
+      }
+      @media (min-width: 1024px) { /* lg breakpoint */
+          main {
+              padding-left: 2rem; /* lg:px-8 */
+              padding-right: 2rem; /* lg:px-8 */
+          }
+      }
+      /* === END FIX === */
+
       body {
         font-family: 'Libre Franklin', sans-serif;
         background-color: var(--color-bg-body);
@@ -1002,7 +1022,7 @@
                             <img src="/assets/clients/bwlogos/360mergeduplicatesapp.png" alt="360 Merge Duplicates App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Merge';">
                         </div>
                         <div class="pm-logo-scroller__item">
-                            <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+SMS';">
+                            <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='httpsAlways+SMS';">
                         </div>
                         <div class="pm-logo-scroller__item">
                             <img src="/assets/clients/bwlogos/360textolicapp.png" alt="360 Textolic App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Textolic';">
@@ -1862,4 +1882,3 @@
     
 </body>
 </html>
-

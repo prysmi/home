@@ -498,64 +498,68 @@
             width: 100%;
             max-width: 450px; /* Max width of the slider */
             position: relative;
-            overflow: hidden; /* Ensure overflow is hidden */
+            overflow: hidden; /* CRITICAL: Ensure overflow is hidden */
             border-radius: 0.75rem; /* rounded-xl */
             background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white bg */
             border: 1px solid rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            padding: 1.5rem; /* Moved padding back to container */
+            padding: 1.5rem; /* Apply padding to the container */
             margin-left: auto; /* Center align */
             margin-right: auto; /* Center align */
-            box-sizing: border-box; /* Ensure padding is included in width */
+            box-sizing: border-box; /* Include padding in width */
         }
          /* Light mode styles */
          body.light-mode #hero-testimonial-slider {
              background-color: rgba(0, 0, 0, 0.05);
              border-color: rgba(0, 0, 0, 0.1);
-             color: #333; /* Adjust text color if needed */
+             color: #333;
          }
 
         #hero-testimonial-inner {
             display: flex;
+            /* width: calc(100% * var(--num-slides, 1)); */ /* Dynamic width based on JS */
             transition: transform 0.5s ease-in-out;
-            width: 100%; /* Ensure inner container takes full width */
+            white-space: nowrap; /* Prevent wrapping of slides */
         }
         .hero-testimonial-slide {
-            width: 100%; /* Each slide takes full width */
-            flex-shrink: 0; /* Prevent slides from shrinking */
-            box-sizing: border-box; /* Crucial for width calculation */
-            /* Removed padding from slide */
+            width: 100%; /* Each slide takes full width OF THE CONTAINER */
+            display: inline-block; /* Change display for nowrap */
+            vertical-align: top; /* Align slides properly */
+            white-space: normal; /* Allow text wrapping within slide */
+            flex-shrink: 0;
+            box-sizing: border-box;
+            /* Padding removed, applied to container */
             text-align: center;
-            color: white; /* Default text color */
+            color: white;
         }
          body.light-mode .hero-testimonial-slide {
-             color: #111; /* Darker text for light mode */
+             color: #111;
          }
 
         .hero-testimonial-slide blockquote {
              font-family: 'Libre Baskerville', serif;
              font-style: italic;
-             font-size: 0.9rem; /* Smaller font size */
-             line-height: 1.5; /* Slightly tighter line height */
-             margin-bottom: 0.75rem; /* mb-3 */
-             max-height: 3em; /* Approx 2 lines height */
+             font-size: 0.9rem;
+             line-height: 1.5;
+             margin-bottom: 0.75rem;
+             max-height: 3em;
              overflow: hidden;
              text-overflow: ellipsis;
              display: -webkit-box;
              -webkit-line-clamp: 2;
              -webkit-box-orient: vertical;
         }
-         @media (min-width: 640px) { /* sm breakpoint */
+         @media (min-width: 640px) {
              .hero-testimonial-slide blockquote {
-                 font-size: 1rem; /* Slightly larger on bigger screens */
+                 font-size: 1rem;
              }
          }
         .hero-testimonial-slide p {
-            font-weight: 600; /* font-semibold */
-            font-size: 0.875rem; /* text-sm */
+            font-weight: 600;
+            font-size: 0.875rem;
             opacity: 0.8;
-            margin-top: 0.5rem; /* Add some space above the name/title */
+            margin-top: 0.5rem;
         }
          body.light-mode .hero-testimonial-slide p {
             opacity: 0.7;
@@ -564,27 +568,26 @@
         #hero-testimonial-indicators {
             display: flex;
             justify-content: center;
-            gap: 0.5rem; /* space-x-2 */
-            margin-top: 1rem; /* mt-4 */
-            /* Removed padding-bottom from here */
+            gap: 0.5rem;
+            margin-top: 1rem;
         }
         .hero-testimonial-indicator {
-            width: 0.5rem; /* w-2 */
-            height: 0.5rem; /* h-2 */
-            border-radius: 9999px; /* rounded-full */
-            background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 9999px;
+            background-color: rgba(255, 255, 255, 0.4);
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         body.light-mode .hero-testimonial-indicator {
-             background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black for light */
+             background-color: rgba(0, 0, 0, 0.3);
          }
         .hero-testimonial-indicator.active {
-            background-color: white; /* Solid white for active */
+            background-color: white;
         }
          body.light-mode .hero-testimonial-indicator.active {
-             background-color: #333; /* Dark gray for active in light */
+             background-color: #333;
          }
 
 
@@ -1616,6 +1619,11 @@
                 const totalSlides = slides.length;
                 let currentSlideIndex = 0;
 
+                // Set dynamic width for inner container
+                // heroSliderInner.style.setProperty('--num-slides', totalSlides); // CSS variable approach removed
+                heroSliderInner.style.width = `${totalSlides * 100}%`; // Direct width calculation
+
+
                 // Create indicators
                 for (let i = 0; i < totalSlides; i++) {
                     const button = document.createElement('button');
@@ -1631,11 +1639,13 @@
                 const heroIndicators = heroIndicatorsContainer.children;
 
                 function updateHeroSliderUI() {
-                    heroSliderInner.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+                    // Adjust transform based on total slides
+                    heroSliderInner.style.transform = `translateX(-${(currentSlideIndex * 100) / totalSlides}%)`;
                     Array.from(heroIndicators).forEach((indicator, index) => {
                         indicator.classList.toggle('active', index === currentSlideIndex);
                     });
                 }
+
 
                 function goToHeroSlide(index) {
                     currentSlideIndex = index;
@@ -1659,6 +1669,12 @@
                 // Initial setup
                 updateHeroSliderUI();
                 startHeroInterval(); // Start auto-sliding
+
+                 // Adjust slide width dynamically based on total slides
+                 Array.from(slides).forEach(slide => {
+                    slide.style.width = `${100 / totalSlides}%`;
+                });
+
 
             } else {
                  console.warn("Hero testimonial slider elements not found.");

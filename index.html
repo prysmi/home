@@ -280,8 +280,16 @@
             color: white !important; /* Ensure text is white */
         }
         .pm-bento-grid__stat {
-            font-size: 3rem; font-weight: 900; line-height: 1;
-            color: var(--color-text-heading); transition: color 0.3s ease-in-out;
+            font-size: 2.5rem; /* Mobile-first font size */
+            font-weight: 900; 
+            line-height: 1;
+            color: var(--color-text-heading); 
+            transition: color 0.3s ease-in-out;
+        }
+        @media (min-width: 640px) {
+            .pm-bento-grid__stat {
+                font-size: 3rem; /* Desktop font size */
+            }
         }
         .pm-bento-grid__stat-small {
             font-size: 1.5rem; font-weight: 800;
@@ -389,12 +397,17 @@
         .carousel-card {
             width: 100%;
             flex-shrink: 0;
-            padding: 2rem; /* p-8 for consistent padding */
+            padding: 1.5rem; /* Mobile-first padding */
             background-color: transparent; /* Card bg is handled by container if needed */
             box-sizing: border-box; /* Ensure padding is included in width */
              min-height: 450px; /* Ensure cards have a minimum height */
              display: flex;
              align-items: center; /* Vertically center content */
+        }
+        @media (min-width: 640px) {
+            .carousel-card {
+                padding: 2rem; /* Desktop padding */
+            }
         }
        .carousel-card h3 {
            margin-bottom: 0.5rem; /* mb-2 */
@@ -521,10 +534,15 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            padding: 1.5rem; /* Apply padding to the container */
+            padding: 1rem; /* Mobile-first padding */
             margin-left: auto; /* Center align */
             margin-right: auto; /* Center align */
             box-sizing: border-box; /* Include padding in width */
+        }
+        @media (min-width: 640px) {
+            #hero-testimonial-slider {
+                padding: 1.5rem; /* Desktop padding */
+            }
         }
          /* Light mode styles */
          body.light-mode #hero-testimonial-slider {
@@ -563,19 +581,11 @@
              font-size: 0.9rem;
              line-height: 1.5;
              margin: 0 auto 0.75rem auto; /* Centered and reset side margins */
-             padding: 0 1rem; /* Added horizontal padding to keep text from edges */
+             padding: 0 0.5rem; /* Mobile horizontal padding */
         }
          @media (min-width: 640px) {
              .hero-testimonial-slide blockquote {
-             font-family: 'Libre Baskerville', serif;
-             font-style: italic;
-             font-size: 0.9rem;
-             line-height: 1.5;
-             margin: 0 auto 0.75rem auto; /* Centered and reset side margins */
-             padding: 0 1.5rem; /* Increased horizontal padding to keep text from edges */
-        }
-         @media (min-width: 640px) {
-             .hero-testimonial-slide blockquote {
+                padding: 0 1.5rem; /* Desktop horizontal padding */
                 font-size: 1rem; /* Only override font-size */
              }
          }
@@ -646,6 +656,34 @@
           justify-content: center;
           gap: 0.5rem; /* space-x-2 */
       }
+      
+      /* === Mobile Responsive Fixes === */
+      @media (max-width: 639.98px) { /* Target below sm breakpoint */
+            .pm-testimonial-card {
+                padding: 1.5rem; /* Add padding for mobile */
+            }
+            .pm-testimonial-card__quote {
+                font-size: 1rem; /* Increase quote size slightly */
+                padding: 0.5rem 0; /* Add some vertical space */
+            }
+            .pm-testimonial-card__chips {
+                flex-wrap: wrap; /* Allow chips to wrap */
+                gap: 0.5rem; /* Add gap for wrapped chips */
+            }
+            .pm-testimonial-card__footer {
+                flex-direction: column; /* Stack chips and button */
+                align-items: flex-start;
+                gap: 1rem; /* Add space between chips and button */
+            }
+            
+            #pm-pipeline-engine .pm-pipeline-card {
+                padding: 1.5rem; /* Add padding */
+            }
+            #pm-pipeline-engine .space-y-2 li {
+                 padding-right: 1rem; /* Add some padding to prevent text hitting edge */
+            }
+      }
+      /* === End Mobile Responsive Fixes === */
 
   </style>
 
@@ -773,17 +811,17 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <section id="hero" class="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center text-center py-16 md:py-24 bg-gradient-to-br from-[#F53196] to-[#F53196] rounded-xl my-8 shadow-2xl transform hover:scale-[1.005] transition-transform duration-300">
+        <section id="hero" class="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center text-center py-12 sm:py-16 md:py-24 bg-gradient-to-br from-[#F53196] to-[#F53196] rounded-xl my-8 shadow-2xl transform hover:scale-[1.005] transition-transform duration-300">
             <div class="max-w-4xl">
-                <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white hero-title-glow fade-in-up">
+                <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white hero-title-glow fade-in-up">
                     Great Product. <br> Empty Pipeline? <br>
                     <span class="text-emphasis-italic-bold">We Fix That.</span>
                 </h1>
                 <p class="text-lg sm:text-xl md:text-2xl text-white opacity-90 fade-in-up delay-200ms mb-0 mt-4 md:mt-6">
-                    We build the revenue-ready marketing engine that turns<br>your brilliant product into predictable demos.
+                    We build the revenue-ready marketing engine that turns your brilliant product into predictable demos.
                 </p>
                 <div class="mt-8 fade-in-up delay-400ms">
-                    <button id="hero-cta-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-lg button-glow-cta" aria-label="I'd Like To Book More Demos">
+                    <button id="hero-cta-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-6 text-base sm:text-lg rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 button-glow-cta" aria-label="I'd Like To Book More Demos">
                         I'd Like To Book More Demos<span class="blinking-dot"></span>
                     </button>
                      <!-- NEW Hero Testimonial Slider -->
@@ -809,7 +847,7 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section id="prysmi-testimonials" class="py-16 md:py-24">
+        <section id="prysmi-testimonials" class="py-12 sm:py-16 md:py-24">
              <div class="text-center mb-12 px-4">
                 <h2 class="text-3xl sm:text-4xl font-black fade-in-up is-visible">From Invisible to Industry Leader</h2>
                 <p class="mt-4 text-lg fade-in-up is-visible">Don't take our word for it. See the pipeline we've built for founders just like you.</p>
@@ -1270,13 +1308,13 @@
             </div>
         </section>
 
-        <section id="next-steps" class="py-16 md:py-32 bg-[#F53196] rounded-xl shadow-2xl">
+        <section id="next-steps" class="py-12 sm:py-16 md:py-32 bg-[#F53196] rounded-xl shadow-2xl">
             <div class="max-w-3xl mx-auto text-center p-6 sm:p-12 rounded-xl fade-in-up">
                 <p class="text-lg sm:text-xl text-white text-emphasis-italic-bold opacity-90">Ready to stop guessing?</p>
-                <h2 class="text-3xl sm:text-5xl md:text-6xl font-black text-white hero-title-glow">Let’s Talk Strategy.</h2>
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-black text-white hero-title-glow">Let’s Talk Strategy.</h2>
                 <p class="mt-4 text-lg sm:text-xl text-white opacity-90">Schedule your free, 30-minute Strategy Call. We'll audit your current marketing and show you the exact gaps keeping you from predictable growth.</p>
                 <div class="mt-10">
-                    <button id="schedule-call-footer-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-lg button-glow-cta" aria-label="I'd Like To Book More Demos">
+                    <button id="schedule-call-footer-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-6 text-base sm:text-lg rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-lg button-glow-cta" aria-label="I'd Like To Book More Demos">
                         I'd Like To Book More Demos<span class="blinking-dot"></span>
                     </button>
                 </div>
@@ -1824,12 +1862,4 @@
     
 </body>
 </html>
-
-
-
-
-
-
-
-
 

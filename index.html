@@ -441,10 +441,27 @@
             cursor: not-allowed;
         }
         #prev-btn {
-            left: 0.75rem; /* left-3 */
+            left: -3.5rem; /* Moved outside the container */
         }
         #next-btn {
-            right: 0.75rem; /* right-3 */
+            right: -3.5rem; /* Moved outside the container */
+        }
+        /* Mobile-specific styles for arrows */
+        @media (max-width: 767.98px) {
+            .carousel-arrow {
+                top: auto; /* Unset desktop top positioning */
+                transform: none; /* Unset desktop vertical centering */
+                bottom: 2.75rem; /* Position above the indicators */
+                width: 40px; /* Slightly smaller for mobile */
+                height: 40px;
+            }
+            #prev-btn {
+                left: auto; /* Unset desktop left */
+                right: 4rem; /* Stack on the right */
+            }
+            #next-btn {
+                right: 0.75rem; /* Position on the far right */
+            }
         }
         .carousel-indicators {
             display: flex;
@@ -1054,12 +1071,22 @@
                     <button data-index="4" class="carousel-tab">Phase 5: Momentum</button>
                 </div>
 
+                <!-- Arrow Buttons (MOVED OUTSIDE container) -->
+                <button id="prev-btn" class="carousel-arrow" aria-label="Previous Step">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <button id="next-btn" class="carousel-arrow" aria-label="Next Step">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+
                 <!-- Carousel Container -->
                 <div class="carousel-container" id="carousel-container">
-                    <!-- Arrow Buttons -->
-                    <button id="prev-btn" class="carousel-arrow" aria-label="Previous Step">&lt;</button>
-                    <button id="next-btn" class="carousel-arrow" aria-label="Next Step">&gt;</button>
-
+                    <!-- Arrow Buttons Removed From Here -->
+                    
                     <!-- Inner Scrollable Container -->
                     <div class="carousel-inner" id="carousel-inner">
                         <!-- Card 1 (Step 1) -->
@@ -1797,6 +1824,7 @@
     
 </body>
 </html>
+
 
 
 

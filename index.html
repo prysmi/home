@@ -527,19 +527,29 @@
         .hero-testimonial-slide blockquote {
              font-family: 'Libre Baskerville', serif;
              font-style: italic;
-             font-size: 1rem; /* text-base */
-             line-height: 1.6;
+             /* Adjusted font size */
+             font-size: 0.9rem; /* Smaller font size */
+             line-height: 1.5; /* Slightly tighter line height */
              margin-bottom: 0.75rem; /* mb-3 */
+             /* Ensure quote stays within bounds */
+             max-height: 3em; /* Approx 2 lines height based on line-height */
+             overflow: hidden; /* Hide overflow if text is still too long */
+             text-overflow: ellipsis; /* Add ellipsis if needed */
+             display: -webkit-box; /* Necessary for line clamping */
+             -webkit-line-clamp: 2; /* Limit to 2 lines */
+             -webkit-box-orient: vertical; /* Necessary for line clamping */
         }
          @media (min-width: 640px) { /* sm breakpoint */
              .hero-testimonial-slide blockquote {
-                 font-size: 1.125rem; /* sm:text-lg */
+                 /* Slightly larger font on bigger screens, but still smaller than before */
+                 font-size: 1rem;
              }
          }
         .hero-testimonial-slide p {
             font-weight: 600; /* font-semibold */
             font-size: 0.875rem; /* text-sm */
             opacity: 0.8;
+            margin-top: 0.5rem; /* Add some space above the name/title */
         }
          body.light-mode .hero-testimonial-slide p {
             opacity: 0.7;
@@ -1725,4 +1735,5 @@
     
 </body>
 </html>
+
 

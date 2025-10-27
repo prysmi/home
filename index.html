@@ -492,7 +492,7 @@
             width: 100%;
             max-width: 450px; /* Max width of the slider */
             position: relative;
-            overflow: hidden;
+            overflow: hidden; /* Ensure overflow is hidden */
             border-radius: 0.75rem; /* rounded-xl */
             background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white bg */
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -514,8 +514,9 @@
             transition: transform 0.5s ease-in-out;
         }
         .hero-testimonial-slide {
-            width: 100%;
-            flex-shrink: 0;
+            width: 100%; /* Each slide takes full width of the inner container */
+            flex-shrink: 0; /* Prevent slides from shrinking */
+            box-sizing: border-box; /* Ensure padding doesn't affect width calculation */
             text-align: center;
             color: white; /* Default text color */
         }

@@ -812,9 +812,19 @@
     <!-- Mobile Navigation -->
     <div class="md:hidden">
         <!-- Mobile Nav Toggle Button -->
-        <button id="mobile-nav-toggle" class="fixed top-4 left-4 z-[60] w-14 h-14 p-2 bg-black/50 backdrop-blur-md rounded-xl shadow-lg flex items-center justify-center" aria-label="Open navigation menu">
-            <img src="assets/trademarks/logos/logo-vertical-pink.webp" alt="Prysmi Logo" class="w-10 h-10 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FF53AC/FFFFFF?text=P';">
-        </button>
+        <div class="fixed top-4 left-4 right-4 z-[60] flex items-center justify-between bg-black/50 backdrop-blur-md rounded-xl shadow-lg px-4 py-3">
+            <img src="assets/trademarks/logos/logo-horizontal-pink.webp" alt="Prysmi Logo" class="h-8 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/120x32/FF53AC/FFFFFF?text=PRYSMI';">
+            <button id="mobile-nav-toggle" class="w-10 h-10 flex items-center justify-center relative" aria-label="Toggle navigation menu">
+                <!-- Hamburger Icon -->
+                <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7 text-white transition-opacity duration-300">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <!-- X Icon (hidden by default) -->
+                <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7 text-white absolute opacity-0 transition-opacity duration-300">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
 
         <!-- Mobile Nav Panel (Slide-out) -->
         <div id="mobile-nav-panel" class="fixed inset-y-0 right-0 z-[70] w-full max-w-xs bg-gray-900/90 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out">

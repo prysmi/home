@@ -714,8 +714,10 @@
                 gap: 1rem; /* Add space between chips and button */
             }
             
-            /* REMOVED specific padding override for pm-pipeline-card on mobile */
-            /* #pm-pipeline-engine .pm-pipeline-card { padding: 1.5rem; } */
+            /* === USER REQUESTED FIX: START === */
+            /* RESTORED specific padding override for pm-pipeline-card on mobile */
+            #pm-pipeline-engine .pm-pipeline-card { padding: 1.5rem; }
+            /* === USER REQUESTED FIX: END === */
             
             #pm-pipeline-engine .space-y-2 li {
                  padding-right: 1rem; /* Add some padding to prevent text hitting edge */
@@ -1900,4 +1902,3 @@
     
 </body>
 </html>
-

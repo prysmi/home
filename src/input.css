@@ -1350,3 +1350,112 @@ margin-right: 1rem;
 }
 
 /* === PRYSMI: NEW/UPDATED STYLES END === */
+
+/* === MOBILE TYPOGRAPHY + WRAPPING FIXES (append) === */
+@media (max-width: 640px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-size: 16px;                 /* readable base size */
+    line-height: 1.7;                /* comfortable reading */
+    hyphens: auto;                   /* better long-word wrapping */
+    overflow-wrap: break-word;       /* prevent overflow */
+    word-break: normal;
+    text-wrap: pretty;
+  }
+
+  /* Headings: balance line breaks and scale down on mobile */
+  h1, .hero-title-glow {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    word-break: keep-all;
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 6vw, 1.75rem);
+    line-height: 1.2;
+    text-wrap: balance;
+    word-break: keep-all;
+  }
+
+  h3 {
+    font-size: clamp(1.1rem, 5.2vw, 1.35rem);
+    line-height: 1.28;
+    text-wrap: balance;
+    word-break: keep-all;
+  }
+
+  /* Section-specific heading balancing so lines break like desktop */
+  #about h2, #about h3,
+  #process h2, #process h3,
+  #pm-pipeline-engine h2, #pm-pipeline-engine h3 {
+    text-wrap: balance;
+    word-break: keep-all;
+  }
+
+  /* Paragraphs and list items: slightly smaller, airy line-height */
+  #about p, #process p, #pm-pipeline-engine p,
+  .pm-pipeline-card__body, .pm-case-study__summary,
+  .pm-testimonial-card__quote, .pm-bento-grid__desc,
+  li {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  /* Pipeline cards: keep nice line breaks on titles/subtitles */
+  .pm-pipeline-card__title,
+  .pm-pipeline-card__subtitle,
+  .pm-case-study__title {
+    text-wrap: balance;
+    word-break: keep-all;
+  }
+
+  /* Hero pink testimonial slider */
+  #hero-testimonial-slider {           /* container already spaced earlier */
+    max-width: calc(100% - 2rem);
+  }
+
+  .hero-testimonial-slide blockquote {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-wrap: pretty;
+    hyphens: auto;
+  }
+
+  .hero-testimonial-slide p {          /* attribution */
+    font-size: 0.85rem;
+    line-height: 1.45;
+    text-wrap: pretty;
+  }
+
+  /* Testimonial cards (non-hero) */
+  .pm-testimonial-card__quote {
+    font-size: 0.98rem;                /* slight bump for readability */
+    line-height: 1.65;
+  }
+
+  /* “Does This Sound Familiar?” and “Your New Reality” card titles */
+  #about .max-w-3xl .text-pink-400,
+  #process .max-w-3xl .text-pink-400 {
+    text-wrap: balance;
+    word-break: keep-all;
+  }
+
+  /* Bento stats: keep impact without crowding */
+  .pm-bento-grid__stat {
+    font-size: clamp(1.9rem, 8vw, 2.5rem);
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  /* Footer CTA block heading */
+  footer h2, footer h3 {
+    text-wrap: balance;
+  }
+}

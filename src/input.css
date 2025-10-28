@@ -1241,17 +1241,13 @@ margin: 0 auto 0.75rem auto;
 padding: 0 0.5rem;
 }
 
-/* MOBILE TEXT WRAPPING FIX: Improve quote spacing and wrapping on mobile */
+/* MOBILE SPACING FIX: Only keep spacing improvement for quotes */
 @media (max-width: 640px) {
 .hero-testimonial-slide blockquote {
 font-size: 0.9rem;
 line-height: 1.65;
 padding: 0 0.5rem;
 margin-bottom: 1rem;
-text-wrap: pretty;
-word-break: normal;
-hyphens: auto;
-max-width: 100%;
 }
 }
 
@@ -1354,62 +1350,27 @@ margin-right: 1rem;
 }
 }
 
-/* === MOBILE TEXT WRAPPING & LINE-BREAK FIXES === */
+/* === SPECIFIC MOBILE FIXES PER USER REQUEST === */
 
 @media (max-width: 640px) {
-  /* Global text optimization */
-  html {
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
+  /* FIX 1: "Friction-Free Execution. No Surprises." - Make it ONE line on mobile */
+  footer h2 {
+    white-space: nowrap;
+    overflow: visible;
   }
 
-  body {
-    overflow-wrap: break-word;
-    word-break: normal;
-    hyphens: auto;
+  /* FIX 2: Add line space between the two italic quote lines in "We're Revenue System Architects" */
+  #about .max-w-3xl.p-6 .text-emphasis-italic-bold {
+    display: block;
+    margin-top: 0.75rem;
+    line-height: 1.8;
   }
 
-  /* FIX 1: "Friction-Free Execution. No Surprises." section paragraph */
-  footer p,
-  footer .text-lg {
-    font-size: 1rem;
-    line-height: 1.7;
-    text-wrap: pretty;
-    word-break: normal;
-    hyphens: auto;
-  }
-
-  /* FIX 2: "We're Revenue System Architects" section paragraphs and italic quote */
-  #about .max-w-3xl.p-6 p {
-    font-size: 0.95rem;
-    line-height: 1.75;
-    text-wrap: pretty;
-    word-break: normal;
-    hyphens: auto;
-  }
-
-  #about .max-w-3xl.p-6 .text-emphasis-italic-bold,
-  #about .max-w-3xl.p-6 blockquote {
-    font-size: 1rem;
-    line-height: 1.7;
-    text-wrap: pretty;
-    word-break: normal;
-    hyphens: auto;
-  }
-
-  /* FIX 3: Pink hero testimonial section - Siddharth Sehgal quote already fixed above */
-  
-  /* Additional general paragraph improvements */
-  section p {
-    text-wrap: pretty;
-    word-break: normal;
-    hyphens: auto;
-  }
-
-  /* Section headings */
-  h2, h3 {
-    text-wrap: balance;
-    word-break: keep-all;
+  /* Ensure proper spacing between lines in the italic quote */
+  #about .max-w-3xl.p-6 blockquote.text-emphasis-italic-bold br {
+    display: block;
+    content: "";
+    margin-top: 0.5rem;
   }
 }
 

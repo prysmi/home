@@ -1374,12 +1374,13 @@ margin-right: 1rem;
     padding-right: 1rem;
   }
 
-  /* FIX 2: Make the two italic lines in "We're Revenue System Architects" flow as continuous text (remove line break) */
+ /* FIX 2: Make the two italic lines in "We're Revenue System Architects" flow as a natural paragraph (remove forced line break between them) */
   #about .max-w-3xl.p-6 .text-emphasis-italic-bold {
-    display: inline;
+    display: block;
+    line-height: 1.75;
   }
 
-  /* Hide any <br> tags within the italic quote on mobile */
+  /* Hide the <br> tag that creates the hard break between the two sentences */
   #about .max-w-3xl.p-6 .text-emphasis-italic-bold br {
     display: none;
   }

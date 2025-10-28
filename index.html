@@ -11,6 +11,14 @@
 
       <!-- 1. Inline Critical CSS -->
   <style>
+      /* === FIX: Added universal box-sizing reset === */
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+      }
+      /* === END FIX === */
+
       /* ... existing font-face rules ... */
       @font-face {
         font-family: 'Libre Franklin'; font-style: normal; font-weight: 200; font-display: swap;
@@ -437,7 +445,7 @@
             flex-shrink: 0;
             padding: 1.5rem; /* Mobile-first padding */
             background-color: transparent; /* Card bg is handled by container if needed */
-            box-sizing: border-box; /* Ensure padding is included in width */
+            /* box-sizing: border-box;  <-- Handled by universal rule */
              min-height: 450px; /* Ensure cards have a minimum height */
              display: flex;
              align-items: center; /* Vertically center content */
@@ -575,7 +583,7 @@
             padding: 1rem; /* Mobile-first padding */
             margin-left: auto; /* Center align */
             margin-right: auto; /* Center align */
-            box-sizing: border-box; /* Include padding in width */
+            /* box-sizing: border-box; <-- Handled by universal rule */
         }
         @media (min-width: 640px) {
             #hero-testimonial-slider {
@@ -599,7 +607,7 @@
             width: 100%; /* Each slide takes full width OF THE CONTAINER */
             white-space: normal; /* Allow text wrapping within slide */
             flex-shrink: 0;
-            box-sizing: border-box;
+            /* box-sizing: border-box; <-- Handled by universal rule */
             text-align: center;
             color: white;
             overflow: hidden; /* Added to prevent spillover */
@@ -714,10 +722,8 @@
                 gap: 1rem; /* Add space between chips and button */
             }
             
-            /* === USER REQUESTED FIX: START === */
-            /* RESTORED specific padding override for pm-pipeline-card on mobile */
-            #pm-pipeline-engine .pm-pipeline-card { padding: 1.5rem; }
-            /* === USER REQUESTED FIX: END === */
+            /* REMOVED specific padding override for pm-pipeline-card on mobile */
+            /* #pm-pipeline-engine .pm-pipeline-card { padding: 1.5rem; } */
             
             #pm-pipeline-engine .space-y-2 li {
                  padding-right: 1rem; /* Add some padding to prevent text hitting edge */
@@ -1042,7 +1048,7 @@
                             <img src="/assets/clients/bwlogos/360mergeduplicatesapp.png" alt="360 Merge Duplicates App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Merge';">
                         </div>
                         <div class="pm-logo-scroller__item">
-                            <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='httpsCALLED_FUNCTION_PLACEHOLDER';">
+                            <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='httpsTop 10 most popular programming languages in 2025';">
                         </div>
                         <div class="pm-logo-scroller__item">
                             <img src="/assets/clients/bwlogos/360textolicapp.png" alt="360 Textolic App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Textolic';">

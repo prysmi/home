@@ -816,15 +816,10 @@
             <img src="assets/trademarks/logos/logo-vertical-pink.webp" alt="Prysmi Logo" class="w-10 h-10 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FF53AC/FFFFFF?text=P';">
         </button>
 
-        <!-- Mobile Nav Panel (Full Screen with Glassmorphic Background) -->
-        <div id="mobile-nav-panel" class="fixed inset-0 z-[70] bg-black/80 backdrop-blur-xl transform translate-x-full transition-transform duration-300 ease-in-out">
-            <div class="flex flex-col h-full p-6 pt-20 relative">
-                <!-- Close Button (X) -->
-                <button id="mobile-nav-close" class="absolute top-5 right-5 w-12 h-12 flex items-center justify-center text-white text-4xl font-light hover:bg-white/10 rounded-full transition-all duration-200" aria-label="Close navigation menu">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
+        <!-- Mobile Nav Panel (Slide-out) -->
+        <div id="mobile-nav-panel" class="fixed inset-y-0 right-0 z-[70] w-full max-w-xs bg-gray-900/90 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full p-6 pt-20">
+                <button id="mobile-nav-close" class="absolute top-5 right-5 text-white text-3xl" aria-label="Close navigation menu">&times;</button>
                 <nav class="flex flex-col space-y-6 text-center">
                     <a href="#bento-wins" class="mobile-nav-link text-white text-xl font-semibold">Our Work</a>
                     <a href="#about" class="mobile-nav-link text-white text-xl font-semibold">About Us</a>

@@ -731,77 +731,6 @@
       }
       /* === End Mobile Responsive Fixes === */
 
-  
-      /* === CRITICAL MOBILE FIX === */
-      @media (max-width: 767px) {
-          /* Override cursor: none on ALL mobile elements */
-          body, body *, body a, body button, body [role="button"] {
-              cursor: auto !important;
-          }
-
-          /* Hide custom cursor on mobile */
-          #pm-cursor-dot, #pm-cursor-eye {
-              display: none !important;
-          }
-
-          /* Ensure mobile navbar is clickable */
-          .mobile-navbar {
-              pointer-events: auto !important;
-          }
-
-          .mobile-navbar button {
-              cursor: pointer !important;
-              pointer-events: auto !important;
-              -webkit-tap-highlight-color: rgba(245, 49, 150, 0.3);
-          }
-
-          #mobile-nav-toggle, #mobile-nav-close {
-              cursor: pointer !important;
-              pointer-events: auto !important;
-          }
-      }
-
-      /* Mobile navbar styles */
-      .mobile-navbar {
-          position: fixed;
-          left: 1rem;
-          top: calc(48px + 1rem);
-          z-index: 9999;
-          background: rgba(0, 0, 0, 0.7);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-radius: 1rem;
-          padding: 0.75rem 1rem;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .mobile-navbar img {
-          height: 1.5rem;
-          width: auto;
-          pointer-events: none;
-      }
-
-      .mobile-navbar button {
-          background: none;
-          border: none;
-          padding: 0.25rem;
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-      }
-
-      .mobile-navbar button svg {
-          width: 1.75rem;
-          height: 1.75rem;
-          pointer-events: none;
-      }
-      /* === END MOBILE FIX === */
-
   </style>
 
     <!-- Google Tag Manager will be injected here by script -->
@@ -880,52 +809,28 @@
 
     <canvas id="waving-dots-3d-background"></canvas>
 
-
-<!-- Mobile Navigation -->
+    <!-- Mobile Navigation -->
     <div class="md:hidden">
-        <!-- Floating Mobile Navbar with Logo and Hamburger -->
-        <div class="mobile-navbar">
-            <img src="assets/trademarks/logos/logo-horizontal-pink.webp" alt="Prysmi" onerror="this.onerror=null;this.src='https://placehold.co/100x30/FF53AC/FFFFFF?text=PRYSMI';">
-            <button id="mobile-nav-toggle" aria-label="Open navigation menu">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-            </button>
-        </div>
+        <!-- Mobile Nav Toggle Button -->
+        <button id="mobile-nav-toggle" class="fixed top-4 left-4 z-[60] w-14 h-14 p-2 bg-black/50 backdrop-blur-md rounded-xl shadow-lg flex items-center justify-center" aria-label="Open navigation menu">
+            <img src="assets/trademarks/logos/logo-vertical-pink.webp" alt="Prysmi Logo" class="w-10 h-10 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FF53AC/FFFFFF?text=P';">
+        </button>
 
-        <!-- Mobile Nav Panel (Full Screen Overlay) -->
-        <div id="mobile-nav-panel" class="fixed inset-0 z-[9998] bg-gray-900/98 backdrop-blur-xl transform translate-x-full transition-transform duration-300 ease-in-out">
-            <div class="flex flex-col h-full p-6 pt-8">
-                <!-- Top Row: Logo and Close Button -->
-                <div class="flex items-center justify-between mb-12">
-                    <img src="assets/trademarks/logos/logo-horizontal-pink.webp" alt="Prysmi Logo" class="h-8 w-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/120x40/FF53AC/FFFFFF?text=PRYSMI';">
-                    <button id="mobile-nav-close" class="text-white w-12 h-12 flex items-center justify-center" aria-label="Close navigation menu">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8" style="pointer-events: none;">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Navigation Links -->
-                <nav class="flex flex-col space-y-8 text-center flex-grow justify-center">
-                    <a href="#bento-wins" class="mobile-nav-link text-white text-2xl font-semibold">Our Work</a>
-                    <a href="#about" class="mobile-nav-link text-white text-2xl font-semibold">About Us</a>
-                    <a href="#process" class="mobile-nav-link text-white text-2xl font-semibold">Our Process</a>
-                    <a href="#pm-pipeline-engine" class="mobile-nav-link text-white text-2xl font-semibold">Offerings</a>
-                    <a href="#contact" class="mobile-nav-link text-white text-2xl font-semibold">Contact</a>
-
-                    <!-- CTA Button -->
-                    <button id="get-started-mobile-btn" class="mt-8 bg-[#F53196] text-white font-semibold py-4 px-6 rounded-lg shadow-md button-glow-pink text-lg whitespace-nowrap mx-auto" aria-label="I'd Like To Book More Demos">
-                        I'd Like To Book More Demos<span class="blinking-dot"></span>
-                    </button>
+        <!-- Mobile Nav Panel (Slide-out) -->
+        <div id="mobile-nav-panel" class="fixed inset-y-0 right-0 z-[70] w-full max-w-xs bg-gray-900/90 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full p-6 pt-20">
+                <button id="mobile-nav-close" class="absolute top-5 right-5 text-white text-3xl" aria-label="Close navigation menu">&times;</button>
+                <nav class="flex flex-col space-y-6 text-center">
+                    <a href="#bento-wins" class="mobile-nav-link text-white text-xl font-semibold">Our Work</a>
+                    <a href="#about" class="mobile-nav-link text-white text-xl font-semibold">About Us</a>
+                    <a href="#process" class="mobile-nav-link text-white text-xl font-semibold">Our Process</a>
+                    <a href="#pm-pipeline-engine" class="mobile-nav-link text-white text-xl font-semibold">Offerings</a>
+                    <a href="#contact" class="mobile-nav-link text-white text-xl font-semibold">Contact</a>
+                    <button id="get-started-mobile-btn" class="mt-6 bg-[#F53196] text-white font-semibold py-3 px-6 rounded-lg shadow-md button-glow-pink text-lg" aria-label="I'd Like To Book More Demos">I'd Like To Book More Demos<span class="blinking-dot"></span></button>
                 </nav>
             </div>
         </div>
     </div>
-
-
-
-
 
     <!-- Desktop Header -->
     <header id="main-header" class="hidden md:block bg-black/30 backdrop-blur-lg sticky top-0 z-50 w-full py-2">
@@ -1055,7 +960,7 @@
             </div>
             <div class="pm-bento-grid max-w-5xl mx-auto">
                 <div class="pm-bento-grid__item pm-bento-grid__item--gradient-a" style="grid-area: a;">
-                    <span class="pm-bento-grid__stat">7 years</span>
+                    <span class="pm-bento-grid__stat">7 <span class="pm-bento-grid__stat-small">yrs</span></span>
                     <p class="pm-bento-grid__desc">Leading Growth Strategy Exclusively for B2B Tech</p>
                 </div>
                 <div class="pm-bento-grid__item pm-bento-grid__item--gradient-b" style="grid-area: b;">
@@ -1541,56 +1446,19 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-                    document.addEventListener('DOMContentLoaded', () => {
             // --- Mobile Navigation Logic ---
             const mobileNavToggle = document.getElementById('mobile-nav-toggle');
             const mobileNavClose = document.getElementById('mobile-nav-close');
             const mobileNavPanel = document.getElementById('mobile-nav-panel');
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-            console.log('Mobile nav initialized:', {
-                toggle: !!mobileNavToggle,
-                close: !!mobileNavClose,
-                panel: !!mobileNavPanel
-            });
+            const openMobileMenu = () => mobileNavPanel.classList.remove('translate-x-full');
+            const closeMobileMenu = () => mobileNavPanel.classList.add('translate-x-full');
 
-            function openMobileMenu() {
-                console.log('Opening menu...');
-                if (mobileNavPanel) {
-                    mobileNavPanel.classList.remove('translate-x-full');
-                    document.body.style.overflow = 'hidden';
-                }
-            }
-
-            function closeMobileMenu() {
-                console.log('Closing menu...');
-                if (mobileNavPanel) {
-                    mobileNavPanel.classList.add('translate-x-full');
-                    document.body.style.overflow = '';
-                }
-            }
-
-            if (mobileNavToggle) {
-                mobileNavToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    console.log('Toggle clicked!');
-                    openMobileMenu();
-                });
-            }
-
-            if (mobileNavClose) {
-                mobileNavClose.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    console.log('Close clicked!');
-                    closeMobileMenu();
-                });
-            }
-
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', closeMobileMenu);
-            });
-
-
+            if (mobileNavToggle) mobileNavToggle.addEventListener('click', openMobileMenu);
+            if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileMenu);
+            mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+            
             // --- Common Functionality ---
             const currentYearSpan = document.getElementById('currentYear');
             if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
@@ -2040,7 +1908,4 @@
     
 </body>
 </html>
-
-
-
 

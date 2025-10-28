@@ -1350,27 +1350,51 @@ margin-right: 1rem;
 }
 }
 
-/* === SPECIFIC MOBILE FIXES PER USER REQUEST === */
+/* === FINAL SPECIFIC MOBILE FIXES PER USER REQUEST === */
 
 @media (max-width: 640px) {
-  /* FIX 1: "Friction-Free Execution. No Surprises." - Make it ONE line on mobile */
-  footer h2 {
+  /* FIX 1: Make "I'd Like To Book More Demos" button text ONE line on mobile */
+  button:has-text("I'd Like To Book More Demos"),
+  a[href*="calendly"]:contains("I'd Like To Book More Demos"),
+  .bg-\[\#F53196\]:contains("I'd Like To Book More Demos"),
+  button.text-white,
+  a.text-white {
     white-space: nowrap;
-    overflow: visible;
+    font-size: 0.875rem;
   }
 
-  /* FIX 2: Add line space between the two italic quote lines in "We're Revenue System Architects" */
+  /* Specific targeting for all CTA buttons on mobile */
+  footer button,
+  #hero button,
+  section button.bg-\[\#F53196\],
+  a[role="button"].bg-\[\#F53196\] {
+    white-space: nowrap;
+    font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* FIX 2: Make the two italic lines in "We're Revenue System Architects" flow as continuous text (remove line break) */
   #about .max-w-3xl.p-6 .text-emphasis-italic-bold {
-    display: block;
-    margin-top: 0.75rem;
-    line-height: 1.8;
+    display: inline;
   }
 
-  /* Ensure proper spacing between lines in the italic quote */
-  #about .max-w-3xl.p-6 blockquote.text-emphasis-italic-bold br {
-    display: block;
-    content: "";
-    margin-top: 0.5rem;
+  /* Hide any <br> tags within the italic quote on mobile */
+  #about .max-w-3xl.p-6 .text-emphasis-italic-bold br {
+    display: none;
+  }
+
+  /* FIX 3: Add left/right padding to "We build the revenue-ready marketing engine..." text in hero pink section */
+  #hero .text-center p,
+  #hero .max-w-2xl p {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  /* Ensure the hero subtitle/description has proper padding */
+  #hero .mx-auto.text-center {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 }
 

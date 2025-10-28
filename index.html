@@ -1467,25 +1467,61 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Mobile Navigation Logic ---
+
             const mobileNavToggle = document.getElementById('mobile-nav-toggle');
             const mobileNavClose = document.getElementById('mobile-nav-close');
             const mobileNavPanel = document.getElementById('mobile-nav-panel');
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
+            
             const openMobileMenu = () => {
-              mobileNavPanel.classList.remove('translate-x-full');
-              document.body.classList.add('mobile-nav-open');
+              if (mobileNavPanel) {
+                mobileNavPanel.classList.remove('translate-x-full');
+                mobileNavPanel.classList.add('translate-x-0');
+                document.body.classList.add('mobile-nav-open');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+              }
             };
-
+            
             const closeMobileMenu = () => {
-              mobileNavPanel.classList.add('translate-x-full');
-              document.body.classList.remove('mobile-nav-open');
+              if (mobileNavPanel) {
+                mobileNavPanel.classList.add('translate-x-full');
+                mobileNavPanel.classList.remove('translate-x-0');
+                document.body.classList.remove('mobile-nav-open');
+                document.body.style.overflow = ''; // Re-enable scrolling
+              }
             };
-
-
-            if (mobileNavToggle) mobileNavToggle.addEventListener('click', openMobileMenu);
-            if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileMenu);
-            mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+            
+            if (mobileNavToggle) {
+              mobileNavToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Hamburger clicked!'); // Debug log
+                openMobileMenu();
+              });
+            }
+            
+            if (mobileNavClose) {
+              mobileNavClose.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Close button clicked!'); // Debug log
+                closeMobileMenu();
+              });
+            }
+            
+            // Close menu when clicking nav links
+            mobileNavLinks.forEach(link => {
+              link.addEventListener('click', () => {
+                closeMobileMenu();
+              });
+            });
+            
+            // Close menu when clicking CTA button
+            const mobileCTABtn = document.getElementById('get-started-mobile-btn');
+            if (mobileCTABtn) {
+              mobileCTABtn.addEventListener('click', () => {
+                closeMobileMenu();
+              });
+            }
+            
             
             // --- Common Functionality ---
             const currentYearSpan = document.getElementById('currentYear');
@@ -1936,6 +1972,7 @@
     
 </body>
 </html>
+
 
 
 

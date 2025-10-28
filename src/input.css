@@ -1159,4 +1159,40 @@ from { transform: translateX(0); }
 to { transform: translateX(-50%); }
 }
 
+/* === MOBILE SPACING FIXES FOR SECTION CONTAINERS === */
+
+/* Fix spacing for "Does This Sound Familiar?" section cards */
+@media (max-width: 640px) {
+#about .max-w-3xl.space-y-6 {
+padding-left: 1rem;
+padding-right: 1rem;
+}
+  
+#about .max-w-3xl.space-y-6 > div {
+margin-left: 0;
+margin-right: 0;
+}
+}
+
+/* Fix spacing for "Your New Reality" section cards */
+@media (max-width: 640px) {
+#process .max-w-3xl.space-y-6 {
+padding-left: 1rem;
+padding-right: 1rem;
+}
+  
+#process .max-w-3xl.space-y-6 > div {
+margin-left: 0;
+margin-right: 0;
+}
+}
+
+/* Fix spacing for "We're Revenue System Architects" section */
+@media (max-width: 640px) {
+#about .max-w-3xl.p-6 {
+margin-left: 1rem;
+margin-right: 1rem;
+}
+}
+
 /* === PRYSMI: NEW/UPDATED STYLES END === */

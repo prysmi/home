@@ -1472,8 +1472,16 @@
             const mobileNavPanel = document.getElementById('mobile-nav-panel');
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-            const openMobileMenu = () => mobileNavPanel.classList.remove('translate-x-full');
-            const closeMobileMenu = () => mobileNavPanel.classList.add('translate-x-full');
+            const openMobileMenu = () => {
+              mobileNavPanel.classList.remove('translate-x-full');
+              document.body.classList.add('mobile-nav-open');
+            };
+
+            const closeMobileMenu = () => {
+              mobileNavPanel.classList.add('translate-x-full');
+              document.body.classList.remove('mobile-nav-open');
+            };
+
 
             if (mobileNavToggle) mobileNavToggle.addEventListener('click', openMobileMenu);
             if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileMenu);
@@ -1928,5 +1936,6 @@
     
 </body>
 </html>
+
 
 

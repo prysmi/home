@@ -812,22 +812,22 @@
 
 <!-- Mobile Navigation -->
     <div class="md:hidden">
-        <!-- Mobile Nav Toggle Button -->
-        <button id="mobile-nav-toggle" class="fixed top-4 left-4 z-[60] w-14 h-14 p-2 bg-black/50 backdrop-blur-md rounded-xl shadow-lg flex items-center justify-center" aria-label="Open navigation menu">
-            <!-- Hamburger Icon -->
+        <!-- Mobile Nav Toggle Button with Hamburger Icon -->
+        <button id="mobile-nav-toggle" class="fixed left-4 z-[60] w-14 h-14 p-2 bg-black/50 backdrop-blur-md rounded-xl shadow-lg flex items-center justify-center" style="top: calc(48px + 1rem);" aria-label="Open navigation menu">
+            <!-- Hamburger Icon SVG -->
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-white">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
         </button>
 
-        <!-- Mobile Nav Panel (Full Screen) -->
-        <div id="mobile-nav-panel" class="fixed inset-0 z-[70] bg-gray-900/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 ease-in-out">
+        <!-- Mobile Nav Panel (Full Screen Overlay) -->
+        <div id="mobile-nav-panel" class="fixed inset-0 z-[70] bg-gray-900/98 backdrop-blur-xl transform translate-x-full transition-transform duration-300 ease-in-out">
             <div class="flex flex-col h-full p-6 pt-8">
-                <!-- Top Row: Logo and Close Button -->
+                <!-- Top Row: Horizontal Logo and Close Button -->
                 <div class="flex items-center justify-between mb-12">
                     <img src="assets/trademarks/logos/logo-horizontal-pink.webp" alt="Prysmi Logo" class="h-8 w-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/120x40/FF53AC/FFFFFF?text=PRYSMI';">
-                    <button id="mobile-nav-close" class="text-white text-4xl w-12 h-12 flex items-center justify-center" aria-label="Close navigation menu">
-                        <!-- X Icon -->
+                    <button id="mobile-nav-close" class="text-white w-12 h-12 flex items-center justify-center" aria-label="Close navigation menu">
+                        <!-- X Close Icon SVG -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -842,14 +842,15 @@
                     <a href="#pm-pipeline-engine" class="mobile-nav-link text-white text-2xl font-semibold">Offerings</a>
                     <a href="#contact" class="mobile-nav-link text-white text-2xl font-semibold">Contact</a>
                     
-                    <!-- CTA Button -->
-                    <button id="get-started-mobile-btn" class="mt-8 bg-[#F53196] text-white font-semibold py-4 px-6 rounded-lg shadow-md button-glow-pink text-lg whitespace-nowrap" aria-label="I'd Like To Book More Demos">
+                    <!-- CTA Button (Single Line) -->
+                    <button id="get-started-mobile-btn" class="mt-8 bg-[#F53196] text-white font-semibold py-4 px-6 rounded-lg shadow-md button-glow-pink text-lg whitespace-nowrap mx-auto" aria-label="I'd Like To Book More Demos">
                         I'd Like To Book More Demos<span class="blinking-dot"></span>
                     </button>
                 </nav>
             </div>
         </div>
     </div>
+
 
 
     <!-- Desktop Header -->
@@ -1928,6 +1929,7 @@
     
 </body>
 </html>
+
 
 
 

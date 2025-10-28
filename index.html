@@ -810,27 +810,47 @@
     <canvas id="waving-dots-3d-background"></canvas>
 
     <!-- Mobile Navigation -->
-    <div class="md:hidden">
-        <!-- Mobile Nav Toggle Button -->
-        <button id="mobile-nav-toggle" class="fixed top-4 left-4 z-[60] w-14 h-14 p-2 bg-black/50 backdrop-blur-md rounded-xl shadow-lg flex items-center justify-center" aria-label="Open navigation menu">
-            <img src="assets/trademarks/logos/logo-vertical-pink.webp" alt="Prysmi Logo" class="w-10 h-10 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FF53AC/FFFFFF?text=P';">
-        </button>
-
-        <!-- Mobile Nav Panel (Slide-out) -->
-        <div id="mobile-nav-panel" class="fixed inset-y-0 right-0 z-[70] w-full max-w-xs bg-gray-900/90 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out">
-            <div class="flex flex-col h-full p-6 pt-20">
-                <button id="mobile-nav-close" class="absolute top-5 right-5 text-white text-3xl" aria-label="Close navigation menu">&times;</button>
-                <nav class="flex flex-col space-y-6 text-center">
-                    <a href="#bento-wins" class="mobile-nav-link text-white text-xl font-semibold">Our Work</a>
-                    <a href="#about" class="mobile-nav-link text-white text-xl font-semibold">About Us</a>
-                    <a href="#process" class="mobile-nav-link text-white text-xl font-semibold">Our Process</a>
-                    <a href="#pm-pipeline-engine" class="mobile-nav-link text-white text-xl font-semibold">Offerings</a>
-                    <a href="#contact" class="mobile-nav-link text-white text-xl font-semibold">Contact</a>
-                    <button id="get-started-mobile-btn" class="mt-6 bg-[#F53196] text-white font-semibold py-3 px-6 rounded-lg shadow-md button-glow-pink text-lg" aria-label="I'd Like To Book More Demos">I'd Like To Book More Demos<span class="blinking-dot"></span></button>
-                </nav>
-            </div>
-        </div>
+<div class="md:hidden">
+  <!-- Mobile Nav Toggle Button - Floating with Logo and Hamburger -->
+  <button id="mobile-nav-toggle" class="fixed top-4 left-4 right-4 z-50 bg-black/50 backdrop-blur-md rounded-xl shadow-lg flex items-center justify-between px-4 py-3" aria-label="Open navigation menu">
+    <!-- Horizontal Pink Logo -->
+    <img src="assets/trademarks/logos/logo-horizontal-pink.webp" alt="Prysmi Logo" class="h-8 w-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/120x40/FF53AC/FFFFFF?text=PRYSMI';">
+    
+    <!-- Hamburger Icon (3 lines) -->
+    <div class="flex flex-col gap-1.5 w-6">
+      <span class="block h-0.5 w-full bg-white rounded"></span>
+      <span class="block h-0.5 w-full bg-white rounded"></span>
+      <span class="block h-0.5 w-full bg-white rounded"></span>
     </div>
+  </button>
+
+  <!-- Mobile Nav Panel - Full Screen Glassmorphic -->
+  <div id="mobile-nav-panel" class="fixed inset-0 z-60 bg-black/90 backdrop-blur-2xl transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
+    <div class="flex flex-col h-full p-6 pt-20">
+      <!-- Close Button (X) -->
+      <button id="mobile-nav-close" class="absolute top-5 right-5 w-12 h-12 flex items-center justify-center text-white text-4xl rounded-full bg-white/10 hover:bg-white/20 transition-colors" aria-label="Close navigation menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+          <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/>
+        </svg>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav class="flex flex-col space-y-8 text-center mt-8">
+        <a href="#bento-wins" class="mobile-nav-link text-white text-2xl font-semibold hover:text-pink-400 transition-colors">Our Work</a>
+        <a href="#about" class="mobile-nav-link text-white text-2xl font-semibold hover:text-pink-400 transition-colors">About Us</a>
+        <a href="#process" class="mobile-nav-link text-white text-2xl font-semibold hover:text-pink-400 transition-colors">Our Process</a>
+        <a href="#pm-pipeline-engine" class="mobile-nav-link text-white text-2xl font-semibold hover:text-pink-400 transition-colors">Offerings</a>
+        <a href="#contact" class="mobile-nav-link text-white text-2xl font-semibold hover:text-pink-400 transition-colors">Contact</a>
+
+        <!-- CTA Button - Single Line -->
+        <button id="get-started-mobile-btn" class="mt-8 bg-[#F53196] text-white font-semibold py-4 px-6 rounded-lg shadow-md button-glow-pink text-base whitespace-nowrap mx-auto" aria-label="I'd Like To Book More Demos">
+          I'd Like To Book More Demos<span class="blinking-dot"></span>
+        </button>
+      </nav>
+    </div>
+  </div>
+</div>
+
 
     <!-- Desktop Header -->
     <header id="main-header" class="hidden md:block bg-black/30 backdrop-blur-lg sticky top-0 z-50 w-full py-2">
@@ -1908,4 +1928,5 @@
     
 </body>
 </html>
+
 

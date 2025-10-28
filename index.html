@@ -813,24 +813,24 @@
 <!-- Mobile Navigation -->
     <div class="md:hidden">
         <!-- Mobile Nav Toggle Button with Logo AND Hamburger -->
-        <button id="mobile-nav-toggle" class="fixed left-4 z-[60] p-2 bg-black/50 backdrop-blur-md rounded-xl shadow-lg flex items-center gap-2" style="top: calc(48px + 1rem); width: auto; height: 3.5rem; padding-left: 0.75rem; padding-right: 0.75rem;" aria-label="Open navigation menu">
+        <button id="mobile-nav-toggle" class="fixed left-4 z-[9999] p-2 bg-black/50 backdrop-blur-md rounded-xl shadow-lg flex items-center gap-2" style="top: calc(48px + 1rem); width: auto; height: 3.5rem; padding-left: 0.75rem; padding-right: 0.75rem; cursor: pointer !important; pointer-events: auto !important;" aria-label="Open navigation menu" type="button">
             <!-- Horizontal Logo in Toggle Button -->
-            <img src="assets/trademarks/logos/logo-horizontal-pink.webp" alt="Prysmi Logo" class="h-6 w-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/80x30/FF53AC/FFFFFF?text=PRYSMI';">
+            <img src="assets/trademarks/logos/logo-horizontal-pink.webp" alt="Prysmi Logo" class="h-6 w-auto object-contain" style="pointer-events: none;" onerror="this.onerror=null;this.src='https://placehold.co/80x30/FF53AC/FFFFFF?text=PRYSMI';">
             <!-- Hamburger Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-white" style="pointer-events: none;">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
         </button>
 
         <!-- Mobile Nav Panel (Full Screen Overlay) -->
-        <div id="mobile-nav-panel" class="fixed inset-0 z-[70] bg-gray-900/98 backdrop-blur-xl transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div id="mobile-nav-panel" class="fixed inset-0 z-[9998] bg-gray-900/98 backdrop-blur-xl transform translate-x-full transition-transform duration-300 ease-in-out" style="pointer-events: auto;">
             <div class="flex flex-col h-full p-6 pt-8">
                 <!-- Top Row: Horizontal Logo and Close Button -->
                 <div class="flex items-center justify-between mb-12">
                     <img src="assets/trademarks/logos/logo-horizontal-pink.webp" alt="Prysmi Logo" class="h-8 w-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/120x40/FF53AC/FFFFFF?text=PRYSMI';">
-                    <button id="mobile-nav-close" class="text-white w-12 h-12 flex items-center justify-center" aria-label="Close navigation menu">
+                    <button id="mobile-nav-close" class="text-white w-12 h-12 flex items-center justify-center" style="cursor: pointer !important;" aria-label="Close navigation menu" type="button">
                         <!-- X Close Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8" style="pointer-events: none;">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
@@ -838,14 +838,14 @@
 
                 <!-- Navigation Links -->
                 <nav class="flex flex-col space-y-8 text-center flex-grow justify-center">
-                    <a href="#bento-wins" class="mobile-nav-link text-white text-2xl font-semibold">Our Work</a>
-                    <a href="#about" class="mobile-nav-link text-white text-2xl font-semibold">About Us</a>
-                    <a href="#process" class="mobile-nav-link text-white text-2xl font-semibold">Our Process</a>
-                    <a href="#pm-pipeline-engine" class="mobile-nav-link text-white text-2xl font-semibold">Offerings</a>
-                    <a href="#contact" class="mobile-nav-link text-white text-2xl font-semibold">Contact</a>
+                    <a href="#bento-wins" class="mobile-nav-link text-white text-2xl font-semibold" style="cursor: pointer !important;">Our Work</a>
+                    <a href="#about" class="mobile-nav-link text-white text-2xl font-semibold" style="cursor: pointer !important;">About Us</a>
+                    <a href="#process" class="mobile-nav-link text-white text-2xl font-semibold" style="cursor: pointer !important;">Our Process</a>
+                    <a href="#pm-pipeline-engine" class="mobile-nav-link text-white text-2xl font-semibold" style="cursor: pointer !important;">Offerings</a>
+                    <a href="#contact" class="mobile-nav-link text-white text-2xl font-semibold" style="cursor: pointer !important;">Contact</a>
 
                     <!-- CTA Button (Single Line) -->
-                    <button id="get-started-mobile-btn" class="mt-8 bg-[#F53196] text-white font-semibold py-4 px-6 rounded-lg shadow-md button-glow-pink text-base whitespace-nowrap mx-auto max-w-full" style="font-size: clamp(0.85rem, 3.5vw, 1rem);" aria-label="I'd Like To Book More Demos">
+                    <button id="get-started-mobile-btn" class="mt-8 bg-[#F53196] text-white font-semibold py-4 px-6 rounded-lg shadow-md button-glow-pink text-base whitespace-nowrap mx-auto max-w-full" style="font-size: clamp(0.85rem, 3.5vw, 1rem); cursor: pointer !important;" aria-label="I'd Like To Book More Demos" type="button">
                         I'd Like To Book More Demos<span class="blinking-dot"></span>
                     </button>
                 </nav>
@@ -853,7 +853,11 @@
         </div>
     </div>
 
-<!-- Desktop Header -->
+
+
+
+
+    <!-- Desktop Header -->
     <header id="main-header" class="hidden md:block bg-black/30 backdrop-blur-lg sticky top-0 z-50 w-full py-2">
         <nav id="main-nav" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center">
@@ -1467,18 +1471,71 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Mobile Navigation Logic ---
+            // --- Mobile Navigation Logic with Debug ---
             const mobileNavToggle = document.getElementById('mobile-nav-toggle');
             const mobileNavClose = document.getElementById('mobile-nav-close');
             const mobileNavPanel = document.getElementById('mobile-nav-panel');
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-            const openMobileMenu = () => mobileNavPanel.classList.remove('translate-x-full');
-            const closeMobileMenu = () => mobileNavPanel.classList.add('translate-x-full');
+            console.log('Mobile Nav Elements:', {
+                toggle: mobileNavToggle,
+                close: mobileNavClose,
+                panel: mobileNavPanel,
+                links: mobileNavLinks.length
+            });
 
-            if (mobileNavToggle) mobileNavToggle.addEventListener('click', openMobileMenu);
-            if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileMenu);
-            mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+            const openMobileMenu = () => {
+                console.log('Opening mobile menu...');
+                if (mobileNavPanel) {
+                    mobileNavPanel.classList.remove('translate-x-full');
+                    document.body.classList.add('mobile-menu-open');
+                    console.log('Mobile menu opened');
+                }
+            };
+
+            const closeMobileMenu = () => {
+                console.log('Closing mobile menu...');
+                if (mobileNavPanel) {
+                    mobileNavPanel.classList.add('translate-x-full');
+                    document.body.classList.remove('mobile-menu-open');
+                    console.log('Mobile menu closed');
+                }
+            };
+
+            if (mobileNavToggle) {
+                mobileNavToggle.addEventListener('click', (e) => {
+                    console.log('Toggle button clicked!', e);
+                    openMobileMenu();
+                });
+                mobileNavToggle.addEventListener('touchend', (e) => {
+                    console.log('Toggle button touched!', e);
+                    e.preventDefault();
+                    openMobileMenu();
+                });
+                console.log('Toggle button listeners attached');
+            } else {
+                console.error('Mobile nav toggle button not found!');
+            }
+
+            if (mobileNavClose) {
+                mobileNavClose.addEventListener('click', (e) => {
+                    console.log('Close button clicked!', e);
+                    closeMobileMenu();
+                });
+                mobileNavClose.addEventListener('touchend', (e) => {
+                    console.log('Close button touched!', e);
+                    e.preventDefault();
+                    closeMobileMenu();
+                });
+                console.log('Close button listeners attached');
+            } else {
+                console.error('Mobile nav close button not found!');
+            }
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
             
             // --- Common Functionality ---
             const currentYearSpan = document.getElementById('currentYear');
@@ -1929,6 +1986,7 @@
     
 </body>
 </html>
+
 
 
 

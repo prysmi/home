@@ -1402,23 +1402,22 @@ margin-right: 1rem;
 /* === PRYSMI: NEW/UPDATED STYLES END === */
 
 .profile-photo-container {
-  width: 100px; /* Adjust as needed */
-  height: 100px; /* Adjust as needed */
-  border-radius: 15px; /* Creates the rounded square shape */
   overflow: hidden;
-  margin-bottom: 20px; /* Adjust spacing as needed */
-  position: relative;
+  border-radius: 12px; /* rounded square */
+  width: fit-content;
 }
 
 .profile-photo {
-  width: 100%;
-  height: 100%;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
-  filter: grayscale(100%);
-  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+  border-radius: 12px;
+  filter: grayscale(100%); /* black and white by default */
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.profile-photo-container:hover .profile-photo {
-  filter: grayscale(0%);
-  transform: scale(1.05); /* Mild zoom effect */
+.profile-photo-container:hover.profile-photo {
+  filter: grayscale(0%); /* color on hover */
+  transform: scale(1.05); /* mild zoom effect */
 }
+

@@ -1404,8 +1404,8 @@ margin-right: 1rem;
 .founder-profile-wrapper {
   overflow: hidden;
   border-radius: 8px; /* less rounded */
-  width: 200px; /* much bigger */
-  height: 200px;
+  width: 400px; /* much bigger */
+  height: 400px;
   margin: 0 auto 24px; /* centers the image with bottom spacing */
 }
 

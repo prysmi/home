@@ -1,249 +1,1308 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRYSMI - Fractional CMO & Marketing Strategy for Tech Founders</title>
-    <meta name="description" content="Strategic CMO-level marketing guidance for early-stage tech founders. Build your first predictable pipeline with battle-tested lead-gen systems.">
-    <link rel="stylesheet" href="input-1.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <title>Prysmi | Revenue-Ready B2B Marketing for Tech Founders</title>
+
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com"> 
+
+      <!-- 1. Inline Critical CSS -->
+  <style>
+      /* === FIX: Added universal box-sizing reset === */
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+      }
+      /* === END FIX === */
+
+      /* ... existing font-face rules ... */
+      @font-face {
+        font-family: 'Libre Franklin'; font-style: normal; font-weight: 200; font-display: swap;
+        src: url('/assets/fonts/libre-franklin-v19-latin-200.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Libre Franklin'; font-style: normal; font-weight: 400; font-display: swap;
+        src: url('/assets/fonts/libre-franklin-v19-latin-regular.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Libre Franklin'; font-style: normal; font-weight: 800; font-display: swap;
+        src: url('/assets/fonts/libre-franklin-v19-latin-800.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Libre Baskerville'; font-style: italic; font-weight: 400; font-display: swap;
+        src: url('/assets/fonts/libre-baskerville-v16-latin-italic.woff2') format('woff2');
+      }
+       /* Added missing font weights */
+       @font-face {
+        font-family: 'Libre Franklin'; font-style: normal; font-weight: 600; font-display: swap;
+        src: url('/assets/fonts/libre-franklin-v19-latin-600.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Libre Franklin'; font-style: normal; font-weight: 900; font-display: swap;
+        src: url('/assets/fonts/libre-franklin-v19-latin-900.woff2') format('woff2');
+      }
+
+      /* ... existing :root and body.light-mode variables ... */
+       /* Define CSS Variables for themes first */
+       :root {
+        --color-bg-body: #0A0A0A;
+        --color-text-primary: #E0E0E0;
+        --color-text-heading: #FFFFFF;
+        --color-accent-pink: #F53196; /* Define pink accent color */
+        --color-border-default: #333; /* Define default border color */
+         --color-accent-yellow: #EEFF41; /* Define yellow accent color */
+         --color-bg-section: rgba(26, 26, 26, 0.75); /* Default section bg */
+
+      }
+      body.light-mode {
+        --color-bg-body: #F5F5F5;
+        --color-text-primary: #333333;
+        --color-text-heading: #0A0A0A;
+        --color-border-default: #CCCCCC; /* Light mode border color */
+        --color-bg-section: rgba(255, 255, 255, 0.75); /* Light mode section bg */
+      }
+
+
+      /* ... existing basic styles, h1-h5, text-emphasis, canvas styles ... */
+        /* Basic structural & typographic styles */
+      
+      /* === FIX: Add responsive padding to main content area === */
+      main {
+          padding-left: 1rem; /* px-4 */
+          padding-right: 1rem; /* px-4 */
+      }
+      @media (min-width: 640px) { /* sm breakpoint */
+          main {
+              padding-left: 1.5rem; /* sm:px-6 */
+              padding-right: 1.5rem; /* sm:px-6 */
+          }
+      }
+      @media (min-width: 1024px) { /* lg breakpoint */
+          main {
+              padding-left: 2rem; /* lg:px-8 */
+              padding-right: 2rem; /* lg:px-8 */
+          }
+      }
+      /* === END FIX === */
+
+      body {
+        font-family: 'Libre Franklin', sans-serif;
+        background-color: var(--color-bg-body);
+        color: var(--color-text-primary);
+        overflow-x: hidden; margin: 0;
+      }
+
+      /* === REMOVED previous padding fix === */
+      /* .p-6 { padding: 1.5rem; } @media (min-width: 640px) { .sm\:p-10 { padding: 2.5rem; } } */
+      /* === END REMOVAL === */
+
+      h1, h2, h3, h4, h5 {
+        font-family: 'Libre Franklin', sans-serif;
+        font-weight: 800;
+        color: var(--color-text-heading);
+      }
+      /* Ensure h2 specifically uses font-black */
+      h2 {
+        font-weight: 900; /* font-black */
+      }
+      .text-emphasis-italic-bold {
+        font-family: 'Libre Baskerville', serif;
+        font-style: italic;
+        font-weight: bold; /* Use browser default bold or adjust if needed */
+       }
+  
+      /* Canvas background placeholder */
+      #waving-dots-3d-background {
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        z-index: -1; pointer-events: none;
+        background-color: var(--color-bg-body);
+      }
+      header, main, footer { position: relative; z-index: 1; }
+
+      /* ... existing logo scroller styles ... */
+       /* === Logo Scroller General Styles - Enhanced Visibility === */
+       .pm-logo-scroller-container {
+           width: 90%; /* Wider container */
+           margin-left: auto;
+           margin-right: auto;
+           margin-top: 4rem;
+           margin-bottom: 4rem;
+           /* Dark gradient background */
+           background: linear-gradient(135deg, #222, #000); /* Dark gray to black gradient */
+           padding: 2.5rem 0; /* py-10 */
+           border-radius: 1rem; /* rounded-2xl */
+           box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+           border: 1px solid #444; /* Add a border for definition */
+           transition: background 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Add transition */
+       }
+        /* Update heading color if needed for contrast against black */
+        .pm-logo-scroller-heading {
+             margin-bottom: 2rem; /* Increased space below heading */
+             text-align: center;
+             /* Ensure font matches h2 */
+             font-size: 1.875rem; /* text-3xl */
+             line-height: 2.25rem;
+             font-weight: 900; /* font-black */
+             color: var(--color-text-heading); /* Use heading color variable */
+             transition: color 0.3s ease-in-out; /* Add transition */
+        }
+        @media (min-width: 640px) { /* sm breakpoint */
+             .pm-logo-scroller-heading {
+                 font-size: 2.25rem; /* sm:text-4xl */
+                 line-height: 2.5rem;
+             }
+        }
+
+
+       .pm-logo-scroller {
+           /* Apply mask for fading effect */
+           -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); /* Adjust fade width slightly */
+           mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+           position: relative;
+           overflow: hidden;
+           width: 100%;
+       }
+       .pm-logo-scroller::before,
+       .pm-logo-scroller::after {
+           content: none;
+       }
+
+        /* Styling for the logo container - Enhanced */
+       .pm-logo-scroller__item {
+           /* Keep background dark, adjust border for black box */
+           background-color: rgba(30, 30, 30, 0.8);
+           border: 1px solid #555; /* Slightly lighter border */
+           padding: 1.5rem; /* Increase padding */
+           border-radius: 0.75rem; /* rounded-xl */
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           width: auto;
+           height: auto;
+           margin: 0 2rem; /* Increase margin */
+           flex-shrink: 0;
+           transition: transform 0.2s ease-out, background-color 0.2s ease-out, border-color 0.3s ease-in-out; /* Add transitions */
+           box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Add subtle shadow */
+       }
+
+        .pm-logo-scroller__item:hover {
+            transform: scale(1.05); /* Scale up on hover */
+            background-color: rgba(50, 50, 50, 0.9); /* Slightly lighter on hover */
+        }
+
+       /* Styling for the logo image itself - Much Bigger */
+       .pm-logo-scroller__item img {
+           opacity: 1 !important;
+           filter: none !important; /* Display as is by default (dark mode) */
+           transition: none;
+           max-width: 240px; /* Logo size - Increased */
+           max-height: 80px; /* Logo size - Increased */
+           width: auto;
+           height: auto;
+           object-fit: contain;
+       }
+
+        /* === LIGHT MODE Styles for Logo Scroller === */
+        body.light-mode .pm-logo-scroller-container {
+             background: linear-gradient(135deg, #FFF, #EEE); /* White to light gray gradient */
+             border-color: #DDD;
+             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+         body.light-mode .pm-logo-scroller-heading {
+              color: var(--color-text-heading); /* Use light mode heading color */
+         }
+
+        body.light-mode .pm-logo-scroller__item {
+             background-color: rgba(230, 230, 230, 0.9); /* Slightly darker gray background */
+             border-color: #CCC; /* Slightly darker border */
+             box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Lighter shadow */
+        }
+         body.light-mode .pm-logo-scroller__item:hover {
+             background-color: rgba(220, 220, 220, 1); /* Slightly darker solid gray on hover */
+         }
+
+        /* Apply invert filter ONLY in light mode */
+        body.light-mode .pm-logo-scroller__item img {
+            filter: invert(1) !important;
+        }
+       /* === End Logo Scroller Styles === */
+
+
+      /* ... existing bento grid styles ... */
+        /* === Bento Box Styles === */
+       .pm-bento-grid {
+           display: grid;
+           gap: 1rem;
+           grid-template-columns: repeat(4, 1fr);
+           grid-template-areas:
+               "a a a a"
+               "b c d d"
+               "e f g g"
+               "h i i j"
+               "k k l l";
+       }
+       @media (max-width: 1024px) {
+           .pm-bento-grid {
+               grid-template-columns: repeat(2, 1fr);
+               grid-template-areas:
+                   "a a" "b c" "d d" "e f" "g g" "h i" "j k" "l l";
+           }
+       }
+       @media (max-width: 640px) {
+           .pm-bento-grid {
+               grid-template-columns: 1fr;
+               grid-template-areas:
+                   "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l";
+           }
+       }
+        /* General Item Styles (including background & border for glass effect) */
+        /* === FIX: Added padding directly to this rule === */
+        .pm-bento-grid__item,
+        #about > .max-w-3xl,
+        #about .p-6.rounded-xl,
+        #process .p-6.rounded-xl,
+        #pm-pipeline-engine .pm-pipeline-card,
+        #contact > .max-w-xl
+        {
+             background-color: var(--color-bg-section);
+             border: 1px solid var(--color-border-default);
+             backdrop-filter: blur(8px);
+             -webkit-backdrop-filter: blur(8px);
+             border-radius: 0.75rem; /* rounded-xl */
+             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+             padding: 1.5rem; /* Added default padding (p-6) */
+        }
+        /* Apply sm:p-10 equivalent padding at the sm breakpoint for relevant items */
+        @media (min-width: 640px) {
+            #about > .max-w-3xl,
+            #contact > .max-w-xl {
+                 padding: 2.5rem; /* sm:p-10 */
+            }
+             /* Keep p-6 equivalent for these specific boxes even on larger screens if needed */
+             /* #about .p-6.rounded-xl, #process .p-6.rounded-xl { padding: 1.5rem; } */
+             /* If they should also get sm:p-10, add them to the rule above */
+        }
+        /* === END FIX === */
+
+
+        /* Specific Bento Item Padding & Hover */
+        .pm-bento-grid__item {
+            /* padding: 1.5rem;  <-- Padding now handled by the general rule above */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .pm-bento-grid__item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Bento Item Variations (Gradients, Dark) */
+        .pm-bento-grid__item--pink {
+            background: linear-gradient(135deg, #F53196, #FF53AC);
+            color: white; border: none; /* Remove border for gradient items */
+        }
+        .pm-bento-grid__item--dark {
+            background-color: #111; border: none;
+        }
+        .pm-bento-grid__item--gradient-a {
+            background: linear-gradient(135deg, #FF53AC, #5f2c82); border: none;
+        }
+        .pm-bento-grid__item--gradient-b {
+            background: linear-gradient(135deg, #3a3a3a, #1a1a1a); border: none;
+        }
+        .pm-bento-grid__item--gradient-c {
+            background: linear-gradient(135deg, #7d7d7d, #4a4a4a); border: none;
+        }
+        /* Color overrides for text within colored/gradient boxes */
+        .pm-bento-grid__item--pink .pm-bento-grid__stat,
+        .pm-bento-grid__item--pink .pm-bento-grid__desc,
+        .pm-bento-grid__item[class*="--gradient-"] .pm-bento-grid__stat,
+        .pm-bento-grid__item[class*="--gradient-"] .pm-bento-grid__desc {
+            color: white !important; /* Ensure text is white */
+        }
+        .pm-bento-grid__stat {
+            font-size: 2.5rem; /* Mobile-first font size */
+            font-weight: 900; 
+            line-height: 1;
+            color: var(--color-text-heading); 
+            transition: color 0.3s ease-in-out;
+        }
+        @media (min-width: 640px) {
+            .pm-bento-grid__stat {
+                font-size: 3rem; /* Desktop font size */
+            }
+        }
+        .pm-bento-grid__stat-small {
+            font-size: 1.5rem; font-weight: 800;
+        }
+        .pm-bento-grid__desc {
+            margin-top: 0.5rem; font-size: 0.9rem;
+            color: var(--color-text-primary); transition: color 0.3s ease-in-out;
+        }
+       /* === LIGHT MODE Styles for Bento Box === */
+       body.light-mode .pm-bento-grid__item,
+       body.light-mode #about > .max-w-3xl,
+       body.light-mode #about .p-6.rounded-xl,
+       /* body.light-mode #process > .max-w-4xl, REMOVED this selector */
+       body.light-mode #process .p-6.rounded-xl,
+       body.light-mode #pm-pipeline-engine .pm-pipeline-card,
+       body.light-mode #contact > .max-w-xl
+       {
+           background-color: var(--color-bg-section); /* Use light mode section bg */
+           border-color: var(--color-border-default); /* Use light mode border */
+       }
+
+        body.light-mode .pm-bento-grid__item:hover {
+             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        /* Keep pink gradient, but ensure text is readable */
+        body.light-mode .pm-bento-grid__item--pink {
+             background: linear-gradient(135deg, #F53196, #FF53AC); /* Keep gradient */
+             border: none;
+        }
+         body.light-mode .pm-bento-grid__item--pink .pm-bento-grid__stat,
+         body.light-mode .pm-bento-grid__item--pink .pm-bento-grid__desc {
+             color: white !important;
+         }
+        /* Make dark items light gray */
+        body.light-mode .pm-bento-grid__item--dark {
+            background-color: #e0e0e0; border: none;
+        }
+        /* Make gradient items light gray */
+        body.light-mode .pm-bento-grid__item--gradient-a,
+        body.light-mode .pm-bento-grid__item--gradient-b,
+        body.light-mode .pm-bento-grid__item--gradient-c {
+            background: #f0f0f0; border: 1px solid #DDD;
+        }
+        /* Ensure text in lightened gradient boxes is dark */
+        body.light-mode .pm-bento-grid__item[class*="--gradient-"] .pm-bento-grid__stat,
+        body.light-mode .pm-bento-grid__item[class*="--gradient-"] .pm-bento-grid__desc {
+             color: var(--color-text-heading) !important; /* Use dark heading color */
+         }
+         body.light-mode .pm-bento-grid__item--dark .pm-bento-grid__stat,
+         body.light-mode .pm-bento-grid__item--dark .pm-bento-grid__desc {
+              color: var(--color-text-heading) !important;
+         }
+        body.light-mode .pm-bento-grid__stat { color: var(--color-text-heading); }
+        body.light-mode .pm-bento-grid__desc { color: var(--color-text-primary); }
+       /* === End Bento Box Styles === */
+
+      /* ... existing process carousel styles ... */
+      .text-prysmi-pink {
+        color: var(--color-accent-pink); /* Use CSS var */
+      }
+
+      /* Carousel Styles */
+        #process-carousel-wrapper {
+            position: relative;
+        }
+        .carousel-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem; /* space-x-2 */
+            margin-bottom: 1rem; /* mb-4 */
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+        .carousel-tab {
+            padding: 0.5rem 1rem; /* py-2 px-4 */
+            border-radius: 9999px; /* rounded-full */
+            border: 1px solid var(--color-border-default);
+            background-color: transparent;
+            color: var(--color-text-primary);
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600; /* font-semibold */
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .carousel-tab:hover {
+             background-color: rgba(255, 255, 255, 0.1);
+        }
+         body.light-mode .carousel-tab:hover {
+             background-color: rgba(0, 0, 0, 0.05);
+         }
+        .carousel-tab.active {
+            background-color: var(--color-accent-pink);
+            color: white;
+            border-color: var(--color-accent-pink);
+        }
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+            border-radius: 0.75rem; /* rounded-lg */
+             /* REMOVED border from here */
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-card {
+            width: 100%;
+            flex-shrink: 0;
+            padding: 1.5rem; /* Mobile-first padding */
+            background-color: transparent; /* Card bg is handled by container if needed */
+            /* box-sizing: border-box;  <-- Handled by universal rule */
+             min-height: 450px; /* Ensure cards have a minimum height */
+             display: flex;
+             align-items: center; /* Vertically center content */
+        }
+        @media (min-width: 640px) {
+            .carousel-card {
+                padding: 2rem; /* Desktop padding */
+            }
+        }
+       .carousel-card h3 {
+           margin-bottom: 0.5rem; /* mb-2 */
+       }
+       .carousel-card p {
+            margin-bottom: 1rem; /* mb-4 */
+       }
+       .carousel-card img {
+            max-width: 100%; /* Ensure images don't overflow */
+            height: auto;
+       }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+             border: none;
+            padding: 0.75rem; /* p-3 */
+            border-radius: 9999px; /* rounded-full */
+            z-index: 10;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+             width: 44px; /* Fixed width */
+             height: 44px; /* Fixed height */
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             font-size: 1.25rem; /* Larger arrow */
+        }
+         body.light-mode .carousel-arrow {
+             background-color: rgba(255, 255, 255, 0.7);
+             color: black;
+         }
+
+        .carousel-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+         body.light-mode .carousel-arrow:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+         }
+        .carousel-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        #prev-btn {
+            left: -3.5rem; /* Moved outside the container */
+        }
+        #next-btn {
+            right: -3.5rem; /* Moved outside the container */
+        }
+        /* Mobile-specific styles for arrows */
+        @media (max-width: 767.98px) {
+            .carousel-arrow {
+                top: auto; /* Unset desktop top positioning */
+                transform: none; /* Unset desktop vertical centering */
+                bottom: 2.75rem; /* Position above the indicators */
+                width: 40px; /* Slightly smaller for mobile */
+                height: 40px;
+            }
+            #prev-btn {
+                left: auto; /* Unset desktop left */
+                right: 4rem; /* Stack on the right */
+            }
+            #next-btn {
+                right: 0.75rem; /* Position on the far right */
+            }
+        }
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem; /* space-x-3 */
+            margin-top: 1rem; /* mt-4 */
+        }
+        .carousel-indicator {
+            width: 2.5rem; /* w-10 */
+            height: 0.375rem; /* h-1.5 */
+            border-radius: 9999px; /* rounded-full */
+            background-color: var(--color-border-default); /* Use border color for inactive */
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .carousel-indicator.active {
+            background-color: var(--color-accent-pink);
+        }
+
+       /* Ensure text contrast on cards */
+       .carousel-card .md\:w-1\/2 { /* Target the text/image containers */
+            color: var(--color-text-primary);
+       }
+       .carousel-card h3,
+       .carousel-card .text-emphasis-italic-bold {
+            color: var(--color-text-heading); /* Ensure headings are clear */
+       }
+       .text-lime { /* Specific class for lime text */
+          color: var(--color-accent-yellow); /* Assuming lime is yellow in variables */
+       }
+       /* Additional styling for merged sections */
+        .merged-section-padding {
+            padding-top: 4rem; /* pt-16 */
+            padding-bottom: 4rem; /* pb-16 */
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .merged-section-padding {
+                padding-top: 6rem; /* md:pt-24 */
+                padding-bottom: 6rem; /* md:pb-24 */
+            }
+        }
+        /* Add margin between main sections */
+         #about, #process, #bento-wins, #prysmi-testimonials, #pm-pipeline-engine, #contact {
+              margin-bottom: 4rem; /* mb-16 */
+         }
+
+         /* === Hero Testimonial Slider Styles === */
+        #hero-testimonial-slider {
+            margin-top: 2rem; /* Space above slider */
+            width: 100%;
+            max-width: 450px; /* Max width of the slider - RESTORED from 440px */
+            position: relative;
+            overflow: hidden; /* CRITICAL: Ensure overflow is hidden */
+            border-radius: 0.75rem; /* rounded-xl */
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white bg */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 1rem; /* Mobile-first padding */
+            margin-left: auto; /* Center align */
+            margin-right: auto; /* Center align */
+            /* box-sizing: border-box; <-- Handled by universal rule */
+        }
+        @media (min-width: 640px) {
+            #hero-testimonial-slider {
+                padding: 1.5rem; /* Desktop padding */
+            }
+        }
+         /* Light mode styles */
+         body.light-mode #hero-testimonial-slider {
+             background-color: rgba(0, 0, 0, 0.05);
+             border-color: rgba(0, 0, 0, 0.1);
+             color: #333;
+         }
+
+        #hero-testimonial-inner {
+            display: flex;
+            /* width: calc(100% * var(--num-slides, 1)); */ /* Dynamic width based on JS */
+            transition: transform 0.5s ease-in-out;
+            white-space: nowrap; /* Prevent wrapping of slides */
+        }
+        .hero-testimonial-slide {
+            width: 100%; /* Each slide takes full width OF THE CONTAINER */
+            white-space: normal; /* Allow text wrapping within slide */
+            flex-shrink: 0;
+            /* box-sizing: border-box; <-- Handled by universal rule */
+            text-align: center;
+            color: white;
+            overflow: hidden; /* Added to prevent spillover */
+            /* Added flex properties for vertical centering and consistent height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 7rem; /* Ensure all slides have same min-height */
+        }
+         body.light-mode .hero-testimonial-slide {
+             color: #111;
+         }
+
+        .hero-testimonial-slide blockquote {
+             font-family: 'Libre Baskerville', serif;
+             font-style: italic;
+             font-size: 0.9rem;
+             line-height: 1.5;
+             margin: 0 auto 0.75rem auto; /* Centered and reset side margins */
+             padding: 0 0.5rem; /* Mobile horizontal padding */
+        }
+         @media (min-width: 640px) {
+             .hero-testimonial-slide blockquote {
+                padding: 0 1.5rem; /* Desktop horizontal padding */
+                font-size: 1rem; /* Only override font-size */
+             }
+         }
+        .hero-testimonial-slide p {
+            font-weight: 600;
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        body.light-mode .hero-testimonial-slide p {
+            opacity: 0.7;
+        }
+
+        #hero-testimonial-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .hero-testimonial-indicator {
+            width: 2rem; /* w-8 */
+            height: 0.375rem; /* h-1.5 */
+            border-radius: 9999px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        body.light-mode .hero-testimonial-indicator {
+             background-color: rgba(0, 0, 0, 0.3);
+         }
+        .hero-testimonial-indicator.active {
+            background-color: white;
+        }
+         body.light-mode .hero-testimonial-indicator.active {
+             background-color: #333;
+         }
+
+      /* === Blinking CTA Dot === */
+      @keyframes blink {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.2; transform: scale(0.9); }
+      }
+
+      .blinking-dot {
+        display: inline-block;
+        width: 10px;  /* Adjust size as needed */
+        height: 10px; /* Adjust size as needed */
+        background-color: white;
+        border-radius: 50%;
+        animation: blink 1.5s infinite ease-in-out;
+      }
+
+      /* Adjust dot color for buttons with white background */
+      #hero-cta-btn .blinking-dot,
+      #schedule-call-footer-btn .blinking-dot {
+        background-color: #F53196; /* Pink dot on white buttons */
+      }
+
+      /* Ensure flex alignment for all CTA buttons */
+      #get-started-mobile-btn,
+      #get-started-header-btn,
+      #hero-cta-btn,
+      #pipeline-cta-btn,
+      #schedule-call-footer-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem; /* space-x-2 */
+      }
+      
+      /* === Mobile Responsive Fixes === */
+      @media (max-width: 639.98px) { /* Target below sm breakpoint */
+            .pm-testimonial-card {
+                padding: 1.5rem; /* Add padding for mobile */
+            }
+            .pm-testimonial-card__quote {
+                font-size: 1rem; /* Increase quote size slightly */
+                padding: 0.5rem 0; /* Add some vertical space */
+            }
+            .pm-testimonial-card__chips {
+                flex-wrap: wrap; /* Allow chips to wrap */
+                gap: 0.5rem; /* Add gap for wrapped chips */
+            }
+            .pm-testimonial-card__footer {
+                flex-direction: column; /* Stack chips and button */
+                align-items: flex-start;
+                gap: 1rem; /* Add space between chips and button */
+            }
+            
+            /* REMOVED specific padding override for pm-pipeline-card on mobile */
+            /* #pm-pipeline-engine .pm-pipeline-card { padding: 1.5rem; } */
+            
+            #pm-pipeline-engine .space-y-2 li {
+                 padding-right: 1rem; /* Add some padding to prevent text hitting edge */
+            }
+      }
+      /* === End Mobile Responsive Fixes === */
+
+  </style>
+
+    <!-- Google Tag Manager will be injected here by script -->
+    
+    <!-- SEO, Social, and Schema Meta Tags -->
+    <meta name="description" content="Prysmi delivers revenue-ready B2B marketing for tech founders. We build clear messaging, high-intent content strategies, and scalable systems that drive growth.">
+    <meta name="author" content="Prysmi Media Labs">
+    <meta name="theme-color" content="#FF53AC">
+    <link rel="canonical" href="https://prysmi.com/">
+    
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-200.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-baskerville-v16-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/libre-franklin-v19-latin-900.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Prysmi">
+    <meta property="og:title" content="Prysmi: Un-boring Your B2B Marketing">
+    <meta property="og:description" content="We build revenue-ready marketing systems for tech founders, focusing on messaging clarity, high-intent search, and conversion-optimized content.">
+    <meta property="og:url" content="https://prysmi.com/">
+    <meta property="og:image" content="https://prysmi.com/assets/images/prysmi-social-share-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Prysmi: Un-boring Your B2B Marketing">
+    <meta name="twitter:description" content="We build revenue-ready marketing systems for tech founders, focusing on messaging clarity, high-intent search, and conversion-optimized content.">
+    <meta name="twitter:image" content="https://prysmi.com/assets/images/prysmi-social-share-card.png">
+    <meta name="twitter:creator" content="@b2bitcontent">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Prysmi",
+      "url": "https://prysmi.com/",
+      "logo": "https://prysmi.com/assets/trademarks/logos/logo-horizontal-pink.webp",
+      "description": "Prysmi is a B2B marketing consultancy that builds revenue-ready marketing systems for tech founders, focusing on messaging clarity, high-intent search, and conversion-optimized content.",
+      "founder": {
+        "@type": "Person",
+        "name": "Prabhjot Singh",
+        "sameAs": "https://www.linkedin.com/in/b2bitcontent/"
+      },
+      "knowsAbout": ["B2B Content Marketing", "Content Strategy", "Sales Enablement", "Search Engine Optimization (SEO)", "Message-Market Fit", "Information Architecture"]
+    }
+    </script>
+    
+    <!-- This link is a placeholder for the build process which inlines the CSS -->
+    <link href="./style.css" rel="stylesheet">
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">PRYSMI</a>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#predictable-pipeline" class="nav-link">Predictable Pipeline Method</a></li>
-                <li class="nav-item"><a href="#how-it-works" class="nav-link">How It Works</a></li>
-                <li class="nav-item"><a href="#case-studies" class="nav-link">Results</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-            </ul>
-            <button class="nav-cta-btn" id="nav-cta-btn" aria-label="Book a Strategy Call">Book a Strategy Call</button>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+<body class="antialiased">
+    <!-- Custom Cursor Elements -->
+    <div id="pm-cursor-dot"></div>
+    <div id="pm-cursor-eye">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.49 4.467-5.705 7.69-10.675 7.69-4.97 0-9.185-3.223-10.675-7.69a.75.75 0 010-1.113zM12 16.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9z" clip-rule="evenodd"/></svg>
+    </div>
+
+    <!-- Ticker -->
+    <div id="prysmi-ticker">
+        <div class="prysmi-ticker__inner">
+            <div role="list" class="prysmi-ticker__list">
+                <div role="listitem" class="prysmi-ticker__item"><span>NOW BOOKING Q4 2025</span><a href="#contact" class="prysmi-ticker__cta">SCHEDULE A CALL</a><span class="prysmi-ticker__delim">✳</span></div>
+                <div role="listitem" class="prysmi-ticker__item"><span>NEW CASE STUDY</span><a href="#prysmi-testimonials" class="prysmi-ticker__cta">SEE THE 1200% LEAD GEN RESULTS</a><span class="prysmi-ticker__delim">✳</span></div>
+                <div role="listitem" class="prysmi-ticker__item"><span>LIMITED SLOTS</span><a href="#contact" class="prysmi-ticker__cta">GET A FREE MARKETING AUDIT</a><span class="prysmi-ticker__delim">✳</span></div>
+            </div>
+            <div role="list" class="prysmi-ticker__list" aria-hidden="true">
+                <div role="listitem" class="prysmi-ticker__item"><span>NOW BOOKING Q4 2025</span><a href="#contact" class="prysmi-ticker__cta">SCHEDULE A CALL</a><span class="prysmi-ticker__delim">✳</span></div>
+                <div role="listitem" class="prysmi-ticker__item"><span>NEW CASE STUDY</span><a href="#prysmi-testimonials" class="prysmi-ticker__cta">SEE THE 1200% LEAD GEN RESULTS</a><span class="prysmi-ticker__delim">✳</span></div>
+                <div role="listitem" class="prysmi-ticker__item"><span>LIMITED SLOTS</span><a href="#contact" class="prysmi-ticker__cta">GET A FREE MARKETING AUDIT</a><span class="prysmi-ticker__delim">✳</span></div>
             </div>
         </div>
-    </nav>
+    </div>
+    
+    <!-- Google Tag Manager (noscript) will be injected here by script -->
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="hero-title-line">Turn Your</span>
-                <span class="hero-title-line highlight">Unpredictable Pipeline</span>
-                <span class="hero-title-line">Into Predictable Revenue</span>
-            </h1>
-            <p class="hero-subtitle">Strategic CMO-level guidance for B2B tech companies. We build battle-tested lead-gen systems that work in crowded, unpredictable markets.</p>
-            <button class="hero-cta-btn" id="hero-cta-btn" aria-label="Get Your Custom Growth Plan">
-                Get Your Custom Growth Plan <span class="blinking-dot"></span>
-            </button>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll to explore</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
+    <canvas id="waving-dots-3d-background"></canvas>
 
-    <!-- Problem Agitation Section -->
-    <section class="problem-section">
-        <div class="problem-container">
-            <h2 class="problem-title">You're Doing Everything Right. So Why Isn't It Working?</h2>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">📉</div>
-                    <h3>Your Pipeline Is A Rollercoaster</h3>
-                    <p>One month you're flooded with leads. The next, it's crickets. You're stuck in feast-or-famine mode with no predictability.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🎯</div>
-                    <h3>You're Drowning In "Tactics"</h3>
-                    <p>LinkedIn ads, content marketing, ABM, SEO... You've tried them all. But without a cohesive strategy, you're just burning budget.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">⏰</div>
-                    <h3>You Can't Afford To Wait 6 Months</h3>
-                    <p>Your runway is limited. You need results now, not "eventually." But every agency promises the moon and delivers a crater.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🤝</div>
-                    <h3>You're Invisible To Your Ideal Customers</h3>
-                    <p>Your competitors with inferior products are winning deals. Why? They've nailed positioning and demand gen. You're still figuring it out.</p>
-                </div>
-            </div>
-            <p class="problem-conclusion">Here's the truth: <strong>You don't need more tactics. You need a system.</strong></p>
-        </div>
-    </section>
+    <!-- Mobile Navigation -->
+    <div class="md:hidden">
+        <!-- Mobile Nav Toggle Button -->
+        <button id="mobile-nav-toggle" class="fixed top-4 left-4 z-[60] w-14 h-14 p-2 bg-black/50 backdrop-blur-md rounded-xl shadow-lg flex items-center justify-center" aria-label="Open navigation menu">
+            <img src="assets/trademarks/logos/logo-vertical-pink.webp" alt="Prysmi Logo" class="w-10 h-10 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FF53AC/FFFFFF?text=P';">
+        </button>
 
-    <!-- Social Proof Bar -->
-    <section class="social-proof-bar">
-        <div class="social-proof-container">
-            <div class="social-proof-item">
-                <div class="social-proof-number">$2.4M+</div>
-                <div class="social-proof-label">Pipeline Generated</div>
-            </div>
-            <div class="social-proof-divider"></div>
-            <div class="social-proof-item">
-                <div class="social-proof-number">18+</div>
-                <div class="social-proof-label">Tech Companies Scaled</div>
-            </div>
-            <div class="social-proof-divider"></div>
-            <div class="social-proof-item">
-                <div class="social-proof-number">3-6 Mo.</div>
-                <div class="social-proof-label">Avg. Time to First Win</div>
+        <!-- Mobile Nav Panel (Slide-out) -->
+        <div id="mobile-nav-panel" class="fixed inset-y-0 right-0 z-[70] w-full max-w-xs bg-gray-900/90 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full p-6 pt-20">
+                <button id="mobile-nav-close" class="absolute top-5 right-5 text-white text-3xl" aria-label="Close navigation menu">&times;</button>
+                <nav class="flex flex-col space-y-6 text-center">
+                    <a href="#bento-wins" class="mobile-nav-link text-white text-xl font-semibold">Our Work</a>
+                    <a href="#about" class="mobile-nav-link text-white text-xl font-semibold">About Us</a>
+                    <a href="#process" class="mobile-nav-link text-white text-xl font-semibold">Our Process</a>
+                    <a href="#pm-pipeline-engine" class="mobile-nav-link text-white text-xl font-semibold">Offerings</a>
+                    <a href="#contact" class="mobile-nav-link text-white text-xl font-semibold">Contact</a>
+                    <button id="get-started-mobile-btn" class="mt-6 bg-[#F53196] text-white font-semibold py-3 px-6 rounded-lg shadow-md button-glow-pink text-lg" aria-label="I'd Like To Book More Demos">I'd Like To Book More Demos<span class="blinking-dot"></span></button>
+                </nav>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Predictable Pipeline Method Section -->
-    <section id="predictable-pipeline" class="pm-pipeline-method">
-        <div class="pm-pipeline-container">
-            <div class="pm-pipeline-header">
-                <h2 class="pm-pipeline-headline">The Predictable Pipeline Method™</h2>
-                <p class="pm-pipeline-subheadline">A battle-tested, 3-phase system to build, scale, and own your demand-gen engine—without guesswork or wasted spend.</p>
+    <!-- Desktop Header -->
+    <header id="main-header" class="hidden md:block bg-black/30 backdrop-blur-lg sticky top-0 z-50 w-full py-2">
+        <nav id="main-nav" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="#hero" class="flex items-center" aria-label="PRYSMI Agency Home">
+                    <picture>
+                        <source media="(min-width: 768px)" srcset="/assets/trademarks/logos/logo-horizontal-pink.webp">
+                        <img width="150" height="50" src="/assets/trademarks/logos/logo-horizontal-pink.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
+                    </picture>
+                </a>
             </div>
-
-            <div class="pm-pipeline-phases">
-                <!-- Phase 1 -->
-                <div class="pm-pipeline-phase">
-                    <div class="pm-pipeline-phase__number">01</div>
-                    <h3 class="pm-pipeline-phase__title">Foundation</h3>
-                    <p class="pm-pipeline-phase__subtitle">Clarity Before Campaigns</p>
-                    <p class="pm-pipeline-phase__description">
-                        We don't start with ads or content. We start with <strong>strategic clarity</strong>. Who's your ICP? What's your unique positioning? What's your conversion path? We map out your entire demand-gen blueprint so every dollar you spend has a purpose.
-                    </p>
-                    <ul class="pm-pipeline-phase__list">
-                        <li>
-                            <span class="pm-pipeline-phase__list-label">ICP Deep Dive:</span>
-                            <span class="pm-pipeline-phase__list-text">We identify your highest-value customers and reverse-engineer their buying journey.</span>
-                        </li>
-                        <li>
-                            <span class="pm-pipeline-phase__list-label">Positioning That Sticks:</span>
-                            <span class="pm-pipeline-phase__list-text">We craft messaging that cuts through the noise and makes you unforgettable.</span>
-                        </li>
-                        <li>
-                            <span class="pm-pipeline-phase__list-label">Funnel Architecture:</span>
-                            <span class="pm-pipeline-phase__list-text">We design a conversion path optimized for <em>your</em> market, not best practices from SaaS Twitter.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Phase 2 -->
-                <div class="pm-pipeline-phase">
-                    <div class="pm-pipeline-phase__number">02</div>
-                    <h3 class="pm-pipeline-phase__title">Activation</h3>
-                    <p class="pm-pipeline-phase__subtitle">Build Your Engine</p>
-                    <p class="pm-pipeline-phase__description">
-                        Now we execute. We launch your lead-gen system across the channels that <em>actually</em> work for your ICP. No vanity metrics. No "spray and pray." Just targeted, data-driven campaigns designed to fill your pipeline.
-                    </p>
-                    <ul class="pm-pipeline-phase__list">
-                        <li>
-                            <span class="pm-pipeline-phase__list-label">Channel Strategy:</span>
-                            <span class="pm-pipeline-phase__list-text">We identify the 2-3 channels where your ICP hangs out and double down.</span>
-                        </li>
-                        <li>
-                            <span class="pm-pipeline-phase__list-label">Content That Converts:</span>
-                            <span class="pm-pipeline-phase__list-text">We create high-intent content that educates, builds trust, and drives pipeline.</span>
-                        </li>
-                        <li>
-                            <span class="pm-pipeline-phase__list-label">Rapid Testing:</span>
-                            <span class="pm-pipeline-phase__list-text">We test, iterate, and optimize in real-time to find what works fastest.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Phase 3 -->
-                <div class="pm-pipeline-phase">
-                    <div class="pm-pipeline-phase__number">03</div>
-                    <h3 class="pm-pipeline-phase__title">Scale</h3>
-                    <p class="pm-pipeline-phase__subtitle">Compound Your Results</p>
-                    <p class="pm-pipeline-phase__description">
-                        Once we've proven what works, we scale it. We optimize your funnel, expand your reach, and turn your lead-gen system into a predictable, repeatable machine. No more guessing. No more feast-or-famine. Just consistent, qualified pipeline.
-                    </p>
-                    <ul class="pm-pipeline-phase__list">
-                        <li>
-                            <span class="pm-pipeline-phase__list-label">Funnel Optimization:</span>
-                            <span class="pm-pipeline-phase__list-text">We fine-tune every stage to maximize conversions and minimize leakage.</span>
-                        </li>
-                        <li>
-                            <span class="pm-pipeline-phase__list-label">Channel Expansion:</span>
-                            <span class="pm-pipeline-phase__list-text">We layer in new channels strategically to compound your results.</span>
-                        </li>
-                        <li>
-                            <span class="pm-pipeline-phase__list-label">Predictable Pipeline:</span>
-                            <span class="pm-pipeline-phase__list-text">You'll know exactly how many leads, demos, and deals to expect each month.</span>
-                        </li>
-                    </ul>
+            <div class="flex items-center">
+                <div class="ml-10 flex items-baseline space-x-4">
+                    <a href="#bento-wins" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Our Work</a>
+                    <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium">About Us</a>
+                    <a href="#process" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Our Process</a>
+                    <a href="#pm-pipeline-engine" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Offerings</a>
+                    <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <button id="get-started-header-btn" class="nav-link bg-[#F53196] text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-sm button-glow-pink" aria-label="Book More Demos">Book More Demos<span class="blinking-dot"></span></button>
                 </div>
             </div>
+        </nav>
+    </header>
 
-            <!-- Why This Works -->
-            <div class="pm-pipeline-why">
-                <h3 class="pm-pipeline-why__title">Why This Works When Everything Else Fails</h3>
-                <div class="pm-pipeline-why__grid">
-                    <div class="pm-pipeline-why__card">
-                        <div class="pm-pipeline-why__icon">🎯</div>
-                        <h4>Strategic, Not Tactical</h4>
-                        <p>We don't chase trends. We build systems that work long-term.</p>
-                    </div>
-                    <div class="pm-pipeline-why__card">
-                        <div class="pm-pipeline-why__icon">📊</div>
-                        <h4>Data-Driven, Not Gut-Driven</h4>
-                        <p>Every decision is backed by data, not hunches.</p>
-                    </div>
-                    <div class="pm-pipeline-why__card">
-                        <div class="pm-pipeline-why__icon">⚡</div>
-                        <h4>Fast, Not Slow</h4>
-                        <p>We move quickly to find what works, then scale it.</p>
-                    </div>
-                    <div class="pm-pipeline-why__card">
-                        <div class="pm-pipeline-why__icon">🔄</div>
-                        <h4>Predictable, Not Random</h4>
-                        <p>You'll have a repeatable system, not a one-time win.</p>
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="hero" class="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center text-center py-12 sm:py-16 md:py-24 bg-gradient-to-br from-[#F53196] to-[#F53196] rounded-xl my-8 shadow-2xl transform hover:scale-[1.005] transition-transform duration-300">
+            <div class="max-w-4xl">
+                <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white hero-title-glow fade-in-up">
+                    Great Product, <br> Empty Pipeline? <br>
+                    <span class="text-emphasis-italic-bold">I Fix That.</span>
+                </h1>
+                <p class="text-lg sm:text-xl md:text-2xl text-white opacity-90 fade-in-up delay-200ms mb-0 mt-4 md:mt-6">
+                    Build a revenue-ready marketing engine <br>that turns your brilliant product into predictable demos.
+                </p>
+                <div class="mt-8 fade-in-up delay-400ms">
+                    <button id="hero-cta-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-6 text-base sm:text-lg rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 button-glow-cta" aria-label="I'd Like To Book More Demos">
+                        I'd Like To Book More Demos<span class="blinking-dot"></span>
+                    </button>
+                     <!-- NEW Hero Testimonial Slider -->
+                    <div id="hero-testimonial-slider" class="fade-in-up delay-400ms">
+                        <div id="hero-testimonial-inner">
+                            <div class="hero-testimonial-slide">
+                                <blockquote>“Our pipeline became predictable, we were finally seen as the premium partner, not a commodity”</blockquote>
+                                <p>Rohit Bhalla, CEO @ Cloud Ingenious</p>
+                            </div>
+                            <div class="hero-testimonial-slide">
+                                <blockquote>“Bring him in when you have a great product but can’t figure out why it’s not selling itself.”</blockquote>
+                                <p>Siddharth Sehgal, CEO @ 360 SMS App</p>
+                            </div>
+                            <!-- Add more slides as needed -->
+                        </div>
+                        <div id="hero-testimonial-indicators">
+                            <!-- Indicators will be generated by JS -->
+                        </div>
                     </div>
                 </div>
             </div>
+             <!-- Logo Scroller removed from here -->
+        </section>
 
-            <!-- Anti-Pitch -->
-            <div class="pm-pipeline-anti-pitch">
-                <h3 class="pm-pipeline-anti-pitch__title">This Isn't For Everyone</h3>
-                <p class="pm-pipeline-anti-pitch__text">
-                    If you're looking for a quick fix, a magic bullet, or someone to "just run ads," we're not a fit. But if you're ready to invest in building a <em>real</em> demand-gen engine that compounds over time, let's talk.
+        <!-- Testimonials Section -->
+        <section id="prysmi-testimonials" class="py-12 sm:py-16 md:py-24">
+             <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up is-visible">From Invisible to Industry Leader</h2>
+                <p class="mt-4 text-lg fade-in-up is-visible">Don't take my word for it. See the pipeline I've built for founders just like you.</p>
+            </div>
+            <div class="prysmi-testimonials__container max-w-4xl mx-auto">
+                <!-- Testimonial 1: Rohit Bhalla -->
+                <div class="pm-testimonial-card">
+                    <div class="pm-testimonial-card__image-wrapper">
+                        <img src="https://prysmi.com/assets/clients/profiles/Rohit%20Bhalla%20360%20Degree%20Cloud.jpg" alt="Rohit Bhalla" class="pm-testimonial-card__avatar">
+                    </div>
+                    <div class="pm-testimonial-card__profile">
+                        <div>
+                            <h3 class="pm-testimonial-card__name">Rohit Bhalla</h3>
+                            <p class="pm-testimonial-card__title">CEO @ Cloud Ingenious</p>
+                        </div>
+                    </div>
+                    <blockquote class="pm-testimonial-card__quote">
+                        “He's the rare expert who bridges that critical gap between being great at your craft and building a machine that makes the market believe it, too.”
+                    </blockquote>
+                    <div class="pm-testimonial-card__footer">
+                         <div class="pm-testimonial-card__chips">
+                            <span class="pm-chip">+75% ACV</span>
+                            <span class="pm-chip">-40% Sales Cycle</span>
+                            <span class="pm-chip">+600% C-Suite Leads</span>
+                        </div>
+                        <button class="pm-testimonial__expand-btn" data-target="#pm-panel-rohit">
+                            <span class="plus-icon">+</span> See Full Case Study
+                        </button>
+                    </div>
+                </div>
+                <!-- Testimonial 2: Siddharth Sehgal -->
+                <div class="pm-testimonial-card">
+                    <div class="pm-testimonial-card__image-wrapper">
+                        <img src="https://prysmi.com/assets/clients/profiles/Siddharth%20Sehgal%20360%20SMS%20App.jpg" alt="Siddharth Sehgal" class="pm-testimonial-card__avatar">
+                    </div>
+                    <div class="pm-testimonial-card__profile">
+                        <div>
+                            <h3 class="pm-testimonial-card__name">Siddharth Sehgal</h3>
+                            <p class="pm-testimonial-card__title">Founder & CEO @ 360 SMS App</p>
+                        </div>
+                    </div>
+                    <blockquote class="pm-testimonial-card__quote">
+                        “PJ's not the marketer you hire just to get more clicks. He's the revenue unblocker you bring in when you have a great product but can't figure out why it's not selling itself.”
+                    </blockquote>
+                    <div class="pm-testimonial-card__footer">
+                        <div class="pm-testimonial-card__chips">
+                            <span class="pm-chip">+320% Visibility</span>
+                            <span class="pm-chip">+35% Conversion</span>
+                            <span class="pm-chip">+800% Demos</span>
+                        </div>
+                        <button class="pm-testimonial__expand-btn" data-target="#pm-panel-sid">
+                            <span class="plus-icon">+</span> See Full Case Study
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bento Box Wins Section -->
+        <section id="bento-wins" class="py-16 md:py-24">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">The Anatomy of a Revenue Engine</h2>
+                <p class="mt-4 text-lg fade-in-up">These aren't vanity metrics. This is proof my systems work.</p>
+            </div>
+            <div class="pm-bento-grid max-w-5xl mx-auto">
+                <div class="pm-bento-grid__item pm-bento-grid__item--gradient-a" style="grid-area: a;">
+                    <span class="pm-bento-grid__stat">7 years</span>
+                    <p class="pm-bento-grid__desc">Leading Growth Strategy Exclusively for B2B Tech</p>
+                </div>
+                <div class="pm-bento-grid__item pm-bento-grid__item--gradient-b" style="grid-area: b;">
+                    <span class="pm-bento-grid__stat">12</span>
+                    <p class="pm-bento-grid__desc">Listings Ranked #1 on Salesforce AppExchange</p>
+                </div>
+                <div class="pm-bento-grid__item pm-bento-grid__item--gradient-c" style="grid-area: c;">
+                    <span class="pm-bento-grid__stat">1100%</span>
+                    <p class="pm-bento-grid__desc">Increase In *Qualified* Leads</p>
+                </div>
+                <div class="pm-bento-grid__item pm-bento-grid__item--pink" style="grid-area: d;">
+                     <span class="pm-bento-grid__stat">6x</span>
+                    <p class="pm-bento-grid__desc">More Prospect Demo Calls</p>
+                </div>
+                 <div class="pm-bento-grid__item pm-bento-grid__item--dark" style="grid-area: e;">
+                    <span class="pm-bento-grid__stat"><sup>upto</sup> 10x</span>
+                    <p class="pm-bento-grid__desc">More Monthly Form Submissions</p>
+                </div>
+                <div class="pm-bento-grid__item" style="grid-area: f;">
+                    <span class="pm-bento-grid__stat">~16x</span>
+                    <p class="pm-bento-grid__desc">Annualized Value from Organic Traffic</p>
+                </div>
+                <div class="pm-bento-grid__item pm-bento-grid__item--gradient-b" style="grid-area: g;">
+                    <span class="pm-bento-grid__stat">437%</span>
+                    <p class="pm-bento-grid__desc">More Organic Traffic (That Actually Converts)</p>
+                </div>
+                <div class="pm-bento-grid__item pm-bento-grid__item--pink" style="grid-area: h;">
+                    <span class="pm-bento-grid__stat">46x</span>
+                    <p class="pm-bento-grid__desc">Page-1 Keywords (That Drive Demos)</p>
+                </div>
+                 <div class="pm-bento-grid__item pm-bento-grid__item--dark" style="grid-area: i;">
+                    <span class="pm-bento-grid__stat">1400%</span>
+                    <p class="pm-bento-grid__desc">More Qualified Sales Conversations</p>
+                </div>
+                <div class="pm-bento-grid__item" style="grid-area: j;">
+                    <span class="pm-bento-grid__stat">11x</span>
+                    <p class="pm-bento-grid__desc">Higher Email Response to New Products</p>
+                </div>
+                <div class="pm-bento-grid__item pm-bento-grid__item--dark" style="grid-area: k;">
+                    <span class="pm-bento-grid__stat">40%</span>
+                    <p class="pm-bento-grid__desc">Faster Deal Closing Cycle</p>
+                </div>
+                <div class="pm-bento-grid__item pm-bento-grid__item--pink" style="grid-area: l;">
+                    <span class="pm-bento-grid__stat">4x</span>
+                    <p class="pm-bento-grid__desc">Faster High-Conversion Content Velocity</p>
+                </div>
+            </div>
+            <!-- Container for the single scroller - MOVED HERE -->
+            <div class="w-full max-w-5xl mx-auto fade-in-up pm-logo-scroller-container">
+                <!-- Updated Heading Tag and Classes -->
+                <h2 class="pm-logo-scroller-heading">I've Driven Growth For...</h2>
+                <!-- Scroller 1 (Right to Left) -->
+                <div class="pm-logo-scroller">
+                    <div class="pm-logo-scroller__inner">
+                        <!-- Logos Set 1 -->
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360ctiapp.png" alt="360 CTI App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+CTI';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360degreecloud.png" alt="360 Degree Cloud Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Cloud';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360mergeduplicatesapp.png" alt="360 Merge Duplicates App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Merge';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+SMS';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360textolicapp.png" alt="360 Textolic App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Textolic';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360unsubscribeapp.png" alt="360 Unsubscribe App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Unsubscribe';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360verifytheemailapp.png" alt="360 Verify The Email App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Verify';">
+                        </div>
+                        <!-- Logos Set 1 Duplicated -->
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360ctiapp.png" alt="360 CTI App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+CTI';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360degreecloud.png" alt="360 Degree Cloud Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Cloud';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360mergeduplicatesapp.png" alt="360 Merge Duplicates App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Merge';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='httpsTop 10 most popular programming languages in 2025';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360textolicapp.png" alt="360 Textolic App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Textolic';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360unsubscribeapp.png" alt="360 Unsubscribe App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Unsubscribe';">
+                        </div>
+                        <div class="pm-logo-scroller__item">
+                            <img src="/assets/clients/bwlogos/360verifytheemailapp.png" alt="360 Verify The Email App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Verify';">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Removed the paragraph that was here -->
+        </section>
+
+        <!-- About Section - Merged Challenges -->
+        <section id="about" class="py-16 md:py-24 rounded-xl shadow-2xl">
+            <div class="text-center mb-12 px-4">
+                <p class="mt-4 text-lg fade-in-up">
+                    <span class="text-emphasis-italic-bold">Relax. I'm not just a "marketer."</span>
+                </p>
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">I Build Revenue Engines That Compound.</h2>
+            </div>
+            <div class="max-w-3xl mx-auto p-6 sm:p-10 rounded-xl shadow-xl border fade-in-up">
+                <div class="mt-8 text-left">
+                    <p class="text-lg mb-4">With 7 years of fractional leadership in B2B Marketing, you can expect me to build revenue engines that feed your pipeline through SEO, BoFu, ABM, Demand Gen, and Brand Positioning. We focus on two things: clear, value-led messaging and a high-intent search system to deliver it.</p>
+                     <p class="text-lg mb-4">The result is a scalable, repeatable process that turns your expertise into a demo-generating machine.</p> <!-- Paragraph moved here -->
+                    <blockquote class="text-left text-xl sm:text-2xl text-emphasis-italic-bold border-l-4 border-[#FF53AC] pl-4 sm:pl-6 py-4 mb-8">
+                         “Your marketing should work as hard as your product.<br> I'll build the system to make sure it does.”
+                    </blockquote>
+                     <!-- UL removed based on image_d58a3f.jpg -->
+                </div>
+            </div>
+
+            <!-- Merged "The Challenges We Solve" section content -->
+            <div class="merged-section-padding"> <!-- Added padding class -->
+                <div class="text-center mb-12 px-4">
+                    <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Does This Sound Familiar?</h2>
+                    <p class="mt-4 text-lg fade-in-up">You have a brilliant product, but...</p>
+                    <p class="mt-4 text-lg fade-in-up"></p>
+                    <p class="mt-4 text-lg fade-in-up"></p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up">
+                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-lime mb-2">Your team can't explain what you do.</h3>
+                            <p>You struggle to articulate your unique value in one clear, consistent sentence. Everyone says something different.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
+                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-lime mb-2">You get clicks, but no demos.</h3>
+                            <p>Your website gets visitors, but they're not the *right* visitors, and they don't convert into qualified sales conversations.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
+                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-lime mb-2">Your sales team hates your marketing.</h3>
+                            <p>Your content isn't aligned with the sales process. It feels like "fluff," so your team doesn't use it and builds their own assets.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
+                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-lime mb-2">You're stuck on the content treadmill.</h3>
+                            <p>Producing content feels like a constant struggle with no strategy, and you have no time to think about the bigger picture.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
+                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
+                        <div>
+                            <h3 class="text-xl font-semibold text-lime mb-2">You have no idea if it's working.</h3>
+                            <p>You're investing in marketing, but the direct impact on revenue is a total black box. You're guessing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- End About section -->
+
+        <!-- Revenue-Ready Content System™ Section - Merged Impact -->
+        <section id="process" class="py-16 md:py-24 rounded-xl shadow-2xl">
+            <div class="text-center mb-12 px-4">
+                <p class="mt-4 text-lg fade-in-up"><span class="text-emphasis-italic-bold">Structure That Sells. Messaging That Moves. Systems That Scale.</span></p>
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Revenue-Ready Content System™</h2>
+                <p class="mt-4 text-lg fade-in-up">
+                    Our 5-phase system for turning market invisibility into predictable pipeline.
+                    No fluff, no guesswork. Just a proven blueprint.
                 </p>
             </div>
 
-            <!-- Transition to "How We Do It Differently" -->
-            <div class="pm-pipeline-transition">
-                <h3 class="pm-pipeline-transition__title">How We Do It Differently</h3>
-                <p class="pm-pipeline-transition__subtitle">No fluff. No filler. Just what actually moves the needle for B2B tech companies in crowded markets.</p>
-                <div class="pm-pipeline-differentiators">
-                    <ul class="pm-pipeline-differentiators__list">
-                        <li>
-                            <span class="pm-pipeline-differentiators__label">Strategic First, Tactical Second:</span>
-                            <span class="pm-pipeline-differentiators__text">We start with the <em>why</em> and <em>who</em> before jumping into the <em>how</em>. You get a roadmap, not a random list of tactics.</span>
+            <!-- Carousel Wrapper -->
+            <div id="process-carousel-wrapper" class="max-w-4xl mx-auto fade-in-up">
+
+                <!-- Tabs -->
+                <div class="carousel-tabs" id="carousel-tabs">
+                     <button data-index="0" class="carousel-tab active">Phase 1: Blueprint</button>
+                    <button data-index="1" class="carousel-tab">Phase 2: Engine</button>
+                    <button data-index="2" class="carousel-tab">Phase 3: Conversion</button>
+                    <button data-index="3" class="carousel-tab">Phase 4: Toolkit</button>
+                    <button data-index="4" class="carousel-tab">Phase 5: Momentum</button>
+                </div>
+
+                <!-- Arrow Buttons (MOVED OUTSIDE container) -->
+                <button id="prev-btn" class="carousel-arrow" aria-label="Previous Step">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <button id="next-btn" class="carousel-arrow" aria-label="Next Step">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+
+                <!-- Carousel Container -->
+                <div class="carousel-container" id="carousel-container">
+                    <!-- Arrow Buttons Removed From Here -->
+                    
+                    <!-- Inner Scrollable Container -->
+                    <div class="carousel-inner" id="carousel-inner">
+                        <!-- Card 1 (Step 1) -->
+                        <div class="carousel-card">
+                            <div class="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <h3 class="text-2xl font-bold text-lime">Phase 1: The Revenue Blueprint</h3>
+                                    <p class="text-lg font-bold text-emphasis-italic-bold">Deep Discovery & Value-Led Messaging</p>
+                                    <p>We don’t guess. We immerse ourselves in your product, customers, and founding story. We unearth what makes you *truly* valuable and translate that into compelling, outcome-first messaging so your entire team speaks the same language.</p>
+                                    <p></p>
+                                </div>
+                                <div class="md:w-1/2 flex justify-center">
+                                    <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_1.webp" alt="A founder and strategist at a whiteboard, removing sticky notes labeled “fluff,” “jargon,” and “features” : leaving only sticky notes labeled “impact,” and “aha.”" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+1';">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2 (Step 2) -->
+                        <div class="carousel-card">
+                             <div class="flex flex-col md:flex-row-reverse items-center justify-center gap-8 w-full">
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <h3 class="text-2xl font-bold text-lime">Phase 2: The High-Intent Engine</h3>
+                                    <p class="text-lg font-bold text-emphasis-italic-bold">Discoverability, Not Just SEO</p>
+                                    <p>We build search systems around *user intention*, not just keywords. We map how your buyers *actually* look for solutions and build the architecture to ensure you're the one they find, right when they need you most.</p>
+                                    <p></p>
+                                </div>
+                                <div class="md:w-1/2 flex justify-center">
+                                    <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_2.webp" alt="A search engine heatmap zooms in on buyer intent clusters; a content strategist is re-routing arrows to align site structure with intent." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+2';">
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Card 3 (Step 3) -->
+                        <div class="carousel-card">
+                             <div class="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <h3 class="text-2xl font-bold text-lime">Phase 3: The Conversion Machine</h3>
+                                    <p class="text-lg font-bold text-emphasis-italic-bold">Architecture That Sells</p>
+                                    <p>Your website shouldn't be a brochure; it should be your #1 salesperson. We wireframe and design conversion pathways that guide users from "problem-aware" to "demo-booked," all built on the clear messaging from Phase 1.</p>
+                                    <p></p>
+                                </div>
+                                <div class="md:w-1/2 flex justify-center">
+                                    <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_3.webp" alt="A website wireframes overlaid with funnel stages (problem-aware to decision), with a founder walking through them like a corridor with signposts." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+3';">
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Card 4 (Step 4) -->
+                        <div class="carousel-card">
+                             <div class="flex flex-col md:flex-row-reverse items-center justify-center gap-8 w-full">
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <h3 class="text-2xl font-bold text-lime">Phase 4: The Sales-Ready Toolkit</h3>
+                                    <p class="text-lg font-bold text-emphasis-italic-bold">Arming Your Team to Win</p>
+                                    <p>This is where we build your content *machine*. We create the sales enablement templates, landing page systems, testimonial kits, and email frameworks your team needs to ship high-leverage content, fast and consistently.</p>
+                                    <p></p>
+                                </div>
+                                <div class="md:w-1/2 flex justify-center">
+                                    <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_4.webp" alt="A visual stack of labeled kits: “Objection Handler Deck,” “Positioning Matrix,” “Case Study Generator,” “Founder Post Format.” A team member clicks 'duplicate, customize, publish.'" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+4';">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 5 (Step 5) -->
+                        <div class="carousel-card">
+                             <div class="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <h3 class="text-2xl font-bold text-lime">Phase 5: The Momentum Loop</h3>
+                                    <p class="text-lg font-bold text-emphasis-italic-bold">Full-Throttle Execution. Adaptive Strategy.</p>
+                                    <p>Now, the engine runs. We implement the new site and messaging, launch the founder-led content rhythm, and track everything. Ongoing performance audits and sales-alignment loops keep us sharp. This is where momentum becomes your new baseline.</p>
+                                    <p></p>
+                                </div>
+                                <div class="md:w-1/2 flex justify-center">
+                                    <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_5.webp" alt="A polished, live dashboard showing “Messaging Live,” “AppExchange Revamp,” “LinkedIn Engine ON” and a small team high-fiving over a spike in MQLs." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+5';">
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End Inner Container -->
+                </div> <!-- End Carousel Container -->
+
+                <!-- Indicators -->
+                <div class="carousel-indicators" id="carousel-indicators">
+                    <button data-index="0" class="carousel-indicator active"></button>
+                    <button dataindex="1" class="carousel-indicator"></button>
+                    <button data-index="2" class="carousel-indicator"></button>
+                    <button data-index="3" class="carousel-indicator"></button>
+                    <button data-index="4" class="carousel-indicator"></button>
+                </div>
+
+            </div> <!-- End Carousel Wrapper -->
+
+             <!-- Merged "Our Impact & Your Outcomes" section content -->
+             <div class="merged-section-padding"> <!-- Added padding class -->
+                <div class="text-center mb-12 px-4">
+                    <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Your New Reality</h2>
+                    <p class="mt-4 text-lg fade-in-up">This isn't just a process. It's a pathway to tangible results. <br> You walk away with <span class="text-emphasis-italic-bold">momentum as your new marketing baseline.</span></p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">Your whole team finally speaks the same, powerful language.</p></div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">A content engine that scales *with* you, not against you.</p></div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">Your website becomes your #1 salesperson, booking demos 24/7.</p></div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">A founder-led content rhythm that builds authority, not burnout.</p></div>
+                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms"><span class="text-prysmi-pink text-2xl mt-1">☑</span><p class="text-lg text-left">A marketing dashboard where you can *finally* see the ROI.</p></div>
+
+                    <div class="mt-12 text-center p-6 sm:p-8 rounded-xl shadow-xl fade-in-up special-section-bg">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-4"><span class="text-emphasis-italic-bold">A Post-AI Internet Rewards Authority.</span><br> Not Fluff.</h3>
+                        <p class="text-lg mb-4 text-left mx-auto max-w-xl"><span class="text-emphasis-italic-bold">Half-measures</span> no longer cut it. And <span class="text-emphasis-italic-bold">‘picture-perfect’</span> millennial marketing is giving people the ick.</p>
+                        <p class="text-lg mb-4 text-left mx-auto max-w-xl">The new internet rewards pages, ads, and videos that actually <span class="text-emphasis-italic-bold">do something</span>—calculate, visualize unique data, or feature real expert collaboration.</p>
+                         <!-- UL removed based on image_d58da4.png -->
+                        <p class="text-lg mb-4 text-left mx-auto max-w-xl">We build the systems that get <span class="text-emphasis-italic-bold">you</span> cited as the <span class="text-emphasis-italic-bold">source.</span></p>
+                        <p class="text-lg mb-4 text-left mx-auto max-w-xl">Whether it’s SEO, brand positioning, emails, or ads, we know what <span class="text-emphasis-italic-bold">actually</span> works on <span class="text-emphasis-italic-bold">each</span> platform to book demos.</p>
+                    </div>
+                </div>
+             </div>
+        </section> <!-- End Process section -->
+
+        <!-- NEW: Pipeline Engine Section -->
+        <section id="pm-pipeline-engine" class="py-16 md:py-24">
+            <div class="text-center mb-12 px-4">
+                <p class="text-lg fade-in-up max-w-3xl mx-auto"><span class="text-emphasis-italic-bold">Stop renting traffic. Start building an asset.</span></p>
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up mt-4">Build Pipeline That Compounds, Not Collapses</h2>
+                <p class="mt-4 text-lg fade-in-up max-w-3xl mx-auto font-semibold">Our compounding organic engine cements your reputation as the go-to expert, making you immune to fleeting trends and algorithm updates.</p>
+        
+                <div class="mt-12 text-left max-w-3xl mx-auto border-t border-b border-gray-700 py-8">
+                     <h4 class="text-xl font-bold text-center mb-6">Strategic Benefits:</h4>
+                     <ul class="space-y-2 text-base">
+                        <li class="flex items-start">
+                            <span class="text-prysmi-pink text-2xl mr-3 mt-1">☑</span>
+                            <span><span class="text-emphasis-italic-bold">Algorithm-Proof Your Growth:</span> Build lasting authority that AI and search updates can't shake.</span>
                         </li>
-                        <li>
-                            <span class="pm-pipeline-differentiators__label">Built For Your Market:</span>
-                            <span class="pm-pipeline-differentiators__text">No cookie-cutter playbooks. Every strategy is custom-built for your ICP, competitors, and buying cycle.</span>
+                        <li class="flex items-start">
+                            <span class="text-prysmi-pink text-2xl mr-3 mt-1">☑</span>
+                            <span><span class="text-emphasis-italic-bold">Own Your Traffic:</span> Create a compounding asset that reduces your reliance on paid ads forever.</span>
                         </li>
-                        <li>
-                            <span class="pm-pipeline-differentiators__label">Fast Iterations, Not Slow Burns:</span>
-                            <span class="pm-pipeline-differentiators__text">We test aggressively, kill what doesn't work, and double down on what does. Speed wins.</span>
-                        </li>
-                        <li>
-                            <span class="pm-pipeline-differentiators__label">You Own The System:</span>
-                            <span class="pm-pipeline-differentiators__text">We're not here to make you dependent. We build a system you can run in-house when you're ready.</span>
-                        </li>
-                        <li>
-                            <span class="pm-pipeline-differentiators__label">No "Set It and Forget It":</span>
-                            <span class="pm-pipeline-differentiators__text">Markets change. We adapt. You get continuous optimization, not a one-time setup.</span>
-                        </li>
-                        <li>
-                            <span class="pm-pipeline-differentiators__label">"Trend" Chase:</span>
-                            <span class="pm-pipeline-differentiators__text">Get an evergreen pipeline that works, so you can stop chasing trends.</span>
+                        <li class="flex items-start">
+                            <span class="text-prysmi-pink text-2xl mr-3 mt-1">☑</span>
+                            <span><span class="text-emphasis-italic-bold">End the "Shiny Object" Chase:</span> Get an evergreen pipeline that works, so you can stop chasing trends.</span>
                         </li>
                          <!-- Empty LI removed based on image_d59105.jpg -->
                     </ul>
@@ -266,14 +1325,6 @@
                     <p class="pm-pipeline-card__body">Your paid channels are saturated. Your team is stretched thin. We deliver a battle-tested BoFu & organic strategy that plugs directly into your existing team, conserving resources and compounding results.</p>
                     <!-- Removed CTA Button -->
                 </div>
-                <!-- Card 3: For Salesforce Partners -->
-                <div class="pm-pipeline-card">
-                    <h3 class="pm-pipeline-card__super-title">FOR SALESFORCE PARTNERS</h3>
-                    <h4 class="pm-pipeline-card__title">Fractional Product Marketing</h4>
-                    <p class="pm-pipeline-card__subtitle">Position Your AppExchange Offering</p>
-                    <p class="pm-pipeline-card__body">Stand out in a crowded ecosystem. We craft compelling positioning, messaging, and go-to-market strategy that resonates with your ICP and drives adoption on the AppExchange.</p>
-                    <!-- Removed CTA Button -->
-                </div>
             </div>
              <!-- Add single CTA button here -->
              <div class="mt-12 text-center">
@@ -281,429 +1332,583 @@
                     I'd Like To Book More Demos<span class="blinking-dot"></span>
                 </button>
             </div>
-             <div class="pm-pipeline-pricing">
-                <h3 class="pm-pipeline-pricing__title">Friction-Free Execution. No Surprises.</h3>
-                <p class="pm-pipeline-pricing__description">
-                    Our pricing anticipates revisions. We stay focused on growth and momentum, not renegotiating scope creep mid-project.
-                </p>
+             <div class="mt-16 text-center max-w-2xl mx-auto px-4">
+                <h5 class="font-bold text-lg">Friction-Free Execution. No Surprises.</h5>
+                <p class="text-base opacity-80 mt-2">Our pricing anticipates revisions. We stay focused on growth and momentum, <br>not renegotiating scope creep mid-project.</p>
             </div>
+        </section>
+
+        <section id="contact" class="py-16 md:py-24 rounded-xl shadow-2xl mb-16">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Start the Conversation</h2>
+                <p class="mt-4 text-lg fade-in-up">Find out if we're the right fit. No pressure, no hard sell.</p>
+            </div>
+            <div class="max-w-xl mx-auto p-6 sm:p-10 rounded-xl shadow-xl border contact-card fade-in-up">
+                <div class="space-y-4 text-left text-base sm:text-lg">
+                    <p class="flex items-center"><span class="mr-2 text-xl">✉️</span> <a href="mailto:prabhjot@prysmi.com" class="hover:text-gray-400">prabhjot@prysmi.com</a></a</p>
+                    <p class="flex items-center"><span class="mr-2 text-xl">🫱🏼‍🫲🏽</span> <a href="mailto:inquiry@prysmi.com" class="hover:text-gray-400">inquiry@prysmi.com</a></p>
+                    <p class="flex items-center"><span class="mr-2 text-xl">📞</span> <a href="tel:+918130752649" class="hover:text-gray-400">+91-8130752649</a></p>
+                    <p class="flex items-center"><span class="mr-2 text-xl">🔗</span> <a href="https://www.linkedin.com/in/b2bitcontent/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400">LinkedIn Profile</a></p>
+                    <p class="flex items-center"><span class="mr-2 text-xl">📱</span> <a href="https://wa.me/message/SY3ITVAA72DZG1" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400">WhatsApp Us</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="next-steps" class="py-12 sm:py-16 md:py-32 bg-[#F53196] rounded-xl shadow-2xl">
+            <div class="max-w-3xl mx-auto text-center p-6 sm:p-12 rounded-xl fade-in-up">
+                <p class="text-lg sm:text-xl text-white text-emphasis-italic-bold opacity-90">Ready to stop guessing?</p>
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-black text-white hero-title-glow">Let’s Talk Strategy.</h2>
+                <p class="mt-4 text-lg sm:text-xl text-white opacity-90">Schedule your free, 30-minute Strategy Call. <br>We'll audit your current marketing and show you the exact gaps keeping you from predictable growth.</p>
+                <div class="mt-10">
+                    <button id="schedule-call-footer-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-6 text-base sm:text-lg rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-lg button-glow-cta" aria-label="I'd Like To Book More Demos">
+                        I'd Like To Book More Demos<span class="blinking-dot"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="py-6 text-center mt-16">
+        <div class="flex justify-center mb-0">
+            <img id="footer-logo" loading="lazy" src="/assets/trademarks/logos/logo-horizontal-white.webp" alt="PRYSMI Agency White Logo" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+White+Logo';">
         </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="how-it-works-container">
-            <h2 class="how-it-works-title">How It Works</h2>
-            <p class="how-it-works-subtitle">From chaos to clarity in 4 simple steps.</p>
-            
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Discovery Call</h3>
-                    <p class="step-description">We dig deep into your business, ICP, and current marketing efforts. No surface-level fluff—just strategic questions that uncover what's really holding you back.</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Custom Strategy Blueprint</h3>
-                    <p class="step-description">Within 7 days, you get a detailed roadmap: your ICP, positioning, channel strategy, and a 90-day action plan. This isn't a generic template—it's built for <em>your</em> market.</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Execution & Optimization</h3>
-                    <p class="step-description">We launch your campaigns, test aggressively, and optimize in real-time. You get weekly updates with clear metrics: leads, demos, and pipeline generated.</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Scale & Handoff</h3>
-                    <p class="step-description">Once we've proven what works, we scale it. When you're ready, we hand off a fully documented playbook so your team can run it independently.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Studies Section -->
-    <section id="case-studies" class="case-studies">
-        <div class="case-studies-container">
-            <h2 class="case-studies-title">Real Results, Not Vanity Metrics</h2>
-            <p class="case-studies-subtitle">Here's what happens when you stop guessing and start executing with a proven system.</p>
-            
-            <div class="case-study-grid">
-                <!-- Case Study 1 -->
-                <div class="case-study-card">
-                    <div class="case-study-header">
-                        <h3 class="case-study-company">Microsoft Gold Partner (Cloud Consulting)</h3>
-                        <p class="case-study-industry">B2B SaaS • Enterprise</p>
-                    </div>
-                    <div class="case-study-challenge">
-                        <h4>The Challenge</h4>
-                        <p>World-class cloud consulting team with zero brand visibility. Completely dependent on referrals. No predictable pipeline. Lost deals to inferior competitors with better positioning.</p>
-                    </div>
-                    <div class="case-study-solution">
-                        <h4>What We Did</h4>
-                        <p>Built a full demand-gen engine from scratch: ICP refinement, premium positioning, content strategy, and multi-channel lead-gen system targeting C-suite buyers.</p>
-                    </div>
-                    <div class="case-study-results">
-                        <h4>The Results</h4>
-                        <div class="results-grid">
-                            <div class="result-item">
-                                <div class="result-number">+75%</div>
-                                <div class="result-label">Avg. Contract Value</div>
-                            </div>
-                            <div class="result-item">
-                                <div class="result-number">-40%</div>
-                                <div class="result-label">Sales Cycle Duration</div>
-                            </div>
-                            <div class="result-item">
-                                <div class="result-number">+600%</div>
-                                <div class="result-label">C-Suite Lead Inflow</div>
-                            </div>
-                            <div class="result-item">
-                                <div class="result-number">4x</div>
-                                <div class="result-label">Pipeline Predictability</div>
-                            </div>
-                        </div>
-                    </div>
-                    <blockquote class="case-study-quote">
-                        "For years, our biggest frustration was being a world-class cloud consulting team that nobody knew about. We were completely dependent on referrals... Prabhjot didn't just get us more leads; he fundamentally changed how the market saw us. He built a powerful Demand Gen engine... We stopped chasing scraps and started having our ideal clients come to us. Our pipeline became predictable, and we were finally seen as the premium partner, not a commodity."
-                    </blockquote>
-                </div>
-
-                <!-- Case Study 2 -->
-                <div class="case-study-card">
-                    <div class="case-study-header">
-                        <h3 class="case-study-company">Salesforce ISV Partner (AppExchange)</h3>
-                        <p class="case-study-industry">SaaS • Mid-Market</p>
-                    </div>
-                    <div class="case-study-challenge">
-                        <h4>The Challenge</h4>
-                        <p>Great product. Zero traction. Lost in a sea of 10,000+ AppExchange apps. No clear positioning. Marketing was a checklist of tactics with no strategy.</p>
-                    </div>
-                    <div class="case-study-solution">
-                        <h4>What We Did</h4>
-                        <p>Rebuilt positioning from the ground up. Launched a high-intent content strategy, ABM campaigns, and optimized their AppExchange listing for conversions.</p>
-                    </div>
-                    <div class="case-study-results">
-                        <h4>The Results</h4>
-                        <div class="results-grid">
-                            <div class="result-item">
-                                <div class="result-number">+320%</div>
-                                <div class="result-label">Qualified Demo Requests</div>
-                            </div>
-                            <div class="result-item">
-                                <div class="result-number">+180%</div>
-                                <div class="result-label">AppExchange Installs</div>
-                            </div>
-                            <div class="result-item">
-                                <div class="result-number">-50%</div>
-                                <div class="result-label">Cost Per Lead</div>
-                            </div>
-                            <div class="result-item">
-                                <div class="result-number">2.8x</div>
-                                <div class="result-label">MRR Growth in 6 Mo.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <blockquote class="case-study-quote">
-                        "We had a great product but zero visibility. Prabhjot helped us cut through the noise with positioning that actually resonated. Within 6 months, we went from struggling to get demos to having a waitlist. Our AppExchange listing went from invisible to a top performer in our category."
-                    </blockquote>
-                </div>
-
-                <!-- Case Study 3 -->
-                <div class="case-study-card">
-                    <div class="case-study-header">
-                        <h3 class="case-study-company">Early-Stage AI Startup (DevTools)</h3>
-                        <p class="case-study-industry">PLG SaaS • SMB</p>
-                    </div>
-                    <div class="case-study-challenge">
-                        <h4>The Challenge</h4>
-                        <p>Post-launch crickets. Strong product, zero pipeline. Burning cash on random tactics. Founders spread thin between product and marketing.</p>
-                    </div>
-                    <div class="case-study-solution">
-                        <h4>What We Did</h4>
-                        <p>Built their first-ever demand-gen system: ICP clarity, PLG funnel optimization, developer-focused content, and community-led growth strategy.</p>
-                    </div>
-                    <div class="case-study-results">
-                        <h4>The Results</h4>
-                        <div class="results-grid">
-                            <div class="result-item">
-                                <div class="result-number">$180K</div>
-                                <div class="result-label">Pipeline in 90 Days</div>
-                            </div>
-                            <div class="result-item">
-                                <div class="result-number">+400%</div>
-                                <div class="result-label">Organic Sign-Ups</div>
-                            </div>
-                            <div class="result-item">
-                                <div class="result-number">-60%</div>
-                                <div class="result-label">CAC</div>
-                            </div>
-                            <div class="result-item">
-                                <div class="result-number">5x</div>
-                                <div class="result-label">Content Engagement</div>
-                            </div>
-                        </div>
-                    </div>
-                    <blockquote class="case-study-quote">
-                        "Before Prabhjot, we were throwing spaghetti at the wall. We had no idea what was working. He gave us a system—a real, repeatable process. Now we have predictable pipeline, and we're not guessing anymore. Best money we've ever spent."
-                    </blockquote>
-                </div>
-            </div>
-
-            <div class="case-studies-cta">
-                <p>Ready to see results like these?</p>
-                <button class="case-studies-cta-btn" id="case-studies-cta-btn" aria-label="Let's Talk Strategy">Let's Talk Strategy</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="about-container">
-            <h2 class="about-title">Who's Behind This?</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="about-intro">Hey, I'm Prabhjot. I've spent the last 8+ years helping B2B tech companies crack the code on predictable pipeline generation.</p>
-                    
-                    <p>I've worked with everyone from bootstrapped startups to Microsoft Gold Partners, and here's what I've learned: <strong>most marketing "strategies" are just a collection of tactics held together by hope.</strong></p>
-                    
-                    <p>That's why I built the Predictable Pipeline Method™—a system that starts with strategy, not tactics. It's not sexy. It's not trendy. But it works.</p>
-                    
-                    <p><strong>My approach is simple:</strong></p>
-                    <ul class="about-list">
-                        <li>No fluff. No filler. Just what moves the needle.</li>
-                        <li>Data-driven decisions, not gut feelings.</li>
-                        <li>Fast iterations, not slow burns.</li>
-                        <li>You own the system. I'm not here to make you dependent.</li>
-                    </ul>
-                    
-                    <p>If you're tired of agencies that overpromise and underdeliver, let's talk.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="final-cta">
-        <div class="final-cta-container">
-            <h2 class="final-cta-title">Ready To Build Your Predictable Pipeline?</h2>
-            <p class="final-cta-subtitle">Book a free 30-minute strategy call. We'll uncover what's holding you back and give you a clear path forward—no strings attached.</p>
-            <button class="final-cta-btn" id="final-cta-btn" aria-label="Book Your Free Strategy Call">
-                Book Your Free Strategy Call <span class="blinking-dot"></span>
-            </button>
-            <p class="final-cta-guarantee">No pitch. No pressure. Just strategic clarity.</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-logo">PRYSMI</div>
-                <p class="footer-tagline">Predictable Pipeline. No Guesswork.</p>
-            </div>
-            <div class="footer-links">
-                <a href="#predictable-pipeline">Predictable Pipeline Method</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#case-studies">Results</a>
-                <a href="#about">About</a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 PRYSMI. All rights reserved.</p>
-            </div>
-        </div>
+        <p class="mt-2 text-sm">&copy; <span id="currentYear"></span> PRYSMI Media Labs. All rights reserved.</p>
     </footer>
 
-    <!-- Calendly Modal -->
-    <div id="calendly-modal" class="calendly-modal" style="display: none;">
-        <div class="calendly-modal-content">
-            <span class="calendly-modal-close">&times;</span>
-            <div id="calendly-embed"></div>
+    <!-- Floating Action Buttons -->
+    <button id="back-to-top" aria-label="Back to top">↑</button>
+    <button id="theme-toggle" class="menu-button relative z-[999] p-3 md:p-4 hover:scale-[1.05] active:scale-[0.9] transition-[transform] duration-[0.3s]">
+        <span id="themeSymbol"></span>
+    </button>
+    
+    <!-- Case Study Modals -->
+    <div id="pm-panel-rohit" class="pm-case-study-modal" aria-hidden="true">
+        <div class="pm-case-study__backdrop"></div>
+        <div class="pm-case-study__content" role="dialog" aria-modal="true">
+            <button class="pm-case-study__close" aria-label="Close Case Study">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/></svg>
+            </button>
+            <div class="pm-case-study__header">
+                 <img src="https://prysmi.com/assets/clients/profiles/Rohit%20Bhalla%20360%20Degree%20Cloud.jpg" alt="Rohit Bhalla" class="pm-case-study__avatar">
+                <div>
+                    <h3 class="pm-case-study__title">The Architect Who Turned a Referral-Only Firm into a $10M Authority</h3>
+                    <p class="pm-case-study__summary">360 Degree Cloud built market authority from scratch to attract high-value clients and systematize growth through a sophisticated mix of Demand Gen, ABM, and event marketing.</p>
+                </div>
+            </div>
+            <div class="pm-case-study__main-content">
+                <div class="pm-case-study__narrative">
+                    <h4>Client Story</h4>
+                    <p>"For years, our biggest frustration was being a world-class cloud consulting team that nobody knew about. We were completely dependent on referrals... Prabhjot didn't just get us more leads; he fundamentally changed how the market saw us. He built a powerful Demand Gen engine... We stopped chasing scraps and started having our ideal clients come to us. Our pipeline became predictable, and we were finally seen as the premium partner, not a commodity."</p>
+                </div>
+                <div class="pm-case-study__kpis">
+                    <h4>Key Outcomes</h4>
+                    <div class="pm-case-study__kpi-grid">
+                        <div class="pm-case-study__kpi-item"><strong>+75%</strong><span>Avg. Contract Value</span></div>
+                        <div class="pm-case-study__kpi-item"><strong>-40%</strong><span>Sales Cycle Duration</span></div>
+                        <div class="pm-case-study__kpi-item"><strong>+600%</strong><span>C-Suite Lead Inflow</span></div>
+                        <div class="pm-case-study__kpi-item"><strong>4x</strong><span>Pipeline Predictability</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Calendly Script -->
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <div id="pm-panel-sid" class="pm-case-study-modal" aria-hidden="true">
+        <div class="pm-case-study__backdrop"></div>
+        <div class="pm-case-study__content" role="dialog" aria-modal="true">
+            <button class="pm-case-study__close" aria-label="Close Case Study">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/></svg>
+            </button>
+            <div class="pm-case-study__header">
+                <img src="https://prysmi.com/assets/clients/profiles/Siddharth%20Sehgal%20360%20SMS%20App.jpg" alt="Siddharth Sehgal" class="pm-case-study__avatar">
+                <div>
+                    <h3 class="pm-case-study__title">From Invisible Vendor to #1 on AppExchange & Millions in Pipeline</h3>
+                    <p class="pm-case-study__summary">360 SMS activated its dead channels—the AppExchange and Organic Traffic—turning product visibility into sales-ready opportunities through targeted demand generation and organic optimization.</p>
+                </div>
+            </div>
+            <div class="pm-case-study__main-content">
+                <div class="pm-case-study__narrative">
+                    <h4>Client Story</h4>
+                    <p>"To be blunt, we were stuck. We had multiple industry-beating products but felt completely invisible. Our marketing felt like we were just throwing things at the wall... Prabhjot performed a full system overhaul. He found the core story, re-engineered our AppExchange presence, and armed our sales team with an arsenal of case studies... The results felt unreal. Our organic traffic shot up over 400%, and qualified inbound leads exploded by over 900%."</p>
+                </div>
+                <div class="pm-case-study__kpis">
+                    <h4>Key Outcomes</h4>
+                    <div class="pm-case-study__kpi-grid">
+                        <div class="pm-case-study__kpi-item"><strong>+320%</strong><span>AppExchange Visibility</span></div>
+                        <div class="pm-case-study__kpi-item"><strong>+35%</strong><span>Sales Conversion Rate</span></div>
+                        <div class="pm-case-study__kpi-item"><strong>+800%</strong><span>Inbound Demo Requests</span></div>
+                        <div class="pm-case-study__kpi-item"><strong>#1</strong><span>Ranking on AppExchange</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    <!-- Custom JavaScript -->
     <script>
-        // Mobile Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Navigation Logic ---
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            const mobileNavClose = document.getElementById('mobile-nav-close');
+            const mobileNavPanel = document.getElementById('mobile-nav-panel');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
+            const openMobileMenu = () => mobileNavPanel.classList.remove('translate-x-full');
+            const closeMobileMenu = () => mobileNavPanel.classList.add('translate-x-full');
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
+            if (mobileNavToggle) mobileNavToggle.addEventListener('click', openMobileMenu);
+            if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileMenu);
+            mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+            
+            // --- Common Functionality ---
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
 
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+            // --- Active Nav Link Highlighting ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('#main-nav .nav-link');
+            const observerOptions = { root: null, rootMargin: "-50% 0px -50% 0px", threshold: 0 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const id = entry.target.getAttribute('id');
+                    // Adjust selector for merged sections - target the parent section id
+                    const parentSectionId = entry.target.closest('section[id]').getAttribute('id');
+                    const navLink = document.querySelector(`#main-nav .nav-link[href="#${parentSectionId}"]`);
+
+                    if (entry.isIntersecting && navLink) {
+                         // Check if ANY part of the larger section is intersecting
+                         let sectionIsVisible = false;
+                         entries.forEach(e => {
+                             if (e.target.closest('section[id]').getAttribute('id') === parentSectionId && e.isIntersecting) {
+                                 sectionIsVisible = true;
+                             }
+                         });
+
+                         if (sectionIsVisible) {
+                            navLinks.forEach(link => link.classList.remove('active'));
+                            navLink.classList.add('active');
+                         }
+                    } else if (navLink && !entry.isIntersecting) {
+                         // Check if NO part of the larger section is intersecting before removing active
+                         let sectionStillVisible = false;
+                          entries.forEach(e => {
+                              if (e.target.closest('section[id]').getAttribute('id') === parentSectionId && e.isIntersecting) {
+                                  sectionStillVisible = true;
+                              }
+                          });
+                          // Only remove active if no part of the section is visible
+                          // This logic might need refinement depending on desired behavior at section boundaries
+                          // if (!sectionStillVisible) {
+                          //     navLink.classList.remove('active');
+                          // }
+                    }
+                });
+            }, observerOptions);
+            // Observe the immediate child divs/elements that contain the content if direct section observation causes issues
+            document.querySelectorAll('#about > div, #process > div').forEach(el => {
+                if(el.id || el.classList.contains('fade-in-up')) { // Observe significant elements
+                     observer.observe(el);
                 }
             });
-        });
+             // Also observe the main sections themselves for initial trigger
+             document.querySelectorAll('#about, #process').forEach(section => observer.observe(section));
 
-        // Calendly Modal Functions
-        function openCalendlyModal() {
-            const modal = document.getElementById('calendly-modal');
-            const embedDiv = document.getElementById('calendly-embed');
-            
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            
-            // Initialize Calendly
-            if (typeof Calendly !== 'undefined') {
-                Calendly.initInlineWidget({
-                    url: 'https://calendly.com/your-calendly-link',
-                    parentElement: embedDiv,
-                    prefill: {},
-                    utm: {}
+
+            // --- Fade-in Animations on Scroll ---
+             // Select only elements that need fade-in, exclude stat numbers handled elsewhere
+            const animatedElements = document.querySelectorAll('.fade-in-up:not(.stat-number)');
+            const animateObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                         // No count-up logic here anymore
+                        obs.unobserve(entry.target); // Stop observing after animation
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => animateObserver.observe(el));
+
+             // --- Stat Counter Animation (Separate Observer if needed or combined) ---
+             // If you still have stat numbers elsewhere, keep this logic
+             const statNumbers = document.querySelectorAll('.stat-number');
+             const statObserver = new IntersectionObserver((entries, obs) => {
+                 entries.forEach(entry => {
+                     if (entry.isIntersecting) {
+                         entry.target.classList.add('is-visible');
+                         const target = +entry.target.getAttribute('data-target');
+                         if (!isNaN(target)) { // Check if target is a valid number
+                            let current = 0;
+                            const increment = target / 100; // Control animation speed
+                            const updateCount = () => {
+                                if (current < target) {
+                                    current += increment;
+                                    // Use Math.min to prevent exceeding the target slightly due to increments
+                                    entry.target.innerText = Math.ceil(Math.min(current, target)).toLocaleString();
+                                    requestAnimationFrame(updateCount);
+                                } else {
+                                    entry.target.innerText = target.toLocaleString(); // Ensure final value is exact
+                                }
+                            };
+                            updateCount();
+                         } else {
+                            // Handle cases where data-target might be missing or invalid
+                            console.warn("Invalid data-target for stat number:", entry.target);
+                         }
+                         obs.unobserve(entry.target);
+                     }
+                 });
+             }, { threshold: 0.1 });
+             statNumbers.forEach(el => statObserver.observe(el));
+
+
+            // --- Desktop Header Scroll Behavior ---
+            const mainHeader = document.getElementById('main-header');
+            if(mainHeader) {
+                window.addEventListener('scroll', () => {
+                    mainHeader.classList.toggle('scrolled', window.scrollY > 50);
                 });
             }
-        }
 
-        function closeCalendlyModal() {
-            const modal = document.getElementById('calendly-modal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+            // --- Calendly Integration ---
+            const calendlyLink = "https://calendly.com/prabhjot-prysmi";
+            const calendlyButtons = ['get-started-header-btn', 'get-started-mobile-btn', 'hero-cta-btn', 'schedule-call-footer-btn', 'pipeline-cta-btn']; // Updated list
+            calendlyButtons.forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) btn.addEventListener('click', () => window.open(calendlyLink, '_blank'));
+            });
 
-        // CTA Button Click Handlers
-        document.getElementById('nav-cta-btn').addEventListener('click', openCalendlyModal);
-        document.getElementById('hero-cta-btn').addEventListener('click', openCalendlyModal);
-        document.getElementById('pipeline-cta-btn').addEventListener('click', openCalendlyModal);
-        document.getElementById('case-studies-cta-btn').addEventListener('click', openCalendlyModal);
-        document.getElementById('final-cta-btn').addEventListener('click', openCalendlyModal);
-
-        // Modal Close Handlers
-        document.querySelector('.calendly-modal-close').addEventListener('click', closeCalendlyModal);
-        document.getElementById('calendly-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeCalendlyModal();
+            // --- Back to Top Button ---
+            const backToTopButton = document.getElementById('back-to-top');
+            if(backToTopButton) {
+                window.addEventListener('scroll', () => {
+                    backToTopButton.classList.toggle('show', window.scrollY > 300);
+                });
+                backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
             }
-        });
+                
+            // --- Theme UI Management ---
+            const footerLogo = document.getElementById('footer-logo');
+            const themeSymbol = document.getElementById('themeSymbol');
 
-        // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
+            function updateThemeUI(isLight) {
+                if (themeSymbol) {
+                    themeSymbol.textContent = isLight ? '\u263E' : '\u2600';
+                }
+                if (footerLogo) {
+                    footerLogo.src = isLight ? '/assets/trademarks/logos/logo-horizontal-black.webp' : '/assets/trademarks/logos/logo-horizontal-white.webp';
+                }
+            }
 
-        // Hero Animation
-        gsap.from('.hero-title-line', {
-            duration: 1,
-            y: 100,
-            opacity: 0,
-            stagger: 0.2,
-            ease: 'power3.out'
-        });
+            const savedThemeIsLight = localStorage.getItem('theme') === 'light';
+            document.body.classList.toggle('light-mode', savedThemeIsLight);
+            updateThemeUI(savedThemeIsLight);
 
-        gsap.from('.hero-subtitle', {
-            duration: 1,
-            y: 50,
-            opacity: 0,
-            delay: 0.6,
-            ease: 'power3.out'
-        });
+             // Theme Toggle Button Logic
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                 themeToggleBtn.addEventListener('click', () => {
+                     document.body.classList.toggle('light-mode');
+                     // Update UI and save preference immediately after toggle
+                     const isLightNow = document.body.classList.contains('light-mode');
+                     updateThemeUI(isLightNow);
+                     localStorage.setItem('theme', isLightNow ? 'light' : 'dark');
+                 });
+             }
 
-        gsap.from('.hero-cta-btn', {
-            duration: 1,
-            y: 50,
-            opacity: 0,
-            delay: 0.8,
-            ease: 'power3.out'
-        });
+            // --- Testimonial Modal Logic ---
+            (function pm_initTestimonialModals() {
+                const openButtons = document.querySelectorAll('.pm-testimonial__expand-btn');
+                const closeButtons = document.querySelectorAll('.pm-case-study__close');
+                const modals = document.querySelectorAll('.pm-case-study-modal');
 
-        // Problem Cards Animation
-        gsap.from('.problem-card', {
-            scrollTrigger: {
-                trigger: '.problem-grid',
-                start: 'top 80%',
-            },
-            duration: 0.8,
-            y: 50,
-            opacity: 0,
-            stagger: 0.2,
-            ease: 'power3.out'
-        });
+                const openModal = (modal) => {
+                    if (!modal) return;
+                    modal.classList.add('is-active');
+                    modal.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                };
 
-        // Social Proof Bar Animation
-        gsap.from('.social-proof-item', {
-            scrollTrigger: {
-                trigger: '.social-proof-bar',
-                start: 'top 80%',
-            },
-            duration: 0.8,
-            y: 30,
-            opacity: 0,
-            stagger: 0.15,
-            ease: 'power3.out'
-        });
+                const closeModal = (modal) => {
+                    if (!modal) return;
+                    modal.classList.remove('is-active');
+                    modal.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                };
 
-        // Pipeline Phases Animation
-        gsap.from('.pm-pipeline-phase', {
-            scrollTrigger: {
-                trigger: '.pm-pipeline-phases',
-                start: 'top 80%',
-            },
-            duration: 0.8,
-            y: 50,
-            opacity: 0,
-            stagger: 0.2,
-            ease: 'power3.out'
-        });
+                openButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const modal = document.querySelector(button.dataset.target);
+                        openModal(modal);
+                    });
+                });
 
-        // Steps Animation
-        gsap.from('.step', {
-            scrollTrigger: {
-                trigger: '.steps-container',
-                start: 'top 80%',
-            },
-            duration: 0.8,
-            x: -50,
-            opacity: 0,
-            stagger: 0.2,
-            ease: 'power3.out'
-        });
+                closeButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        closeModal(button.closest('.pm-case-study-modal'));
+                    });
+                });
 
-        // Case Study Cards Animation
-        gsap.from('.case-study-card', {
-            scrollTrigger: {
-                trigger: '.case-study-grid',
-                start: 'top 80%',
-            },
-            duration: 0.8,
-            y: 50,
-            opacity: 0,
-            stagger: 0.2,
-            ease: 'power3.out'
-        });
+                modals.forEach(modal => {
+                    modal.addEventListener('click', (event) => {
+                        if (event.target === modal || event.target.classList.contains('pm-case-study__backdrop')) {
+                            closeModal(modal);
+                        }
+                    });
+                    
+                    // Close with Escape key
+                    document.addEventListener('keydown', (event) => {
+                        if (event.key === 'Escape' && modal.classList.contains('is-active')) {
+                            closeModal(modal);
+                        }
+                    });
+                });
+            })();
 
-        // Navbar Background on Scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(17, 24, 39, 0.95)';
-                navbar.style.backdropFilter = 'blur(10px)';
+             // --- Process Carousel Logic ---
+             const carouselInner = document.getElementById('carousel-inner');
+             const prevBtn = document.getElementById('prev-btn');
+             const nextBtn = document.getElementById('next-btn');
+             const indicators = document.querySelectorAll('.carousel-indicator');
+             const tabs = document.querySelectorAll('.carousel-tab');
+             
+             if (carouselInner && prevBtn && nextBtn && indicators.length > 0 && tabs.length > 0) {
+                const cards = carouselInner.children;
+                const totalCards = cards.length;
+                let currentIndex = 0;
+
+                function updateCarouselUI() {
+                    // Slide effect
+                    carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                    // Update indicators
+                    indicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === currentIndex);
+                    });
+
+                    // Update tabs
+                    tabs.forEach((tab, index) => {
+                        tab.classList.toggle('active', index === currentIndex);
+                    });
+
+                    // Update arrow buttons state
+                    prevBtn.disabled = currentIndex === 0;
+                    nextBtn.disabled = currentIndex === totalCards - 1;
+                }
+
+                function goToSlide(index) {
+                    if (index < 0 || index >= totalCards) return; // Boundary check
+                    currentIndex = index;
+                    updateCarouselUI();
+                }
+
+                // Event Listeners
+                prevBtn.addEventListener('click', () => {
+                    goToSlide(currentIndex - 1);
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    goToSlide(currentIndex + 1);
+                });
+
+                indicators.forEach(indicator => {
+                    indicator.addEventListener('click', () => {
+                        goToSlide(parseInt(indicator.dataset.index));
+                    });
+                });
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        goToSlide(parseInt(tab.dataset.index));
+                    });
+                });
+
+                // Initial setup
+                updateCarouselUI();
+
+                 // --- Touch/Swipe Functionality for Carousel ---
+                 let touchStartX = 0;
+                 let touchEndX = 0;
+                 const swipeThreshold = 50; // Minimum distance for a swipe
+
+                 carouselInner.addEventListener('touchstart', (e) => {
+                     touchStartX = e.changedTouches[0].screenX;
+                 }, { passive: true }); // Use passive listener for better scroll performance
+
+                 carouselInner.addEventListener('touchend', (e) => {
+                     touchEndX = e.changedTouches[0].screenX;
+                     handleSwipeGesture();
+                 });
+
+                 function handleSwipeGesture() {
+                     const deltaX = touchEndX - touchStartX;
+                     if (Math.abs(deltaX) > swipeThreshold) { // Only trigger if swipe is significant
+                         if (deltaX < 0) {
+                             // Swiped left (Next)
+                             goToSlide(currentIndex + 1);
+                         } else {
+                             // Swiped right (Previous)
+                             goToSlide(currentIndex - 1);
+                         }
+                     }
+                      // Reset values for the next swipe
+                      touchStartX = 0;
+                      touchEndX = 0;
+                 }
+
+
+             } else {
+                 console.warn("Carousel elements not found, carousel functionality disabled.");
+             }
+             
+            // --- NEW Hero Testimonial Slider Logic ---
+            const heroSliderInner = document.getElementById('hero-testimonial-inner');
+            const heroIndicatorsContainer = document.getElementById('hero-testimonial-indicators');
+            let heroSliderInterval;
+
+            if (heroSliderInner && heroIndicatorsContainer) {
+                const slides = heroSliderInner.children;
+                const totalSlides = slides.length;
+                let currentSlideIndex = 0;
+
+                // Set dynamic width for inner container
+                // heroSliderInner.style.setProperty('--num-slides', totalSlides); // CSS variable approach removed
+                heroSliderInner.style.width = `${totalSlides * 100}%`; // Direct width calculation
+
+
+                // Create indicators
+                for (let i = 0; i < totalSlides; i++) {
+                    const button = document.createElement('button');
+                    button.classList.add('hero-testimonial-indicator');
+                    button.dataset.index = i;
+                    if (i === 0) button.classList.add('active');
+                    button.addEventListener('click', () => {
+                        goToHeroSlide(i);
+                        resetHeroInterval(); // Reset timer on manual navigation
+                    });
+                    heroIndicatorsContainer.appendChild(button);
+                }
+                const heroIndicators = heroIndicatorsContainer.children;
+
+                function updateHeroSliderUI() {
+                    // Adjust transform based on total slides
+                    heroSliderInner.style.transform = `translateX(-${(currentSlideIndex * 100) / totalSlides}%)`;
+                    Array.from(heroIndicators).forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === currentSlideIndex);
+                    });
+                }
+
+
+                function goToHeroSlide(index) {
+                    currentSlideIndex = index;
+                    updateHeroSliderUI();
+                }
+
+                function nextHeroSlide() {
+                    currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+                    updateHeroSliderUI();
+                }
+
+                function startHeroInterval() {
+                   heroSliderInterval = setInterval(nextHeroSlide, 5000); // Change slide every 5 seconds
+                }
+
+                function resetHeroInterval() {
+                    clearInterval(heroSliderInterval);
+                    startHeroInterval();
+                }
+
+                // Initial setup
+                updateHeroSliderUI();
+                startHeroInterval(); // Start auto-sliding
+
+                 // Adjust slide width dynamically based on total slides
+                 Array.from(slides).forEach(slide => {
+                    slide.style.width = `${100 / totalSlides}%`;
+                });
+
+
             } else {
-                navbar.style.background = 'rgba(17, 24, 39, 0.8)';
-                navbar.style.backdropFilter = 'blur(10px)';
+                 console.warn("Hero testimonial slider elements not found.");
             }
+
+
         });
     </script>
+    
+    <script src="./animation.bundle.js" defer></script>
+
+    <script>
+      const loadGTM = () => {
+        const gtmScript = document.createElement('script');
+        gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-K4LQMJGW');`;
+        document.head.appendChild(gtmScript);
+
+        const gtmNoScript = document.createElement('noscript');
+        const iframe = document.createElement('iframe');
+        iframe.src = "https://www.googletagmanager.com/ns.html?id=GTM-K4LQMJGW";
+        iframe.height = "0";
+        iframe.width = "0";
+        iframe.style.display = "none";
+        iframe.style.visibility = "hidden";
+        gtmNoScript.appendChild(iframe);
+        document.body.insertBefore(gtmNoScript, document.body.firstChild);
+        
+        ['scroll', 'mousemove', 'touchstart'].forEach(event => 
+          window.removeEventListener(event, loadGTM, { passive: true })
+        );
+      };
+      ['scroll', 'mousemove', 'touchstart'].forEach(event => 
+        window.addEventListener(event, loadGTM, { once: true, passive: true })
+      );
+    </script>
+    <script>
+    // Self-contained script for custom cursor
+    (function pm_initCustomCursor() {
+        const cursorDot = document.getElementById('pm-cursor-dot');
+        const cursorEye = document.getElementById('pm-cursor-eye');
+        const testimonialSection = document.getElementById('prysmi-testimonials');
+        const hoverables = document.querySelectorAll('a, button, .pm-testimonial__expand-btn');
+
+
+        if (!cursorDot || !cursorEye) return;
+
+        let dotX = 0, dotY = 0, eyeX = 0, eyeY = 0;
+
+        window.addEventListener('mousemove', e => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            eyeX += (posX - eyeX) * 0.2;
+            eyeY += (posY - eyeY) * 0.2;
+            cursorEye.style.left = `${eyeX}px`;
+            cursorEye.style.top = `${eyeY}px`;
+        });
+
+        if (testimonialSection) {
+            testimonialSection.addEventListener('mouseenter', () => {
+                document.body.classList.add('pm-cursor-hover-testimonial');
+            });
+            testimonialSection.addEventListener('mouseleave', () => {
+                document.body.classList.remove('pm-cursor-hover-testimonial');
+            });
+        }
+        
+        hoverables.forEach(el => {
+            el.addEventListener('mouseenter', () => cursorDot.classList.add('on-hover'));
+            el.addEventListener('mouseleave', () => cursorDot.classList.remove('on-hover'));
+        });
+    })();
+    </script>
+    
 </body>
 </html>
+
+
+
+

@@ -567,6 +567,19 @@
          #about, #process, #bento-wins, #prysmi-testimonials, #pm-pipeline-engine, #contact {
               margin-bottom: 4rem; /* mb-16 */
          }
+        
+        /* === Founder Profile Photo Style (from input.css) === */
+        .pm-founder-profile-photo {
+            filter: grayscale(100%);
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+
+        .pm-founder-profile-photo:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+        /* === End Founder Profile Photo Style === */
+
 
          /* === Hero Testimonial Slider Styles === */
         #hero-testimonial-slider {
@@ -736,8 +749,8 @@
     <!-- Google Tag Manager will be injected here by script -->
     
     <!-- SEO, Social, and Schema Meta Tags -->
-    <meta name="description" content="Prysmi delivers revenue-ready B2B marketing for tech founders. We build clear messaging, high-intent content strategies, and scalable systems that drive growth.">
-    <meta name="author" content="Prysmi Media Labs">
+    <meta name="description" content="Prysmi delivers revenue-ready B2B marketing for tech founders. I build clear messaging, high-intent content strategies, and scalable systems that drive growth.">
+    <meta name="author" content="Prabhjot Singh">
     <meta name="theme-color" content="#FF53AC">
     <link rel="canonical" href="https://prysmi.com/">
     
@@ -751,7 +764,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Prysmi">
     <meta property="og:title" content="Prysmi: Un-boring Your B2B Marketing">
-    <meta property="og:description" content="We build revenue-ready marketing systems for tech founders, focusing on messaging clarity, high-intent search, and conversion-optimized content.">
+    <meta property="og:description" content="I build revenue-ready marketing systems for tech founders, focusing on messaging clarity, high-intent search, and conversion-optimized content.">
     <meta property="og:url" content="https://prysmi.com/">
     <meta property="og:image" content="https://prysmi.com/assets/images/prysmi-social-share-card.png">
     <meta property="og:image:width" content="1200">
@@ -759,7 +772,7 @@
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Prysmi: Un-boring Your B2B Marketing">
-    <meta name="twitter:description" content="We build revenue-ready marketing systems for tech founders, focusing on messaging clarity, high-intent search, and conversion-optimized content.">
+    <meta name="twitter:description" content="I build revenue-ready marketing systems for tech founders, focusing on messaging clarity, high-intent search, and conversion-optimized content.">
     <meta name="twitter:image" content="https://prysmi.com/assets/images/prysmi-social-share-card.png">
     <meta name="twitter:creator" content="@b2bitcontent">
     <script type="application/ld+json">
@@ -821,9 +834,9 @@
             <div class="flex flex-col h-full p-6 pt-20">
                 <button id="mobile-nav-close" class="absolute top-5 right-5 text-white text-3xl" aria-label="Close navigation menu">&times;</button>
                 <nav class="flex flex-col space-y-6 text-center">
-                    <a href="#bento-wins" class="mobile-nav-link text-white text-xl font-semibold">Our Work</a>
-                    <a href="#about" class="mobile-nav-link text-white text-xl font-semibold">About Us</a>
-                    <a href="#process" class="mobile-nav-link text-white text-xl font-semibold">Our Process</a>
+                    <a href="#bento-wins" class="mobile-nav-link text-white text-xl font-semibold">My Work</a>
+                    <a href="#about" class="mobile-nav-link text-white text-xl font-semibold">About Me</a>
+                    <a href="#process" class="mobile-nav-link text-white text-xl font-semibold">My Process</a>
                     <a href="#pm-pipeline-engine" class="mobile-nav-link text-white text-xl font-semibold">Offerings</a>
                     <a href="#contact" class="mobile-nav-link text-white text-xl font-semibold">Contact</a>
                     <button id="get-started-mobile-btn" class="mt-6 bg-[#F53196] text-white font-semibold py-3 px-6 rounded-lg shadow-md button-glow-pink text-lg" aria-label="I'd Like To Book More Demos">I'd Like To Book More Demos<span class="blinking-dot"></span></button>
@@ -836,18 +849,18 @@
     <header id="main-header" class="hidden md:block bg-black/30 backdrop-blur-lg sticky top-0 z-50 w-full py-2">
         <nav id="main-nav" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center">
-                <a href="#hero" class="flex items-center" aria-label="PRYSMI Agency Home">
+                <a href="#hero" class="flex items-center" aria-label="PRYSMI Home">
                     <picture>
                         <source media="(min-width: 768px)" srcset="/assets/trademarks/logos/logo-horizontal-pink.webp">
-                        <img width="150" height="50" src="/assets/trademarks/logos/logo-horizontal-pink.webp" alt="PRYSMI Agency Logo" class="h-8 sm:h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
+                        <img width="150" height="50" src="/assets/trademarks/logos/logo-horizontal-pink.webp" alt="PRYSMI Logo" class="h-8 sm:h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+Logo';">
                     </picture>
                 </a>
             </div>
             <div class="flex items-center">
                 <div class="ml-10 flex items-baseline space-x-4">
-                    <a href="#bento-wins" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Our Work</a>
-                    <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium">About Us</a>
-                    <a href="#process" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Our Process</a>
+                    <a href="#bento-wins" class="nav-link px-3 py-2 rounded-md text-sm font-medium">My Work</a>
+                    <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium">About Me</a>
+                    <a href="#process" class="nav-link px-3 py-2 rounded-md text-sm font-medium">My Process</a>
                     <a href="#pm-pipeline-engine" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Offerings</a>
                     <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                     <button id="get-started-header-btn" class="nav-link bg-[#F53196] text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-sm button-glow-pink" aria-label="Book More Demos">Book More Demos<span class="blinking-dot"></span></button>
@@ -861,10 +874,10 @@
             <div class="max-w-4xl">
                 <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white hero-title-glow fade-in-up">
                     Great Product, <br> Empty Pipeline? <br>
-                    <span class="text-emphasis-italic-bold">We Fix That.</span>
+                    <span class="text-emphasis-italic-bold">I Fix That.</span>
                 </h1>
                 <p class="text-lg sm:text-xl md:text-2xl text-white opacity-90 fade-in-up delay-200ms mb-0 mt-4 md:mt-6">
-                    We build the revenue-ready marketing engine <br>that turns your brilliant product into predictable demos.
+                    I build the revenue-ready marketing engine <br>that turns your brilliant product into predictable demos.
                 </p>
                 <div class="mt-8 fade-in-up delay-400ms">
                     <button id="hero-cta-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-6 text-base sm:text-lg rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 button-glow-cta" aria-label="I'd Like To Book More Demos">
@@ -878,7 +891,7 @@
                                 <p>Rohit Bhalla, CEO @ Cloud Ingenious</p>
                             </div>
                             <div class="hero-testimonial-slide">
-                                <blockquote>“Bring them in when you have a great product but can’t figure out why it’s not selling itself.”</blockquote>
+                                <blockquote>“Bring him in when you have a great product but can’t figure out why it’s not selling itself.”</blockquote>
                                 <p>Siddharth Sehgal, CEO @ 360 SMS App</p>
                             </div>
                             <!-- Add more slides as needed -->
@@ -896,7 +909,7 @@
         <section id="prysmi-testimonials" class="py-12 sm:py-16 md:py-24">
              <div class="text-center mb-12 px-4">
                 <h2 class="text-3xl sm:text-4xl font-black fade-in-up is-visible">From Invisible to Industry Leader</h2>
-                <p class="mt-4 text-lg fade-in-up is-visible">Don't take our word for it. See the pipeline we've built for founders just like you.</p>
+                <p class="mt-4 text-lg fade-in-up is-visible">Don't take my word for it. See the pipeline I've built for founders just like you.</p>
             </div>
             <div class="prysmi-testimonials__container max-w-4xl mx-auto">
                 <!-- Testimonial 1: Rohit Bhalla -->
@@ -956,7 +969,7 @@
         <section id="bento-wins" class="py-16 md:py-24">
             <div class="text-center mb-12 px-4">
                 <h2 class="text-3xl sm:text-4xl font-black fade-in-up">The Anatomy of a Revenue Engine</h2>
-                <p class="mt-4 text-lg fade-in-up">These aren't vanity metrics. This is proof our systems work.</p>
+                <p class="mt-4 text-lg fade-in-up">These aren't vanity metrics. This is proof my systems work.</p>
             </div>
             <div class="pm-bento-grid max-w-5xl mx-auto">
                 <div class="pm-bento-grid__item pm-bento-grid__item--gradient-a" style="grid-area: a;">
@@ -1011,7 +1024,7 @@
             <!-- Container for the single scroller - MOVED HERE -->
             <div class="w-full max-w-5xl mx-auto fade-in-up pm-logo-scroller-container">
                 <!-- Updated Heading Tag and Classes -->
-                <h2 class="pm-logo-scroller-heading">We've Driven Growth For...</h2>
+                <h2 class="pm-logo-scroller-heading">I've Driven Growth For...</h2>
                 <!-- Scroller 1 (Right to Left) -->
                 <div class="pm-logo-scroller">
                     <div class="pm-logo-scroller__inner">
@@ -1048,142 +1061,10 @@
                             <img src="/assets/clients/bwlogos/360mergeduplicatesapp.png" alt="360 Merge Duplicates App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Merge';">
                         </div>
                         <div class="pm-logo-scroller__item">
-                            <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='httpsTop 10 most popular programming languages in 2025';">
+                            <img src="/assets/clients/bwlogos/360smsapp.png" alt="360 SMS App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+SMS';">
                         </div>
                         <div class="pm-logo-scroller__item">
-                            <img src="/assets/clients/bwlogos/360textolicapp.png" alt="360 Textolic App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Textolic';">
-                        </div>
-                        <div class="pm-logo-scroller__item">
-                            <img src="/assets/clients/bwlogos/360unsubscribeapp.png" alt="360 Unsubscribe App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Unsubscribe';">
-                        </div>
-                        <div class="pm-logo-scroller__item">
-                            <img src="/assets/clients/bwlogos/360verifytheemailapp.png" alt="360 Verify The Email App Logo" onerror="this.onerror=null;this.src='https://placehold.co/180x60/000000/FFFFFF?text=360+Verify';">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Removed the paragraph that was here -->
-        </section>
-
-        <!-- About Section - Merged Challenges -->
-        <section id="about" class="py-16 md:py-24 rounded-xl shadow-2xl">
-            <div class="text-center mb-12 px-4">
-                <p class="mt-4 text-lg fade-in-up">
-                    <span class="text-emphasis-italic-bold">Relax. We're not just "marketers."</span>
-                </p>
-                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">We Build Revenue Engines That Compound.</h2>
-            </div>
-            <div class="max-w-3xl mx-auto p-6 sm:p-10 rounded-xl shadow-xl border fade-in-up">
-                <div class="mt-8 text-left">
-                    <p class="text-lg mb-4">We're senior B2B strategists who build revenue engines, not just content. We focus on two things: clear, value-led messaging and a high-intent search system to deliver it.</p>
-                     <p class="text-lg mb-4">The result is a scalable, repeatable process that turns your expertise into a demo-generating machine.</p> <!-- Paragraph moved here -->
-                    <blockquote class="text-left text-xl sm:text-2xl text-emphasis-italic-bold border-l-4 border-[#FF53AC] pl-4 sm:pl-6 py-4 mb-8">
-                         “Your marketing should work as hard as your product.<br> We build the system to make sure it does.”
-                    </blockquote>
-                     <!-- UL removed based on image_d58a3f.jpg -->
-                </div>
-            </div>
-
-            <!-- Merged "The Challenges We Solve" section content -->
-            <div class="merged-section-padding"> <!-- Added padding class -->
-                <div class="text-center mb-12 px-4">
-                    <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Does This Sound Familiar?</h2>
-                    <p class="mt-4 text-lg fade-in-up">You have a brilliant product, but...</p>
-                    <p class="mt-4 text-lg fade-in-up"></p>
-                    <p class="mt-4 text-lg fade-in-up"></p>
-                </div>
-                <div class="max-w-3xl mx-auto space-y-6">
-                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up">
-                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
-                        <div>
-                            <h3 class="text-xl font-semibold text-lime mb-2">Your team can't explain what you do.</h3>
-                            <p>You struggle to articulate your unique value in one clear, consistent sentence. Everyone says something different.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
-                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
-                        <div>
-                            <h3 class="text-xl font-semibold text-lime mb-2">You get clicks, but no demos.</h3>
-                            <p>Your website gets visitors, but they're not the *right* visitors, and they don't convert into qualified sales conversations.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
-                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
-                        <div>
-                            <h3 class="text-xl font-semibold text-lime mb-2">Your sales team hates your marketing.</h3>
-                            <p>Your content isn't aligned with the sales process. It feels like "fluff," so your team doesn't use it and builds their own assets.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-200ms">
-                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
-                        <div>
-                            <h3 class="text-xl font-semibold text-lime mb-2">You're stuck on the content treadmill.</h3>
-                            <p>Producing content feels like a constant struggle with no strategy, and you have no time to think about the bigger picture.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 rounded-xl shadow-lg border flex items-start space-x-4 fade-in-up delay-400ms">
-                        <span class="text-prysmi-pink text-2xl mt-1">☑</span>
-                        <div>
-                            <h3 class="text-xl font-semibold text-lime mb-2">You have no idea if it's working.</h3>
-                            <p>You're investing in marketing, but the direct impact on revenue is a total black box. You're guessing.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> <!-- End About section -->
-
-        <!-- Revenue-Ready Content System™ Section - Merged Impact -->
-        <section id="process" class="py-16 md:py-24 rounded-xl shadow-2xl">
-            <div class="text-center mb-12 px-4">
-                <p class="mt-4 text-lg fade-in-up"><span class="text-emphasis-italic-bold">Structure That Sells. Messaging That Moves. Systems That Scale.</span></p>
-                <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Revenue-Ready Content System™</h2>
-                <p class="mt-4 text-lg fade-in-up">
-                    Our 5-phase system for turning market invisibility into predictable pipeline.
-                    No fluff, no guesswork. Just a proven blueprint.
-                </p>
-            </div>
-
-            <!-- Carousel Wrapper -->
-            <div id="process-carousel-wrapper" class="max-w-4xl mx-auto fade-in-up">
-
-                <!-- Tabs -->
-                <div class="carousel-tabs" id="carousel-tabs">
-                     <button data-index="0" class="carousel-tab active">Phase 1: Blueprint</button>
-                    <button data-index="1" class="carousel-tab">Phase 2: Engine</button>
-                    <button data-index="2" class="carousel-tab">Phase 3: Conversion</button>
-                    <button data-index="3" class="carousel-tab">Phase 4: Toolkit</button>
-                    <button data-index="4" class="carousel-tab">Phase 5: Momentum</button>
-                </div>
-
-                <!-- Arrow Buttons (MOVED OUTSIDE container) -->
-                <button id="prev-btn" class="carousel-arrow" aria-label="Previous Step">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                    </svg>
-                </button>
-                <button id="next-btn" class="carousel-arrow" aria-label="Next Step">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                    </svg>
-                </button>
-
-                <!-- Carousel Container -->
-                <div class="carousel-container" id="carousel-container">
-                    <!-- Arrow Buttons Removed From Here -->
-                    
-                    <!-- Inner Scrollable Container -->
-                    <div class="carousel-inner" id="carousel-inner">
-                        <!-- Card 1 (Step 1) -->
-                        <div class="carousel-card">
-                            <div class="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
-                                <div class="md:w-1/2 text-center md:text-left">
-                                    <h3 class="text-2xl font-bold text-lime">Phase 1: The Revenue Blueprint</h3>
-                                    <p class="text-lg font-bold text-emphasis-italic-bold">Deep Discovery & Value-Led Messaging</p>
-                                    <p>We don’t guess. We immerse ourselves in your product, customers, and founding story. We unearth what makes you *truly* valuable and translate that into compelling, outcome-first messaging so your entire team speaks the same language.</p>
-                                    <p></p>
-                                </div>
-                                <div class="md:w-1/2 flex justify-center">
-                                    <img loading="lazy" decoding="async" src="/assets/illustrations/methodology/step_1.webp" alt="A founder and strategist at a whiteboard, removing sticky notes labeled “fluff,” “jargon,” and “features” : leaving only sticky notes labeled “impact,” and “aha.”" class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+1';">
+                            <img src="/assets/clients/bwlogos/360textolicapp.png" alt="360 Textolic App Logo" onerror="this.onerror=null;this.src='https." class="w-full max-w-sm h-auto rounded-lg shadow-md border border-[#FF53AC]" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0A0A0A/E0E0E0?text=Step+5';">
                                 </div>
                             </div>
                         </div>
@@ -1193,7 +1074,7 @@
                                 <div class="md:w-1/2 text-center md:text-left">
                                     <h3 class="text-2xl font-bold text-lime">Phase 2: The High-Intent Engine</h3>
                                     <p class="text-lg font-bold text-emphasis-italic-bold">Discoverability, Not Just SEO</p>
-                                    <p>We build search systems around *user intention*, not just keywords. We map how your buyers *actually* look for solutions and build the architecture to ensure you're the one they find, right when they need you most.</p>
+                                    <p>I build search systems around *user intention*, not just keywords. I map how your buyers *actually* look for solutions and build the architecture to ensure you're the one they find, right when they need you most.</p>
                                     <p></p>
                                 </div>
                                 <div class="md:w-1/2 flex justify-center">
@@ -1207,7 +1088,7 @@
                                 <div class="md:w-1/2 text-center md:text-left">
                                     <h3 class="text-2xl font-bold text-lime">Phase 3: The Conversion Machine</h3>
                                     <p class="text-lg font-bold text-emphasis-italic-bold">Architecture That Sells</p>
-                                    <p>Your website shouldn't be a brochure; it should be your #1 salesperson. We wireframe and design conversion pathways that guide users from "problem-aware" to "demo-booked," all built on the clear messaging from Phase 1.</p>
+                                    <p>Your website shouldn't be a brochure; it should be your #1 salesperson. I wireframe and design conversion pathways that guide users from "problem-aware" to "demo-booked," all built on the clear messaging from Phase 1.</p>
                                     <p></p>
                                 </div>
                                 <div class="md:w-1/2 flex justify-center">
@@ -1221,7 +1102,7 @@
                                 <div class="md:w-1/2 text-center md:text-left">
                                     <h3 class="text-2xl font-bold text-lime">Phase 4: The Sales-Ready Toolkit</h3>
                                     <p class="text-lg font-bold text-emphasis-italic-bold">Arming Your Team to Win</p>
-                                    <p>This is where we build your content *machine*. We create the sales enablement templates, landing page systems, testimonial kits, and email frameworks your team needs to ship high-leverage content, fast and consistently.</p>
+                                    <p>This is where I build your content *machine*. I create the sales enablement templates, landing page systems, testimonial kits, and email frameworks your team needs to ship high-leverage content, fast and consistently.</p>
                                     <p></p>
                                 </div>
                                 <div class="md:w-1/2 flex justify-center">
@@ -1235,7 +1116,7 @@
                                 <div class="md:w-1/2 text-center md:text-left">
                                     <h3 class="text-2xl font-bold text-lime">Phase 5: The Momentum Loop</h3>
                                     <p class="text-lg font-bold text-emphasis-italic-bold">Full-Throttle Execution. Adaptive Strategy.</p>
-                                    <p>Now, the engine runs. We implement the new site and messaging, launch the founder-led content rhythm, and track everything. Ongoing performance audits and sales-alignment loops keep us sharp. This is where momentum becomes your new baseline.</p>
+                                    <p>Now, the engine runs. I implement the new site and messaging, launch the founder-led content rhythm, and track everything. Ongoing performance audits and sales-alignment loops keep me sharp. This is where momentum becomes your new baseline.</p>
                                     <p></p>
                                 </div>
                                 <div class="md:w-1/2 flex justify-center">
@@ -1257,7 +1138,7 @@
 
             </div> <!-- End Carousel Wrapper -->
 
-             <!-- Merged "Our Impact & Your Outcomes" section content -->
+             <!-- Merged "My Impact & Your Outcomes" section content -->
              <div class="merged-section-padding"> <!-- Added padding class -->
                 <div class="text-center mb-12 px-4">
                     <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Your New Reality</h2>
@@ -1275,8 +1156,8 @@
                         <p class="text-lg mb-4 text-left mx-auto max-w-xl"><span class="text-emphasis-italic-bold">Half-measures</span> no longer cut it. And <span class="text-emphasis-italic-bold">‘picture-perfect’</span> millennial marketing is giving people the ick.</p>
                         <p class="text-lg mb-4 text-left mx-auto max-w-xl">The new internet rewards pages, ads, and videos that actually <span class="text-emphasis-italic-bold">do something</span>—calculate, visualize unique data, or feature real expert collaboration.</p>
                          <!-- UL removed based on image_d58da4.png -->
-                        <p class="text-lg mb-4 text-left mx-auto max-w-xl">We build the systems that get <span class="text-emphasis-italic-bold">you</span> cited as the <span class="text-emphasis-italic-bold">source.</span></p>
-                        <p class="text-lg mb-4 text-left mx-auto max-w-xl">Whether it’s SEO, brand positioning, emails, or ads, we know what <span class="text-emphasis-italic-bold">actually</span> works on <span class="text-emphasis-italic-bold">each</span> platform to book demos.</p>
+                        <p class="text-lg mb-4 text-left mx-auto max-w-xl">I build the systems that get <span class="text-emphasis-italic-bold">you</span> cited as the <span class="text-emphasis-italic-bold">source.</span></p>
+                        <p class="text-lg mb-4 text-left mx-auto max-w-xl">Whether it’s SEO, brand positioning, emails, or ads, I know what <span class="text-emphasis-italic-bold">actually</span> works on <span class="text-emphasis-italic-bold">each</span> platform to book demos.</p>
                     </div>
                 </div>
              </div>
@@ -1287,7 +1168,7 @@
             <div class="text-center mb-12 px-4">
                 <p class="text-lg fade-in-up max-w-3xl mx-auto"><span class="text-emphasis-italic-bold">Stop renting traffic. Start building an asset.</span></p>
                 <h2 class="text-3xl sm:text-4xl font-black fade-in-up mt-4">Build Pipeline That Compounds, Not Collapses</h2>
-                <p class="mt-4 text-lg fade-in-up max-w-3xl mx-auto font-semibold">Our compounding organic engine cements your reputation as the go-to expert, making you immune to fleeting trends and algorithm updates.</p>
+                <p class="mt-4 text-lg fade-in-up max-w-3xl mx-auto font-semibold">My compounding organic engine cements your reputation as the go-to expert, making you immune to fleeting trends and algorithm updates.</p>
         
                 <div class="mt-12 text-left max-w-3xl mx-auto border-t border-b border-gray-700 py-8">
                      <h4 class="text-xl font-bold text-center mb-6">Strategic Benefits:</h4>
@@ -1314,7 +1195,7 @@
                     <h3 class="pm-pipeline-card__super-title">FOR EARLY-STAGE TECH FOUNDERS</h3>
                     <h4 class="pm-pipeline-card__title">Fractional CMO Consulting</h4>
                     <p class="pm-pipeline-card__subtitle">Your First Predictable Pipeline</p>
-                    <p class="pm-pipeline-card__body">Stop guessing. Get strategic CMO-level guidance without the full-time cost. We'll build your foundational lead-gen system for a crowded, unpredictable market.</p>
+                    <p class="pm-pipeline-card__body">Stop guessing. Get strategic CMO-level guidance without the full-time cost. I'll build your foundational lead-gen system for a crowded, unpredictable market.</p>
                     <!-- Removed CTA Button -->
                 </div>
                 <!-- Card 2: For CMOs -->
@@ -1322,7 +1203,7 @@
                     <h3 class="pm-pipeline-card__super-title">FOR B2B TECH CMOS</h3>
                     <h4 class="pm-pipeline-card__title">In-House BoFu + Organic Strategy</h4>
                     <p class="pm-pipeline-card__subtitle">Scale Your In-House Engine</p>
-                    <p class="pm-pipeline-card__body">Your paid channels are saturated. Your team is stretched thin. We deliver a battle-tested BoFu & organic strategy that plugs directly into your existing team, conserving resources and compounding results.</p>
+                    <p class="pm-pipeline-card__body">Your paid channels are saturated. Your team is stretched thin. I deliver a battle-tested BoFu & organic strategy that plugs directly into your existing team, conserving resources and compounding results.</p>
                     <!-- Removed CTA Button -->
                 </div>
             </div>
@@ -1334,14 +1215,14 @@
             </div>
              <div class="mt-16 text-center max-w-2xl mx-auto px-4">
                 <h5 class="font-bold text-lg">Friction-Free Execution. No Surprises.</h5>
-                <p class="text-base opacity-80 mt-2">Our pricing anticipates revisions. We stay focused on growth and momentum, <br>not renegotiating scope creep mid-project.</p>
+                <p class="text-base opacity-80 mt-2">My pricing anticipates revisions. I stay focused on growth and momentum, <br>not renegotiating scope creep mid-project.</p>
             </div>
         </section>
 
         <section id="contact" class="py-16 md:py-24 rounded-xl shadow-2xl mb-16">
             <div class="text-center mb-12 px-4">
                 <h2 class="text-3xl sm:text-4xl font-black fade-in-up">Start the Conversation</h2>
-                <p class="mt-4 text-lg fade-in-up">Find out if we're the right fit. No pressure, no hard sell.</p>
+                <p class="mt-4 text-lg fade-in-up">Find out if I'm the right fit. No pressure, no hard sell.</p>
             </div>
             <div class="max-w-xl mx-auto p-6 sm:p-10 rounded-xl shadow-xl border contact-card fade-in-up">
                 <div class="space-y-4 text-left text-base sm:text-lg">
@@ -1358,7 +1239,7 @@
             <div class="max-w-3xl mx-auto text-center p-6 sm:p-12 rounded-xl fade-in-up">
                 <p class="text-lg sm:text-xl text-white text-emphasis-italic-bold opacity-90">Ready to stop guessing?</p>
                 <h2 class="text-3xl sm:text-4xl md:text-6xl font-black text-white hero-title-glow">Let’s Talk Strategy.</h2>
-                <p class="mt-4 text-lg sm:text-xl text-white opacity-90">Schedule your free, 30-minute Strategy Call. <br>We'll audit your current marketing and show you the exact gaps keeping you from predictable growth.</p>
+                <p class="mt-4 text-lg sm:text-xl text-white opacity-90">Schedule your free, 30-minute Strategy Call. <br>I'll audit your current marketing and show you the exact gaps keeping you from predictable growth.</p>
                 <div class="mt-10">
                     <button id="schedule-call-footer-btn" class="inline-block bg-white text-[#F53196] font-semibold py-3 px-6 text-base sm:text-lg rounded-lg shadow-md hover:bg-[#EEFF41] hover:text-gray-900 transition-all duration-300 text-lg button-glow-cta" aria-label="I'd Like To Book More Demos">
                         I'd Like To Book More Demos<span class="blinking-dot"></span>
@@ -1370,9 +1251,9 @@
     
     <footer class="py-6 text-center mt-16">
         <div class="flex justify-center mb-0">
-            <img id="footer-logo" loading="lazy" src="/assets/trademarks/logos/logo-horizontal-white.webp" alt="PRYSMI Agency White Logo" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+White+Logo';">
+            <img id="footer-logo" loading="lazy" src="/assets/trademarks/logos/logo-horizontal-white.webp" alt="PRYSMI White Logo" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/120x40/0A0A0A/E0E0E0?text=PRYSMI+White+Logo';">
         </div>
-        <p class="mt-2 text-sm">&copy; <span id="currentYear"></span> PRYSMI Media Labs. All rights reserved.</p>
+        <p class="mt-2 text-sm">&copy; <span id="currentYear"></span> PRYSMI. All rights reserved.</p>
     </footer>
 
     <!-- Floating Action Buttons -->
@@ -1908,7 +1789,5 @@
     
 </body>
 </html>
-
-
 
 

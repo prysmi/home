@@ -17,29 +17,29 @@ export async function onRequest(context) {
   const nonce = crypto.randomUUID().toString().replace(/-/g, '');
 
   // --- Security Headers ---
-  const headers = {
-    'Content-Security-Policy': [
-      "default-src 'self'",
-      // Added LinkedIn (snap.licdn.com) to script-src
-      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://www.googletagmanager.com https://snap.licdn.com 'unsafe-inline'`,
-      "style-src 'self' 'unsafe-inline'",
-      "font-src 'self'",
-      // Added LinkedIn (px.ads.linkedin.com and snap.licdn.com) to img-src
-      "img-src 'self' data: https://placehold.co https://www.google-analytics.com https://www.googletagmanager.com https://px.ads.linkedin.com https://snap.licdn.com",
-      "frame-src 'self' https://www.googletagmanager.com",
-      // Added LinkedIn (px.ads.linkedin.com) to connect-src to fix the Fetch API error
-      "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://px.ads.linkedin.com",
-      "object-src 'none'",
-      "base-uri 'self'",
-      "form-action 'self'",
-    ].join('; '),
+    const headers = {
+      'Content-Security-Policy': [
+        "default-src 'self'",
+        // Added LinkedIn (snap.licdn.com) and Zoho (cdn.pagesense.io) to allow scripts to load
+        `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://www.googletagmanager.com https://snap.licdn.com https://cdn.pagesense.io 'unsafe-inline'`,
+        "style-src 'self' 'unsafe-inline'",
+        "font-src 'self'",
+        // Added LinkedIn (px.ads.linkedin.com) and Zoho (pagesense-collect.zoho.in) for tracking pixels
+        "img-src 'self' data: https://placehold.co https://www.google-analytics.com https://www.googletagmanager.com https://px.ads.linkedin.com https://snap.licdn.com https://pagesense-collect.zoho.in",
+        "frame-src 'self' https://www.googletagmanager.com",
+        // Added LinkedIn and Zoho to connect-src to fix the "Fetch API" and "Connecting to..." errors
+        "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://px.ads.linkedin.com https://pagesense-collect.zoho.in",
+        "object-src 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+      ].join('; '),
   
-    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
-    'X-Content-Type-Options': 'nosniff',
-    'X-Frame-Options': 'DENY',
-    'Referrer-Policy': 'strict-origin-when-cross-origin',
-    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-  };
+      'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+      'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+    };
 
   // Create a new response with the original headers.
   const newResponse = new Response(response.body, {
@@ -63,4 +63,5 @@ export async function onRequest(context) {
     })
     .transform(newResponse);
 }
+
 

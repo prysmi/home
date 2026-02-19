@@ -20,21 +20,20 @@ export async function onRequest(context) {
   const headers = {
     'Content-Security-Policy': [
       "default-src 'self'",
-      // FIX: Added 'strict-dynamic' to allow GTM to load its child tags.
-      // We also include 'unsafe-inline' as a fallback for older browsers.
-      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://www.googletagmanager.com 'unsafe-inline'`,
+      // Added LinkedIn (snap.licdn.com) to script-src
+      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://www.googletagmanager.com https://snap.licdn.com 'unsafe-inline'`,
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self'",
-      // FIX: Added Google Analytics and GTM domains to img-src for tracking pixels.
-      "img-src 'self' data: https://placehold.co https://www.google-analytics.com https://www.googletagmanager.com",
+      // Added LinkedIn (px.ads.linkedin.com and snap.licdn.com) to img-src
+      "img-src 'self' data: https://placehold.co https://www.google-analytics.com https://www.googletagmanager.com https://px.ads.linkedin.com https://snap.licdn.com",
       "frame-src 'self' https://www.googletagmanager.com",
-      // FIX: Ensured connect-src allows data to be sent to GA/GTM endpoints.
-      "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
+      // Added LinkedIn (px.ads.linkedin.com) to connect-src to fix the Fetch API error
+      "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://px.ads.linkedin.com",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",
     ].join('; '),
-
+  
     'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
@@ -64,3 +63,4 @@ export async function onRequest(context) {
     })
     .transform(newResponse);
 }
+

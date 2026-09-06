@@ -32,16 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             };
 
-            // This observer tells the 3D background to update when the theme class changes on the body
+            // This observer tells the 3D background to update when the theme class changes on the body.
+            // The theme toggle button itself is already wired up in index.html (it owns the
+            // light-mode class toggle, the icon/logo swap, and localStorage persistence) -
+            // this observer is what keeps the 3D background in sync with that, so no separate
+            // click listener is needed here.
             new MutationObserver(updateTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
-            // RESTORED CODE: This click listener is the primary trigger for changing the theme.
-            const themeToggleButton = document.querySelector('#theme-toggle');
-            if (themeToggleButton) {
-                themeToggleButton.addEventListener('click', () => {
-                    document.body.classList.toggle('light-mode');
-                });
-            }
 
             window.addEventListener('resize', resizeHandler, false);
 
@@ -54,4 +50,3 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('OffscreenCanvas or Web Workers not supported, hiding 3D background.');
     }
 });
-
